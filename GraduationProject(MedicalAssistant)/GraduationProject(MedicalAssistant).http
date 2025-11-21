@@ -1,0 +1,6 @@
+@GraduationProject_MedicalAssistant__HostAddress = http://localhost:5046
+
+GET {{GraduationProject_MedicalAssistant__HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

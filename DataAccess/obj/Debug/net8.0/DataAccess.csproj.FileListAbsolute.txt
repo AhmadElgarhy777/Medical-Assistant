@@ -1,0 +1,17 @@
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\bin\Debug\net8.0\DataAccess.deps.json
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\bin\Debug\net8.0\DataAccess.runtimeconfig.json
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\bin\Debug\net8.0\DataAccess.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\bin\Debug\net8.0\DataAccess.pdb
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\bin\Debug\net8.0\Models.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\bin\Debug\net8.0\Models.pdb
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.csproj.AssemblyReference.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfoInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfo.cs
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.csproj.Up2Date
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\refint\DataAccess.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.pdb
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\DataAccess.genruntimeconfig.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll

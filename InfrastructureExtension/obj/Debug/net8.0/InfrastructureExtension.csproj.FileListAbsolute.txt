@@ -1,0 +1,11 @@
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\bin\Debug\net8.0\InfrastructureExtension.deps.json
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\bin\Debug\net8.0\InfrastructureExtension.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\bin\Debug\net8.0\InfrastructureExtension.pdb
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.GeneratedMSBuildEditorConfig.editorconfig
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.AssemblyInfoInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.AssemblyInfo.cs
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.csproj.CoreCompileInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\refint\InfrastructureExtension.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.pdb
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\ref\InfrastructureExtension.dll

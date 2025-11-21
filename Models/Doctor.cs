@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models
+{
+    public class Doctor
+    {
+        public string DoctorId { get; set; } = null!;
+        public string SSN { get; set; } = null!;
+        public string FullName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public GenderEnum Gender { get; set; }
+        public string Img { get; set; } = null!;
+        public string CrediateImg { get; set; } = null!;
+        public DateOnly BD { get; set; }
+        public Governorate Governorate { get; set; } 
+        public string City { get; set; } = null!;
+        public string Address { get; set; } = null!;
+        public Double RattingAverage { get; set; }
+        public string Bio { get; set; } = null!;
+        public string Phone { get; set; } = null!;
+        public string Experence { get; set; } = null!;
+        public string Degree { get; set; } = null!;
+        public string OrgnizationNumber { get; set; } = null!;
+        public string? Certification { get; set; }
+
+        public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
+
+        public Collection<AiReport>? Reports { get; set; }
+        public Collection<Appointment>? Appointments { get; set; }
+        public Collection<Chat>? Chats { get; set; }
+        public Collection<Clinic> Clinics { get; set; } = null!;
+        public Collection<Presciption>? Presciptions { get; set; }
+        public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
+        public Collection<Rating>? Ratings { get; set; }
+        public Collection<DoctorPatient>? DoctorPatients { get; set; }
+        public string SpecializationId { get; set; } = null!;
+
+        public Specialization Specialization { get; set; }= null!;
+
+
+
+
+
+
+    }
+}
