@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Reflection.Emit;
 
 namespace DataAccess
 {
@@ -52,17 +53,24 @@ namespace DataAccess
                 .OnDelete(DeleteBehavior.SetNull);
 
 
-            builder.Entity<Doctor>()
-                .HasMany(d => d.Clinics)
-                .WithOne(c => c.Doctor)
-                .HasForeignKey(d => d.ClinicId)
-                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<Clinic>()
+    .HasOne(c => c.Doctor)
+    .WithMany(d => d.Clinics)
+    .HasForeignKey(c => c.DoctorId)
+    .OnDelete(DeleteBehavior.Cascade);
 
             // Doctor → Appointments (Cascade)
             builder.Entity<Appointment>()
                 .HasOne(a => a.Doctor)
                 .WithMany(d => d.Appointments)
                 .HasForeignKey(a => a.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<Appointment>()
+                .HasOne(a => a.Patient)
+                .WithMany(d => d.appointments)
+                .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Doctor → DoctorAvailableTime (Cascade)
@@ -78,6 +86,19 @@ namespace DataAccess
                 .WithMany(d => d.Presciptions)
                 .HasForeignKey(p => p.DoctorId)
                 .OnDelete(DeleteBehavior.Cascade);
+            
+            
+            builder.Entity<Presciption>()
+                .HasOne(p => p.Patient)
+                .WithMany(d => d.presciptions)
+                .HasForeignKey(p => p.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<PrescriptionItem>()
+                .HasOne(p => p.Presciption)
+                .WithMany(d => d.items)
+                .HasForeignKey(p => p.PresciptionId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // SetNull for ChatMessage → User
             builder.Entity<ChatMessage>()
@@ -85,7 +106,21 @@ namespace DataAccess
                 .WithMany(u => u.Messages)
                 .HasForeignKey(m => m.ApplicationUserId)
                 .OnDelete(DeleteBehavior.SetNull);
-        
+
+
+            builder.Entity<AiReport>()
+                .HasOne(m => m.Patient)
+                .WithMany(u=>u.AiReports)
+                .HasForeignKey(f=>f.PatientId)
+                .OnDelete(DeleteBehavior.Cascade);
+            
+            builder.Entity<AiReport>()
+                .HasOne(m => m.Doctor)
+                .WithMany(u=>u.Reports)
+                .HasForeignKey(f=>f.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
             builder.Entity<ChatMessage>().HasOne(s => s.User).WithMany(s => s.Messages).HasForeignKey(s => s.ApplicationUserId).OnDelete(DeleteBehavior.SetNull);
 
             

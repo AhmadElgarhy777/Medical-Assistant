@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models.DTOs
 {
-    public class SearchingFieldsDTO
+    public class DocSearchingFieldsDTO
     {
         public string? Name { get; set; }
         public string? Specilzation { get; set; }

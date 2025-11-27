@@ -1,10 +1,11 @@
-
+using MediatR;
 using DataAccess;
 using DataAccess.Repositry.IRepositry;
 using DataAccess.Repositry;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using System.Reflection;
+using Features.PatientFeature.Handler;
 
 namespace GraduationProject_MedicalAssistant_
 {
@@ -37,6 +38,8 @@ namespace GraduationProject_MedicalAssistant_
             builder.Services.AddScoped<IPresciptionRepositry, PrescriptionRepositry>();
             builder.Services.AddScoped<IRatingRepositry, RatingRepositry>();
             builder.Services.AddScoped<ISpecilizationRepositry, SpecilizationRepositry>();
+
+            builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
 
             builder.Services.AddAutoMapper(
                            configration => { },

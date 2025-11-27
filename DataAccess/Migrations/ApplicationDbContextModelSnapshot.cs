@@ -320,6 +320,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("NuresId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PatientId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -327,6 +330,8 @@ namespace DataAccess.Migrations
                     b.HasKey("ChatId");
 
                     b.HasIndex("DoctorId");
+
+                    b.HasIndex("NuresId");
 
                     b.HasIndex("PatientId");
 
@@ -383,7 +388,7 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("DoctorId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Governorate")
                         .HasColumnType("int");
@@ -396,6 +401,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ClinicId");
+
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("Clinics");
                 });
@@ -610,13 +617,11 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PricePerDay")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("PricePerDay")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("RattingAverage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<double>("RattingAverage")
+                        .HasColumnType("float");
 
                     b.Property<string>("SSN")
                         .IsRequired()
@@ -767,6 +772,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("DoctorId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("NuresId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PatientId")
                         .HasColumnType("nvarchar(450)");
 
@@ -776,6 +784,8 @@ namespace DataAccess.Migrations
                     b.HasKey("RatingId");
 
                     b.HasIndex("DoctorId");
+
+                    b.HasIndex("NuresId");
 
                     b.HasIndex("PatientId");
 
@@ -895,6 +905,10 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Models.Nures", "Nures")
+                        .WithMany("Chats")
+                        .HasForeignKey("NuresId");
+
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("Chats")
                         .HasForeignKey("PatientId")
@@ -902,6 +916,8 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Doctor");
+
+                    b.Navigation("Nures");
 
                     b.Navigation("Patient");
                 });
@@ -928,7 +944,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Clinics")
-                        .HasForeignKey("ClinicId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1032,11 +1048,17 @@ namespace DataAccess.Migrations
                         .WithMany("Ratings")
                         .HasForeignKey("DoctorId");
 
+                    b.HasOne("Models.Nures", "Nures")
+                        .WithMany("Ratings")
+                        .HasForeignKey("NuresId");
+
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("Ratings")
                         .HasForeignKey("PatientId");
 
                     b.Navigation("Doctor");
+
+                    b.Navigation("Nures");
 
                     b.Navigation("Patient");
                 });
@@ -1073,6 +1095,13 @@ namespace DataAccess.Migrations
                     b.Navigation("Reports");
 
                     b.Navigation("avilableTimes");
+                });
+
+            modelBuilder.Entity("Models.Nures", b =>
+                {
+                    b.Navigation("Chats");
+
+                    b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("Models.Patient", b =>

@@ -39,21 +39,6 @@ namespace Features.PatientFeature.Handler
             };
             if(page<=0)page = 1;
             IQueryable<Doctor> doctors = doctorRepositry.GetAll(includeProp: [e => e.Specialization, e => e.Ratings]);
-            //if(SerchField.name!=null||
-            //    SerchField.city != null||
-            //    SerchField.specilzation != null||
-            //    SerchField.rate != null||
-            //    SerchField.governorate != null)
-            //{
-            //    doctors=doctors.Where(
-            //        e=>e.FullName.Contains(SerchField.name) ||
-            //        e.City.Contains(SerchField.city) ||
-            //        e.RattingAverage.Equals(SerchField.rate)||
-            //        e.Specialization.Name.Contains(SerchField.specilzation)||
-            //        e.Governorate.Equals(SerchField.governorate)
-                  
-            //        );
-            //}
 
             if (!string.IsNullOrWhiteSpace(search.Name))
                 doctors = doctors.Where(e => e.FullName.Contains(search.Name));
@@ -68,7 +53,7 @@ namespace Features.PatientFeature.Handler
                 doctors = doctors.Where(e => e.RattingAverage >= (double)search.Rate.Value);
 
             if (search.Governorate.HasValue)
-                doctors = doctors.Where(e => e.Governorate == search.Governorate);
+                doctors = doctors.Where(e => e.Governorate.Equals(search.Governorate));
 
           
             doctors =doctors.Skip((page-1) * 5 ).Take(5);
@@ -79,7 +64,6 @@ namespace Features.PatientFeature.Handler
                 doctorDTOs.Add(mapper.Map<DoctorDTO>(doc));
                
             }
-
 
             return doctorDTOs.ToList(); 
 

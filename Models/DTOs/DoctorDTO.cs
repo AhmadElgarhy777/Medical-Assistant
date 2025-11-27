@@ -25,6 +25,5 @@ namespace Models.DTOs
         public string Experence { get; set; } = null!;
         public string Degree { get; set; } = null!;
         public string? Certification { get; set; }
-        public Double AvrageRate { get; set; }
     }
 }

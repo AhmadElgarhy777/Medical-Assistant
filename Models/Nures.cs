@@ -1,5 +1,7 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,13 +25,27 @@ namespace Models
         public Governorate Governorate { get; set; }
         public string Address { get; set; } = null!;
         public string City { get; set; } = null!;
-        public string RattingAverage { get; set; } = null!;
+        public double RattingAverage
+        {
+            get
+            {
+                if (Ratings == null || Ratings.Count == 0)
+                    return 0;
+
+                return Ratings.Average(r => (int)r.Stars);
+            }
+            set { }
+
+        }
         public string Bio { get; set; } = null!;
         public string Phone { get; set; } = null!;
         public string Experence { get; set; } = null!;
-        public string PricePerDay { get; set; } = null!;
+        public decimal? PricePerDay { get; set; } = null!;
 
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
+        public Collection<Rating>? Ratings { get; set; }
+        public Collection<Chat>? Chats { get; set; }
 
+       
     }
 }

@@ -5,6 +5,7 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension
 C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.AssemblyInfoInputs.cache
 C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.AssemblyInfo.cs
 C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.csproj.CoreCompileInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.sourcelink.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\refint\InfrastructureExtension.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\InfrastructureExtension\obj\Debug\net8.0\InfrastructureExtension.pdb

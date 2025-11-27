@@ -11,6 +11,6 @@ using System.Threading.Tasks;
 
 namespace Features.PatientFeature.Query
 {
-    public record GetAllDoctorsSearchQuery(SearchingFieldsDTO searching,int page = 1):IRequest<List<DoctorDTO>>;
+    public record GetAllDoctorsSearchQuery(DocSearchingFieldsDTO searching,int page = 1):IRequest<List<DoctorDTO>>;
     
 }

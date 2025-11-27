@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProject(MedicalAssistant)", "GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant).csproj", "{736D6394-554A-4C84-80CB-78B1715E49AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduationProject(MedicalAssistant)", "GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant).csproj", "{736D6394-554A-4C84-80CB-78B1715E49AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{C717AE31-F014-46FF-BB22-B03E43237F5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{C717AE31-F014-46FF-BB22-B03E43237F5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{137E7E11-0F16-4DA1-B10B-81CC33F939C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{137E7E11-0F16-4DA1-B10B-81CC33F939C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureExtension", "InfrastructureExtension\InfrastructureExtension.csproj", "{11923EBA-C7F2-4F05-A14A-7E7F05668877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureExtension", "InfrastructureExtension\InfrastructureExtension.csproj", "{11923EBA-C7F2-4F05-A14A-7E7F05668877}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Features", "Features\Features.csproj", "{BDAD458F-A5D4-461A-BC99-4843094A24EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Features", "Features\Features.csproj", "{BDAD458F-A5D4-461A-BC99-4843094A24EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{C6C6ECD4-0F86-4CE8-90F8-D180B12A5E10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "Utility\Utility.csproj", "{C6C6ECD4-0F86-4CE8-90F8-D180B12A5E10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

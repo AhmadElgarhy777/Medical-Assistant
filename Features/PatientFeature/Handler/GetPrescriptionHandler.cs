@@ -1,0 +1,48 @@
+﻿using AutoMapper;
+using DataAccess.Repositry.IRepositry;
+using Features.PatientFeature.Query;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Models;
+using Models.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Features.PatientFeature.Handler
+{
+    public class GetPrescriptionHandler : IRequestHandler<GetPresciptionQuery, List<PresciptionDTO>>
+    {
+        private readonly IPresciptionRepositry presciptionRepositry;
+        private readonly IMapper mapper;
+
+        public GetPrescriptionHandler(IPresciptionRepositry presciptionRepositry,IMapper mapper)
+        {
+            this.presciptionRepositry = presciptionRepositry;
+            this.mapper = mapper;
+        }
+        public  async Task<List<PresciptionDTO>> Handle(GetPresciptionQuery request, CancellationToken cancellationToken)
+        {
+            var page = request.page;
+            var patientId = request.Id;
+
+            var Presciptions= presciptionRepositry.GetAll(expression:e=>e.PatientId== patientId, includeProp: [e=>e.Doctor]);
+            List<PresciptionDTO> presciptionDTOs = new List<PresciptionDTO>();
+            if (Presciptions != null) {
+                Presciptions = Presciptions.Skip((page - 1) * 5).Take(5);
+               List<Presciption> PresciptionsList = await Presciptions.ToListAsync(cancellationToken);
+                foreach(var pre in PresciptionsList)
+                {
+                    presciptionDTOs.Add(mapper.Map<PresciptionDTO>(pre));
+                }
+
+            
+            }
+            return presciptionDTOs;
+
+
+        }
+    }
+}

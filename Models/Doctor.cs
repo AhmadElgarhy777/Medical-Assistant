@@ -20,7 +20,17 @@ namespace Models
         public Governorate Governorate { get; set; } 
         public string City { get; set; } = null!;
         public string Address { get; set; } = null!;
-        public Double RattingAverage { get; set; }
+        public double RattingAverage
+        {
+            get
+            {
+                if (Ratings == null || Ratings.Count == 0)
+                    return 0;
+
+                return Ratings.Average(r => (int)r.Stars);
+            }
+            set { }
+        }
         public string Bio { get; set; } = null!;
         public string Phone { get; set; } = null!;
         public string Experence { get; set; } = null!;

@@ -6,27 +6,28 @@ using Models.DTOs;
 namespace GraduationProject_MedicalAssistant_.Profiles.PatientProfile
    
 {
-    public class DoctorDTOProfile:Profile
+    public class DoctorDTOProfile : Profile
     {
         public DoctorDTOProfile()
         {
-            CreateMap<Doctor, DoctorDTO>()
-                            .ForMember(dest => dest.ClincNumbers,
-                                opt => opt.MapFrom(src =>
-                                    src.Clinics
-                                       .SelectMany(c => c.phones)
-                                       .Select(p => p.Phone)
-                                       .ToList()
-                                )).ForMember(dest => dest.Age, src => src.MapFrom(opt => DateTime.Today.Year -opt.BD.Year
-                                )).ForMember(dest => dest.RattingAverage, opt => opt.MapFrom(src =>
-                                     src.Ratings.Any() ? src.Ratings.Average(r => (int)r.Stars) : 0));
+            CreateMap<Doctor, DoctorDTO>().ForMember(e => e.ClincNumbers, opt =>
+                            opt.MapFrom(src =>
+                            src.Clinics
+                            .SelectMany(o => o.phones)
+                            .Select(o => o.Phone).ToList()
+                            ))
+                            .ForMember(e => e.Age, opt => opt.MapFrom(src => DateTime.Now.Year - src.BD.Year))
+                            .ForMember(e => e.RattingAverage, opt => opt.MapFrom(src => src.RattingAverage));
 
 
 
 
-            ;
-        }
 
-       
+      
+
+
+
     }
 }
+  }
+
