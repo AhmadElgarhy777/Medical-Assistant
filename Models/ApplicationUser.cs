@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using Models.Enums;
 using System.Collections.ObjectModel;
 
 namespace Models

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Enums
 {
-    public enum BookPaymentStatusEnum
+    public enum GenderEnum
     {
-        Confirmed,
-        NotConfirmed,
+        male = 0, female = 1,
     }
 }

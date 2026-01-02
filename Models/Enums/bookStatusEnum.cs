@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Enums
 {
-    public enum ConfrmationStatus
+    public enum bookStatusEnum
     {
-        Pending = 0,   
-        Approved = 1,  
-        Rejected = 2
+        Completed,
+        Canceled,
+        Pending
     }
 }

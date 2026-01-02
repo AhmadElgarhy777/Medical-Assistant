@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Enums
 {
-    public enum GenderEnum
+    public enum BookTypeEnum
     {
-        male=0,female=1,    
+        online,
+        InClinc,
     }
 }

@@ -1,13 +1,14 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Models.Enums;
 
-    namespace Models
-    {
-        public class Clinic
+namespace Models
+{
+    public class Clinic
         {
             public string ClinicId { get; set; } = null!;
             public Governorate Governorate { get; set; }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Enums
 {
-    public enum BookTypeEnum
+    public enum BookPaymentStatusEnum
     {
-        online,
-        InClinc,
+        Confirmed,
+        NotConfirmed,
     }
 }

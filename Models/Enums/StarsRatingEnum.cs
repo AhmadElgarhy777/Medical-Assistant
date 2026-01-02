@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Models.Enums
 {
     public enum StarsRatingEnum
     {
-   
+
         One = 1,
         Two = 2,
         Three = 3,

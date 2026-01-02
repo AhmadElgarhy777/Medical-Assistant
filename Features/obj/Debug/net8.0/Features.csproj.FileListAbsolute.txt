@@ -1,9 +1,3 @@
-C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.csproj.AssemblyReference.cache
-C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.GeneratedMSBuildEditorConfig.editorconfig
-C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.AssemblyInfoInputs.cache
-C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.AssemblyInfo.cs
-C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.csproj.CoreCompileInputs.cache
-C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.sourcelink.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8.0\Features.deps.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8.0\Features.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8.0\Features.pdb
@@ -11,6 +5,12 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8.0\Models.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8.0\DataAccess.pdb
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\bin\Debug\net8.0\Models.pdb
+C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.csproj.AssemblyReference.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.GeneratedMSBuildEditorConfig.editorconfig
+C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.AssemblyInfoInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.AssemblyInfo.cs
+C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.csproj.CoreCompileInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.sourcelink.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.csproj.Up2Date
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\Features.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\Features\obj\Debug\net8.0\refint\Features.dll

@@ -17,11 +17,10 @@ namespace GraduationProject_MedicalAssistant_
 
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-
-
                 );
 
-            
+            #region ScopedServices
+
             builder.Services.AddScoped<IAiReportRepositry, AiReportRepositry>();
             builder.Services.AddScoped<IAppointmentRepositry, AppointmentRepositry>();
             builder.Services.AddScoped<IChatMessageRepositry, ChatMessageRepositry>();
@@ -38,9 +37,10 @@ namespace GraduationProject_MedicalAssistant_
             builder.Services.AddScoped<IPresciptionRepositry, PrescriptionRepositry>();
             builder.Services.AddScoped<IRatingRepositry, RatingRepositry>();
             builder.Services.AddScoped<ISpecilizationRepositry, SpecilizationRepositry>();
+            #endregion
+            #region Services
 
             builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
-
             builder.Services.AddAutoMapper(
                            configration => { },
                            Assembly.GetExecutingAssembly()
@@ -49,8 +49,25 @@ namespace GraduationProject_MedicalAssistant_
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            #endregion
 
             var app = builder.Build();
+
+            using var scope  = app.Services.CreateScope();
+            var service= scope.ServiceProvider;
+            var dbContext=service.GetRequiredService<ApplicationDbContext>();
+            var FactoryLogger = service.GetRequiredService<ILoggerFactory>();
+
+            try
+            {
+                dbContext.Database.MigrateAsync();
+                DataSedding.SpecilzationSeed(dbContext);
+            }
+            catch (Exception ex)
+            {
+                FactoryLogger.CreateLogger<Program>().LogError(ex,"this is migration error ");
+
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
