@@ -1,0 +1,802 @@
+[
+  {
+    "Name": "التخصص ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة الاوعية الدموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "طب وجراحة العيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نفسية وعصبية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة اورام ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "ذكورة وعقم",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مخ واعصاب وطب نفسي",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحات الانف والاذن والحنجرة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة تجميل",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اورام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جلدية أطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "خبيرة نفسية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "قلب واوعية دموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "صدر وجهاز تنفسي",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عظام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحات ومناظير الانف والاذن والحنجرة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نفسي متخصص في علاج الإدمان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة العظام والمفاصل والعمود الفقري",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحات عامة وجراحات جهاز هضمي",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "طب وجراحة العيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "طب نفسي وعلاج ادمان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "طب نفسي وعلاج الإدمان ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي نسا وتوليد والحقن المجهري",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "معالج نفسي اكلينيكي وعلاج الإدمان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري اعاقات مخ واعصاب الأطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري امراض القلب والاوعية الدموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري طب وجراحة العيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري طب وجراحة الأطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة الأطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "أستاذ جراحة الاوعية الدموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "طب وجراحة العيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري الجراحة وجراحات الأورام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة الأورام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي جراحة المسالك البولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "معالج نفسي اكلينكي والإرشاد الاسري",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي طب نفسي وعلاج الإدمان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري امراض الباطنة والقلب والاوعية الدموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري النساء والتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري الامراض الصدرية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري طب السمعيات والاتزان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري طب الأورام واورام الدم",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري اول واستاذ عيون ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة ومناظير الكلي والمسالك البولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري امراض الحساسية والمناعة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة العظام والمناظير ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي جراحة العظام والمفاصل والكسور",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائية الجلدية والتجميل والليزر",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري طب الأطفال وطب قلب الأطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة المخ والاعصاب والعمود الفقري",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري الجراحة العامة وجراحات الثدي",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "أستاذ جراحات الكلي والمسالك البولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي نفسية وعصبية ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي الطب النفسي ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "أستاذ الجراحة العامة والمناظير ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "أخصائي جراحة العظام والكسور",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "خبير نفسي اكلينكي ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري طب وجراحة العيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري الغدد الصماء والسكر",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة العظام والمفاصل والعمود الفقري",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي امراض القلب والباطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري امراض الكلي ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري جراحة تجميل وحروق",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري الامراض العصبية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري امراض الباطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي امراض النساء والتوليد والحقن المجهرى",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي امراض النساء والتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري امراض الباطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري اول جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "استشاري الجراحة العامة ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي طب وجراحة العيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي العلاج الطبيعي والتاهيل",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي طب الأطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي جراحة العظام  ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي طب الأطفال وحديثي الولادة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "دكتور عظام ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي العلاج الطبيعي ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي امراض القلب والاوعية الدموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي امراض الانف والاذن والحنجرة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي جراحة عامة ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مخ و أعصاب ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "علاج طبيعي",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عظام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جلدية  ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي جراحة المسالك البولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اخصائي امراض القلب والاوعية الدموية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عظام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عظام ",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "قلب",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "قلب",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "قلب",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جلدية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عظام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مخ واعصاب",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مخ واعصاب",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساءوتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اورام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عظام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عظام",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مسالك بولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مسالك بولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "تجميل",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جراحة عامة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جلدية و تجميل",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "انف واذن وحنجرة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اشعة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "مسالك بولية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "جلدية",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "عيون",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اطفال",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "قلب",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "نساء وتوليد",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "باطنة",
+    "SpecializationId": ""
+  },
+  {
+    "Name": "اسنان",
+    "SpecializationId": ""
+  }
+]

@@ -429,7 +429,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Doctor", b =>
                 {
-                    b.Property<string>("DoctorId")
+                    b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
@@ -502,7 +502,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("DoctorId");
+                    b.HasKey("ID");
 
                     b.HasIndex("SpecializationId");
 
@@ -558,7 +558,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Nures", b =>
                 {
-                    b.Property<string>("NuresId")
+                    b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
@@ -618,6 +618,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("PricePerDay")
+                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<double>("RattingAverage")
@@ -630,7 +631,7 @@ namespace DataAccess.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("NuresId");
+                    b.HasKey("ID");
 
                     b.HasIndex("FullName", "Address", "City", "Experence", "RattingAverage");
 
@@ -639,7 +640,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Patient", b =>
                 {
-                    b.Property<string>("PatientId")
+                    b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
@@ -675,7 +676,7 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PatientId");
+                    b.HasKey("ID");
 
                     b.ToTable("Patients");
                 });
