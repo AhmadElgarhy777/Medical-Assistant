@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class DoctorAvilableTime
+    public class DoctorAvilableTime: ModelBase
     {
-        public string DoctorAvilableTimeId { get; set; } = null!;
         public DayOfWeek Day { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }

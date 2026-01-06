@@ -63,12 +63,10 @@ namespace Features.PatientFeature.Handler
             nures =nures.Skip((page-1)*5).Take(5);
 
             List<Nures> nureList=await nures.ToListAsync(cancellationToken);
-            List<NurseDTO> nurseDTOList = new List<NurseDTO> ();
-            foreach(var n in nureList)
-            {
-               nurseDTOList.Add( mapper.Map<NurseDTO>(n));
-            }
-            return nurseDTOList;
+           
+               var nurseListDTO=mapper.Map<List<Nures>,List<NurseDTO>>(nureList);
+            
+            return nurseListDTO;
 
 
 

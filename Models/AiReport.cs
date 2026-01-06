@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class AiReport
+    public class AiReport:ModelBase
     {
-        public string AiReportId { get; set; } = null!;
         public string AiReportOutput { get; set; } = null!;
         public string Img { get; set; } = null!;
         public string DoctorNote { get; set; } = null!;

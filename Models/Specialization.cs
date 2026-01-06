@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Specialization
+    public class Specialization: ModelBase
     {
-        public string SpecializationId { get; set; } = null!;
         public string Name { get; set; } = null!;
        
         public Collection<Doctor>? Doctor { get; set; }

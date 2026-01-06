@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class PrescriptionItem
+    public class PrescriptionItem: ModelBase
     {
-        public string PrescriptionItemId { get; set; } = null!;
         public string DrugName { get; set; } = null!;
         public string Dos { get; set; } = null!;
         public string? Note { get; set; } 

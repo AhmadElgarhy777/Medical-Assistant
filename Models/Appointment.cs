@@ -7,9 +7,8 @@ using Models.Enums;
 
 namespace Models
 {
-    public class Appointment
+    public class Appointment: ModelBase
     {
-        public string AppointmentId { get; set; } = null!;
         public DateOnly Date { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }

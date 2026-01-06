@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Presciption
+    public class Presciption: ModelBase
     {
-        public string PresciptionId { get; set; } = null!;
         public string? Diagnosis { get; set; }
         public DateTime CraetedAt { get; set; }
         public string PatientId { get; set; }

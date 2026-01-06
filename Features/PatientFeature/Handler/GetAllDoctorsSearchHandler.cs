@@ -58,16 +58,12 @@ namespace Features.PatientFeature.Handler
           
             doctors =doctors.Skip((page-1) * 5 ).Take(5);
             var DoctorList = await doctors.ToListAsync(cancellationToken);
-            List<DoctorDTO> doctorDTOs= new List<DoctorDTO>();
-            foreach(var doc in DoctorList)
-            {
-                doctorDTOs.Add(mapper.Map<DoctorDTO>(doc));
-               
-            }
+          
+            var doctorDTOs = mapper.Map<List<Doctor>, List<DoctorDTO>>(DoctorList);
 
             return doctorDTOs.ToList(); 
 
                     
-                    }
+        }
     }
 }

@@ -29,17 +29,12 @@ namespace Features.PatientFeature.Handler
             var patientId = request.Id;
 
             var Presciptions= presciptionRepositry.GetAll(expression:e=>e.PatientId== patientId, includeProp: [e=>e.Doctor]);
-            List<PresciptionDTO> presciptionDTOs = new List<PresciptionDTO>();
-            if (Presciptions != null) {
                 Presciptions = Presciptions.Skip((page - 1) * 5).Take(5);
                List<Presciption> PresciptionsList = await Presciptions.ToListAsync(cancellationToken);
-                foreach(var pre in PresciptionsList)
-                {
-                    presciptionDTOs.Add(mapper.Map<PresciptionDTO>(pre));
-                }
+
+                   var presciptionDTOs=mapper.Map<List<Presciption>,List<PresciptionDTO>>(PresciptionsList);
 
             
-            }
             return presciptionDTOs;
 
 

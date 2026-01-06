@@ -7,9 +7,8 @@ using Models.Enums;
 
 namespace Models
 {
-    public class Rating
+    public class Rating: ModelBase
     {
-        public string RatingId { get; set; } = null!;
         public StarsRatingEnum Stars { get; set; }
         public string? Comment { get; set; }
         public DateTime CreatedAt { get; set; }

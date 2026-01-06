@@ -3,6 +3,7 @@ using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using Models.DTOs;
 using System;
 using System.Collections.Generic;
@@ -26,25 +27,14 @@ namespace Features.PatientFeature.Handler
         }
         public async Task<List<AppointmentDTO>> Handle(GetAppointmentsQuery request, CancellationToken cancellationToken)
         {
-           var patientId = request.Id;
+            var patientId = request.Id;
             var page = request.page;
             if(page<=0)page = 1;
-
             var app = appointmentRepositry.GetAll(includeProp: [e => e.Doctor, e => e.Patient], expression: e => e.PatientId == patientId);
-               List<AppointmentDTO> appointmentDTOs = new List<AppointmentDTO>();
-          
-            if (app != null)
-            {
-                app= app.Skip((page-1)*5).Take(5);
-                var appoinmentList= await app.ToListAsync(cancellationToken);
-                foreach(var appo in appoinmentList)
-                {
-                    appointmentDTOs.Add(mapper.Map<AppointmentDTO>(appo));
-                }
-                
-            }
+            app= app.Skip((page-1)*5).Take(5);
+            var appoinmentList= await app.ToListAsync(cancellationToken);
+            var appointmentDTOs=mapper.Map<List<Appointment>,List<AppointmentDTO>>(appoinmentList);
 
-         
             return appointmentDTOs;
 
         }

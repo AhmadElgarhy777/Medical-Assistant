@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Chat
+    public class Chat: ModelBase
     {
-        public string ChatId { get; set; } = null!;
         public DateTime CratedAt { get; set; }
         public string PatientId { get; set; }
         public Patient Patient { get; set; }

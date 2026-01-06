@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class DoctorPatient
+    public class DoctorPatient: ModelBase
     {
 
-        public string DoctorPatientId { get; set; } = null!;
         public Patient? Patient { get; set; }
         public Doctor? Doctor { get; set; }
         public string? PatientId { get; set; } 

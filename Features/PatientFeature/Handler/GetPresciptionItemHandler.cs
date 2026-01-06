@@ -29,20 +29,17 @@ namespace Features.PatientFeature.Handler
            var  presciptionId = request.presciptionId;
             var page = request.page;
 
-            var presciption = await presciptionRepositry.GetOneAsync(expression: e => e.PresciptionId == presciptionId, includeProp: [e => e.items]);
-            List<PresciptionItemDTO> ItemsDTOs = new List<PresciptionItemDTO>();
-            if (presciption != null)
-            {
-                var Items = presciption.items.Where(e => e.PresciptionId == presciption.PresciptionId);
+            var presciption = await presciptionRepositry.GetOneAsync(expression: e => e.ID == presciptionId, includeProp: [e => e.items]);
+            
+                var Items = presciption.items.Where(e => e.PresciptionId == presciption.ID);
                 Items = Items.Skip((page - 1) * 5).Take(5);
-                Items = Items.ToList();
-                foreach (var item in Items)
-                {
-                    ItemsDTOs.Add(mapper.Map<PresciptionItemDTO>(item));
-                }
+                var Item = Items.ToList();
+               
+                   var ItemsDTOs=mapper.Map<List<PrescriptionItem>,List<PresciptionItemDTO>>(Item);
+                
 
 
-            }
+            
             return ItemsDTOs;
         }
     }

@@ -10,6 +10,15 @@ namespace Models
 {
     public class Doctor: ModelBase
     {
+        public string SSN { get; set; } = null!;
+        public string FullName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public GenderEnum Gender { get; set; }
+        public string Img { get; set; } = null!;
+        public DateOnly BD { get; set; }
+        public Governorate Governorate { get; set; }
+        public string Address { get; set; } = null!;
+        public string City { get; set; } = null!;
         public string CrediateImg { get; set; } = null!;
         public string Phone { get; set; }=null!;
         public string Bio { get; set; } = null!;

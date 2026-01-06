@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class ChatMessage
+    public class ChatMessage: ModelBase
     {
-        public string ChatMessageId { get; set; } = null!;
         public string Test { get; set; } = null!;
         public string? Attachment { get; set; }
         public DateTime CreatedAt { get; set; }

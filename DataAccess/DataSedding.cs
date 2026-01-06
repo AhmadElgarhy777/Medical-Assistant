@@ -25,7 +25,6 @@ namespace DataAccess
                     {
                         foreach (var item in List)
                         {
-                           item.SpecializationId=Guid.NewGuid().ToString();
                              dbContext.Set<Specialization>().Add(item);
                         }
                         dbContext.SaveChanges();

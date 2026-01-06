@@ -18,7 +18,6 @@ namespace DataAccess.Config
             builder.Property(e => e.FullName).IsRequired();
             builder.Property(e => e.Email).IsRequired();
             builder.Property(e => e.Gender).IsRequired();
-            builder.Property(e => e.Img).IsRequired();
             builder.Property(e => e.BD).IsRequired();
             builder.Property(e => e.Governorate).IsRequired();
             builder.Property(e => e.Address).IsRequired();

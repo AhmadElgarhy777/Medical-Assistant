@@ -8,9 +8,8 @@ using Models.Enums;
 
 namespace Models
 {
-    public class Clinic
-        {
-            public string ClinicId { get; set; } = null!;
+    public class Clinic: ModelBase
+    {
             public Governorate Governorate { get; set; }
             public string Address { get; set; } = null!;
             public string City { get; set; } = null!;
