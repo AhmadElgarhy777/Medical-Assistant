@@ -154,3 +154,4 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).pdb
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).genruntimeconfig.cache
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\ref\GraduationProject(MedicalAssistant).dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).MvcApplicationPartsAssemblyInfo.cs
