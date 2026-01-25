@@ -19,6 +19,8 @@ namespace Models
         public Governorate Governorate { get; set; }
         public string Address { get; set; } = null!;
         public string City { get; set; } = null!;
+
+
         public Collection<PatientPhone> patientPhones { get; set; } = null!;
         public Collection<Appointment>? appointments { get; set; }
         public Collection<AiReport>? AiReports { get; set; }

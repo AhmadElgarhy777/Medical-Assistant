@@ -23,11 +23,11 @@ namespace Models
         public string CrediateImg { get; set; } = null!;
         public string Phone { get; set; }=null!;
         public string Degree { get; set; } = null!;
-        public string? Certification { get; set; }
-        public string OrgnizationNumber { get; set; } = null!;
-        public string Bio { get; set; } = null!;
+        public string CertificationImg { get; set; } = null!;
+        public string? OrgnizationNumber { get; set; } 
+        public string? Bio { get; set; } 
         public string Experence { get; set; } = null!;
-        public decimal? PricePerDay { get; set; } = null!;
+        public decimal PricePerDay { get; set; }
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
         public Collection<Rating>? Ratings { get; set; }
         public Collection<Chat>? Chats { get; set; }

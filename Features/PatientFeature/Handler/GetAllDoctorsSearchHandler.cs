@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
@@ -12,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Features.PatientFeature.Handler
 {
     public class GetAllDoctorsSearchHandler : IRequestHandler<GetAllDoctorsSearchQuery, List<DoctorDTO>>
@@ -38,8 +38,8 @@ namespace Features.PatientFeature.Handler
 
             };
             if(page<=0)page = 1;
-            IQueryable<Doctor> doctors = doctorRepositry.GetAll(includeProp: [e => e.Specialization, e => e.Ratings]);
-
+            var spec = new DoctorSpecifcation();
+            var doctors = doctorRepositry.GetAll(spec);
             if (!string.IsNullOrWhiteSpace(search.Name))
                 doctors = doctors.Where(e => e.FullName.Contains(search.Name));
 
@@ -57,11 +57,10 @@ namespace Features.PatientFeature.Handler
 
           
             doctors =doctors.Skip((page-1) * 5 ).Take(5);
-            var DoctorList = await doctors.ToListAsync(cancellationToken);
-          
-            var doctorDTOs = mapper.Map<List<Doctor>, List<DoctorDTO>>(DoctorList);
+            var doctorsList= await doctors.ToListAsync(cancellationToken);
+            var doctorDTOs = mapper.Map<IEnumerable<Doctor>, List<DoctorDTO>>(doctorsList);
 
-            return doctorDTOs.ToList(); 
+            return doctorDTOs; 
 
                     
         }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,12 +21,14 @@ namespace Models
         public string City { get; set; } = null!;
         public string CrediateImg { get; set; } = null!;
         public string Phone { get; set; }=null!;
-        public string Bio { get; set; } = null!;
+        public string? Bio { get; set; }
         public string Experence { get; set; } = null!;
         public string Degree { get; set; } = null!;
-        public string OrgnizationNumber { get; set; } = null!;
-        public string? Certification { get; set; }
+        public string? OrgnizationNumber { get; set; }
+        public string CertificationImg { get; set; } = null!;
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
+
+
         public Collection<AiReport>? Reports { get; set; }
         public Collection<Appointment>? Appointments { get; set; }
         public Collection<Chat>? Chats { get; set; }

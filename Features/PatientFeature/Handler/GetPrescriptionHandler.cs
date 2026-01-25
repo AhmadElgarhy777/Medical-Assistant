@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
@@ -27,14 +28,11 @@ namespace Features.PatientFeature.Handler
         {
             var page = request.page;
             var patientId = request.Id;
-
-            var Presciptions= presciptionRepositry.GetAll(expression:e=>e.PatientId== patientId, includeProp: [e=>e.Doctor]);
-                Presciptions = Presciptions.Skip((page - 1) * 5).Take(5);
-               List<Presciption> PresciptionsList = await Presciptions.ToListAsync(cancellationToken);
-
-                   var presciptionDTOs=mapper.Map<List<Presciption>,List<PresciptionDTO>>(PresciptionsList);
-
-            
+            var spec = new PresciptionSpecifcation(e => e.PatientId == patientId);
+            var Presciptions = presciptionRepositry.GetAll(spec);
+            Presciptions = Presciptions.Skip((page - 1) * 5).Take(5);
+            List<Presciption> PresciptionsList = await Presciptions.ToListAsync(cancellationToken);
+            var presciptionDTOs=mapper.Map<List<Presciption>,List<PresciptionDTO>>(PresciptionsList);
             return presciptionDTOs;
 
 

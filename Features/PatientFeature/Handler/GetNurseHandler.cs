@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
@@ -37,7 +38,9 @@ namespace Features.PatientFeature.Handler
                 gender=request.Searching.Gender,
             };
             if (page <= 0) page = 1;
-            IQueryable<Nures> nures = nuresRepositry.GetAll(includeProp: [e=>e.Ratings]);
+            var spec = new NurseSpesfication();
+           var nures = nuresRepositry.GetAll(spec);
+
             if (!string.IsNullOrWhiteSpace(Search.name))
                 nures = nures.Where(e => e.FullName.Contains(Search.name));
 
@@ -62,7 +65,7 @@ namespace Features.PatientFeature.Handler
 
             nures =nures.Skip((page-1)*5).Take(5);
 
-            List<Nures> nureList=await nures.ToListAsync(cancellationToken);
+            var nureList=await nures.ToListAsync(cancellationToken);
            
                var nurseListDTO=mapper.Map<List<Nures>,List<NurseDTO>>(nureList);
             

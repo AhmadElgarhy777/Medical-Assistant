@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
@@ -30,10 +31,11 @@ namespace Features.PatientFeature.Handler
             var patientId = request.Id;
             var page = request.page;
             if(page<=0)page = 1;
-            var app = appointmentRepositry.GetAll(includeProp: [e => e.Doctor, e => e.Patient], expression: e => e.PatientId == patientId);
-            app= app.Skip((page-1)*5).Take(5);
+            var spec = new AppointmentSpescifcation(e => e.PatientId == patientId);
+            var app = appointmentRepositry.GetAll(spec);
+            app = app.Skip((page-1)*5).Take(5);
             var appoinmentList= await app.ToListAsync(cancellationToken);
-            var appointmentDTOs=mapper.Map<List<Appointment>,List<AppointmentDTO>>(appoinmentList);
+            var appointmentDTOs=mapper.Map<IEnumerable<Appointment>,List<AppointmentDTO>>(appoinmentList);
 
             return appointmentDTOs;
 

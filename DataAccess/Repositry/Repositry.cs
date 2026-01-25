@@ -1,5 +1,7 @@
 ﻿using DataAccess.Repositry.IRepositry;
+using DataAccess.Specfications;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositry
 {
-    public class Repositry<T> : IRepositry<T> where T : class
+    public class Repositry<T> : IRepositry<T> where T : ModelBase
     {
         private readonly ApplicationDbContext dbContext;
         DbSet<T> dbset;
@@ -47,30 +49,22 @@ namespace DataAccess.Repositry
             dbset.Update(item);
         }
 
-        public IQueryable<T> GetAll(Expression<Func<T, object>>[]? includeProp = null, Expression<Func<T, bool>>? expression = null, bool tracked = true)
+       
+
+        public IQueryable<T> GetAll(ISpecifcation<T> spec)
         {
-            IQueryable<T> qury = dbset;
-            if (includeProp != null)
-            {
-                foreach (var item in includeProp)
-                {
-                    qury = qury.Include(item);
-                }
-            }
-            if (expression != null)
-            {
-                qury = qury.Where(expression);
-            }
-            if (!tracked)
-            {
-                qury = qury.AsNoTracking();
-            }
-            return qury;
+            var specifcation = GetSpecifcation(spec);
+            return specifcation;
+        }
+        public IQueryable<T?> GetOne(ISpecifcation<T> spec)
+        {
+            var specifcation = GetSpecifcation(spec);
+            return specifcation;
         }
 
-        public async Task<T?> GetOneAsync(Expression<Func<T, object>>[]? includeProp = null, Expression<Func<T, bool>>? expression = null, bool tracked = true, CancellationToken Token = default)
+        private IQueryable<T> GetSpecifcation(ISpecifcation<T> spec)
         {
-            return await GetAll(includeProp, expression, tracked).FirstOrDefaultAsync(Token);
+            return SpecifcationEvaluator<T>.GetQuery(dbset, spec);
         }
 
         public async Task ExpLoadCollectionAsync<TProperty>

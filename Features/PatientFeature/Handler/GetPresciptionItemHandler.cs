@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry;
 using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.DTOs;
 using System;
@@ -16,30 +18,25 @@ namespace Features.PatientFeature.Handler
     public class GetPresciptionItemHandler : IRequestHandler<GetPresciptionItemQuery, List<PresciptionItemDTO>>
 
     {
-        private readonly IPresciptionRepositry presciptionRepositry;
+        private readonly IPresciptionItemRepositry itemRepositry;
         private readonly IMapper mapper;
 
-        public GetPresciptionItemHandler(IPresciptionRepositry presciptionRepositry ,IMapper mapper)
+        public GetPresciptionItemHandler(IPresciptionItemRepositry itemRepositry ,IMapper mapper)
         {
-            this.presciptionRepositry = presciptionRepositry;
+            this.itemRepositry= itemRepositry;
             this.mapper = mapper;
         }
         public async Task<List<PresciptionItemDTO>> Handle(GetPresciptionItemQuery request, CancellationToken cancellationToken)
         {
            var  presciptionId = request.presciptionId;
             var page = request.page;
+            var spec = new PrescriptionItemSpecifcation(e => e.ID == presciptionId);
 
-            var presciption = await presciptionRepositry.GetOneAsync(expression: e => e.ID == presciptionId, includeProp: [e => e.items]);
-            
-                var Items = presciption.items.Where(e => e.PresciptionId == presciption.ID);
-                Items = Items.Skip((page - 1) * 5).Take(5);
-                var Item = Items.ToList();
-               
+            var Items = itemRepositry.GetAll(spec);
+
+                Items = Items?.Skip((page - 1) * 5).Take(5);
+                var Item = Items?.ToList();
                    var ItemsDTOs=mapper.Map<List<PrescriptionItem>,List<PresciptionItemDTO>>(Item);
-                
-
-
-            
             return ItemsDTOs;
         }
     }

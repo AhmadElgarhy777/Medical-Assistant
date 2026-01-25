@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry;
 using DataAccess.Repositry.IRepositry;
 using Features.PatientFeature.Query;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using Models.DTOs;
 using System;
 using System.Collections.Generic;
@@ -30,19 +32,12 @@ namespace Features.PatientFeature.Handler
             var patientId = request.Id;
             var page = request.page;
             if (page <= 0) page = 1;
-
-            var Reports =  reportRepositry.GetAll(expression: e => e.PatientId == patientId, includeProp: [e => e.Doctor,e=>e.Doctor.Specialization]);
-            List<AiReportDTO> ReportDTO = new List<AiReportDTO>();
-            if (Reports != null)
-            {
+            var spec = new AiReportsSpesfication(e=>e.PatientId==patientId);
+            var Reports = reportRepositry.GetAll(spec);
+           
                 Reports = Reports.Skip((page - 1) * 5).Take(5);
                 var ReportsList = await Reports.ToListAsync(cancellationToken);
-                foreach (var app in ReportsList)
-                {
-                    ReportDTO.Add(mapper.Map<AiReportDTO>(app));
-                }
-
-            }
+                var ReportDTO= mapper.Map<IEnumerable<AiReport>,List<AiReportDTO>>(ReportsList);
             return ReportDTO;
         }
     }

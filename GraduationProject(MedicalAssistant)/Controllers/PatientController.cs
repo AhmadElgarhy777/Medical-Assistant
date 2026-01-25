@@ -6,9 +6,8 @@ using Models.DTOs;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PatientController : ControllerBase
+  
+    public class PatientController : ApiBaseController
     {
         private readonly IMediator mediatR;
 
@@ -18,7 +17,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpGet("GetDoctorsBySearch")]
-        public async Task<IActionResult> GetDoctorsBySearch([FromQuery] GetAllDoctorsSearchQuery query ,CancellationToken cancellationToken)
+        public async Task<ActionResult<DoctorDTO>> GetDoctorsBySearch([FromQuery] GetAllDoctorsSearchQuery query ,CancellationToken cancellationToken)
         {
                 var doctors = await mediatR.Send(query, cancellationToken);
                 if (doctors.Any())
@@ -30,7 +29,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         [HttpGet("GetNurseBySearch")]
 
-        public async Task<IActionResult> GetNurseBySearch([FromQuery] SearchNuresQuery query ,CancellationToken cancellationToken)
+        public async Task<ActionResult<NurseDTO>> GetNurseBySearch([FromQuery] SearchNuresQuery query ,CancellationToken cancellationToken)
         {
                 var nurses = await mediatR.Send(query, cancellationToken);
                 if (nurses.Any())
@@ -41,7 +40,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             
         }
         [HttpGet("Appoinments")]
-        public async Task<IActionResult> Appoinments([FromQuery] GetAppointmentsQuery query,CancellationToken cancellationToken)
+        public async Task<ActionResult<AppointmentDTO>> Appoinments([FromQuery] GetAppointmentsQuery query,CancellationToken cancellationToken)
         {
             var appoinment=await mediatR.Send(query,cancellationToken);
             if (appoinment.Any())
@@ -52,7 +51,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpGet("Reports")]
-        public async Task<IActionResult> Reports([FromQuery] GetAiReportsQuery query, CancellationToken cancellationToken)
+        public async Task<ActionResult<AiReportDTO>> Reports([FromQuery] GetAiReportsQuery query, CancellationToken cancellationToken)
         {
             var Report = await mediatR.Send(query, cancellationToken);
             if (Report.Any())
@@ -63,7 +62,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpGet("Presciptions")]
-        public async Task<IActionResult> Presciptions([FromQuery] GetPresciptionQuery query, CancellationToken cancellationToken)
+        public async Task<ActionResult<PresciptionDTO>> Presciptions([FromQuery] GetPresciptionQuery query, CancellationToken cancellationToken)
         {
             var presciptions = await mediatR.Send(query, cancellationToken);
             if (presciptions.Any())
@@ -74,12 +73,12 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpGet("PresciptionItems")]
-        public async Task<IActionResult> PresciptionItems([FromQuery] GetPresciptionItemQuery query, CancellationToken cancellationToken)
+        public async Task<ActionResult<PresciptionItemDTO>> PresciptionItems([FromQuery] GetPresciptionItemQuery query, CancellationToken cancellationToken)
         {
             var Items = await mediatR.Send(query, cancellationToken);
             if (Items.Any())
             {
-                return Ok(Items);
+                return Ok(Items); 
             }
             return NotFound();
         }

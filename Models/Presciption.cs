@@ -11,10 +11,10 @@ namespace Models
     {
         public string? Diagnosis { get; set; }
         public DateTime CraetedAt { get; set; }
-        public string PatientId { get; set; }
-        public Patient Patient { get; set; }
-        public string DoctorId { get; set; }
-        public Doctor Doctor { get; set; }
+        public string PatientId { get; set; } = null!;
+        public Patient? Patient { get; set; }
+        public string DoctorId { get; set; } = null!;
+        public Doctor? Doctor { get; set; }
         public Collection<PrescriptionItem> items { get; set; }
     }
 }

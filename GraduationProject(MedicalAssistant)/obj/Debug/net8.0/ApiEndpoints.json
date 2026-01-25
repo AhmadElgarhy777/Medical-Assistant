@@ -18,7 +18,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.AppointmentDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -59,7 +69,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.DoctorDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -110,7 +130,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.NurseDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -131,7 +161,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.PresciptionItemDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -152,7 +192,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.PresciptionDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -173,6 +223,420 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.AiReportDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "GetAllSpecialization",
+    "RelativePath": "api/Registeration/GetAllSpecialization",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.Collections.Generic.List\u00601[[Models.DTOs.SpecializationDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "RegisterAdmin",
+    "RelativePath": "api/Registeration/RegisterAdmin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Admin.FName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Admin.LName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Admin.SSN",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Admin.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Admin.Address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Admin.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "RegisterDoctor",
+    "RelativePath": "api/Registeration/RegisterDoctor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Doctor.FName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.MName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.LName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.SSN",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.BirthDate",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Governorate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.AddressInDetails",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Phone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Experence",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Degree",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.CertificationImg",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.CrediateImg",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.SpecializationId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Doctor.ConfirmPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "RegisterNurse",
+    "RelativePath": "api/Registeration/RegisterNurse",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NurseDTO.FName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.MName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.LName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.SSN",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.BirthDate",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Governorate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.AddressInDetails",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Phone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Experence",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Degree",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.CertificationImg",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.CrediateImg",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.PricePerDay",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NurseDTO.ConfirmPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "RegisterPatient",
+    "RelativePath": "api/Registeration/RegisterPatient",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PatientDTO.FName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.MName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.LName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.SSN",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.Img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.BirthDate",
+        "Type": "System.DateOnly",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.Governorate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.AddressInDetails",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PatientDTO.ConfirmPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
