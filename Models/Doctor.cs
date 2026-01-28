@@ -24,21 +24,8 @@ namespace Models
         public string? Bio { get; set; }
         public string Experence { get; set; } = null!;
         public string Degree { get; set; } = null!;
-        public string? OrgnizationNumber { get; set; }
         public string CertificationImg { get; set; } = null!;
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
-
-
-        public Collection<AiReport>? Reports { get; set; }
-        public Collection<Appointment>? Appointments { get; set; }
-        public Collection<Chat>? Chats { get; set; }
-        public Collection<Clinic> Clinics { get; set; } = null!;
-        public Collection<Presciption>? Presciptions { get; set; }
-        public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
-        public Collection<Rating>? Ratings { get; set; }
-        public Collection<DoctorPatient>? DoctorPatients { get; set; }
-        public string SpecializationId { get; set; } = null!;
-        public Specialization Specialization { get; set; }= null!;
 
         public double RattingAverage
         {
@@ -51,6 +38,18 @@ namespace Models
             }
             set { }
         }
+
+        public string SpecializationId { get; set; } = null!;
+        public Specialization Specialization { get; set; }= null!;
+        public Collection<AiReport>? Reports { get; set; }
+        public Collection<Appointment>? Appointments { get; set; }
+        public Collection<Chat>? Chats { get; set; }
+        public Collection<Clinic> Clinics { get; set; } = null!;
+        public Collection<Presciption>? Presciptions { get; set; }
+        public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
+        public Collection<Rating>? Ratings { get; set; }
+        public Collection<DoctorPatient>? DoctorPatients { get; set; }
+
 
 
 

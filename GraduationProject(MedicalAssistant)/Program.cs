@@ -9,9 +9,8 @@ using Features.PatientFeature.Handler;
 using Microsoft.AspNetCore.Identity;
 using GraduationProject_MedicalAssistant_.Profiles;
 using System.Text.Json.Serialization;
-using InfrastructureExtension.ImageServices;
 using InfrastructureExtension;
-using Microsoft.OpenApi.Models;
+using GraduationProject_MedicalAssistant_.Extentions;
 
 
 namespace GraduationProject_MedicalAssistant_
@@ -25,29 +24,18 @@ namespace GraduationProject_MedicalAssistant_
             builder.Services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-            
-            builder.Services.AddDependancyInjectionScoped();
-
-            builder.Services.AddMediatR(cfg=>cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
-            builder.Services.AddAutoMapper(a=>a.AddProfile(typeof(AutoMaperProfile)),Assembly.GetExecutingAssembly());
-
+       
             builder.Services.AddControllers().AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-
                 });
 
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(c =>
-            {
-                c.MapType<DateOnly>(() => new OpenApiSchema
-                {
-                    Type = "string",
-                    Format = "date"
-                });
-            });
+            builder.Services.AddApiServices();
+
+            builder.Services.AddSwaggerServices();
+
+
 
             var app = builder.Build();
 
@@ -69,8 +57,7 @@ namespace GraduationProject_MedicalAssistant_
 
             if (app.Environment.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.AddSwaggerServiceMiddleWare();
             }
 
             app.UseHttpsRedirection();

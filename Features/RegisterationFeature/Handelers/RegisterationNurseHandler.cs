@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utility;
 using DataAccess.Repositry.IRepositry;
-using InfrastructureExtension.ImageServices;
+using Services.ImageServices;
 using static System.Net.Mime.MediaTypeNames;
 using Microsoft.Extensions.Configuration;
 

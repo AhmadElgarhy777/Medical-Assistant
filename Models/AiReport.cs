@@ -12,10 +12,11 @@ namespace Models
         public string Img { get; set; } = null!;
         public string DoctorNote { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
-        public string PatientId { get; set; } = null!;
-        public Patient? Patient { get; set; }
 
+        public string PatientId { get; set; } = null!;
         public string DoctorId { get; set; } = null!;
+
+        public Patient? Patient { get; set; }
         public Doctor? Doctor { get; set; }
 
 

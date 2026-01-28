@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureExtension.ImageServices
+namespace Services.ImageServices
 {
     public class ImageService : IImageService
     {

@@ -1,18 +1,24 @@
-﻿using DataAccess.Repositry;
+﻿using DataAccess;
+using DataAccess.Repositry;
 using DataAccess.Repositry.IRepositry;
-using InfrastructureExtension.ImageServices;
+using Features.PatientFeature.Handler;
+using GraduationProject_MedicalAssistant_.Profiles;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
+using Services.ImageServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace InfrastructureExtension
 {
-    public static class DependancyInjectionServices
+    public static class Services
     {
-        public static  IServiceCollection AddDependancyInjectionScoped(this IServiceCollection services)
+        public static  IServiceCollection AddApiServices(this IServiceCollection services)
         {
             services.AddScoped<IAiReportRepositry, AiReportRepositry>();
             services.AddScoped<IAppointmentRepositry, AppointmentRepositry>();
@@ -31,6 +37,13 @@ namespace InfrastructureExtension
             services.AddScoped<IRatingRepositry, RatingRepositry>();
             services.AddScoped<ISpecilizationRepositry, SpecilizationRepositry>();
             services.AddScoped<IImageService, ImageService>();
+
+
+
+
+           services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
+           services.AddAutoMapper(a => a.AddProfile(typeof(AutoMaperProfile)), Assembly.GetExecutingAssembly());
+           services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             return services;
         }

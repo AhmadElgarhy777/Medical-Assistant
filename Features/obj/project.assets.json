@@ -1095,23 +1095,6 @@
           "bin/placeholder/DataAccess.dll": {}
         }
       },
-      "InfrastructureExtension/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "DataAccess": "1.0.0",
-          "Models": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/InfrastructureExtension.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/InfrastructureExtension.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
       "Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -1127,6 +1110,23 @@
         "runtime": {
           "bin/placeholder/Models.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DataAccess": "1.0.0",
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Utility/1.0.0": {
         "type": "project",
@@ -2803,15 +2803,15 @@
       "path": "../DataAccess/DataAccess.csproj",
       "msbuildProject": "../DataAccess/DataAccess.csproj"
     },
-    "InfrastructureExtension/1.0.0": {
-      "type": "project",
-      "path": "../InfrastructureExtension/InfrastructureExtension.csproj",
-      "msbuildProject": "../InfrastructureExtension/InfrastructureExtension.csproj"
-    },
     "Models/1.0.0": {
       "type": "project",
       "path": "../Models/Models.csproj",
       "msbuildProject": "../Models/Models.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     },
     "Utility/1.0.0": {
       "type": "project",
@@ -2823,9 +2823,9 @@
     "net8.0": [
       "AutoMapper >= 15.0.1",
       "DataAccess >= 1.0.0",
-      "InfrastructureExtension >= 1.0.0",
       "MediatR >= 13.1.0",
       "Models >= 1.0.0",
+      "Services >= 1.0.0",
       "Utility >= 1.0.0"
     ]
   },
@@ -2860,11 +2860,11 @@
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\InfrastructureExtension\\InfrastructureExtension.csproj": {
-              "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\InfrastructureExtension\\InfrastructureExtension.csproj"
-            },
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj"
+            },
+            "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj": {
+              "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj"
             },
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj"

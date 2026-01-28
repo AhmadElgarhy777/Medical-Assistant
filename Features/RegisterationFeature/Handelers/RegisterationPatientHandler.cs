@@ -2,7 +2,7 @@
 using DataAccess.Repositry;
 using DataAccess.Repositry.IRepositry;
 using Features.RegisterationFeature.Commands;
-using InfrastructureExtension.ImageServices;
+using Services.ImageServices;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

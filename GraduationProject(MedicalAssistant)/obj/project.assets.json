@@ -1697,9 +1697,9 @@
         "dependencies": {
           "AutoMapper": "15.0.1",
           "DataAccess": "1.0.0",
-          "InfrastructureExtension": "1.0.0",
           "MediatR": "13.1.0",
           "Models": "1.0.0",
+          "Services": "1.0.0",
           "Utility": "1.0.0"
         },
         "compile": {
@@ -1708,23 +1708,6 @@
         "runtime": {
           "bin/placeholder/Features.dll": {}
         }
-      },
-      "InfrastructureExtension/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "DataAccess": "1.0.0",
-          "Models": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/InfrastructureExtension.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/InfrastructureExtension.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       },
       "Models/1.0.0": {
         "type": "project",
@@ -1741,6 +1724,23 @@
         "runtime": {
           "bin/placeholder/Models.dll": {}
         }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "DataAccess": "1.0.0",
+          "Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Utility/1.0.0": {
         "type": "project",
@@ -4532,15 +4532,15 @@
       "path": "../Features/Features.csproj",
       "msbuildProject": "../Features/Features.csproj"
     },
-    "InfrastructureExtension/1.0.0": {
-      "type": "project",
-      "path": "../InfrastructureExtension/InfrastructureExtension.csproj",
-      "msbuildProject": "../InfrastructureExtension/InfrastructureExtension.csproj"
-    },
     "Models/1.0.0": {
       "type": "project",
       "path": "../Models/Models.csproj",
       "msbuildProject": "../Models/Models.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
     },
     "Utility/1.0.0": {
       "type": "project",
@@ -4553,12 +4553,12 @@
       "AutoMapper >= 15.0.1",
       "DataAccess >= 1.0.0",
       "Features >= 1.0.0",
-      "InfrastructureExtension >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore >= 8.0.10",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.10",
       "Models >= 1.0.0",
+      "Services >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -4596,11 +4596,11 @@
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj"
             },
-            "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\InfrastructureExtension\\InfrastructureExtension.csproj": {
-              "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\InfrastructureExtension\\InfrastructureExtension.csproj"
-            },
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj"
+            },
+            "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj": {
+              "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj"
             }
           }
         }

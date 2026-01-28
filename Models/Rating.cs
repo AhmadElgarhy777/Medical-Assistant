@@ -12,12 +12,14 @@ namespace Models
         public StarsRatingEnum Stars { get; set; }
         public string? Comment { get; set; }
         public DateTime CreatedAt { get; set; }
+
         public string? PatientId { get; set; }
-        public Patient? Patient { get; set; }
         public string? DoctorId { get; set; }
+        public string? NuresId { get; set; } 
+
+        public Patient? Patient { get; set; }
         public Doctor? Doctor { get; set; }
         public Nures? Nures { get; set; }
-        public string? NuresId { get; set; } 
 
 
 
