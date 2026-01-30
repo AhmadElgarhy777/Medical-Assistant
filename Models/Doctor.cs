@@ -45,7 +45,7 @@ namespace Models
         public Collection<Appointment>? Appointments { get; set; }
         public Collection<Chat>? Chats { get; set; }
         public Collection<Clinic> Clinics { get; set; } = null!;
-        public Collection<Presciption>? Presciptions { get; set; }
+        public Collection<Prescription>? Prescriptions { get; set; }
         public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
         public Collection<Rating>? Ratings { get; set; }
         public Collection<DoctorPatient>? DoctorPatients { get; set; }

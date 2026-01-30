@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositry.IRepositry
 {
-    public interface IPresciptionRepositry:IRepositry<Presciption>
+    public interface IPresciptionRepositry:IRepositry<Prescription>
     {
     }
 }

@@ -9,6 +9,6 @@ using System.Threading.Tasks;
 
 namespace Features.PatientFeature.Query
 {
-    public record GetPresciptionQuery(string Id,int page=1):IRequest<List<PresciptionDTO>>;
+    public record GetPresciptionQuery(string patientId, int page=1):IRequest<List<PresciptionDTO>>;
    
 }

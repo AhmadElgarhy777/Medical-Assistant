@@ -8,8 +8,9 @@ namespace Models.Enums
 {
     public enum bookStatusEnum
     {
+        Pending,
         Completed,
-        Canceled,
-        Pending
+        Cancelled,
+        Confirmed
     }
 }

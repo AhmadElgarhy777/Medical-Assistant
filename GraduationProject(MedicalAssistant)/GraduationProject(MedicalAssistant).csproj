@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>GraduationProject_MedicalAssistant_</RootNamespace>
+    <UserSecretsId>073ddd64-8d3d-440c-8c5d-0b8de27f4f91</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

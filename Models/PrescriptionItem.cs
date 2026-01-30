@@ -10,10 +10,12 @@ namespace Models
     {
         public string DrugName { get; set; } = null!;
         public string Dos { get; set; } = null!;
-        public string? Note { get; set; } 
+        public string? Note { get; set; }
         public string? Duration { get; set; }
         public string PresciptionId { get; set; }
-        public Presciption Presciption { get; set; }
+        public Prescription Presciption { get; set; }
+        public string MedicineName { get; set; } = null!;
+
 
 
     }

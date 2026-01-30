@@ -67,24 +67,5 @@ namespace DataAccess.Repositry
             return SpecifcationEvaluator<T>.GetQuery(dbset, spec);
         }
 
-        public async Task ExpLoadCollectionAsync<TProperty>
-            (
-                T item,
-                Expression<Func<T, IEnumerable<TProperty>>> collection,
-                                CancellationToken cancellationToken = default
-
-            ) where TProperty : class
-        {
-            await dbset.Entry(item).Collection(collection).LoadAsync(cancellationToken);
-        }
-        public async Task ExpLoadRefrenceAsync<TProperty>
-            (
-                T item,
-                Expression<Func<T, TProperty>> refrence = null!,
-                CancellationToken cancellationToken = default
-            ) where TProperty : class
-        {
-            await dbset.Entry(item).Reference(refrence).LoadAsync(cancellationToken);
-        }
     }
 }

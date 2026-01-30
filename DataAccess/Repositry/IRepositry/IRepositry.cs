@@ -20,21 +20,7 @@ namespace DataAccess.Repositry.IRepositry
         public void DeleteRange(T item);
         Task CommitAsync(CancellationToken token = default);
 
-        public Task ExpLoadCollectionAsync<TProperty>
-           (
-               T item,
-               Expression<Func<T, IEnumerable<TProperty>>> collection,
-                               CancellationToken cancellationToken = default
-
-           ) where TProperty : class;
-        public Task ExpLoadRefrenceAsync<TProperty>
-        (
-        T item,
-        Expression<Func<T, TProperty>> refrence = null!,
-                        CancellationToken cancellationToken = default
-
-         ) where TProperty : class;
-
+       
 
         public IQueryable<T> GetAll(ISpecifcation<T> spec);
         public IQueryable<T?> GetOne(ISpecifcation<T> spec);

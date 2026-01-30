@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.EntittySpecifcation
 {
-    public class PresciptionSpecifcation:Specfication<Presciption>
+    public class PresciptionSpecifcation:Specfication<Prescription>
     {
-        public PresciptionSpecifcation(Expression<Func<Presciption,bool>> expression):base(expression)
+        public PresciptionSpecifcation(Expression<Func<Prescription, bool>> expression):base(expression)
         {
             Includes.Add(e => e.Doctor);
         }

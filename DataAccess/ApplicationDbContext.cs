@@ -16,10 +16,10 @@ namespace DataAccess
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<ClinicPhone> ClinicPhones { get; set; }
-        public DbSet<DoctorAvilableTime> doctorAvilableTimes { get; set; }
+        public DbSet<DoctorAvilableTime> DoctorAvilableTimes { get; set; }
         public DbSet<Nures> Nures { get; set; }
         public DbSet<PatientPhone> patientPhones { get; set; }
-        public DbSet<Presciption> presciptions { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; }
         public DbSet<PrescriptionItem> PrescriptionItems { get; set; }
         public DbSet<Rating>  Ratings { get; set; }
         public DbSet<Specialization>  Specializations { get; set; }

@@ -31,6 +31,8 @@ namespace DataAccess.Config
             builder.Property(e => e.Degree).IsRequired();
             builder.Property(e => e.Experence).IsRequired();
             builder.Property(e => e.PricePerDay).IsRequired();
+
+            builder.Property(n => n.PricePerDay).HasColumnType("decimal(18,2)");
         }
     }
 }

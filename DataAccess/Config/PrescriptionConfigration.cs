@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Config
 {
-    internal class PresciptionConfigration : IEntityTypeConfiguration<Presciption>
+    internal class PrescriptionConfigration : IEntityTypeConfiguration<Prescription>
     {
-        public void Configure(EntityTypeBuilder<Presciption> builder)
+        public void Configure(EntityTypeBuilder<Prescription> builder)
         {
             builder
                .HasOne(p => p.Doctor)
-               .WithMany(d => d.Presciptions)
+               .WithMany(d => d.Prescriptions)
                .HasForeignKey(p => p.DoctorId)
                .OnDelete(DeleteBehavior.Cascade);
 
 
             builder
                 .HasOne(p => p.Patient)
-                .WithMany(d => d.presciptions)
+                .WithMany(d => d.Prescriptions)
                 .HasForeignKey(p => p.PatientId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

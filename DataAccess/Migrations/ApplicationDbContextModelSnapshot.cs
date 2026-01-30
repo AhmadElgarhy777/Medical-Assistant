@@ -273,6 +273,10 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ClinicID")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("ClinicID");
+
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
 
@@ -290,6 +294,10 @@ namespace DataAccess.Migrations
                     b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
 
+                    b.Property<string>("SlotId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<TimeOnly>("StartTime")
                         .HasColumnType("time");
 
@@ -300,6 +308,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ClinicID");
 
                     b.HasIndex("DoctorId");
 
@@ -522,6 +532,9 @@ namespace DataAccess.Migrations
                     b.Property<TimeOnly>("EndTime")
                         .HasColumnType("time");
 
+                    b.Property<bool>("IsBooked")
+                        .HasColumnType("bit");
+
                     b.Property<TimeOnly>("StartTime")
                         .HasColumnType("time");
 
@@ -529,7 +542,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("doctorAvilableTimes");
+                    b.ToTable("DoctorAvilableTimes");
                 });
 
             modelBuilder.Entity("Models.DoctorPatient", b =>
@@ -691,10 +704,13 @@ namespace DataAccess.Migrations
                     b.ToTable("patientPhones");
                 });
 
-            modelBuilder.Entity("Models.Presciption", b =>
+            modelBuilder.Entity("Models.Prescription", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AppointmentId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CraetedAt")
                         .HasColumnType("datetime2");
@@ -716,7 +732,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("presciptions");
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("Models.PrescriptionItem", b =>
@@ -733,6 +749,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Duration")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MedicineName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
@@ -916,6 +936,10 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Appointment", b =>
                 {
+                    b.HasOne("Models.Clinic", "Clinic")
+                        .WithMany()
+                        .HasForeignKey("ClinicID");
+
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
@@ -927,6 +951,8 @@ namespace DataAccess.Migrations
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Clinic");
 
                     b.Navigation("Doctor");
 
@@ -1048,16 +1074,16 @@ namespace DataAccess.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("Models.Presciption", b =>
+            modelBuilder.Entity("Models.Prescription", b =>
                 {
                     b.HasOne("Models.Doctor", "Doctor")
-                        .WithMany("Presciptions")
+                        .WithMany("Prescriptions")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.Patient", "Patient")
-                        .WithMany("presciptions")
+                        .WithMany("Prescriptions")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1069,7 +1095,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.PrescriptionItem", b =>
                 {
-                    b.HasOne("Models.Presciption", "Presciption")
+                    b.HasOne("Models.Prescription", "Presciption")
                         .WithMany("items")
                         .HasForeignKey("PresciptionId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1135,7 +1161,7 @@ namespace DataAccess.Migrations
 
                     b.Navigation("DoctorPatients");
 
-                    b.Navigation("Presciptions");
+                    b.Navigation("Prescriptions");
 
                     b.Navigation("Ratings");
 
@@ -1159,16 +1185,16 @@ namespace DataAccess.Migrations
 
                     b.Navigation("DoctorPatients");
 
+                    b.Navigation("Prescriptions");
+
                     b.Navigation("Ratings");
 
                     b.Navigation("appointments");
 
                     b.Navigation("patientPhones");
-
-                    b.Navigation("presciptions");
                 });
 
-            modelBuilder.Entity("Models.Presciption", b =>
+            modelBuilder.Entity("Models.Prescription", b =>
                 {
                     b.Navigation("items");
                 });

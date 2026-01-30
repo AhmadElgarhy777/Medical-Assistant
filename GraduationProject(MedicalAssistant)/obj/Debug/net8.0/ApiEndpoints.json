@@ -1,5 +1,53 @@
 [
   {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AppointmentController",
+    "Method": "Book",
+    "RelativePath": "api/Appointment/BookNow",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Features.AppointmentFeature.Commands.CreateAppointmentCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AppointmentController",
+    "Method": "Cancel",
+    "RelativePath": "api/Appointment/Cancel/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AppointmentController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/Appointment/UpdateStatus",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Features.AppointmentFeature.Commands.UpdateAppointmentStatusCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AuthenticationController",
     "Method": "LogIn",
     "RelativePath": "api/Authentication/LogIn",
@@ -81,6 +129,118 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "GetHistory",
+    "RelativePath": "api/Doctor/{doctorId}/history",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "GetDoctorStats",
+    "RelativePath": "api/Doctor/{doctorId}/stats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "AddAvailability",
+    "RelativePath": "api/Doctor/AddAvailability",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Features.DoctorFeature.Commands.CreateDoctorSlotsCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "GetAvailableSlots",
+    "RelativePath": "api/Doctor/AvailableSlots/{doctorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "CreatePrescription",
+    "RelativePath": "api/Doctor/CreatePrescription",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "Features.DoctorFeature.Commands.CreatePrescriptionCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "GetMyAppointments",
+    "RelativePath": "api/Doctor/MyAppointments/{doctorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "GetMyPatients",
+    "RelativePath": "api/Doctor/MyPatients/{doctorId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doctorId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -166,6 +326,22 @@
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
+    "Method": "GetFullPrescriptionDetails",
+    "RelativePath": "api/Patient/GetFullPrescriptionDetails/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
     "Method": "GetNurseBySearch",
     "RelativePath": "api/Patient/GetNurseBySearch",
     "HttpMethod": "GET",
@@ -227,37 +403,6 @@
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
-    "Method": "PresciptionItems",
-    "RelativePath": "api/Patient/PresciptionItems",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "presciptionId",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "page",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Models.DTOs.PresciptionItemDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
     "Method": "Presciptions",
     "RelativePath": "api/Patient/Presciptions",
     "HttpMethod": "GET",
@@ -265,7 +410,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Id",
+        "Name": "patientId",
         "Type": "System.String",
         "IsRequired": false
       },

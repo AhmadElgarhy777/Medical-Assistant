@@ -13,5 +13,6 @@ namespace Models
         public TimeOnly EndTime { get; set; }
         public string DoctorId { get; set; }
         public Doctor Doctor { get; set; }
+        public bool IsBooked { get; set; } = false;
     }
 }

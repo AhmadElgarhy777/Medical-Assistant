@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositry
 {
-    public class PrescriptionRepositry:Repositry<Presciption>,IPresciptionRepositry
+    public class PrescriptionRepositry:Repositry<Prescription>,IPresciptionRepositry
     {
         private readonly ApplicationDbContext dbContext;
 

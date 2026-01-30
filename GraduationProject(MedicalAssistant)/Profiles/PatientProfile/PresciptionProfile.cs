@@ -8,7 +8,7 @@ namespace GraduationProject_MedicalAssistant_.Profiles.PatientProfile
     {
         public PresciptionProfile()
         {
-            CreateMap<Presciption, PresciptionDTO>()
+            CreateMap<Prescription, PresciptionDTO>()
                 .ForMember(e => e.DoctorName, opt => opt.MapFrom(src => src.Doctor.FullName));
 
 

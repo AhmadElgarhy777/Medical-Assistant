@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class Presciption: ModelBase
+    public class Prescription : ModelBase
     {
         public string? Diagnosis { get; set; }
-        public DateTime CraetedAt { get; set; }
+        public DateTime CraetedAt { get; set; } // سيبتها زي ما هي عندك عشان متضربش
         public string PatientId { get; set; } = null!;
         public Patient? Patient { get; set; }
         public string DoctorId { get; set; } = null!;
         public Doctor? Doctor { get; set; }
-        public Collection<PrescriptionItem> items { get; set; }
+        public Collection<PrescriptionItem> items { get; set; } = new Collection<PrescriptionItem>();
+        public string? AppointmentId { get; set; }
     }
 }

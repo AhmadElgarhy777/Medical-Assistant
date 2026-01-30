@@ -27,12 +27,12 @@ namespace Features.PatientFeature.Handler
         public  async Task<List<PresciptionDTO>> Handle(GetPresciptionQuery request, CancellationToken cancellationToken)
         {
             var page = request.page;
-            var patientId = request.Id;
+            var patientId = request.patientId;
             var spec = new PresciptionSpecifcation(e => e.PatientId == patientId);
             var Presciptions = presciptionRepositry.GetAll(spec);
             Presciptions = Presciptions.Skip((page - 1) * 5).Take(5);
-            List<Presciption> PresciptionsList = await Presciptions.ToListAsync(cancellationToken);
-            var presciptionDTOs=mapper.Map<List<Presciption>,List<PresciptionDTO>>(PresciptionsList);
+            List<Prescription> PresciptionsList = await Presciptions.ToListAsync(cancellationToken);
+            var presciptionDTOs=mapper.Map<List<Prescription>,List<PresciptionDTO>>(PresciptionsList);
             return presciptionDTOs;
 
 

@@ -24,6 +24,8 @@ namespace DataAccess.Config
                 .WithMany(d => d.appointments)
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Property(a => a.ClinicID).HasColumnName("ClinicID");
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Models
         public string DoctorId { get; set; }
         public Doctor Doctor { get; set; }
         public Nures Nures { get; set; }
-        public string? NuresId { get; set; } 
+        public string? NuresId { get; set; }
 
         public Collection<ChatMessage> Messages { get; set; }
     }

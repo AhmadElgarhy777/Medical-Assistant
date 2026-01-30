@@ -1,4 +1,5 @@
-﻿using Features.PatientFeature.Query;
+﻿using Features.PatientFeature.Queries;
+using Features.PatientFeature.Query;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -75,17 +76,26 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return NotFound();
         }
         
-        [HttpGet("PresciptionItems")]
-        public async Task<ActionResult<PresciptionItemDTO>> PresciptionItems([FromQuery] GetPresciptionItemQuery query, CancellationToken cancellationToken)
-        {
-            var Items = await mediatR.Send(query, cancellationToken);
-            if (Items.Any())
-            {
-                return Ok(Items); 
-            }
-            return NotFound();
-        }
+        //[HttpGet("PresciptionItems")]
+        //public async Task<ActionResult<PresciptionItemDTO>> PresciptionItems([FromQuery] GetPresciptionItemQuery query, CancellationToken cancellationToken)
+        //{
+        //    var Items = await mediatR.Send(query, cancellationToken);
+        //    if (Items.Any())
+        //    {
+        //        return Ok(Items); 
+        //    }
+        //    return NotFound();
+        //}
 
+
+        [HttpGet("GetFullPrescriptionDetails/{id}")]
+        public async Task<IActionResult> GetFullPrescriptionDetails(string id) // غيرنا النوع هنا لـ string
+        {
+            // دلوقتى الـ id نوعه string والـ Query مستنية string
+            var result = await mediatR.Send(new GetFullPrescriptionQuery(id));
+
+            return result != null ? Ok(result) : NotFound("الروشتة غير موجودة");
+        }
 
     }
 }
