@@ -1,12 +1,14 @@
 ﻿using Features.PatientFeature.Query;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
+using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
-  
+    [Authorize(Roles = $"{SD.AdminRole},{SD.PatientRole}")]
     public class PatientController : ApiBaseController
     {
         private readonly IMediator mediatR;
@@ -17,6 +19,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpGet("GetDoctorsBySearch")]
+        
         public async Task<ActionResult<DoctorDTO>> GetDoctorsBySearch([FromQuery] GetAllDoctorsSearchQuery query ,CancellationToken cancellationToken)
         {
                 var doctors = await mediatR.Send(query, cancellationToken);

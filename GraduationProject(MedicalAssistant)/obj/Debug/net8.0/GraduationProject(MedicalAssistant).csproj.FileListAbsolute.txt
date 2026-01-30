@@ -12,6 +12,7 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Humanizer.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\MediatR.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

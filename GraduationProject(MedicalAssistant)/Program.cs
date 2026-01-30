@@ -21,8 +21,8 @@ namespace GraduationProject_MedicalAssistant_
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<ApplicationDbContext>
+                (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
        
             builder.Services.AddControllers().AddJsonOptions(options =>
@@ -31,9 +31,12 @@ namespace GraduationProject_MedicalAssistant_
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 });
 
+
             builder.Services.AddApiServices();
 
             builder.Services.AddSwaggerServices();
+            builder.Services.CustomJwtServices(builder.Configuration);
+            builder.Services.AddSwaggerAuth();
 
 
 
@@ -62,6 +65,7 @@ namespace GraduationProject_MedicalAssistant_
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseStaticFiles();

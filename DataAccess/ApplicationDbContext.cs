@@ -24,6 +24,7 @@ namespace DataAccess
         public DbSet<Rating>  Ratings { get; set; }
         public DbSet<Specialization>  Specializations { get; set; }
         public DbSet<DoctorPatient>  DoctorPatients { get; set; }
+        public DbSet<RefreshToken>  RefreshTokens { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)   
         {
             

@@ -37,13 +37,17 @@ namespace InfrastructureExtension
             services.AddScoped<IRatingRepositry, RatingRepositry>();
             services.AddScoped<ISpecilizationRepositry, SpecilizationRepositry>();
             services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IRefreshTokenRepositry, RefreshTokenRepositry>();
 
 
 
 
            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
            services.AddAutoMapper(a => a.AddProfile(typeof(AutoMaperProfile)), Assembly.GetExecutingAssembly());
-           services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+           services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             return services;
         }

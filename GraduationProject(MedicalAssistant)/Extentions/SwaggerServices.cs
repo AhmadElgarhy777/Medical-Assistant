@@ -25,5 +25,48 @@ namespace GraduationProject_MedicalAssistant_.Extentions
 
             return app;
         }
+
+        public static IServiceCollection AddSwaggerAuth(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(option=>
+            {
+                option.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Version = "v1",
+                    Title = "Medical Assistant System",
+                });
+
+                option.AddSecurityDefinition("Bearar", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearar",
+                    BearerFormat = "Jwt",
+                    In = ParameterLocation.Header
+                });
+
+                option.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme()
+                        {
+                             Reference =new OpenApiReference()
+                             {
+                                    Type=ReferenceType.SecurityScheme,
+                                    Id="Bearar"
+                             },
+                             Name="Bearar",
+                             In = ParameterLocation.Header
+                        },
+
+                        new List<string>()
+                    }
+                });
+
+
+            });
+            return services;
+        }
+
     }
 }
