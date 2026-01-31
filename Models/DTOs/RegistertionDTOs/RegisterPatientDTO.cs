@@ -42,7 +42,7 @@ namespace Models.DTOs.RegistertionDTOs
         public GenderEnum Gender { get; set; }
 
 
-        public IFormFile Img { get; set; }
+        public IFormFile? Img { get; set; }
 
 
         [Required(ErrorMessage = "The Birth Date is Required")]

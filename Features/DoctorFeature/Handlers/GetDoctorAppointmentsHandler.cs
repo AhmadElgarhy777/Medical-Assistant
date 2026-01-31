@@ -22,7 +22,7 @@ namespace Features.DoctorFeature.Handlers
         public async Task<List<DoctorAppointmentsDTO>> Handle(GetDoctorAppointmentsQuery request, CancellationToken cancellationToken)
         {
             // 1. بنحدد تاريخ النهاردة عشان نعرض مواعيد اليوم فقط
-            var today = DateOnly.FromDateTime(DateTime.Now);
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
 
             // 2. بنجيب الحجوزات مع الفلترة الذكية
             var appointments = await _context.Appointments
@@ -37,6 +37,7 @@ namespace Features.DoctorFeature.Handlers
             // 3. تحويل البيانات لشكل الـ DTO
             var result = appointments.Select(x => new DoctorAppointmentsDTO
             {
+                //Id
                 PatientName = x.Patient.FullName,
                 AppointmentDate = x.Date.ToString("yyyy-MM-dd"),
                 StartTime = x.StartTime.ToString("HH:mm"),

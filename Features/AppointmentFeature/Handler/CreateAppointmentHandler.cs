@@ -29,7 +29,7 @@ namespace Features.AppointmentFeature.Handlers
 
             // الخطوة 2: منع التكرار (Validation)
             // بنشوف هل المريض ده عنده حجز "مش ملغي" عند "نفس الدكتور" في "تاريخ النهاردة"
-            var today = DateOnly.FromDateTime(DateTime.Now);
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
 
             var isAlreadyBookedToday = await _context.Appointments
                 .AnyAsync(x => x.PatientId == request.PatientId

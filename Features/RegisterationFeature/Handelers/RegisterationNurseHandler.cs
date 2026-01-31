@@ -81,9 +81,9 @@ namespace Features.RegisterationFeature.Handelers
                         var CertifcationImg = await imageService.UploadImgAsync(nurseDto.CertificationImg, "NurseImages/CertificationImages", cancellationToken);
                         var CrediateImg = await imageService.UploadImgAsync(nurseDto.CrediateImg, "NurseImages/CrediateImages", cancellationToken);
 
-                        nurse.Img= $"{configuration["ApiBaseUrl"]}/{profileImg}";
-                        nurse.CertificationImg= $"{configuration["ApiBaseUrl"]}/{CertifcationImg}";
-                        nurse.CrediateImg= $"{configuration["ApiBaseUrl"]}/{CrediateImg}";
+                        nurse.Img= $"{configuration["ApiBaseUrl"]}/NurseImages/ProfileImages/{profileImg}";
+                        nurse.CertificationImg= $"{configuration["ApiBaseUrl"]}/NurseImages/CertificationImages/{CertifcationImg}";
+                        nurse.CrediateImg= $"{configuration["ApiBaseUrl"]}/NurseImages/CrediateImages/{CrediateImg}";
                     }
 
                     if (nurse is not null)

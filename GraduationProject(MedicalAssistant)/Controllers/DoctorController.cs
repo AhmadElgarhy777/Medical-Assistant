@@ -2,6 +2,8 @@
 using Features.DoctorFeature.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using System.Security.Claims;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -15,9 +17,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         // Endpoint عشان الدكتور يجيب قائمة المرضى بتوعه
-        [HttpGet("MyPatients/{doctorId}")]
-        public async Task<IActionResult> GetMyPatients(string doctorId)
+        [HttpGet("MyPatients")]
+        public async Task<IActionResult> GetMyPatients()
         {
+            var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var query = new GetDoctorPatientsQuery(doctorId);
             var result = await _mediatR.Send(query);
 
@@ -31,40 +34,50 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         [HttpPost("AddAvailability")]
-        public async Task<IActionResult> AddAvailability(CreateDoctorSlotsCommand command)
+        public async Task<IActionResult> AddAvailability(DayOfWeek Day, string FromTime,string ToTime)
         {
-            var result = await _mediatR.Send(command);
+            var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var result = await _mediatR.Send(new CreateDoctorSlotsCommand(doctorId,Day,FromTime,ToTime));
             return Ok(result);
         }
 
 
-        [HttpGet("AvailableSlots/{doctorId}")]
-        public async Task<IActionResult> GetAvailableSlots(string doctorId)
+        [HttpGet("AvailableSlots")]
+        public async Task<IActionResult> GetAvailableSlots()
         {
+            var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
             var result = await _mediatR.Send(new GetDoctorAvailableSlotsQuery(doctorId));
             return Ok(result);
         }
 
 
-        [HttpGet("MyAppointments/{doctorId}")]
-        public async Task<IActionResult> GetMyAppointments(string doctorId)
+        [HttpGet("MyAppointments")]
+        public async Task<IActionResult> GetMyAppointments()
         {
+            var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
             var result = await _mediatR.Send(new GetDoctorAppointmentsQuery(doctorId));
             return Ok(result);
         }
 
 
-        [HttpGet("{doctorId}/history")]
-        public async Task<IActionResult> GetHistory(string doctorId)
+        [HttpGet("history")]
+        public async Task<IActionResult> GetHistory()
         {
+            var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
             var result = await _mediatR.Send(new GetDoctorHistoryQuery(doctorId));
             return Ok(result);
         }
 
 
-        [HttpGet("{doctorId}/stats")]
-        public async Task<IActionResult> GetDoctorStats(string doctorId)
+        [HttpGet("stats")]
+        public async Task<IActionResult> GetDoctorStats()
         {
+            var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
             var stats = await _mediatR.Send(new GetDoctorStatsQuery(doctorId));
             return Ok(stats);
         }

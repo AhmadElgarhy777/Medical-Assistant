@@ -80,7 +80,7 @@ namespace Features.RegisterationFeature.Handelers
                     if (patientDto.Img is not null)
                     {
                         var image = await imageService.UploadImgAsync(patientDto.Img, "PatientImages", cancellationToken);
-                        patient.Img = $"{configuration["ApiBaseUrl"]}/{image}";
+                        patient.Img = $"{configuration["ApiBaseUrl"]}/PatientImages/{image}";
                     }
 
                     if (patient is not null)

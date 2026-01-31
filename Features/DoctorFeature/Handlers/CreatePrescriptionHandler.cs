@@ -1,18 +1,22 @@
 ﻿using DataAccess;
 using Features.DoctorFeature.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Security.Claims;
 
 namespace Features.DoctorFeature.Handlers
 {
     public class CreatePrescriptionHandler : IRequestHandler<CreatePrescriptionCommand, bool>
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor http;
 
-        public CreatePrescriptionHandler(ApplicationDbContext context)
+        public CreatePrescriptionHandler(ApplicationDbContext context,IHttpContextAccessor http)
         {
             _context = context;
+            this.http = http;
         }
 
         public async Task<bool> Handle(CreatePrescriptionCommand request, CancellationToken cancellationToken)
@@ -21,7 +25,7 @@ namespace Features.DoctorFeature.Handlers
             var prescription = new Prescription
             {
                 PatientId = request.PatientId,
-                DoctorId = request.DoctorId,
+                DoctorId = http.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value,
                 AppointmentId = request.AppointmentId,
                 Diagnosis = request.Diagnosis,
                 CraetedAt = DateTime.Now // الاسم المكتوب في الموديل بتاعك

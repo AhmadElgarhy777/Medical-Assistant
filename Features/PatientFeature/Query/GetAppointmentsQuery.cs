@@ -9,6 +9,6 @@ using System.Threading.Tasks;
 
 namespace Features.PatientFeature.Query
 {
-    public record GetAppointmentsQuery(string Id,int page=1):IRequest<List<AppointmentDTO>>;
+    public record GetAppointmentsQuery(string Id,int page=1):IRequest<ResultResponse<List<AppointmentDTO>>>;
     
 }

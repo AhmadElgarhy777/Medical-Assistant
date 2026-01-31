@@ -9,6 +9,6 @@ using System.Threading.Tasks;
 
 namespace Features.PatientFeature.Query
 {
-    public record GetAiReportsQuery(string Id ,int page=1):IRequest<List<AiReportDTO>>;
+    public record GetAiReportsQuery(string Id ,int page=1):IRequest<ResultResponse<List<AiReportDTO>>>;
     
 }

@@ -36,11 +36,11 @@ namespace GraduationProject_MedicalAssistant_.Extentions
                     Title = "Medical Assistant System",
                 });
 
-                option.AddSecurityDefinition("Bearar", new OpenApiSecurityScheme()
+                option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearar",
+                    Scheme = "Bearer",
                     BearerFormat = "Jwt",
                     In = ParameterLocation.Header
                 });
@@ -53,9 +53,9 @@ namespace GraduationProject_MedicalAssistant_.Extentions
                              Reference =new OpenApiReference()
                              {
                                     Type=ReferenceType.SecurityScheme,
-                                    Id="Bearar"
+                                    Id="Bearer"
                              },
-                             Name="Bearar",
+                             Name="Bearer",
                              In = ParameterLocation.Header
                         },
 

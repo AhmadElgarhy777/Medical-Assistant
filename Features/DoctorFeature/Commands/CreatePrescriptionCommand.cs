@@ -6,7 +6,6 @@ namespace Features.DoctorFeature.Commands
     public record CreatePrescriptionCommand(
         string AppointmentId,
         string PatientId,
-        string DoctorId,
         string Diagnosis,
         List<MedicineInput> Medicines
     ) : IRequest<bool>;
