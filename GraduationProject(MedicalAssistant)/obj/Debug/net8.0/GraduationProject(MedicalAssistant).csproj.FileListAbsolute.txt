@@ -144,7 +144,6 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).AssemblyInfoInputs.cache
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).AssemblyInfo.cs
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).csproj.CoreCompileInputs.cache
-C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).MvcApplicationPartsAssemblyInfo.cs
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).MvcApplicationPartsAssemblyInfo.cache
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).sourcelink.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\staticwebassets.build.json

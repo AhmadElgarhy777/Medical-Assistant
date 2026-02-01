@@ -42,7 +42,7 @@ namespace Models.DTOs.RegistertionDTOs
         [EnumDataType(typeof(GenderEnum),ErrorMessage ="The gender Is Invalid")]
         public GenderEnum Gender { get; set; }
 
-
+        [Required(ErrorMessage = "The Image  is Required")]
         public IFormFile Img { get; set; } = null!;
 
 
@@ -76,10 +76,13 @@ namespace Models.DTOs.RegistertionDTOs
 
 
       
+        [Required(ErrorMessage = "The Image  is Required")]
+
         public IFormFile CertificationImg { get; set; } = null!;
 
 
-       
+        [Required(ErrorMessage = "The Image  is Required")]
+
         public IFormFile CrediateImg { get; set; } = null!;
 
 

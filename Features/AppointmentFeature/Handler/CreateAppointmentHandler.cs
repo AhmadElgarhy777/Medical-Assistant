@@ -1,8 +1,10 @@
 ﻿using DataAccess;
 using Features.AppointmentFeature.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,14 +13,18 @@ namespace Features.AppointmentFeature.Handlers
     public class CreateAppointmentHandler : IRequestHandler<CreateAppointmentCommand, bool>
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor http;
 
-        public CreateAppointmentHandler(ApplicationDbContext context)
+        public CreateAppointmentHandler(ApplicationDbContext context,IHttpContextAccessor http)
         {
             _context = context;
+            this.http = http;
         }
 
         public async Task<bool> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
         {
+
+            var patientId = http.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             // الخطوة 1: نجيب بيانات الساعة المتاحة الأول
             // دي أهم خطوة عشان نعرف الـ DoctorId الحقيقي والوقت
             var slot = await _context.DoctorAvilableTimes
@@ -32,7 +38,7 @@ namespace Features.AppointmentFeature.Handlers
             var today = DateOnly.FromDateTime(DateTime.UtcNow);
 
             var isAlreadyBookedToday = await _context.Appointments
-                .AnyAsync(x => x.PatientId == request.PatientId
+                .AnyAsync(x => x.PatientId == patientId
                             && x.DoctorId == slot.DoctorId // استخدمنا id الدكتور من الـ slot اللي جبناه فوق
                             && x.Date == today
                             && x.Status != Models.Enums.bookStatusEnum.Cancelled, cancellationToken);
@@ -44,7 +50,7 @@ namespace Features.AppointmentFeature.Handlers
             var appointment = new Appointment
             {
                 DoctorId = slot.DoctorId, // لضمان إن الحجز يروح للدكتور الصح
-                PatientId = request.PatientId,
+                PatientId = patientId,
                 SlotId = slot.ID,
                 Date = today,
                 StartTime = slot.StartTime,
@@ -61,14 +67,14 @@ namespace Features.AppointmentFeature.Handlers
 
             // الخطوة 6: ربط المريض بالدكتور (لو مش مربوطين قبل كدة)
             var isAlreadyLinked = await _context.DoctorPatients
-                .AnyAsync(dp => dp.DoctorId == slot.DoctorId && dp.PatientId == request.PatientId, cancellationToken);
+                .AnyAsync(dp => dp.DoctorId == slot.DoctorId && dp.PatientId == patientId, cancellationToken);
 
             if (!isAlreadyLinked)
             {
                 _context.DoctorPatients.Add(new DoctorPatient
                 {
                     DoctorId = slot.DoctorId,
-                    PatientId = request.PatientId
+                    PatientId = patientId
                 });
             }
 
