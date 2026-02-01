@@ -14,5 +14,9 @@ namespace DataAccess.EntittySpecifcation
         {
             Includes?.Add(p => p.Specialization);
         }
+        public DoctorSpecifcation(string Id):base(d=>d.ID==Id)
+        {
+            Includes?.Add(p => p.Specialization);
+        }
     }
 }

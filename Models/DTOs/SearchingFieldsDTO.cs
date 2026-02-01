@@ -14,7 +14,7 @@ namespace Models.DTOs
         
         public string? Name { get; set; }
         [Required]
-        public string? Specilzation { get; set; }
+        public string SpecilzationId { get; set; } = null!;
         [Required]
         public string? City { get; set; }
         [Required]

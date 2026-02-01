@@ -11,7 +11,7 @@ using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
-    [Authorize(Roles = $"{SD.AdminRole},{SD.PatientRole}")]
+    //[Authorize(Roles = $"{SD.AdminRole},{SD.PatientRole}")]
     public class PatientController : ApiBaseController
     {
         private readonly IMediator mediatR;
@@ -22,19 +22,19 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpGet("GetDoctorsBySearch")]
-        
-        public async Task<ActionResult<DoctorDTO>> GetDoctorsBySearch([FromQuery] GetAllDoctorsSearchQuery query ,CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(DoctorDTO),StatusCodes.Status200OK)]
+        public async Task<ActionResult<ResultResponse<List<DoctorDTO>>>> GetDoctorsBySearch([FromQuery] GetAllDoctorsSearchQuery query ,CancellationToken cancellationToken)
         {
                 var doctors = await mediatR.Send(query, cancellationToken);
-                if (doctors.Any())
+                if (doctors is not null)
                 {
-                    return Ok(doctors);
+                    return Ok(doctors.Obj);
                 }
-                return NotFound();
+                return NotFound(doctors.Message);
             
         }
         [HttpGet("GetNurseBySearch")]
-
+        [ProducesResponseType(typeof(NurseDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<NurseDTO>> GetNurseBySearch([FromQuery] SearchNuresQuery query ,CancellationToken cancellationToken)
         {
                 var nurses = await mediatR.Send(query, cancellationToken);
@@ -45,7 +45,23 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 return NotFound();
             
         }
+
+
+        [HttpGet("Profile")]
+        [ProducesResponseType(typeof(PatientPeofileDTO),StatusCodes.Status200OK)]
+        public async Task<ActionResult<ResultResponse<PatientPeofileDTO>>> Profile(CancellationToken cancellationToken)
+        {
+            var patientId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var patient = await mediatR.Send(new GetPatientProfileQuery(patientId, cancellationToken)) ;
+            if (patient.ISucsses)
+            {
+                return Ok(patient.Obj);
+            }
+            return NotFound();
+        }
+
         [HttpGet("Appoinments")]
+        [ProducesResponseType(typeof(AppointmentDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<List<AppointmentDTO>>>> Appoinments([FromQuery] int page,CancellationToken cancellationToken)
         {
            var patientId= User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -58,6 +74,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpGet("Reports")]
+        [ProducesResponseType(typeof(AiReportDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<List<AiReportDTO>>>> Reports([FromQuery] int page, CancellationToken cancellationToken)
         {
             var patientId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -70,6 +87,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpGet("Presciptions")]
+        [ProducesResponseType(typeof(PresciptionDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<List<PresciptionDTO>>>> Presciptions([FromQuery] int page, CancellationToken cancellationToken)
         {
             var patientId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -94,7 +112,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         [HttpGet("GetFullPrescriptionDetails/{id}")]
-        public async Task<IActionResult> GetFullPrescriptionDetails(string id) // غيرنا النوع هنا لـ string
+        [ProducesResponseType(typeof(PrescriptionFullDetailsDto), StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetFullPrescriptionDetails(string id) // غيرنا النوع هنا لـ string
         {
             // دلوقتى الـ id نوعه string والـ Query مستنية string
             var result = await mediatR.Send(new GetFullPrescriptionQuery(id));

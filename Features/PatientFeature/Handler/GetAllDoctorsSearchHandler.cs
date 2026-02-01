@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Features.PatientFeature.Handler
 {
-    public class GetAllDoctorsSearchHandler : IRequestHandler<GetAllDoctorsSearchQuery, List<DoctorDTO>>
+    public class GetAllDoctorsSearchHandler : IRequestHandler<GetAllDoctorsSearchQuery, ResultResponse<List<DoctorDTO>>>
     {
         private readonly IDoctorRepositry doctorRepositry;
         private readonly IMapper mapper;
@@ -25,7 +25,7 @@ namespace Features.PatientFeature.Handler
             this.doctorRepositry = doctorRepositry;
             this.mapper = mapper;
         }
-        public async Task<List<DoctorDTO>> Handle(GetAllDoctorsSearchQuery request, CancellationToken cancellationToken)
+        public async Task<ResultResponse<List<DoctorDTO>>> Handle(GetAllDoctorsSearchQuery request, CancellationToken cancellationToken)
         {
             var page = request.page;
             var search = new
@@ -34,7 +34,7 @@ namespace Features.PatientFeature.Handler
                 City= request.searching.City,
                 Rate= request.searching.Rate,
                 Governorate= request.searching.Governorate,
-                Specilzation= request.searching.Specilzation,
+                SpecilzationId= request.searching.SpecilzationId,
 
             };
             if(page<=0)page = 1;
@@ -46,8 +46,8 @@ namespace Features.PatientFeature.Handler
             if (!string.IsNullOrWhiteSpace(search.City))
                 doctors = doctors.Where(e => e.City.Contains(search.City));
 
-            if (!string.IsNullOrWhiteSpace(search.Specilzation))
-                doctors = doctors.Where(e => e.Specialization.Name.Contains(search.Specilzation));
+            if (!string.IsNullOrWhiteSpace(search.SpecilzationId))
+                doctors = doctors.Where(e => e.Specialization.ID== search.SpecilzationId);
 
             if (search.Rate.HasValue)
                 doctors = doctors.Where(e => e.RattingAverage >= (double)search.Rate.Value);
@@ -58,11 +58,20 @@ namespace Features.PatientFeature.Handler
           
             doctors =doctors.Skip((page-1) * 5 ).Take(5);
             var doctorsList= await doctors.ToListAsync(cancellationToken);
-            var doctorDTOs = mapper.Map<IEnumerable<Doctor>, List<DoctorDTO>>(doctorsList);
-
-            return doctorDTOs; 
-
-                    
+            if(doctorsList is not null)
+            {
+                 var doctorDTOs = mapper.Map<IEnumerable<Doctor>, List<DoctorDTO>>(doctorsList);
+                return new ResultResponse<List<DoctorDTO>>
+                {
+                    ISucsses = true,
+                    Obj = doctorDTOs,
+                };
+            }
+            return new ResultResponse<List<DoctorDTO>>
+            {
+                ISucsses = false,
+                Message="Not Found ...."
+            };
         }
     }
 }

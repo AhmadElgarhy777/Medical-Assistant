@@ -9,13 +9,13 @@ namespace Models.DTOs
 {
     public class DoctorDTO
     {
-
+        public string ID { get; set; } = null!;
         public string FullName { get; set; } = null!;
         public string Email { get; set; } = null!;
-        public GenderEnum Gender { get; set; }
+        public string Gender { get; set; } = null!;
         public string Img { get; set; } = null!;
         public int Age { get; set; } 
-        public Governorate Governorate { get; set; }
+        public string Governorate { get; set; } = null!;
         public string City { get; set; } = null!;
         public string Address { get; set; } = null!;
         public double RattingAverage { get; set; }

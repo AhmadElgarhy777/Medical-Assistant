@@ -154,7 +154,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
@@ -164,7 +174,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.DoctorAvailableTimeDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
@@ -180,7 +200,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
@@ -190,7 +220,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.DoctorAppointmentsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
@@ -200,7 +240,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.DoctorAppointmentsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
@@ -210,7 +260,37 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.PatientDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
+    "Method": "Profile",
+    "RelativePath": "api/Doctor/Profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.DoctorDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.DoctorController",
@@ -220,7 +300,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.DoctorStatsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -238,7 +328,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Features.ResultResponse\u00601[[System.Collections.Generic.List\u00601[[Models.DTOs.AppointmentDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "Models.DTOs.AppointmentDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -262,7 +352,7 @@
         "IsRequired": false
       },
       {
-        "Name": "searching.Specilzation",
+        "Name": "searching.SpecilzationId",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -313,7 +403,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.PrescriptionFullDetailsDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
@@ -392,7 +492,27 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Features.ResultResponse\u00601[[System.Collections.Generic.List\u00601[[Models.DTOs.PresciptionDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "Models.DTOs.PresciptionDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.PatientController",
+    "Method": "Profile",
+    "RelativePath": "api/Patient/Profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Models.DTOs.PatientPeofileDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -418,7 +538,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Features.ResultResponse\u00601[[System.Collections.Generic.List\u00601[[Models.DTOs.AiReportDTO, Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "Models.DTOs.AiReportDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",

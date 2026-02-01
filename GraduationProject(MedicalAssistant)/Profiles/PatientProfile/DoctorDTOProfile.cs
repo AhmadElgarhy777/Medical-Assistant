@@ -17,8 +17,11 @@ namespace GraduationProject_MedicalAssistant_.Profiles.PatientProfile
                             .Select(o => o.Phone)
                             .ToList()
                             ))
-                .ForMember(e => e.Age, opt => opt.MapFrom(src => DateTime.Now.Year - src.BD.Year))
+                .ForMember(e => e.Age, opt => opt.MapFrom(src => DateTime.UtcNow.Year - src.BD.Year))
                 .ForMember(e => e.RattingAverage, opt => opt.MapFrom(src => src.RattingAverage))
+                  .ForMember(p => p.Governorate, p => p.MapFrom(s => s.Governorate.ToString()))
+                .ForMember(p => p.Gender, p => p.MapFrom(s => s.Gender.ToString()))
+                .ReverseMap()
                 ;
 
 
