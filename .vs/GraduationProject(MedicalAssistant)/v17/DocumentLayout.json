@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\registertiondtos\\registerpatientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\registertiondtos\\registerpatientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Migrations\\20260201190310_editpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\Migrations\\20260201190310_editpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\doctorfeature\\handlers\\getdoctorpatientshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\doctorfeature\\handlers\\getdoctorpatientshandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\patientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\patientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\patientpeofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\patientpeofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\dataaccess\\dataseed\\specification.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\dataseed\\specification.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\doctorfeature\\handlers\\getdocorprofilehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,14 +75,6 @@
       "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\patientfeature\\query\\getpatientprofilequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\patientpeofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\patientpeofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\dataaccess\\entittyspecifcation\\patientspecifcation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\entittyspecifcation\\patientspecifcation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -62,63 +86,128 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DoctorSpecifcation.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
-              "RelativeDocumentMoniker": "DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
-              "RelativeToolTip": "DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "RegisterPatientDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\RegistertionDTOs\\RegisterPatientDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\RegistertionDTOs\\RegisterPatientDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\RegistertionDTOs\\RegisterPatientDTO.cs*",
+              "RelativeToolTip": "Models\\DTOs\\RegistertionDTOs\\RegisterPatientDTO.cs*",
+              "ViewState": "AgIAAD8AAACA//////8hwEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:22:52.05Z",
+              "WhenOpened": "2026-02-01T19:04:41.517Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DoctorDTO.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\DoctorDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\DoctorDTO.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\DoctorDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\DoctorDTO.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBEAAAA4AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "20260201190310_editpatient.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Migrations\\20260201190310_editpatient.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Migrations\\20260201190310_editpatient.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Migrations\\20260201190310_editpatient.cs",
+              "RelativeToolTip": "DataAccess\\Migrations\\20260201190310_editpatient.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:21:32.744Z",
+              "WhenOpened": "2026-02-01T19:03:10.98Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "DoctorDTOProfile.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAdAAAAAAAAAA==",
+              "Title": "GetDoctorPatientsHandler.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\DoctorFeature\\Handlers\\GetDoctorPatientsHandler.cs",
+              "RelativeDocumentMoniker": "Features\\DoctorFeature\\Handlers\\GetDoctorPatientsHandler.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\DoctorFeature\\Handlers\\GetDoctorPatientsHandler.cs",
+              "RelativeToolTip": "Features\\DoctorFeature\\Handlers\\GetDoctorPatientsHandler.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAswCkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:20:21.549Z",
+              "WhenOpened": "2026-02-01T18:59:18.696Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "PatientDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PatientDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\PatientDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PatientDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\PatientDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T18:57:46.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Patient.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Patient.cs",
+              "RelativeDocumentMoniker": "Models\\Patient.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Patient.cs",
+              "RelativeToolTip": "Models\\Patient.cs",
+              "ViewState": "AgIAAA8AAABgZmZmZmYiwBQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T18:55:43.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "specification.json",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataSeed\\specification.json",
+              "RelativeDocumentMoniker": "DataAccess\\DataSeed\\specification.json",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataSeed\\specification.json",
+              "RelativeToolTip": "DataAccess\\DataSeed\\specification.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-01T18:51:40.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "AppointmentController.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\AppointmentController.cs",
               "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\AppointmentController.cs",
               "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\AppointmentController.cs",
               "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\AppointmentController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAwwA8AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-01T18:19:37.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
+              "Title": "PatientController.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
+              "ViewState": "AgIAADkAAACgmZmZmZklwEQAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T17:23:24.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs",
+              "ViewState": "AgIAACUAAACAzMzMzMwUwDMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T18:10:35.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "GetDocorProfileHandler.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\DoctorFeature\\Handlers\\GetDocorProfileHandler.cs",
               "RelativeDocumentMoniker": "Features\\DoctorFeature\\Handlers\\GetDocorProfileHandler.cs",
@@ -131,33 +220,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DoctorController.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs*",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\DoctorController.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA5AAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "PatientPeofileDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PatientPeofileDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\PatientPeofileDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PatientPeofileDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\PatientPeofileDTO.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:10:35.722Z",
+              "WhenOpened": "2026-02-01T17:45:06.689Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PatientProfile.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABMAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "DoctorDTOProfile.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\DoctorDTOProfile.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T18:00:03.028Z",
+              "WhenOpened": "2026-02-01T18:20:21.549Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
+              "Title": "DoctorSpecifcation.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
+              "RelativeDocumentMoniker": "DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
+              "RelativeToolTip": "DataAccess\\EntittySpecifcation\\DoctorSpecifcation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T18:22:52.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "GetProfileHandler.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\PatientFeature\\Handler\\GetProfileHandler.cs",
               "RelativeDocumentMoniker": "Features\\PatientFeature\\Handler\\GetProfileHandler.cs",
@@ -170,7 +272,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
+              "Title": "DoctorDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\DoctorDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\DoctorDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\DoctorDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\DoctorDTO.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBEAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T18:21:32.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PatientProfile.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Profiles\\PatientProfile\\PatientProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-01T18:00:03.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "GetDoctorProfileQuery.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\DoctorFeature\\Queries\\GetDoctorProfileQuery.cs",
               "RelativeDocumentMoniker": "Features\\DoctorFeature\\Queries\\GetDoctorProfileQuery.cs",
@@ -183,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "PatientSpecifcation.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\EntittySpecifcation\\PatientSpecifcation.cs",
               "RelativeDocumentMoniker": "DataAccess\\EntittySpecifcation\\PatientSpecifcation.cs",
@@ -196,7 +324,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "GetPatientProfileQuery.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\PatientFeature\\Query\\GetPatientProfileQuery.cs",
               "RelativeDocumentMoniker": "Features\\PatientFeature\\Query\\GetPatientProfileQuery.cs",
@@ -205,32 +333,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-01T17:47:47.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PatientPeofileDTO.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PatientPeofileDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\PatientPeofileDTO.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PatientPeofileDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\PatientPeofileDTO.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T17:45:06.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PatientController.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
-              "ViewState": "AgIAACUAAADQzMzMzMwzwDYAAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-01T17:23:24.78Z",
               "EditorCaption": ""
             },
             {

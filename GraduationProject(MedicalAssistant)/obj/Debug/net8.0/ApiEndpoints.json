@@ -930,6 +930,11 @@
         "IsRequired": false
       },
       {
+        "Name": "PatientDTO.BloodType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "PatientDTO.Password",
         "Type": "System.String",
         "IsRequired": false

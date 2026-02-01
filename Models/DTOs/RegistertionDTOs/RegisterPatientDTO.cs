@@ -61,7 +61,10 @@ namespace Models.DTOs.RegistertionDTOs
         [Required(ErrorMessage = "The City is Required")]
         public string City { get; set; } = null!;
 
+
        
+        public string? BloodType { get; set; }
+
 
 
         [Required(ErrorMessage = "The Password Image is Required")]

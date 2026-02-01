@@ -33,7 +33,9 @@ namespace Features.DoctorFeature.Handlers
                     Email = dp.Patient.Email,
                     Gender = dp.Patient.Gender.ToString(),
                     Address = dp.Patient.Address,
-                    City = dp.Patient.City
+                    City = dp.Patient.City,
+                    BloodType=dp.Patient.BloodType
+                    
                 })
                 .ToListAsync(cancellationToken);
 

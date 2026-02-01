@@ -19,5 +19,8 @@ namespace Models.DTOs
         public string Governorate { get; set; } = null!;
         public string Address { get; set; } = null!;
         public string City { get; set; } = null!;
+        public string? BloodType { get; set; }
+
+
     }
 }

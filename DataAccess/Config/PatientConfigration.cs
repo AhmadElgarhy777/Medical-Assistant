@@ -22,6 +22,7 @@ namespace DataAccess.Config
             builder.Property(e => e.Governorate).IsRequired();
             builder.Property(e => e.Address).IsRequired();
             builder.Property(e => e.City).IsRequired();
+
         }
     }
 }
