@@ -3,44 +3,24 @@
   "WorkspaceRootPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\handlers\\resetpassswordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\handlers\\resetpassswordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\handlers\\loginuserhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\handlers\\loginuserhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\events\\handlers\\forgetpasswordeventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\events\\handlers\\forgetpasswordeventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\handlers\\forgetpassswordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\handlers\\forgetpassswordhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\generatetokens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\generatetokens.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\commands\\resetpassswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\commands\\resetpassswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\userlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\resetpassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\resetpassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\registerationfeature\\events\\handlers\\confirmemaileventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\registerationfeature\\events\\handlers\\confirmemaileventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\events\\event\\forgetpasswordevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\events\\event\\forgetpasswordevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\authenticationfeature\\commands\\forgetpassswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\authenticationfeature\\commands\\forgetpassswordcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,8 +30,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoginUserHandler.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Handlers\\LoginUserHandler.cs",
+              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Handlers\\LoginUserHandler.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Handlers\\LoginUserHandler.cs",
+              "RelativeToolTip": "Features\\AuthenticationFeature\\Handlers\\LoginUserHandler.cs",
+              "ViewState": "AgIAAEQAAAAAMzMzMzMhwE4AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T08:34:43.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GenerateTokens.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\GenerateTokens.cs",
+              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\GenerateTokens.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\GenerateTokens.cs",
+              "RelativeToolTip": "Features\\AuthenticationFeature\\GenerateTokens.cs",
+              "ViewState": "AgIAABIAAACQmZmZmZkxwCgAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T08:27:03.398Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\appsettings.json",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\appsettings.json",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\appsettings.json",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-06T08:26:32.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserLoginDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\UserLoginDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\UserLoginDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\UserLoginDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\UserLoginDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T08:22:36.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ResetPasswordDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\ResetPasswordDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\ResetPasswordDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\ResetPasswordDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\ResetPasswordDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-06T08:21:55.09Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -79,136 +124,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ResetPassswordHandler.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Handlers\\ResetPassswordHandler.cs",
-              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Handlers\\ResetPassswordHandler.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Handlers\\ResetPassswordHandler.cs*",
-              "RelativeToolTip": "Features\\AuthenticationFeature\\Handlers\\ResetPassswordHandler.cs*",
-              "ViewState": "AgIAABkAAAAAzczMzMwswCcAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:43:21.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ResetPassswordCommand.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Commands\\ResetPassswordCommand.cs",
-              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Commands\\ResetPassswordCommand.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Commands\\ResetPassswordCommand.cs",
-              "RelativeToolTip": "Features\\AuthenticationFeature\\Commands\\ResetPassswordCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:40:27.352Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ForgetPassswordHandler.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Handlers\\ForgetPassswordHandler.cs",
-              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Handlers\\ForgetPassswordHandler.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Handlers\\ForgetPassswordHandler.cs",
-              "RelativeToolTip": "Features\\AuthenticationFeature\\Handlers\\ForgetPassswordHandler.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAQwBwAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:04:52.19Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthenticationController.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\AuthenticationController.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\AuthenticationController.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\AuthenticationController.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\AuthenticationController.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAuwGgAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:00:48.322Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\appsettings.json",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\appsettings.json",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\appsettings.json",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-02-06T07:19:01.489Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ForgetPasswordEventHandler.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Events\\Handlers\\ForgetPasswordEventHandler.cs",
-              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Events\\Handlers\\ForgetPasswordEventHandler.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Events\\Handlers\\ForgetPasswordEventHandler.cs",
-              "RelativeToolTip": "Features\\AuthenticationFeature\\Events\\Handlers\\ForgetPasswordEventHandler.cs",
-              "ViewState": "AgIAAAgAAABgZmZmZmYkwBYAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:11:17.597Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ResetPasswordDTO.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\ResetPasswordDTO.cs",
-              "RelativeDocumentMoniker": "Models\\DTOs\\ResetPasswordDTO.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\ResetPasswordDTO.cs",
-              "RelativeToolTip": "Models\\DTOs\\ResetPasswordDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:47:39.523Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ForgetPasswordEvent.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Events\\Event\\ForgetPasswordEvent.cs",
-              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Events\\Event\\ForgetPasswordEvent.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Events\\Event\\ForgetPasswordEvent.cs",
-              "RelativeToolTip": "Features\\AuthenticationFeature\\Events\\Event\\ForgetPasswordEvent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:10:04.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ConfirmEmailEventHandler.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\RegisterationFeature\\Events\\Handlers\\ConfirmEmailEventHandler.cs",
-              "RelativeDocumentMoniker": "Features\\RegisterationFeature\\Events\\Handlers\\ConfirmEmailEventHandler.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\RegisterationFeature\\Events\\Handlers\\ConfirmEmailEventHandler.cs",
-              "RelativeToolTip": "Features\\RegisterationFeature\\Events\\Handlers\\ConfirmEmailEventHandler.cs",
-              "ViewState": "AgIAACEAAACAmZmZmZktwDEAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:21:49.12Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ForgetPassswordCommand.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Commands\\ForgetPassswordCommand.cs",
-              "RelativeDocumentMoniker": "Features\\AuthenticationFeature\\Commands\\ForgetPassswordCommand.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\AuthenticationFeature\\Commands\\ForgetPassswordCommand.cs",
-              "RelativeToolTip": "Features\\AuthenticationFeature\\Commands\\ForgetPassswordCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-06T07:03:22.49Z",
-              "EditorCaption": ""
             }
           ]
         }

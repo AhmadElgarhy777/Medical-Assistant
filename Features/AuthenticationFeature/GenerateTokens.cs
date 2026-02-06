@@ -38,7 +38,7 @@ namespace Features.AuthenticationFeature
                 claims: cliams,
                 issuer: configuration["JWTAuth:Issuer"],
                 audience: configuration["JWTAuth:Audience"],
-                expires: DateTime.UtcNow.AddDays(double.Parse(configuration["JWTAuth:DurationExpire"])),
+                expires: DateTime.UtcNow.AddMinutes(double.Parse(configuration["JWTAuth:DurationExpire"])),
                 signingCredentials: SecretKey
                 );
 

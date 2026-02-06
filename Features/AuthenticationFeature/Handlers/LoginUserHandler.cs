@@ -76,7 +76,7 @@ namespace Features.AuthenticationFeature.Handlers
                     {
                         TokenHash = Guid.NewGuid().ToString("N"),
                         Created = DateTime.UtcNow,
-                        Expired = DateTime.UtcNow.AddDays(1),
+                        Expired = DateTime.UtcNow.AddDays(7),
                         IsRevoked = false,
                         IsUsed = false,
                         UserID = user.Id,
