@@ -1,7 +1,7 @@
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\appsettings.Development.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\appsettings.json
-C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\GraduationProject(MedicalAssistant).exe
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\GraduationProject(MedicalAssistant).staticwebassets.runtime.json
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\GraduationProject(MedicalAssistant).exe
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\GraduationProject(MedicalAssistant).deps.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\GraduationProject(MedicalAssistant).runtimeconfig.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\GraduationProject(MedicalAssistant).dll
@@ -9,7 +9,9 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\AutoMapper.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Azure.Core.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Azure.Identity.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Humanizer.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\MailKit.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\MediatR.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\MediatR.Contracts.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -47,6 +49,7 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\MimeKit.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -62,6 +65,7 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.Memory.Data.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.Runtime.Caching.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.Security.Permissions.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\System.Windows.Extensions.dll
@@ -127,6 +131,7 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\DataAccess.dll
@@ -144,6 +149,7 @@ C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).AssemblyInfoInputs.cache
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).AssemblyInfo.cs
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).csproj.CoreCompileInputs.cache
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).MvcApplicationPartsAssemblyInfo.cs
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).MvcApplicationPartsAssemblyInfo.cache
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\GraduationProject(MedicalAssistant).sourcelink.json
 C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\staticwebassets.build.json

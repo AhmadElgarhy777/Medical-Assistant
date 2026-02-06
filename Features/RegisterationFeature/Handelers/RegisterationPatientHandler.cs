@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utility;
+using Features.RegisterationFeature.Events.Event;
 
 namespace Features.RegisterationFeature.Handelers
 {
@@ -25,6 +26,7 @@ namespace Features.RegisterationFeature.Handelers
         private readonly IMapper mapper;
         private readonly IImageService imageService;
         private readonly IConfiguration configuration;
+        private readonly IMediator mediator;
 
         public RegisterationPatientHandler(
             IPatientRepositry patientRepositry,
@@ -32,7 +34,8 @@ namespace Features.RegisterationFeature.Handelers
             RoleManager<IdentityRole> roleManager,
             IMapper mapper,
             IImageService imageService,
-            IConfiguration configuration
+            IConfiguration configuration,
+            IMediator mediator
             )
         {
             this.patientRepositry = patientRepositry;
@@ -41,6 +44,7 @@ namespace Features.RegisterationFeature.Handelers
             this.mapper = mapper;
             this.imageService = imageService;
             this.configuration = configuration;
+            this.mediator = mediator;
         }
         public async Task<ResultResponse<string>> Handle(RegisterationPatientCommand request, CancellationToken cancellationToken)
         {
@@ -49,11 +53,11 @@ namespace Features.RegisterationFeature.Handelers
             var checkuser = await userManager.FindByEmailAsync(patientDto.Email);
             if (checkuser != null)
             {
-                return new ResultResponse<string>
-                {
-                    ISucsses = false,
-                    Message = "The User Is Already Exist",
-                };
+                    return new ResultResponse<string>
+                    {
+                        ISucsses = false,
+                        Message = "The User Is Already Exist",
+                    };
             }
 
 
@@ -89,12 +93,16 @@ namespace Features.RegisterationFeature.Handelers
 
                         await patientRepositry.AddAsync(patient);
                         await patientRepositry.CommitAsync(cancellationToken);
+
                         return new ResultResponse<string>
                         {
                             ISucsses = true,
-                            Message = "The User Is Added Succesfully"
+                            Message = "The User Is Added Succesfully",
+                            Data=appuser.Id
+
                         };
-                    }
+                    }         
+                    
                 }
                 else
                 {

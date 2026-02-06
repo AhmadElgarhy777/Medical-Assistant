@@ -1,6 +1,8 @@
 ﻿using DataAccess.Repositry.IRepositry;
 using Features.AuthenticationFeature.Quieries;
+using Features.RegisterationFeature.Events.Event;
 using MediatR;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -23,17 +25,20 @@ namespace Features.AuthenticationFeature.Handlers
         private readonly IConfiguration configuration;
         private readonly IHttpContextAccessor http;
         private readonly IRefreshTokenRepositry refreshTokenRepositry;
+        private readonly IMediator mediator;
 
         public LoginUserHandler(UserManager<ApplicationUser> userManager,
             IConfiguration configuration,
             IHttpContextAccessor http,
-            IRefreshTokenRepositry refreshTokenRepositry
+            IRefreshTokenRepositry refreshTokenRepositry,
+            IMediator mediator
             )
         {
             this.userManager = userManager;
             this.configuration = configuration;
             this.http = http;
             this.refreshTokenRepositry = refreshTokenRepositry;
+            this.mediator = mediator;
         }
         public async Task<AuthDTO> Handle(LogInUserCommand request, CancellationToken cancellationToken)
         {
@@ -42,10 +47,27 @@ namespace Features.AuthenticationFeature.Handlers
             var user = await userManager.FindByEmailAsync(userLogin.Email);
             if (user is not null)
             {
+                if (!user.EmailConfirmed)
+                {
+                    await mediator.Publish(new ConfirmEmailEvent(user.Id,user.Email, cancellationToken));
+
+                    return new AuthDTO
+                    {
+                        Message = "Can not be login untill Confirm Email.\n A new confirmation link has been sent to your email."
+                    };
+                }
                 var checking = await userManager.CheckPasswordAsync(user, userLogin.Password);
                 if (checking)
                 {
                     // Token Generate 
+                    if (!user.EmailConfirmed)
+                    {
+                        return new AuthDTO
+                        {
+                            Message = "Confirm your email first,...."
+                        };
+                            
+                    }
 
                     var token=await GenerateTokens.GenerateAccessToken(user,userManager,configuration);
                     var _token = new JwtSecurityTokenHandler().WriteToken(token);
@@ -77,7 +99,7 @@ namespace Features.AuthenticationFeature.Handlers
                 }
                 return new AuthDTO
                 {
-                    Message = "The Password Is Invalid"
+                    Message = "The Password Is Not Correct"
                 };
             }   
             return new AuthDTO

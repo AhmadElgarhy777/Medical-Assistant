@@ -49,6 +49,63 @@
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AuthenticationController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/Authentication/ChangePasssword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PasswordDTO.OldPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PasswordDTO.NewPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AuthenticationController",
+    "Method": "ForgetPasssword",
+    "RelativePath": "api/Authentication/ForgetPasssword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AuthenticationController",
     "Method": "LogIn",
     "RelativePath": "api/Authentication/LogIn",
     "HttpMethod": "POST",
@@ -121,6 +178,42 @@
     "ReturnTypes": [
       {
         "Type": "Models.DTOs.AuthDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.AuthenticationController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/Authentication/ResetPassword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ResetDto.UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ResetDto.Token",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ResetDto.NewPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -550,6 +643,37 @@
   },
   {
     "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "ConfirmationEmailType",
+    "RelativePath": "api/Registeration/ConfirmationEmailType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "TypeDTO.UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "TypeDTO.Type",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
     "Method": "GetAllSpecialization",
     "RelativePath": "api/Registeration/GetAllSpecialization",
     "HttpMethod": "POST",
@@ -941,6 +1065,68 @@
       },
       {
         "Name": "PatientDTO.ConfirmPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "VerifyEmail",
+    "RelativePath": "api/Registeration/VerifyEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Token",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Features.ResultResponse\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "GraduationProject_MedicalAssistant_.Controllers.RegisterationController",
+    "Method": "VerifyOTP",
+    "RelativePath": "api/Registeration/VerifyOTP",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Otp",
         "Type": "System.String",
         "IsRequired": false
       }

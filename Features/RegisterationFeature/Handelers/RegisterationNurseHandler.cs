@@ -93,7 +93,9 @@ namespace Features.RegisterationFeature.Handelers
                         return new ResultResponse<string>
                         {
                             ISucsses = true,
-                            Message = "The User Is Added Succesfully"
+                            Message = "The User Is Added Succesfully",
+                            Data = appuser.Id
+
                         };
                     }
                 }

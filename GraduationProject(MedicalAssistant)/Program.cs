@@ -11,6 +11,7 @@ using GraduationProject_MedicalAssistant_.Profiles;
 using System.Text.Json.Serialization;
 using InfrastructureExtension;
 using GraduationProject_MedicalAssistant_.Extentions;
+using Services.EmailServices;
 
 
 namespace GraduationProject_MedicalAssistant_
@@ -30,6 +31,9 @@ namespace GraduationProject_MedicalAssistant_
                     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                     options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 });
+
+
+            builder.Services.Configure<EmailSenderModel>(builder.Configuration.GetSection("EmailSenderModel"));
 
 
             builder.Services.AddApiServices();

@@ -13,6 +13,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Services.EmailServices;
+using Services.OTPConfirmServices;
 
 namespace InfrastructureExtension
 {
@@ -38,8 +40,9 @@ namespace InfrastructureExtension
             services.AddScoped<ISpecilizationRepositry, SpecilizationRepositry>();
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IRefreshTokenRepositry, RefreshTokenRepositry>();
-
-
+            services.AddScoped<IEmailServices, EmailServices>();
+            services.AddScoped<IOTPConfirmEmailService, OTPConfirmEmailService>();
+            services.AddMemoryCache();
 
 
            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
@@ -48,6 +51,8 @@ namespace InfrastructureExtension
            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+           
 
             return services;
         }

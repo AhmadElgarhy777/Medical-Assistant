@@ -69,7 +69,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
 
-
         [HttpPost("RegisterNurse")]
         public async Task<ActionResult<ResultResponse<String>>> RegisterNurse([FromForm] RegisterationNurseCommand command , CancellationToken cancellationToken)
         {
@@ -103,5 +102,42 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest("Validation Error");
 
         }
+
+
+        [HttpPost("ConfirmationEmailType")]
+        public async Task<ActionResult<ResultResponse<String>>> ConfirmationEmailType([FromQuery] ConfirmationEmailTypeCommand command,CancellationToken cancellationToken)
+        {
+            var result=await mediator.Send(command,cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
+        
+        [HttpPost("VerifyEmail")]
+        public async Task<ActionResult<ResultResponse<String>>> VerifyEmail([FromQuery] VerifyEmailCommand command,CancellationToken cancellationToken)
+        {
+            var result=await mediator.Send(command,cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
+      
+        [HttpPost("VerifyOTP")]
+        public async Task<ActionResult<ResultResponse<String>>> VerifyOTP([FromQuery] VerifyOTPCommand command,CancellationToken cancellationToken)
+        {
+            var result=await mediator.Send(command,cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
+
+
+
     }
 }
