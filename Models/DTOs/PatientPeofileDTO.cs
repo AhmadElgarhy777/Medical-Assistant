@@ -12,6 +12,7 @@ namespace Models.DTOs
         public string ID { get; set; } = null!;
         public string SSN { get; set; } = null!;
         public string FullName { get; set; } = null!;
+        public string UserName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public string? Img { get; set; }
@@ -20,6 +21,8 @@ namespace Models.DTOs
         public string Address { get; set; } = null!;
         public string City { get; set; } = null!;
         public string? BloodType { get; set; }
+
+        public List<PatientPhonesDTO> Phones { get; set; }=null!;
 
 
     }

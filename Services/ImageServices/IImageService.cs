@@ -10,5 +10,6 @@ namespace Services.ImageServices
     public interface IImageService
     {
        Task<string> UploadImgAsync(IFormFile img, string FolderName, CancellationToken cancellationToken);
+       Task<string> EditImgAsync(IFormFile Newimg,string OldImg, string FolderName, CancellationToken cancellationToken);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DataAccess.Specfications;
 using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace DataAccess.EntittySpecifcation
             Includes?.Add(p => p.Specialization);
         }
         public DoctorSpecifcation(string Id):base(d=>d.ID==Id)
+        {
+            Includes?.Add(p => p.Specialization);
+        }
+        public DoctorSpecifcation(ConfrmationStatus Status):base(d=>d.Status.Equals(Status))
         {
             Includes?.Add(p => p.Specialization);
         }

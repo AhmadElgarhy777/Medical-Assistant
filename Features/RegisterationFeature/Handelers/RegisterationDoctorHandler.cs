@@ -62,6 +62,10 @@ namespace Features.RegisterationFeature.Handelers
                 Address=doctorDto.AddressInDetails,
                 Gender=doctorDto.Gender,
                 Role= Role,
+                PhoneNumber=doctorDto.Phone,
+                City=doctorDto.City,
+                Governorate=doctorDto.Governorate,
+                
             };
 
             if(appuser is not null)
@@ -80,6 +84,7 @@ namespace Features.RegisterationFeature.Handelers
                         var CrediateImg = await imageService.UploadImgAsync(doctorDto.CrediateImg, "DoctorImages/CrediateImages", cancellationToken);
 
                         doctor.Img = $"{configuration["ApiBaseUrl"]}/DoctorImages/ProfileImages/{profileImg}";
+                        appuser.Img = $"{configuration["ApiBaseUrl"]}/DoctorImages/ProfileImages/{profileImg}";
                         doctor.CertificationImg = $"{configuration["ApiBaseUrl"]}/DoctorImages/CertificationImages/{CertifcationImg}";
                         doctor.CrediateImg = $"{configuration["ApiBaseUrl"]}/DoctorImages/CrediateImages/{CrediateImg}";
                     }

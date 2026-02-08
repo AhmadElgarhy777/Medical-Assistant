@@ -35,6 +35,13 @@ namespace Models.DTOs.RegistertionDTOs
         [Required(ErrorMessage = "The Email is Required")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; } = null!;
+        
+        
+        [Required(ErrorMessage = "The Phone Number is Required")]
+        [Length(11, 11, ErrorMessage = "The Phone Is Required 11 number")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Phone must contain numbers only.")]
+        public string PhoneNumber { get; set; } = null!;
+
 
 
         [Required(ErrorMessage = "The Gender is Required")]

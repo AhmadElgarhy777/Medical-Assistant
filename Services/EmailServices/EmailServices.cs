@@ -32,7 +32,7 @@ namespace Services.EmailServices
             };
 
             using var smtp = new SmtpClient();
-            await smtp.ConnectAsync(setting.Host, setting.Port, SecureSocketOptions.StartTls);
+            await smtp.ConnectAsync("smtp.gmail.com", setting.Port, SecureSocketOptions.StartTls);
             await smtp.AuthenticateAsync(setting.SenderEmail, setting.Password);
 
             await smtp.SendAsync(message,cancellationToken);

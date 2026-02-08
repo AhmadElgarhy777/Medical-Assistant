@@ -18,11 +18,13 @@ namespace Features.PatientFeature.Handler
     {
         private readonly IPatientRepositry patientRepositry;
         private readonly IMapper mapper;
+        private readonly IPatientPhoneRepositry patientPhoneRepositry;
 
-        public GetProfileHandler(IPatientRepositry patientRepositry,IMapper mapper)
+        public GetProfileHandler(IPatientRepositry patientRepositry,IMapper mapper,IPatientPhoneRepositry patientPhoneRepositry)
         {
             this.patientRepositry = patientRepositry;
             this.mapper = mapper;
+            this.patientPhoneRepositry = patientPhoneRepositry;
         }
         public async Task<ResultResponse<PatientPeofileDTO>> Handle(GetPatientProfileQuery request, CancellationToken cancellationToken)
         {
@@ -30,9 +32,17 @@ namespace Features.PatientFeature.Handler
 
             var spec = new PatientSpecifcation(patientId);
             var patient = await patientRepositry.GetOne(spec).FirstOrDefaultAsync();
+
+            var phonesspec = new PatientPhonesSpecifcation(patientId);
+            var patientPhones=patientPhoneRepositry.GetAll(phonesspec).ToList();
+
+            var patientPhonesDto = mapper.Map<List<PatientPhone>,List<PatientPhonesDTO>>(patientPhones);
+
+
             if (patient is not null)
             {
                 var patientDto = mapper.Map<Patient, PatientPeofileDTO>(patient);
+                patientDto.Phones= patientPhonesDto;
                 return new ResultResponse<PatientPeofileDTO>
                 {
                     ISucsses = true,

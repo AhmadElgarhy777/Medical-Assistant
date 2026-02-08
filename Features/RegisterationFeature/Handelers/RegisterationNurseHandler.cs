@@ -64,6 +64,9 @@ namespace Features.RegisterationFeature.Handelers
                 Address = nurseDto.AddressInDetails,
                 Gender = nurseDto.Gender,
                 Role = Role,
+                City= nurseDto.City,
+                Governorate= nurseDto.Governorate,
+                PhoneNumber= nurseDto.Phone,
             };
 
             if (appuser is not null)
@@ -82,6 +85,7 @@ namespace Features.RegisterationFeature.Handelers
                         var CrediateImg = await imageService.UploadImgAsync(nurseDto.CrediateImg, "NurseImages/CrediateImages", cancellationToken);
 
                         nurse.Img= $"{configuration["ApiBaseUrl"]}/NurseImages/ProfileImages/{profileImg}";
+                        appuser.Img= $"{configuration["ApiBaseUrl"]}/NurseImages/ProfileImages/{profileImg}";
                         nurse.CertificationImg= $"{configuration["ApiBaseUrl"]}/NurseImages/CertificationImages/{CertifcationImg}";
                         nurse.CrediateImg= $"{configuration["ApiBaseUrl"]}/NurseImages/CrediateImages/{CrediateImg}";
                     }

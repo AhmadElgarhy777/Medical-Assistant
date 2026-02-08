@@ -112,6 +112,20 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest("Validation Error");
 
         }
+        
+        [HttpPut("UpdateProfile")]
+        public async Task<ActionResult<ResultResponse<UpdateProfileDTO>>> UpdateProfile([FromForm] UpdateProfileCommand command, CancellationToken cancellationToken)
+        {
+           
+                var result = await mediator.Send(command, cancellationToken);
+                if (result.ISucsses)
+                {
+                    return Ok(result.Message);
+                }
+                return BadRequest(result);
+            
+
+        }
 
     }
 }

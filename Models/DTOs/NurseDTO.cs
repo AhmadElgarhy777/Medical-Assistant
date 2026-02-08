@@ -10,6 +10,9 @@ namespace Models.DTOs
     public class NurseDTO
     {
         public string FullName { get; set; } = null!;
+        public string UserName { get; set; } = null!;
+
+
         public GenderEnum Gender { get; set; }
         public string Img { get; set; } = null!;
 

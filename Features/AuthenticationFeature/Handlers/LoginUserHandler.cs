@@ -1,14 +1,18 @@
-﻿using DataAccess.Repositry.IRepositry;
+﻿using DataAccess.EntittySpecifcation;
+using DataAccess.Repositry;
+using DataAccess.Repositry.IRepositry;
 using Features.AuthenticationFeature.Quieries;
 using Features.RegisterationFeature.Events.Event;
 using MediatR;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Models;
 using Models.DTOs;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -16,6 +20,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Utility;
 
 namespace Features.AuthenticationFeature.Handlers
 {
@@ -26,12 +31,16 @@ namespace Features.AuthenticationFeature.Handlers
         private readonly IHttpContextAccessor http;
         private readonly IRefreshTokenRepositry refreshTokenRepositry;
         private readonly IMediator mediator;
+        private readonly IDoctorRepositry doctorRepositry;
+        private readonly INuresRepositry nuresRepositry;
 
         public LoginUserHandler(UserManager<ApplicationUser> userManager,
             IConfiguration configuration,
             IHttpContextAccessor http,
             IRefreshTokenRepositry refreshTokenRepositry,
-            IMediator mediator
+            IMediator mediator,
+            IDoctorRepositry doctorRepositry,
+            INuresRepositry nuresRepositry
             )
         {
             this.userManager = userManager;
@@ -39,6 +48,8 @@ namespace Features.AuthenticationFeature.Handlers
             this.http = http;
             this.refreshTokenRepositry = refreshTokenRepositry;
             this.mediator = mediator;
+            this.doctorRepositry = doctorRepositry;
+            this.nuresRepositry = nuresRepositry;
         }
         public async Task<AuthDTO> Handle(LogInUserCommand request, CancellationToken cancellationToken)
         {
@@ -47,6 +58,30 @@ namespace Features.AuthenticationFeature.Handlers
             var user = await userManager.FindByEmailAsync(userLogin.Email);
             if (user is not null)
             {
+                if(user.Role==SD.DoctorRole)
+                {
+                    var spec = new DoctorSpecifcation(user.Id);
+                    var doctor = await doctorRepositry.GetOne(spec).FirstOrDefaultAsync(cancellationToken);
+                    if (doctor.Status== ConfrmationStatus.Pending)
+                    {
+                        return new AuthDTO
+                        {
+                            Message = "Pending Account ...!\n,\tCan not be login Becouse Your Account Is Still under review.."
+                        };
+                    }
+                }
+                else if(user.Role==SD.NurseRole)
+                {
+                    var Spec = new NurseSpesfication(user.Id);
+                    var nurse = await nuresRepositry.GetOne(Spec).FirstOrDefaultAsync(cancellationToken);
+                    if (nurse.Status== ConfrmationStatus.Pending)
+                    {
+                        return new AuthDTO
+                        {
+                            Message = "Pending Account ...!\n,\tCan not be login Becouse Your Account Is Still under review.."
+                        };
+                    }
+                }
                 if (!user.EmailConfirmed)
                 {
                     await mediator.Publish(new ConfirmEmailEvent(user.Id,user.Email, cancellationToken));

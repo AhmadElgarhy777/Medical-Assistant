@@ -56,7 +56,7 @@ namespace Features.RegisterationFeature.Handelers
                     return new ResultResponse<string>
                     {
                         ISucsses = false,
-                        Message = "The User Is Already Exist",
+                        Message = "The Email Is Already Exist, Try Login or use diffrent email",
                     };
             }
 
@@ -66,9 +66,14 @@ namespace Features.RegisterationFeature.Handelers
                 Id = Guid.NewGuid().ToString(),
                 UserName = patientDto.UserName,
                 Email = patientDto.Email,
-                Address = patientDto.AddressInDetails,
                 Gender = patientDto.Gender,
                 Role = Role,
+                PhoneNumber=patientDto.PhoneNumber,
+                Address = patientDto.AddressInDetails,
+                City= patientDto.City,
+                Governorate=patientDto.Governorate,
+                
+                
             };
 
             if (appuser is not null)
@@ -85,6 +90,7 @@ namespace Features.RegisterationFeature.Handelers
                     {
                         var image = await imageService.UploadImgAsync(patientDto.Img, "PatientImages", cancellationToken);
                         patient.Img = $"{configuration["ApiBaseUrl"]}/PatientImages/{image}";
+                        appuser.Img= $"{configuration["ApiBaseUrl"]}/PatientImages/{image}";
                     }
 
                     if (patient is not null)

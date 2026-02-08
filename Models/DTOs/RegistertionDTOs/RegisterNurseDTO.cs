@@ -42,7 +42,9 @@ namespace Models.DTOs.RegistertionDTOs
         public GenderEnum Gender { get; set; }
 
 
-        
+
+
+
         public IFormFile Img { get; set; } = null!;
 
 
@@ -64,6 +66,8 @@ namespace Models.DTOs.RegistertionDTOs
 
 
         [Required(ErrorMessage = "The Phone number is Required")]
+        [Length(11, 11, ErrorMessage = "The Phone Is Required 11 number")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Phone must contain numbers only.")]
         public string Phone { get; set; } = null!;
 
 

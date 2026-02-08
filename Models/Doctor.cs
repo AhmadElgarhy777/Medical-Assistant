@@ -12,6 +12,8 @@ namespace Models
     {
         public string SSN { get; set; } = null!;
         public string FullName { get; set; } = null!;
+        public string UserName { get; set; } = null!;
+
         public string Email { get; set; } = null!;
         public GenderEnum Gender { get; set; }
         public string Img { get; set; } = null!;

@@ -21,7 +21,7 @@ namespace GraduationProject_MedicalAssistant_
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            Console.WriteLine(builder.Configuration["EmailSenderModel:Host"]);
             builder.Services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

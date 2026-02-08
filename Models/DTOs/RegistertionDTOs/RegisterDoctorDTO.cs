@@ -38,6 +38,7 @@ namespace Models.DTOs.RegistertionDTOs
         public string Email { get; set; } = null!;
 
 
+
         [Required(ErrorMessage = "The Gender  is Required")]
         [EnumDataType(typeof(GenderEnum),ErrorMessage ="The gender Is Invalid")]
         public GenderEnum Gender { get; set; }
@@ -64,6 +65,8 @@ namespace Models.DTOs.RegistertionDTOs
 
 
         [Required(ErrorMessage = "The Phone number is Required")]
+        [Length(11, 11, ErrorMessage = "The Phone Is Required 11 number")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Phone must contain numbers only.")]
         public string Phone { get; set; } = null!;
 
 

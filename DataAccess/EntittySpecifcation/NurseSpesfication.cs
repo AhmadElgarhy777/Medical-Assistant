@@ -1,5 +1,6 @@
 ﻿using DataAccess.Specfications;
 using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,12 @@ namespace DataAccess.EntittySpecifcation
         public NurseSpesfication():base()
         {
             Includes.Add(e => e.Ratings);
+        }
+        public NurseSpesfication(string Id):base(s=>s.ID==Id)
+        {
+        }
+        public NurseSpesfication(ConfrmationStatus Status) : base(d => d.Status.Equals(Status))
+        {
         }
     }
 }
