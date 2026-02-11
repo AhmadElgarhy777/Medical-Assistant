@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Models.DTOs;
 using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
@@ -17,6 +18,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpPost("BookNow")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         [Authorize(Roles = $"{SD.PatientRole},{SD.AdminRole}")]
 
         public async Task<IActionResult> Book([FromBody] CreateAppointmentCommand command)
@@ -37,6 +40,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest("الموعد ربما تم حجزه بالفعل من قبل مريض آخر");
         }
         [HttpPut("Cancel/{id}")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [Authorize(Roles = $"{SD.DoctorRole},{SD.AdminRole}")]
         public async Task<IActionResult> Cancel(string id)
         {
@@ -45,6 +49,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok("تم إلغاء الحجز بنجاح، والموعد متاح الآن لمريض آخر");
         }
         [HttpPut("UpdateStatus")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [Authorize(Roles = $"{SD.DoctorRole},{SD.AdminRole}")]
 
         public async Task<IActionResult> UpdateStatus([FromBody] UpdateAppointmentStatusCommand command)

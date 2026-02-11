@@ -1,24 +1,28 @@
-﻿using Features;
+﻿using DataAccess;
+using Features;
 using Features.PatientFeature.Queries;
 using Features.PatientFeature.Query;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models.DTOs;
 using System.Security.Claims;
 using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
-    //[Authorize(Roles = $"{SD.AdminRole},{SD.PatientRole}")]
+    [Authorize(Roles = $"{SD.AdminRole},{SD.PatientRole}")]
     public class PatientController : ApiBaseController
     {
         private readonly IMediator mediatR;
+        private readonly ApplicationDbContext dbContext;
 
-        public PatientController(IMediator mediatR)
+        public PatientController(IMediator mediatR,ApplicationDbContext dbContext)
         {
             this.mediatR = mediatR;
+            this.dbContext = dbContext;
         }
 
         [HttpGet("GetDoctorsBySearch")]
@@ -119,6 +123,55 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var result = await mediatR.Send(new GetFullPrescriptionQuery(id));
 
             return result != null ? Ok(result) : NotFound("الروشتة غير موجودة");
+        }
+
+
+
+        [HttpPost("book-nurse")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
+        public async Task<IActionResult> BookNurse([FromQuery] string NurseId)
+        {
+            var pationtId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var pationt = await dbContext.Patients
+                .FirstOrDefaultAsync(p => p.ID == pationtId);
+
+            var booking = new Booking
+            {
+                PatientId = pationtId,
+                NurseId = NurseId,
+                Address = pationt.Address,
+                City = pationt.City,
+                Governorate = pationt.Governorate,
+                Status = "Pending",
+                RequestDate = DateTime.Now
+            };
+
+            dbContext.Bookings.Add(booking);
+            await dbContext.SaveChangesAsync();
+
+            return Ok(new { message = "تم انشاء الحجز بنجاح" });
+
+
+        }
+     
+        [HttpGet("Get-patient-bookings-Nurse")]
+        [ProducesResponseType(typeof(Booking), StatusCodes.Status200OK)]
+
+        public async Task<IActionResult> GetPatientBookings()
+        {
+            var pationtId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var bookings = await dbContext.Bookings
+                .Where(b => b.PatientId == pationtId)
+                .OrderByDescending(b => b.RequestDate)
+                .ToListAsync();
+            if (bookings is null || bookings.Count == 0)
+            {
+                return NotFound("لا يوجد حجوزات !");
+            }
+            return Ok(bookings);
         }
 
     }

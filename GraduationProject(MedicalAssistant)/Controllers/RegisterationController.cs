@@ -18,6 +18,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpPost("RegisterAdmin")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> RegisterAdmin([FromForm]RegisterationAdminCommand command , CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -36,6 +38,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         [HttpPost("GetAllSpecialization")]
+        [ProducesResponseType(typeof(SpecializationDTO), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<List<SpecializationDTO>>>> GetAllSpecialization([FromForm] GetAllSpecializationQuery query , CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -52,6 +56,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         }
         [HttpPost("RegisterDoctor")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> RegisterDoctor([FromForm] RegisterationDoctorCommand command , CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -70,6 +76,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         [HttpPost("RegisterNurse")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> RegisterNurse([FromForm] RegisterationNurseCommand command , CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -87,6 +95,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpPost("RegisterPatient")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> RegisterPatient([FromForm] RegisterationPatientCommand command , CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -105,6 +115,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         [HttpPost("ConfirmationEmailType")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> ConfirmationEmailType([FromQuery] ConfirmationEmailTypeCommand command,CancellationToken cancellationToken)
         {
             var result=await mediator.Send(command,cancellationToken);
@@ -116,6 +128,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpPost("VerifyEmail")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> VerifyEmail([FromQuery] VerifyEmailCommand command,CancellationToken cancellationToken)
         {
             var result=await mediator.Send(command,cancellationToken);
@@ -127,6 +141,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
       
         [HttpPost("VerifyOTP")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> VerifyOTP([FromQuery] VerifyOTPCommand command,CancellationToken cancellationToken)
         {
             var result=await mediator.Send(command,cancellationToken);

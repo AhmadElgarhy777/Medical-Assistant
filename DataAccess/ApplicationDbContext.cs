@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Models.Models;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -25,6 +26,8 @@ namespace DataAccess
         public DbSet<Specialization>  Specializations { get; set; }
         public DbSet<DoctorPatient>  DoctorPatients { get; set; }
         public DbSet<RefreshToken>  RefreshTokens { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)   
         {
             

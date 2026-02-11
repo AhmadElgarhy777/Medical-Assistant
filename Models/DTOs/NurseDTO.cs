@@ -9,6 +9,7 @@ namespace Models.DTOs
 {
     public class NurseDTO
     {
+        public string ID { get; set; } = null!;  
         public string FullName { get; set; } = null!;
         public string UserName { get; set; } = null!;
 

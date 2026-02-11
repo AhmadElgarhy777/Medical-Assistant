@@ -22,6 +22,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             this.http = http;
         }
         [HttpPost("LogIn")]
+        [ProducesResponseType(typeof(AuthDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<AuthDTO>> LogIn([FromForm]LogInUserCommand command ,CancellationToken cancellationToken)
         {
             var result = await mediator.Send(command, cancellationToken);
@@ -34,6 +35,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
        
         [HttpPost("RefreshToken")]
+        [ProducesResponseType(typeof(AuthDTO), StatusCodes.Status200OK)]
+
+        [Authorize]
         public async Task<ActionResult<AuthDTO>> RefreshToken([FromForm] string RefreshToken ,CancellationToken cancellationToken)
         {
             var IpAddress = http.HttpContext?.Connection?.RemoteIpAddress?.ToString();
@@ -49,6 +53,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpPost("LogOut")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+
+        [Authorize]
         public async Task<ActionResult<bool>> LogOut([FromForm] string RefreshToken ,CancellationToken cancellationToken)
         {
             var IpAddress = http.HttpContext?.Connection?.RemoteIpAddress?.ToString();
@@ -65,7 +72,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         [HttpPut("ChangePasssword")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         [Authorize]
+
         public async Task<ActionResult<ResultResponse<String>>> ChangePassword([FromForm] ChangePasswordCommand command,CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -82,6 +91,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpPost("ForgetPasssword")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<String>>> ForgetPasssword([FromForm] ForgetPassswordCommand command,CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -98,6 +109,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpPut("ResetPassword")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<String>>> ResetPassword([FromForm] ResetPassswordCommand command, CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
@@ -114,6 +126,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
         
         [HttpPut("UpdateProfile")]
+        [Authorize]
+        [ProducesResponseType(typeof(UpdateProfileDTO), StatusCodes.Status200OK)]
+
         public async Task<ActionResult<ResultResponse<UpdateProfileDTO>>> UpdateProfile([FromForm] UpdateProfileCommand command, CancellationToken cancellationToken)
         {
            
