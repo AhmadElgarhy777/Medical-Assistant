@@ -27,7 +27,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 var result = await mediator.Send(command, cancellationToken);
                 if (result.ISucsses)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
                 return BadRequest(result);
 
@@ -65,7 +65,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 var result = await mediator.Send(command, cancellationToken);
                 if (result.ISucsses)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
                 return BadRequest(result);
 
@@ -85,7 +85,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 var result = await mediator.Send(command, cancellationToken);
                 if (result.ISucsses)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
                 return BadRequest(result);
 
@@ -104,7 +104,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 var result = await mediator.Send(command, cancellationToken);
                 if (result.ISucsses)
                 {
-                    return Ok(result.Message);
+                    return Ok(result);
                 }
                 return BadRequest(result);
 
@@ -122,7 +122,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var result=await mediator.Send(command,cancellationToken);
             if (result.ISucsses)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -135,7 +135,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var result=await mediator.Send(command,cancellationToken);
             if (result.ISucsses)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
@@ -148,7 +148,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var result=await mediator.Send(command,cancellationToken);
             if (result.ISucsses)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
