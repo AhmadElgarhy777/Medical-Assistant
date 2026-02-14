@@ -1180,6 +1180,16 @@
         "Name": "Admin.Gender",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "Admin.Governorate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Admin.City",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [

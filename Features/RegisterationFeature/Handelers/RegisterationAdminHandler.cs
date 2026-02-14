@@ -51,7 +51,9 @@ namespace Features.RegisterationFeature.Handelers
                 Email = AdminDto.Email,
                 Address=AdminDto.Address,
                 Gender=AdminDto.Gender,
-                Role=SD.AdminRole
+                Role=SD.AdminRole,
+                City=AdminDto.City,
+                Governorate=AdminDto.Governorate,
             };
             if (AdminUser != null)
             {

@@ -130,7 +130,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpPost("book-nurse")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
 
-        public async Task<IActionResult> BookNurse([FromQuery] string NurseId)
+        public async Task<ActionResult> BookNurse([FromQuery] string NurseId)
         {
             var pationtId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -159,7 +159,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpGet("Get-patient-bookings-Nurse")]
         [ProducesResponseType(typeof(Booking), StatusCodes.Status200OK)]
 
-        public async Task<IActionResult> GetPatientBookings()
+        public async Task<ActionResult> GetPatientBookings()
         {
             var pationtId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

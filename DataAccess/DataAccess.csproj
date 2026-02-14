@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="DataSeed\specification.json" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
@@ -21,7 +25,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="DataSeed\" />
+	  <Page Include="DataSeed\specification.json" />
 	</ItemGroup>
 
 

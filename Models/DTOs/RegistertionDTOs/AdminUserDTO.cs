@@ -26,7 +26,16 @@ namespace Models.DTOs
         public string Address { get; set; } = null!;
         [Required(ErrorMessage = "This Gender Is Required")]
         [EnumDataType(typeof(GenderEnum), ErrorMessage = "Invalid Gender")]
-        public GenderEnum Gender { get; set; } 
+        public GenderEnum Gender { get; set; }
+
+        [Required(ErrorMessage = "The Governorate is Required")]
+        [EnumDataType(typeof(Governorate), ErrorMessage = "The Governorate Is Invalid")]
+        public Governorate Governorate { get; set; }
+
+
+        [Required(ErrorMessage = "The City is Required")]
+        public string City { get; set; } = null!;
+
 
     }
 }

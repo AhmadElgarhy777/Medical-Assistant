@@ -12,6 +12,7 @@ using System.Text.Json.Serialization;
 using InfrastructureExtension;
 using GraduationProject_MedicalAssistant_.Extentions;
 using Services.EmailServices;
+using Microsoft.Extensions.Logging;
 
 
 namespace GraduationProject_MedicalAssistant_
@@ -21,10 +22,9 @@ namespace GraduationProject_MedicalAssistant_
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            Console.WriteLine(builder.Configuration["EmailSenderModel:Host"]);
+
             builder.Services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
        
             builder.Services.AddControllers().AddJsonOptions(options =>
                 {
@@ -35,14 +35,15 @@ namespace GraduationProject_MedicalAssistant_
 
             builder.Services.Configure<EmailSenderModel>(builder.Configuration.GetSection("EmailSenderModel"));
 
-
             builder.Services.AddApiServices();
 
             builder.Services.AddSwaggerServices();
+
             builder.Services.CustomJwtServices(builder.Configuration);
+
             builder.Services.AddSwaggerAuth();
 
-
+            builder.Services.AddCorsExtention();
 
             var app = builder.Build();
 
@@ -50,11 +51,11 @@ namespace GraduationProject_MedicalAssistant_
             var service= scope.ServiceProvider;
             var dbContext=service.GetRequiredService<ApplicationDbContext>();
             var FactoryLogger = service.GetRequiredService<ILoggerFactory>();
-
+            var logger = FactoryLogger.CreateLogger<Program>();
             try
             {
-                dbContext.Database.MigrateAsync();
-                //DataSedding.SpecilzationSeed(dbContext);
+                dbContext.Database.MigrateAsync().GetAwaiter().GetResult();
+                //DataSedding.SpecilzationSeed(dbContext,logger);
             }
             catch (Exception ex)
             {
@@ -62,17 +63,18 @@ namespace GraduationProject_MedicalAssistant_
 
             }
 
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
                 app.AddSwaggerServiceMiddleWare();
-            }
+            //}
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseStaticFiles();
             app.MapControllers();
 
             app.Run();
