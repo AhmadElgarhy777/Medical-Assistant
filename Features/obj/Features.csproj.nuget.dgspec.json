@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj": {}
+    "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Features\\Features.csproj": {}
   },
   "projects": {
-    "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj",
         "projectName": "DataAccess",
-        "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj",
-        "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-        "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\obj\\",
+        "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj",
+        "packagesPath": "C:\\Users\\ENG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ENG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj"
               }
             }
           }
@@ -44,7 +47,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -85,21 +89,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj": {
+    "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Features\\Features.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj",
+        "projectUniqueName": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Features\\Features.csproj",
         "projectName": "Features",
-        "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj",
-        "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-        "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\obj\\",
+        "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Features\\Features.csproj",
+        "packagesPath": "C:\\Users\\ENG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Features\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ENG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,24 +115,23 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj"
               },
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Services\\Services.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Services\\Services.csproj"
               },
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Utility\\Utility.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Utility\\Utility.csproj"
               }
             }
           }
@@ -138,7 +145,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -173,21 +181,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
+    "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-        "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\obj\\",
+        "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\ENG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ENG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -195,7 +207,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -213,7 +224,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -258,21 +270,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj": {
+    "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj",
+        "projectUniqueName": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-        "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\obj\\",
+        "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\ENG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Services\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ENG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -280,18 +296,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\DataAccess\\DataAccess.csproj"
               },
-              "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
-                "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj"
+              "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Models\\Models.csproj"
               }
             }
           }
@@ -305,7 +320,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -335,21 +351,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj": {
+    "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Utility\\Utility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj",
+        "projectUniqueName": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Utility\\Utility.csproj",
         "projectName": "Utility",
-        "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj",
-        "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-        "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\obj\\",
+        "projectPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Utility\\Utility.csproj",
+        "packagesPath": "C:\\Users\\ENG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ENG\\Source\\Repos\\Medical-Assistant\\Utility\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ENG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -357,7 +377,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -375,7 +394,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -396,7 +416,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
