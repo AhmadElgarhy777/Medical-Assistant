@@ -44,7 +44,6 @@ namespace Models
 
         }
         public Collection<Rating>? Ratings { get; set; }
-        public Collection<Chat>? Chats { get; set; }
 
     }
 }

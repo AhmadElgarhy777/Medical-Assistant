@@ -14,7 +14,6 @@ using GraduationProject_MedicalAssistant_.Extentions;
 using Services.EmailServices;
 using Microsoft.Extensions.Logging;
 using Features.PharmacyFeature;
-using DataAccess.Repositry;
 
 namespace GraduationProject_MedicalAssistant_
 {
@@ -54,6 +53,7 @@ namespace GraduationProject_MedicalAssistant_
             try
             {
                 dbContext.Database.MigrateAsync().GetAwaiter().GetResult();
+                //DataSedding.SpecilzationSeed(dbContext, logger);
             }
             catch (Exception ex)
             {

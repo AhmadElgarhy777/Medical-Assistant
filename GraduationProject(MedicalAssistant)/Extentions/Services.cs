@@ -24,8 +24,6 @@ namespace InfrastructureExtension
         {
             services.AddScoped<IAiReportRepositry, AiReportRepositry>();
             services.AddScoped<IAppointmentRepositry, AppointmentRepositry>();
-            services.AddScoped<IChatMessageRepositry, ChatMessageRepositry>();
-            services.AddScoped<IChatRepositry, ChatRepositry>();
             services.AddScoped<IClinicPhoneRepositry, ClinicPhoneRepositry>();
             services.AddScoped<IClinicRepositry, ClinicRepositry>();
             services.AddScoped<IDoctorAvaliableTimeRepositry, DoctorAvaliableTimeRepositry>();

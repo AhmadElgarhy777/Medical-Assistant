@@ -45,7 +45,6 @@ namespace Models
         public Specialization Specialization { get; set; }= null!;
         public Collection<AiReport>? Reports { get; set; }
         public Collection<Appointment>? Appointments { get; set; }
-        public Collection<Chat>? Chats { get; set; }
         public Collection<Clinic> Clinics { get; set; } = null!;
         public Collection<Prescription>? Prescriptions { get; set; }
         public Collection<DoctorAvilableTime>? avilableTimes { get; set; }

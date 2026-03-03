@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using Models;
 using Models.Models;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace DataAccess
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<AiReport> AiReports { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<Chat> Chats { get; set; }
-        public DbSet<ChatMessage> ChatMessages { get; set; }
+       
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<ClinicPhone> ClinicPhones { get; set; }
         public DbSet<DoctorAvilableTime> DoctorAvilableTimes { get; set; }
@@ -34,6 +34,10 @@ namespace DataAccess
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        
+        public DbSet<Conversation> Conversations{ get; set; }
+        public DbSet<ConversationParticipant> conversationParticipants { get; set; }
+        public DbSet<Messages> Messages { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

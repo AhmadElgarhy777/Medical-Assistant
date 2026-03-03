@@ -15,6 +15,11 @@ namespace Models
         public GenderEnum Gender { get; set; }
         public string? Img { get; set; }
 
-        public Collection<ChatMessage> Messages { get; set; }
+        public ICollection<ConversationParticipant> conversationParticipants { get; set; } 
+            = new List<ConversationParticipant>();
+
+
+        public ICollection<Messages> Messages { get; set; } 
+            = new List<Messages>();
     }
 }

@@ -28,7 +28,6 @@ namespace Models
         public Collection<AiReport>? AiReports { get; set; }
         public Collection<Rating>? Ratings { get; set; }
         public Collection<Prescription>? Prescriptions { get; set; }
-        public Collection<Chat>? Chats { get; set; }
         public Collection<DoctorPatient>? DoctorPatients { get; set; }
 
     }

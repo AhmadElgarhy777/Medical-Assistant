@@ -17,10 +17,11 @@ namespace DataAccess
         {
             try
             {
-                var assembly = Assembly.GetExecutingAssembly();
-                using var stream = assembly.GetManifestResourceStream("DataAccess.DataSeed.specification.json");
-                using var reader = new StreamReader(stream);
-                var data = reader.ReadToEnd();
+                //var assembly = Assembly.GetExecutingAssembly();
+                //using var stream = assembly.GetManifestResourceStream("DataAccess.DataSeed.specification.json");
+                //using var reader = new StreamReader(stream);
+                //var data = reader.ReadToEnd();
+                var data = File.ReadAllText("../DataAccess/DataSeed/specification.json");
                 var list = JsonSerializer.Deserialize<List<Specialization>>(data);
 
                
