@@ -614,68 +614,6 @@ namespace DataAccess.Migrations
                     b.ToTable("DoctorPatients");
                 });
 
-            modelBuilder.Entity("Models.Inventory", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PharmacyId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PharmacyProductId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PharmacyId");
-
-                    b.HasIndex("PharmacyProductId");
-
-                    b.ToTable("Inventories");
-                });
-
-            modelBuilder.Entity("Models.Invoice", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("OrderId")
-                        .IsUnique();
-
-                    b.ToTable("Invoices");
-                });
-
             modelBuilder.Entity("Models.Models.Notification", b =>
                 {
                     b.Property<string>("ID")
@@ -850,75 +788,6 @@ namespace DataAccess.Migrations
                     b.ToTable("patientPhones");
                 });
 
-            modelBuilder.Entity("Models.Pharmacy", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("BD")
-                        .HasColumnType("date");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Governorate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PharmacyLicense")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RealImg")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Pharmacies");
-                });
-
-            modelBuilder.Entity("Models.PharmacyProduct", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("PharmacyProducts");
-                });
-
             modelBuilder.Entity("Models.Prescription", b =>
                 {
                     b.Property<string>("ID")
@@ -1079,72 +948,12 @@ namespace DataAccess.Migrations
                     b.ToTable("Specializations");
                 });
 
-            modelBuilder.Entity("Order", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PharmacyId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PatientId");
-
-                    b.HasIndex("PharmacyId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("OrderItem", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("InventoryId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("OrderId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("InventoryId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderItems");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1153,7 +962,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1162,7 +971,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1171,13 +980,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1186,7 +995,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1195,13 +1004,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Reports")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("AiReports")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -1213,19 +1022,18 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Clinic", "Clinic")
                         .WithMany()
-                        .HasForeignKey("ClinicID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ClinicID");
 
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("appointments")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Clinic");
@@ -1240,18 +1048,17 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Chats")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.Nures", "Nures")
                         .WithMany("Chats")
-                        .HasForeignKey("NuresId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("NuresId");
 
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("Chats")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -1266,12 +1073,12 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.ApplicationUser", "User")
                         .WithMany("Messages")
                         .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Models.Chat", "Chat")
                         .WithMany("Messages")
                         .HasForeignKey("ChatId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Chat");
@@ -1284,7 +1091,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Clinics")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -1295,7 +1102,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Clinic", "Clinic")
                         .WithMany("phones")
                         .HasForeignKey("ClinicId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Clinic");
@@ -1306,7 +1113,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Specialization", "Specialization")
                         .WithMany("Doctor")
                         .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
                     b.Navigation("Specialization");
@@ -1317,7 +1124,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("avilableTimes")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -1328,46 +1135,16 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("DoctorPatients")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("DoctorPatients")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
-                });
-
-            modelBuilder.Entity("Models.Inventory", b =>
-                {
-                    b.HasOne("Models.Pharmacy", "Pharmacy")
-                        .WithMany("Inventories")
-                        .HasForeignKey("PharmacyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.PharmacyProduct", "PharmacyProduct")
-                        .WithMany("Inventories")
-                        .HasForeignKey("PharmacyProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Pharmacy");
-
-                    b.Navigation("PharmacyProduct");
-                });
-
-            modelBuilder.Entity("Models.Invoice", b =>
-                {
-                    b.HasOne("Order", "Order")
-                        .WithOne("Invoice")
-                        .HasForeignKey("Models.Invoice", "OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Models.PatientPhone", b =>
@@ -1375,7 +1152,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("patientPhones")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Patient");
@@ -1386,13 +1163,13 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Prescriptions")
                         .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("Prescriptions")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Doctor");
@@ -1405,7 +1182,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Prescription", "Presciption")
                         .WithMany("items")
                         .HasForeignKey("PresciptionId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Presciption");
@@ -1415,18 +1192,15 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Models.Doctor", "Doctor")
                         .WithMany("Ratings")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("DoctorId");
 
                     b.HasOne("Models.Nures", "Nures")
                         .WithMany("Ratings")
-                        .HasForeignKey("NuresId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("NuresId");
 
                     b.HasOne("Models.Patient", "Patient")
                         .WithMany("Ratings")
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("PatientId");
 
                     b.Navigation("Doctor");
 
@@ -1440,48 +1214,10 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Order", b =>
-                {
-                    b.HasOne("Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.Pharmacy", "Pharmacy")
-                        .WithMany()
-                        .HasForeignKey("PharmacyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("Pharmacy");
-                });
-
-            modelBuilder.Entity("OrderItem", b =>
-                {
-                    b.HasOne("Models.Inventory", "Inventory")
-                        .WithMany()
-                        .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Inventory");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Models.ApplicationUser", b =>
@@ -1542,16 +1278,6 @@ namespace DataAccess.Migrations
                     b.Navigation("patientPhones");
                 });
 
-            modelBuilder.Entity("Models.Pharmacy", b =>
-                {
-                    b.Navigation("Inventories");
-                });
-
-            modelBuilder.Entity("Models.PharmacyProduct", b =>
-                {
-                    b.Navigation("Inventories");
-                });
-
             modelBuilder.Entity("Models.Prescription", b =>
                 {
                     b.Navigation("items");
@@ -1560,14 +1286,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.Specialization", b =>
                 {
                     b.Navigation("Doctor");
-                });
-
-            modelBuilder.Entity("Order", b =>
-                {
-                    b.Navigation("Invoice")
-                        .IsRequired();
-
-                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }
