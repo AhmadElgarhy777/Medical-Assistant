@@ -13,11 +13,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Utility\\Utility.csproj",
+      "projectName": "Utility",
+      "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Utility\\Utility.csproj",
+      "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Utility\\obj\\",
+=======
       "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj",
       "projectName": "Utility",
       "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\Utility.csproj",
       "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
       "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Utility\\obj\\",
+>>>>>>> 322c82d62df0b461d05cc47f10dec7b364ff498d
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
