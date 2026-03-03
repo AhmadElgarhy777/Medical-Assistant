@@ -35,8 +35,7 @@ namespace Features.RegisterationFeature.Handelers
             IMapper mapper,
             IImageService imageService,
             IConfiguration configuration,
-            IMediator mediator
-            )
+            IMediator mediator)
         {
             this.patientRepositry = patientRepositry;
             this.userManager = userManager;
@@ -46,20 +45,21 @@ namespace Features.RegisterationFeature.Handelers
             this.configuration = configuration;
             this.mediator = mediator;
         }
+
         public async Task<ResultResponse<string>> Handle(RegisterationPatientCommand request, CancellationToken cancellationToken)
         {
             var patientDto = request.PatientDTO;
             var Role = SD.PatientRole;
+
             var checkuser = await userManager.FindByEmailAsync(patientDto.Email);
             if (checkuser != null)
             {
-                    return new ResultResponse<string>
-                    {
-                        ISucsses = false,
-                        Message = "The Email Is Already Exist, Try Login or use diffrent email",
-                    };
+                return new ResultResponse<string>
+                {
+                    ISucsses = false,
+                    Message = "The Email Is Already Exist, Try Login or use diffrent email",
+                };
             }
-
 
             var appuser = new ApplicationUser()
             {
@@ -68,12 +68,11 @@ namespace Features.RegisterationFeature.Handelers
                 Email = patientDto.Email,
                 Gender = patientDto.Gender,
                 Role = Role,
-                PhoneNumber=patientDto.PhoneNumber,
+                PhoneNumber = patientDto.PhoneNumber,
                 Address = patientDto.AddressInDetails,
-                City= patientDto.City,
-                Governorate=patientDto.Governorate,
-                
-                
+                City = patientDto.City,
+                Governorate = patientDto.Governorate,
+                EmailConfirmed = true // ✅ مؤقتاً لحد ما Email Service تتجهز
             };
 
             if (appuser is not null)
@@ -81,6 +80,10 @@ namespace Features.RegisterationFeature.Handelers
                 var user = await userManager.CreateAsync(appuser, patientDto.Password);
                 if (user.Succeeded)
                 {
+                    // ✅ تأكد إن الـ Role موجود
+                    if (!await roleManager.RoleExistsAsync(Role))
+                        await roleManager.CreateAsync(new IdentityRole(Role));
+
                     await userManager.AddToRoleAsync(appuser, Role);
 
                     var patient = mapper.Map<RegisterPatientDTO, Patient>(patientDto);
@@ -90,13 +93,11 @@ namespace Features.RegisterationFeature.Handelers
                     {
                         var image = await imageService.UploadImgAsync(patientDto.Img, "PatientImages", cancellationToken);
                         patient.Img = $"{configuration["ApiBaseUrl"]}/PatientImages/{image}";
-                        appuser.Img= $"{configuration["ApiBaseUrl"]}/PatientImages/{image}";
+                        appuser.Img = $"{configuration["ApiBaseUrl"]}/PatientImages/{image}";
                     }
 
                     if (patient is not null)
                     {
-                        
-
                         await patientRepositry.AddAsync(patient);
                         await patientRepositry.CommitAsync(cancellationToken);
 
@@ -104,11 +105,9 @@ namespace Features.RegisterationFeature.Handelers
                         {
                             ISucsses = true,
                             Message = "The User Is Added Succesfully",
-                            Data=appuser.Id
-
+                            Data = appuser.Id
                         };
-                    }         
-                    
+                    }
                 }
                 else
                 {
@@ -119,14 +118,13 @@ namespace Features.RegisterationFeature.Handelers
                         Errors = user.Errors.Select(e => e.Description).ToList()
                     };
                 }
-
             }
+
             return new ResultResponse<string>
             {
                 ISucsses = false,
                 Message = "The User Is Not Added"
             };
-
         }
     }
 }

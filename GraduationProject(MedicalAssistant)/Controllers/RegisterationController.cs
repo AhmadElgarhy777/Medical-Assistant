@@ -152,7 +152,22 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpPost("RegisterPharmacy")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
 
+        public async Task<ActionResult<ResultResponse<String>>> RegisterPharmacy([FromForm] RegistrationPharmacyCommand command, CancellationToken cancellationToken)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await mediator.Send(command, cancellationToken);
+                if (result.ISucsses)
+                {
+                    return Ok(result);
+                }
+                return BadRequest(result);
+            }
+            return BadRequest("Validation Error");
+        }
 
 
     }

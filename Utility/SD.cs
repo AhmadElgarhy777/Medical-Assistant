@@ -6,6 +6,7 @@
         public const string PatientRole = "Patient";
         public const string DoctorRole = "Doctor";
         public const string NurseRole = "Nurse";
+        public const string PharmacyRole = "Pharmacy";
 
     }
 }
