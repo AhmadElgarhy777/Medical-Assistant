@@ -4817,19 +4817,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj",
-      "projectName": "GraduationProject(MedicalAssistant)",
-      "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj",
-      "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\GraduationProject(MedicalAssistant)\\obj\\",
-=======
       "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj",
       "projectName": "GraduationProject(MedicalAssistant)",
       "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj",
       "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
       "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\obj\\",
->>>>>>> 322c82d62df0b461d05cc47f10dec7b364ff498d
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4847,19 +4839,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-<<<<<<< HEAD
-            "C:\\Users\\IT Shop\\Downloads\\pharmacy\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\DataAccess\\DataAccess.csproj"
-            },
-            "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Features\\Features.csproj": {
-              "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Features\\Features.csproj"
-            },
-            "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj"
-            },
-            "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Services\\Services.csproj": {
-              "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Services\\Services.csproj"
-=======
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj"
             },
@@ -4871,7 +4850,6 @@
             },
             "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj": {
               "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj"
->>>>>>> 322c82d62df0b461d05cc47f10dec7b364ff498d
             }
           }
         }

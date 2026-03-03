@@ -1,19 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj",
-        "projectName": "Models",
-        "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\obj\\",
-=======
     "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {}
   },
   "projects": {
@@ -25,7 +12,6 @@
         "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
         "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\obj\\",
->>>>>>> 322c82d62df0b461d05cc47f10dec7b364ff498d
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
