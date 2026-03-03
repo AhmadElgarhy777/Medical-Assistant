@@ -4270,11 +4270,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
       "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\DataAccess\\DataAccess.csproj",
       "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\DataAccess\\obj\\",
+=======
+      "projectUniqueName": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj",
+      "projectName": "DataAccess",
+      "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\IT Shop\\.nuget\\packages\\",
+      "outputPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\obj\\",
+>>>>>>> 322c82d62df0b461d05cc47f10dec7b364ff498d
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IT Shop\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4292,8 +4300,13 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj": {
               "projectPath": "C:\\Users\\IT Shop\\Downloads\\pharmacy\\Models\\Models.csproj"
+=======
+            "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
+              "projectPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj"
+>>>>>>> 322c82d62df0b461d05cc47f10dec7b364ff498d
             }
           }
         }
