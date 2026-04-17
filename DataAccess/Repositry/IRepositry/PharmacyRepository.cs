@@ -56,6 +56,14 @@ namespace DataAccess.Repositry.IRepositry
                 .Include(i => i.PharmacyProduct)
                 .FirstOrDefaultAsync(i => i.ID == inventoryId);
         }
+        public  IQueryable<Inventory> GetInventoryByPharmacyIdAsync(string PharmacyId)
+        {
+            return _context.Inventories
+                .Include(i => i.PharmacyProduct)
+                .Where(i => i.PharmacyId == PharmacyId)
+                ;
+        }
+
 
         public async Task<IEnumerable<Pharmacy>> GetByCategoryAsync(string category)
         {

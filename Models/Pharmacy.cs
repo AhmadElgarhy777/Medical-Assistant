@@ -25,5 +25,6 @@ namespace Models
 
         // Navigation Property
         public ICollection<Inventory> Inventories { get; set; }
+        public ICollection<PharmacyProduct> PharmacyProducts { get; set; }
     }
 }

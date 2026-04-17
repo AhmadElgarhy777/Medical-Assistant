@@ -19,6 +19,7 @@ namespace DataAccess.Repositry.IRepositry
         Task UpdateStockAsync(string inventoryId, int newQuantity);
         Task<bool> DeleteMedicineAsync(string inventoryId);
         Task<Inventory> GetInventoryByIdAsync(string inventoryId);
+        IQueryable<Inventory> GetInventoryByPharmacyIdAsync(string PharmacyId);
         Task UpdatePharmacyStatusAsync(string pharmacyId, ConfrmationStatus status);
         Task<IEnumerable<Inventory>> GetLowStockAsync(string pharmacyId, int threshold);
         Task<Pharmacy> GetPharmacyByIdAsync(string pharmacyId);

@@ -47,9 +47,7 @@ namespace Models.DTOs
 
     public class AddInventoryDto
     {
-        [Required(ErrorMessage = "ادخل ID الصيدلية!")]
-        public string PharmacyId { get; set; }
-
+       
         [Required(ErrorMessage = "ادخل ID الدواء!")]
         public string PharmacyProductId { get; set; }
 

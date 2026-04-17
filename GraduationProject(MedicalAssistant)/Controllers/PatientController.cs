@@ -188,7 +188,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             if (!result.Data.Any())
                 return NotFound("مفيش صيدليات عندها الدواء ده!");
 
-            return Ok(result);
+            return Ok(result);  
         }
 
         // ✅ أي حد يقدر يبحث بالكاتيجوري

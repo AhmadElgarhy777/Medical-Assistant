@@ -1,12 +1,13 @@
 ﻿using DataAccess.Repositry.IRepositry;
+using Microsoft.AspNetCore.Mvc;
+using Models;
+using Models.DTOs;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.DTOs;
-using Models;
-using Models.Enums;
 
 namespace Features.PharmacyFeature
 {
@@ -73,23 +74,26 @@ namespace Features.PharmacyFeature
             return pharmacy;
         }
 
-        public async Task<PharmacyProduct> AddProductAsync(AddProductDto dto)
+        public async Task<PharmacyProduct> AddProductAsync(string pharmacyId, AddProductDto dto)
         {
+
             var product = new PharmacyProduct
             {
                 Name = dto.Name,
                 Description = dto.Description,
-                Category = dto.Category
+                Category = dto.Category,
+                PharmacyId = pharmacyId
+
             };
             await _pharmacyRepository.AddProductAsync(product);
             return product;
         }
 
-        public async Task<Inventory> AddInventoryAsync(AddInventoryDto dto)
+        public async Task<Inventory> AddInventoryAsync(string pharmacyId, AddInventoryDto dto)
         {
             var inventory = new Inventory
             {
-                PharmacyId = dto.PharmacyId,
+                PharmacyId = pharmacyId,
                 PharmacyProductId = dto.PharmacyProductId,
                 Price = dto.Price,
                 Quantity = dto.Quantity,
@@ -118,6 +122,22 @@ namespace Features.PharmacyFeature
                     Quantity = i.Quantity,
                     ProductName = i.PharmacyProduct.Name
                 }));
+        }
+
+         public List<MedicineInvetoryListDTO> GetAllPharmacyInvetoryMedicine(string PharmacyId)
+        {
+            var inventories = _pharmacyRepository.GetInventoryByPharmacyIdAsync(PharmacyId);
+            var result = inventories.Select(i => new MedicineInvetoryListDTO
+            {
+                InvetoryId = i.ID,
+                MedicineName = i.PharmacyProduct.Name,
+                MedicineCategory = i.PharmacyProduct.Category,
+                Price = i.Price,
+                Quantity = i.Quantity,
+                IsAvailable = i.IsAvailable
+            }).ToList();
+            return result;  
+
         }
 
         public async Task<bool> UpdateMedicineAsync(string inventoryId, decimal price, string productName, string? category)

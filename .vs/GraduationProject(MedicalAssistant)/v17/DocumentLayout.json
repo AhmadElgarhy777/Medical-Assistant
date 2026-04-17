@@ -3,12 +3,64 @@
   "WorkspaceRootPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\dataaccess\\repositry\\irepositry\\ipharmacyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repositry\\irepositry\\ipharmacyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\pharmacycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\pharmacycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\pharmacyfeature\\pharmacyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\pharmacyfeature\\pharmacyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\pharmacyfeature\\ipharmacyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\pharmacyfeature\\ipharmacyservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\medicineinvetorylistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\medicineinvetorylistdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\dataaccess\\repositry\\irepositry\\pharmacyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{137E7E11-0F16-4DA1-B10B-81CC33F939C7}|DataAccess\\DataAccess.csproj|solutionrelative:dataaccess\\repositry\\irepositry\\pharmacyrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\pharmacyproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\pharmacyproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\invetroyresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\invetroyresultdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\addpharmacydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\addpharmacydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\pharmcyproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\pharmcyproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Migrations\\20260417193802_edit-pharmacyProducttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DataAccess\\Migrations\\20260417193802_edit-pharmacyProducttable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\pharmacy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\pharmacy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\features\\registerationfeature\\handelers\\registerationadminhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BDAD458F-A5D4-461A-BC99-4843094A24EB}|Features\\Features.csproj|solutionrelative:features\\registerationfeature\\handelers\\registerationadminhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\models\\dtos\\drugdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C717AE31-F014-46FF-BB22-B03E43237F5A}|Models\\Models.csproj|solutionrelative:models\\dtos\\drugdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +70,138 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IPharmacyRepository.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Repositry\\IRepositry\\IPharmacyRepository.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repositry\\IRepositry\\IPharmacyRepository.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Repositry\\IRepositry\\IPharmacyRepository.cs",
+              "RelativeToolTip": "DataAccess\\Repositry\\IRepositry\\IPharmacyRepository.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA8wBUAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T20:07:23.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PharmacyRepository.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Repositry\\IRepositry\\PharmacyRepository.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Repositry\\IRepositry\\PharmacyRepository.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Repositry\\IRepositry\\PharmacyRepository.cs",
+              "RelativeToolTip": "DataAccess\\Repositry\\IRepositry\\PharmacyRepository.cs",
+              "ViewState": "AgIAAC0AAADAmZmZmZkwwDoAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T20:05:33.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MedicineInvetoryListDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\MedicineInvetoryListDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\MedicineInvetoryListDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\MedicineInvetoryListDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\MedicineInvetoryListDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:58:43.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PharmacyProduct.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\PharmacyProduct.cs",
+              "RelativeDocumentMoniker": "Models\\PharmacyProduct.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\PharmacyProduct.cs",
+              "RelativeToolTip": "Models\\PharmacyProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA0AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:34:49.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PharmacyService.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\PharmacyFeature\\PharmacyService.cs",
+              "RelativeDocumentMoniker": "Features\\PharmacyFeature\\PharmacyService.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\PharmacyFeature\\PharmacyService.cs",
+              "RelativeToolTip": "Features\\PharmacyFeature\\PharmacyService.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAAAywJgAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T18:24:12.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IPharmacyService.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\PharmacyFeature\\IPharmacyService.cs",
+              "RelativeDocumentMoniker": "Features\\PharmacyFeature\\IPharmacyService.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\PharmacyFeature\\IPharmacyService.cs",
+              "RelativeToolTip": "Features\\PharmacyFeature\\IPharmacyService.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAtwBMAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T18:27:47.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PharmacyController.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "ViewState": "AgIAALcAAAAAYGZmZmYOwM4AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T17:42:43.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InvetroyResultDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\InvetroyResultDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\InvetroyResultDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\InvetroyResultDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\InvetroyResultDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:54:02.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AddPharmacyDto.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\AddPharmacyDto.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\AddPharmacyDto.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\AddPharmacyDto.cs",
+              "RelativeToolTip": "Models\\DTOs\\AddPharmacyDto.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAewDEAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:49:40.145Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PharmcyProductDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PharmcyProductDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\PharmcyProductDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\PharmcyProductDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\PharmcyProductDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:47:23.605Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -54,28 +236,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
+              "Title": "20260417193802_edit-pharmacyProducttable.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Migrations\\20260417193802_edit-pharmacyProducttable.cs",
+              "RelativeDocumentMoniker": "DataAccess\\Migrations\\20260417193802_edit-pharmacyProducttable.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\DataAccess\\Migrations\\20260417193802_edit-pharmacyProducttable.cs",
+              "RelativeToolTip": "DataAccess\\Migrations\\20260417193802_edit-pharmacyProducttable.cs",
+              "ViewState": "AgIAAEsAAACAmZmZmZktwFEAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:38:03.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Pharmacy.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Pharmacy.cs",
+              "RelativeDocumentMoniker": "Models\\Pharmacy.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Pharmacy.cs",
+              "RelativeToolTip": "Models\\Pharmacy.cs",
+              "ViewState": "AgIAAAwAAADQzMzMzMw7wB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T19:36:09.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "PatientController.cs",
               "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
               "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
               "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
               "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\PatientController.cs",
-              "ViewState": "AgIAAJ0AAAAACAAAAAAUwK0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAiwL4AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-17T17:43:05.538Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PharmacyController.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
-              "ViewState": "AgIAAIsAAAAAzszMzMwkwJIAAAAHAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "RegisterationAdminHandler.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\RegisterationFeature\\Handelers\\RegisterationAdminHandler.cs",
+              "RelativeDocumentMoniker": "Features\\RegisterationFeature\\Handelers\\RegisterationAdminHandler.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\RegisterationFeature\\Handelers\\RegisterationAdminHandler.cs",
+              "RelativeToolTip": "Features\\RegisterationFeature\\Handelers\\RegisterationAdminHandler.cs",
+              "ViewState": "AgIAAA0AAABgMzMzMzMrwCAAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-17T17:42:43.163Z",
+              "WhenOpened": "2026-04-17T19:05:42.635Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DrugDTO.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\DrugDTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTOs\\DrugDTO.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\DTOs\\DrugDTO.cs",
+              "RelativeToolTip": "Models\\DTOs\\DrugDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-17T18:11:39.647Z",
               "EditorCaption": ""
             }
           ]

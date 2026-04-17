@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.DTOs;
 using Models.Enums;
+using System.Security.Claims;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -43,8 +44,15 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductDto dto)
         {
-            var result = await _pharmacyService.AddProductAsync(dto);
-            return Ok(result);
+            var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await _pharmacyService.AddProductAsync(pharmacyId,dto);
+            var productResult=new PharmcyProductDTO
+            {
+                Name=result.Name,
+                Description=result.Description,
+                Category=result.Category,
+            };
+            return Ok(productResult);
         }
 
         // ✅ الصيدلية بس تضيف Inventory
@@ -52,16 +60,36 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> AddInventory([FromBody] AddInventoryDto dto)
         {
-            var result = await _pharmacyService.AddInventoryAsync(dto);
-            return Ok(result);
+            var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var result = await _pharmacyService.AddInventoryAsync(pharmacyId ,dto);
+            var InventoryResult = new InvetroyResultDTO
+            {
+                Price = result.Price,
+                Quantity = result.Quantity,
+                IsAvailable = result.IsAvailable
+            };
+            return Ok(InventoryResult);
         }
 
+        [HttpGet("GetAllPharmacyInvetoryMedicine")]
+        [Authorize(Roles = "Pharmacy")]
+
+        public ActionResult<List<MedicineInvetoryListDTO>> GetAllPharmacyInvetoryMedicine()
+        {
+            var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = _pharmacyService.GetAllPharmacyInvetoryMedicine(pharmacyId);
+            return result;
+
+
+        }
         // ✅ الصيدلية بس تعدل دواء
         [HttpPut("UpdateMedicine/{id}")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdateMedicine(string id, [FromQuery] decimal price, [FromQuery] string productName, [FromQuery] string? category)
+        public async Task<IActionResult> UpdateMedicine(string Invetoryid, [FromQuery] decimal price,
+            [FromQuery] string productName, [FromQuery] string? category)
         {
-            var result = await _pharmacyService.UpdateMedicineAsync(id, price, productName, category);
+            var result = await _pharmacyService.UpdateMedicineAsync(Invetoryid, price, productName, category);
             if (!result)
                 return NotFound("الدواء مش موجود!");
 
@@ -71,9 +99,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         // ✅ الصيدلية بس تحدث الكمية
         [HttpPatch("UpdateStock/{id}/{newQuantity}")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdateStock(string id, int newQuantity)
+        public async Task<IActionResult> UpdateStock(string Invetoryid, int newQuantity)
         {
-            var result = await _pharmacyService.UpdateStockAsync(id, newQuantity);
+            var result = await _pharmacyService.UpdateStockAsync(Invetoryid, newQuantity);
             if (!result)
                 return NotFound("الدواء مش موجود!");
 
@@ -83,9 +111,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         // ✅ الصيدلية بس تحذف دواء
         [HttpDelete("DeleteMedicine/{id}")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> DeleteMedicine(string id)
+        public async Task<IActionResult> DeleteMedicine(string Invetoryid)
         {
-            var result = await _pharmacyService.DeleteMedicineAsync(id);
+            var result = await _pharmacyService.DeleteMedicineAsync(Invetoryid);
             if (!result)
                 return NotFound("الدواء مش موجود!");
 
@@ -93,13 +121,15 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         // ✅ الصيدلية تغير حالتها
-        [HttpPatch("status/{pharmacyId}")]
-        [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdatePharmacyStatus(string pharmacyId, [FromQuery] ConfrmationStatus status)
-        {
-            await _pharmacyService.UpdatePharmacyStatusAsync(pharmacyId, status);
-            return Ok($"تم تغيير حالة الصيدلية لـ {status}");
-        }
+        //[HttpPatch("status/{pharmacyId}")]
+        //[Authorize(Roles = "Pharmacy")]
+        //public async Task<IActionResult> UpdatePharmacyStatus(string pharmacyId, [FromQuery] ConfrmationStatus status)
+        //{
+        //    await _pharmacyService.UpdatePharmacyStatusAsync(pharmacyId, status);
+        //    return Ok($"تم تغيير حالة الصيدلية لـ {status}");
+        //}
+
+
 
         // ✅ الصيدلية تشوف الأدوية على وشك النفاد
         //[HttpGet("lowstock/{pharmacyId}")]
@@ -113,6 +143,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         //    return Ok(result);
         //}
+
+
         // ✅ جيب بيانات الصيدلية
         [HttpGet("{pharmacyId}")]
         [Authorize(Roles = "Pharmacy")]
@@ -141,7 +173,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 return NotFound("الصيدلية مش موجودة!");
 
             return Ok("تم تعديل بيانات الصيدلية بنجاح!");
+
         }
+
+
         // Dashboard
         [HttpGet("dashboard/{pharmacyId}")]
         [Authorize(Roles = "Pharmacy")]
@@ -162,12 +197,13 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var result = await _pharmacyService.GetAverageRatingAsync(pharmacyId);
             return Ok(new { averageRating = result });
         }
-        [HttpGet("inventory/{pharmacyId}")]
-        [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetPharmacyInventory(string pharmacyId)
-        {
-            var result = await _pharmacyService.GetPharmacyInventoryAsync(pharmacyId);
-            return Ok(result);
-        }
+
+        //[HttpGet("inventory/{pharmacyId}")]
+        //[Authorize(Roles = "Pharmacy")]
+        //public async Task<IActionResult> GetPharmacyInventory(string pharmacyId)
+        //{
+        //    var result = await _pharmacyService.GetPharmacyInventoryAsync(pharmacyId);
+        //    return Ok(result);
+        //}
     }
 }

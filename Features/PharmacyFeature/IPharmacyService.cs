@@ -13,9 +13,10 @@ namespace Features.PharmacyFeature
     {
         // Task<IEnumerable<PharmacyResultDto>> SearchByDrugNameAsync(string drugName);
         Task<Pharmacy> AddPharmacyAsync(AddPharmacyDto dto);
-        Task<PharmacyProduct> AddProductAsync(AddProductDto dto);
-        Task<Inventory> AddInventoryAsync(AddInventoryDto dto);
+        Task<PharmacyProduct> AddProductAsync(string pharmacyId, AddProductDto dto);
+        Task<Inventory> AddInventoryAsync(string pharmacyId, AddInventoryDto dto);
         Task<IEnumerable<PharmacyResultDto>> GetByCategoryAsync(string category);
+        List<MedicineInvetoryListDTO> GetAllPharmacyInvetoryMedicine(string PharmacyId);
         Task<bool> UpdateMedicineAsync(string inventoryId, decimal price, string productName, string? category);
         Task<bool> UpdateStockAsync(string inventoryId, int newQuantity);
         Task<bool> DeleteMedicineAsync(string inventoryId);
