@@ -19,7 +19,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             _pharmacyService = pharmacyService;
         }
 
-       
+
 
         // ✅ الأدمن بس يضيف صيدلية
         //[HttpPost("add")]
@@ -29,6 +29,14 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         //    var result = await _pharmacyService.AddPharmacyAsync(dto);
         //    return Ok(result);
         //}
+
+        [HttpGet("SearchInSpecificPharmacy")]
+        [AllowAnonymous]
+        public async Task<List<DrugDTO>> SearchInSpecificPharmacy(string pharmacyId, string DrugNameOrCategory)
+        {
+            var Result=await _pharmacyService.SearchInSpecificPharmacyAsync(pharmacyId, DrugNameOrCategory);
+            return Result.ToList();
+        }
 
         // ✅ الصيدلية بس تضيف دواء
         [HttpPost("product/add")]

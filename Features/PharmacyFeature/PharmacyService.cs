@@ -217,5 +217,28 @@ namespace Features.PharmacyFeature
         {
             return await _pharmacyRepository.GetPharmacyInventoryAsync(pharmacyId);
         }
+
+
+
+        public async Task<IEnumerable<DrugDTO>> SearchInSpecificPharmacyAsync(string pharmacyId, string drugNameOrCategory)
+        {
+            var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
+            if (pharmacy == null)
+                return Enumerable.Empty<DrugDTO>();
+
+            var results = pharmacy.Inventories
+                .Where(i => i.IsAvailable && i.Quantity > 0 &&
+                    (i.PharmacyProduct.Name.Contains(drugNameOrCategory) ||
+                     i.PharmacyProduct.Category.Contains(drugNameOrCategory)))
+                .Select(i => new DrugDTO
+                {
+                    Name = i.PharmacyProduct.Name,
+                    Price = i.Price,
+                    Quantity = i.Quantity,
+                    Category = i.PharmacyProduct.Category,
+                    InvetoryId = i.ID
+                });
+            return results;
+        }
     }
 }
