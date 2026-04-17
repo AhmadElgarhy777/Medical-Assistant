@@ -19,32 +19,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             _pharmacyService = pharmacyService;
         }
 
-        // ✅ أي حد يقدر يبحث
-        [HttpGet("search")]
-        [AllowAnonymous]
-        public async Task<IActionResult> SearchByDrugName([FromQuery] string drugName, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
-        {
-            if (string.IsNullOrEmpty(drugName))
-                return BadRequest("ادخل اسم الدواء!");
-
-            var result = await _pharmacyService.SearchByDrugNameAsync(drugName, pageNumber, pageSize);
-            if (!result.Data.Any())
-                return NotFound("مفيش صيدليات عندها الدواء ده!");
-
-            return Ok(result);
-        }
-
-        // ✅ أي حد يقدر يبحث بالكاتيجوري
-        [HttpGet("ByCategory/{category}")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetByCategory(string category)
-        {
-            var result = await _pharmacyService.GetByCategoryAsync(category);
-            if (!result.Any())
-                return NotFound("مفيش صيدليات عندها أدوية في الكاتيجوري دي!");
-
-            return Ok(result);
-        }
+       
 
         // ✅ الأدمن بس يضيف صيدلية
         //[HttpPost("add")]
@@ -169,16 +144,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         // إضافة تقييم
-        [HttpPost("rating/{pharmacyId}")]
-        [Authorize(Roles = "Patient")]
-        public async Task<IActionResult> AddRating(string pharmacyId, [FromQuery] string patientId, [FromQuery] int rating, [FromQuery] string? comment)
-        {
-            if (rating < 1 || rating > 5)
-                return BadRequest("التقييم لازم يكون من 1 لـ 5!");
-
-            await _pharmacyService.AddRatingAsync(pharmacyId, patientId, rating, comment);
-            return Ok("تم إضافة التقييم بنجاح!");
-        }
+       
 
         // عرض متوسط التقييم
         [HttpGet("rating/{pharmacyId}")]
