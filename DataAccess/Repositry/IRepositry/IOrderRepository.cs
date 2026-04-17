@@ -22,5 +22,7 @@ namespace DataAccess.Repositry.IRepositry
         Task UpdateInvoiceAsync(Invoice invoice);
         Task UpdateInventoryAsync(Inventory inventory);
         Task CancelOrderAsync(Order order);
+
+        Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status);
     }
 }

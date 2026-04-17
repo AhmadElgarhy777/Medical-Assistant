@@ -13,8 +13,9 @@ namespace DataAccess.Repositry.IRepositry
     {
         //public IQueryable<T> GetAll(Expression<Func<T, object>>[]? includeProp = null, Expression<Func<T, bool>>? expression = null, bool tracked = true);
         //public Task<T?> GetOneAsync(Expression<Func<T, object>>[]? includeProp = null, Expression<Func<T, bool>>? expression = null, bool tracked = true, CancellationToken Token = default);
-        public Task AddAsync(T item);
-        public Task AddRangeAsync(T item);
+
+        public void Add(T item);
+        public void AddRange(T item);
         void Edit(T item);
         void Delete(T item);
         public void DeleteRange(T item);

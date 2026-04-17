@@ -29,6 +29,7 @@ namespace Features.DoctorFeature.Handlers
             // 3. بنحول البيانات لـ DTO عشان تطلع للـ Swagger بشكل نضيف
             var result = history.Select(x => new DoctorAppointmentsDTO
             {
+                ID= x.ID,
                 PatientName = x.Patient.FullName,
                 AppointmentDate = x.Date.ToString("yyyy-MM-dd"),
                 StartTime = x.StartTime.ToString("HH:mm"),

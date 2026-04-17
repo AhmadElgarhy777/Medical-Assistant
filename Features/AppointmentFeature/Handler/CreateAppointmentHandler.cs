@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Features.AppointmentFeature.Handlers
 {
-    public class CreateAppointmentHandler : IRequestHandler<CreateAppointmentCommand, bool>
+    public class CreateAppointmentHandler : IRequestHandler<CreateAppointmentCommand, ResultResponse<String>>
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor http;
@@ -21,7 +21,7 @@ namespace Features.AppointmentFeature.Handlers
             this.http = http;
         }
 
-        public async Task<bool> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
+        public async Task<ResultResponse<String>> Handle(CreateAppointmentCommand request, CancellationToken cancellationToken)
         {
 
             var patientId = http.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -31,25 +31,36 @@ namespace Features.AppointmentFeature.Handlers
                 .FirstOrDefaultAsync(x => x.ID == request.SlotId && x.IsBooked == false, cancellationToken);
 
             // لو الساعة مش موجودة أو محجوزة أصلاً، ارفض فوراً
-            if (slot == null) return false;
+            if (slot == null) return new ResultResponse<string> 
+            {
+                ISucsses=false,
+                Message="the slot not found"
+            
+            };
 
             // الخطوة 2: منع التكرار (Validation)
             // بنشوف هل المريض ده عنده حجز "مش ملغي" عند "نفس الدكتور" في "تاريخ النهاردة"
-            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            var today = DateOnly.FromDateTime(DateTime.Now);
 
             var isAlreadyBookedToday = await _context.Appointments
                 .AnyAsync(x => x.PatientId == patientId
                             && x.DoctorId == slot.DoctorId // استخدمنا id الدكتور من الـ slot اللي جبناه فوق
                             && x.Date == today
-                            && x.Status != Models.Enums.bookStatusEnum.Cancelled, cancellationToken);
+                            && x.Status != Models.Enums.bookStatusEnum.Cancelled
+                            && x.Status != Models.Enums.bookStatusEnum.Completed, cancellationToken);
 
             // لو لقينا حجز موجود، بنرجع false والسيستم مش بيكمل
-            if (isAlreadyBookedToday) return false;
+            if (isAlreadyBookedToday) return new ResultResponse<string>
+            {
+                ISucsses = false,
+                Message = $"the patient already have an appointement at {today}"
+
+            }; ;
 
             // الخطوة 3: إنشاء الحجز الجديد
             var appointment = new Appointment
             {
-                DoctorId = slot.DoctorId, // لضمان إن الحجز يروح للدكتور الصح
+                DoctorId = request.DoctorId, // لضمان إن الحجز يروح للدكتور الصح
                 PatientId = patientId,
                 SlotId = slot.ID,
                 Date = today,
@@ -80,7 +91,12 @@ namespace Features.AppointmentFeature.Handlers
 
             // الخطوة 7: تنفيذ كل التغييرات في خبطة واحدة
             var result = await _context.SaveChangesAsync(cancellationToken);
-            return result > 0;
+            return  new ResultResponse<string>
+            {
+                ISucsses = true,
+                Message = "the appoinment is booked sucesfully"
+
+            }; ;
         }
     }
 }

@@ -72,7 +72,6 @@ namespace Features.RegisterationFeature.Handelers
                 Address = patientDto.AddressInDetails,
                 City = patientDto.City,
                 Governorate = patientDto.Governorate,
-                EmailConfirmed = true // ✅ مؤقتاً لحد ما Email Service تتجهز
             };
 
             if (appuser is not null)
@@ -80,7 +79,7 @@ namespace Features.RegisterationFeature.Handelers
                 var user = await userManager.CreateAsync(appuser, patientDto.Password);
                 if (user.Succeeded)
                 {
-                    // ✅ تأكد إن الـ Role موجود
+                    
                     if (!await roleManager.RoleExistsAsync(Role))
                         await roleManager.CreateAsync(new IdentityRole(Role));
 
@@ -98,7 +97,7 @@ namespace Features.RegisterationFeature.Handelers
 
                     if (patient is not null)
                     {
-                        await patientRepositry.AddAsync(patient);
+                         patientRepositry.Add(patient);
                         await patientRepositry.CommitAsync(cancellationToken);
 
                         return new ResultResponse<string>

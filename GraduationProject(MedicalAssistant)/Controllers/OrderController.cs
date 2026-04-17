@@ -16,7 +16,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             _orderService = orderService;
         }
 
-        // ✅ المريض بس يعمل Order
         [HttpPost("create")]
         [Authorize(Roles = "Patient")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto dto)
@@ -28,7 +27,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        // ✅ المريض بس يشوف Orders بتاعته
         [HttpGet("patient/{patientId}")]
         [Authorize(Roles = "Patient")]
         public async Task<IActionResult> GetPatientOrders(string patientId)
@@ -40,7 +38,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        // ✅ الصيدلية بس تغير حالة الـ Order
         [HttpPut("status/{orderId}")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> UpdateOrderStatus(string orderId, [FromQuery] string status)
@@ -59,7 +56,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        // ✅ الصيدلية بس تشوف Orders بتاعتها
         [HttpGet("pharmacy/{pharmacyId}")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> GetPharmacyOrders(string pharmacyId)
@@ -71,7 +67,33 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        // ✅ الصيدلية بس تعدل حالة الدفع
+        // ✅ فلترة الطلبات بالحالة
+        [HttpGet("pharmacy/{pharmacyId}/filter")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<IActionResult> GetPharmacyOrdersByStatus(string pharmacyId, [FromQuery] string status)
+        {
+            if (string.IsNullOrEmpty(status))
+                return BadRequest("ادخل الحالة!");
+
+            var result = await _orderService.GetPharmacyOrdersByStatusAsync(pharmacyId, status);
+            if (!result.Any())
+                return NotFound("مفيش orders بالحالة دي!");
+
+            return Ok(result);
+        }
+
+        // ✅ تفاصيل طلب واحد
+        [HttpGet("{orderId}")]
+        [Authorize(Roles = "Pharmacy,Patient")]
+        public async Task<IActionResult> GetOrderById(string orderId)
+        {
+            var result = await _orderService.GetOrderByIdAsync(orderId);
+            if (result == null)
+                return NotFound("الطلب مش موجود!");
+
+            return Ok(result);
+        }
+
         [HttpPut("invoice/{orderId}")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> UpdateInvoicePayment(
@@ -97,7 +119,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        // ✅ المريض بس يلغي الـ Order
         [HttpPut("cancel/{orderId}")]
         [Authorize(Roles = "Patient")]
         public async Task<IActionResult> CancelOrder(string orderId)

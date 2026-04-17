@@ -92,7 +92,7 @@ namespace Features.RegisterationFeature.Handelers
 
                     if (nurse is not null)
                     {
-                        await nuresRepositry.AddAsync(nurse);
+                         nuresRepositry.Add(nurse);
                         await nuresRepositry.CommitAsync(cancellationToken);
                         return new ResultResponse<string>
                         {

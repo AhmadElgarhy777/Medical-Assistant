@@ -16,7 +16,8 @@ namespace Models
         public ApplicationUser Sender { get; set; } = null!;
 
         public string Content { get; set; } = null!;
+        public bool IsRead { get; set; }=false;
 
-        public DateTime SentAt { get; set; }
+        public DateTime SentAt { get; set; } = DateTime.UtcNow;
     }
 }

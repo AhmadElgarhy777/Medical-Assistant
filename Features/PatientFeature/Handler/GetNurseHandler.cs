@@ -27,6 +27,18 @@ namespace Features.PatientFeature.Handler
         public async Task<List<NurseDTO>> Handle(SearchNuresQuery request, CancellationToken cancellationToken)
         {
             var page = request.page;
+            if(request == null)
+            {
+                var Nullspec = new NurseSpesfication();
+                var Nullnures = nuresRepositry.GetAll(Nullspec);
+                var Allnures = Nullnures.Skip((page - 1) * 5).Take(5);
+
+                var AllnureList = await Allnures.ToListAsync(cancellationToken);
+
+                var AllnurseListDTO = mapper.Map<List<Nures>, List<NurseDTO>>(AllnureList);
+
+                return AllnurseListDTO;
+            }
             var Search = new
             {
                 name = request.Searching.Name,

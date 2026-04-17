@@ -1,9 +1,14 @@
-﻿using Features.AppointmentFeature.Commands;
+﻿using Features;
+using Features.AppointmentFeature.Commands;
+using Features.DoctorFeature.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
+using Models.Enums;
+using System.Security.Claims;
 using Utility;
+using static System.Net.WebRequestMethods;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -18,11 +23,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         [HttpPost("BookNow")]
-        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResultResponse<String>), StatusCodes.Status200OK)]
+        [Authorize(Roles = $"{SD.PatientRole}")]
 
-        [Authorize(Roles = $"{SD.PatientRole},{SD.AdminRole}")]
-
-        public async Task<IActionResult> Book([FromBody] CreateAppointmentCommand command)
+        public async Task<ActionResult<ResultResponse<String>>> Book([FromBody] CreateAppointmentCommand command)
         {
             // نصيحة: دايماً اتأكد إن الـ command مش فاضي قبل ما تبعته
             if (command == null || string.IsNullOrEmpty(command.SlotId))
@@ -32,34 +36,51 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
             var result = await _mediatR.Send(command);
 
-            if (result)
+            if (result.ISucsses)
             {
-                return Ok(new { message = "تم الحجز بنجاح، وتمت إضافة المريض لقائمة الدكتور" });
+                return Ok(result);
             }
 
-            return BadRequest("الموعد ربما تم حجزه بالفعل من قبل مريض آخر");
+            return BadRequest(result);
         }
-        [HttpPut("Cancel/{id}")]
-        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
-        [Authorize(Roles = $"{SD.DoctorRole},{SD.AdminRole}")]
-        public async Task<IActionResult> Cancel(string id)
+
+
+        [HttpGet("AvailableSlots")]
+        [ProducesResponseType(typeof(DoctorAvailableTimeDTO), StatusCodes.Status200OK)]
+        [Authorize(Roles = $"{SD.PatientRole},{SD.AdminRole}")]
+        public async Task<ActionResult> GetAvailableSlots([FromQuery]string doctorId)
         {
-            var result = await _mediatR.Send(new CancelAppointmentCommand(id));
-            if (!result) return BadRequest("تعذر إلغاء الحجز، ربما الموعد غير موجود");
-            return Ok("تم إلغاء الحجز بنجاح، والموعد متاح الآن لمريض آخر");
+            var result = await _mediatR.Send(new GetDoctorAvailableSlotsQuery(doctorId));
+            if (result.Any())
+            {
+                return Ok(result);
+            }
+            return BadRequest("No Time are Available");
         }
+
+        //[HttpPut("Cancel/{id}")]
+        //[ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        //[Authorize(Roles = $"{SD.DoctorRole}")]
+        //public async Task<IActionResult> Cancel(string id)
+        //{
+        //    var result = await _mediatR.Send(new CancelAppointmentCommand(id));
+        //    if (!result) return BadRequest("تعذر إلغاء الحجز، ربما الموعد غير موجود");
+        //    return Ok("تم إلغاء الحجز بنجاح، والموعد متاح الآن لمريض آخر");
+        //}
+
+
         [HttpPut("UpdateStatus")]
-        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
-        [Authorize(Roles = $"{SD.DoctorRole},{SD.AdminRole}")]
-
-        public async Task<IActionResult> UpdateStatus([FromBody] UpdateAppointmentStatusCommand command)
+        [ProducesResponseType(typeof(ResultResponse<String>), StatusCodes.Status200OK)]
+        [Authorize(Roles = $"{SD.DoctorRole}")]
+        public async Task<ActionResult<ResultResponse<String>>> UpdateStatus([FromQuery] string AppointmentId, bookStatusEnum NewStatus)
         {
-            var result = await _mediatR.Send(command);
+            var docID =HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await _mediatR.Send(new UpdateAppointmentStatusCommand(AppointmentId,NewStatus,docID));
 
-            if (result)
-                return Ok(new { message = "تم تحديث حالة الموعد بنجاح" });
+            if (result.ISucsses)
+                return Ok(result);
 
-            return BadRequest("فشل تحديث الحالة، تأكد من صحة رقم الحجز");
+            return BadRequest(result);
         }
     }
 }

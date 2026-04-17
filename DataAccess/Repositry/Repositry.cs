@@ -21,13 +21,13 @@ namespace DataAccess.Repositry
             this.dbContext = dbContext;
             dbset = dbContext.Set<T>();
         }
-        public async Task AddAsync(T item)
+        public void Add(T item)
         {
-            await dbset.AddAsync(item);
+             dbset.Add(item);
         }
-        public async Task AddRangeAsync(T item)
+        public void AddRange(T item)
         {
-            await dbset.AddRangeAsync(item);
+             dbset.AddRange(item);
         }
 
         public async Task CommitAsync(CancellationToken token = default)

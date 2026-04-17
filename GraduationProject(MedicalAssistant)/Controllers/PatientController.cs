@@ -30,16 +30,16 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         public async Task<ActionResult<ResultResponse<List<DoctorDTO>>>> GetDoctorsBySearch([FromQuery] GetAllDoctorsSearchQuery query ,CancellationToken cancellationToken)
         {
                 var doctors = await mediatR.Send(query, cancellationToken);
-                if (doctors is not null)
+                if (doctors.ISucsses)
                 {
                     return Ok(doctors.Obj);
                 }
-                return NotFound(doctors.Message);
+                return BadRequest(doctors.Message);
             
         }
         [HttpGet("GetNurseBySearch")]
         [ProducesResponseType(typeof(NurseDTO), StatusCodes.Status200OK)]
-        public async Task<ActionResult<NurseDTO>> GetNurseBySearch([FromQuery] SearchNuresQuery query ,CancellationToken cancellationToken)
+        public async Task<ActionResult<NurseDTO>> GetNurseBySearch(CancellationToken cancellationToken , [FromQuery] SearchNuresQuery? query = null)
         {
                 var nurses = await mediatR.Send(query, cancellationToken);
                 if (nurses.Any())

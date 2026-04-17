@@ -18,7 +18,7 @@ namespace Models
         public BookPaymentStatusEnum PaymentStatus { get; set; }
         public string PatientId { get; set; }
         public string SlotId { get; set; }
-        public string DoctorId { get; set; }
+        public string DoctorId { get; set; }    
 
         public Patient Patient { get; set; }
         public Doctor Doctor { get; set; }

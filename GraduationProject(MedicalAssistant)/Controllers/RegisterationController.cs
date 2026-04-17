@@ -153,9 +153,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(result.Message);
         }
         [HttpPost("RegisterPharmacy")]
-        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResultResponse<String>), StatusCodes.Status200OK)]
 
-        public async Task<ActionResult<ResultResponse<String>>> RegisterPharmacy([FromForm] RegistrationPharmacyCommand command, CancellationToken cancellationToken)
+        public async Task<ActionResult> RegisterPharmacy([FromForm] RegistrationPharmacyCommand command, CancellationToken cancellationToken)
         {
             if (ModelState.IsValid)
             {

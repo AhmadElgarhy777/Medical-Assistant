@@ -5,45 +5,38 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Models;
-
 namespace DataAccess.Repositry.IRepositry
 {
     public class OrderRepository : IOrderRepository
     {
         private readonly ApplicationDbContext _context;
-
         public OrderRepository(ApplicationDbContext context)
         {
             _context = context;
         }
-
         public async Task<Order> CreateOrderAsync(Order order)
         {
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
             return order;
         }
-
         public async Task<OrderItem> AddOrderItemAsync(OrderItem orderItem)
         {
             await _context.OrderItems.AddAsync(orderItem);
             await _context.SaveChangesAsync();
             return orderItem;
         }
-
         public async Task<Invoice> CreateInvoiceAsync(Invoice invoice)
         {
             await _context.Invoices.AddAsync(invoice);
             await _context.SaveChangesAsync();
             return invoice;
         }
-
         public async Task<Inventory> GetInventoryByIdAsync(string inventoryId)
         {
             return await _context.Inventories
                 .FirstOrDefaultAsync(i => i.ID == inventoryId);
         }
-
         public async Task<IEnumerable<Order>> GetPatientOrdersAsync(string patientId)
         {
             return await _context.Orders
@@ -54,14 +47,17 @@ namespace DataAccess.Repositry.IRepositry
                 .Include(o => o.Invoice)
                 .ToListAsync();
         }
-
         public async Task<Order> GetOrderByIdAsync(string orderId)
         {
             return await _context.Orders
+                .Where(o => o.ID == orderId)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Inventory)
+                        .ThenInclude(i => i.PharmacyProduct)
+                .Include(o => o.Patient)
                 .Include(o => o.Invoice)
-                .FirstOrDefaultAsync(o => o.ID == orderId);
+                .FirstOrDefaultAsync();
         }
-
         public async Task UpdateOrderAsync(Order order)
         {
             _context.Orders.Update(order);
@@ -82,7 +78,6 @@ namespace DataAccess.Repositry.IRepositry
             return await _context.Invoices
                 .FirstOrDefaultAsync(i => i.OrderId == orderId);
         }
-
         public async Task UpdateInvoiceAsync(Invoice invoice)
         {
             _context.Invoices.Update(invoice);
@@ -98,6 +93,17 @@ namespace DataAccess.Repositry.IRepositry
             order.Status = "Cancelled";
             _context.Orders.Update(order);
             await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status)
+        {
+            return await _context.Orders
+                .Where(o => o.PharmacyId == pharmacyId && o.Status == status)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Inventory)
+                        .ThenInclude(i => i.PharmacyProduct)
+                .Include(o => o.Patient)
+                .Include(o => o.Invoice)
+                .ToListAsync();
         }
     }
 }

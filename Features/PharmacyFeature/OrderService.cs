@@ -166,7 +166,6 @@ namespace Features.PharmacyFeature
             if (order.Status != "Pending")
                 throw new Exception("مينفعش تلغي Order إلا لو حالته Pending!");
 
-            // ✅ إرجاع الكمية
             foreach (var item in order.OrderItems)
             {
                 var inventory = await _orderRepository.GetInventoryByIdAsync(item.InventoryId);
@@ -186,6 +185,16 @@ namespace Features.PharmacyFeature
                 InvoiceTotalAmount = order.Invoice?.TotalAmount ?? 0,
                 PaymentStatus = order.Invoice?.PaymentStatus
             };
+        }
+
+        public async Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status)
+        {
+            return await _orderRepository.GetPharmacyOrdersByStatusAsync(pharmacyId, status);
+        }
+
+        public async Task<Order> GetOrderByIdAsync(string orderId)
+        {
+            return await _orderRepository.GetOrderByIdAsync(orderId);
         }
     }
 }

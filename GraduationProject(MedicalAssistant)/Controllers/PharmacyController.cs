@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Features.PharmacyFeature;
 using Microsoft.AspNetCore.Authorization;
-using Features.PharmacyFeature;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.DTOs;
+using Models.Enums;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -12,7 +13,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
     public class PharmacyController : ControllerBase
     {
         private readonly IPharmacyService _pharmacyService;
-
+         
         public PharmacyController(IPharmacyService pharmacyService)
         {
             _pharmacyService = pharmacyService;
@@ -46,13 +47,13 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         // ✅ الأدمن بس يضيف صيدلية
-        [HttpPost("add")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddPharmacy([FromBody] AddPharmacyDto dto)
-        {
-            var result = await _pharmacyService.AddPharmacyAsync(dto);
-            return Ok(result);
-        }
+        //[HttpPost("add")]
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> AddPharmacy([FromBody] AddPharmacyDto dto)
+        //{
+        //    var result = await _pharmacyService.AddPharmacyAsync(dto);
+        //    return Ok(result);
+        //}
 
         // ✅ الصيدلية بس تضيف دواء
         [HttpPost("product/add")]
@@ -111,26 +112,87 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         // ✅ الصيدلية تغير حالتها
         [HttpPatch("status/{pharmacyId}")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdatePharmacyStatus(string pharmacyId, [FromQuery] string status)
+        public async Task<IActionResult> UpdatePharmacyStatus(string pharmacyId, [FromQuery] ConfrmationStatus status)
         {
-            var validStatuses = new[] { "Active", "Inactive" };
-            if (!validStatuses.Contains(status))
-                return BadRequest("الحالة مش صحيحة! لازم تكون: Active أو Inactive");
-
             await _pharmacyService.UpdatePharmacyStatusAsync(pharmacyId, status);
             return Ok($"تم تغيير حالة الصيدلية لـ {status}");
         }
 
         // ✅ الصيدلية تشوف الأدوية على وشك النفاد
-        [HttpGet("lowstock/{pharmacyId}")]
+        //[HttpGet("lowstock/{pharmacyId}")]
+        //[Authorize(Roles = "Pharmacy")]
+        //public async Task<IActionResult> GetLowStock(string pharmacyId, [FromQuery] int threshold = 10)
+        //{
+        //    var result = await _pharmacyService.GetLowStockAsync(pharmacyId, threshold);
+
+        //    if (!result.Any())
+        //        return NotFound("مفيش أدوية على وشك النفاد!");
+
+        //    return Ok(result);
+        //}
+        // ✅ جيب بيانات الصيدلية
+        [HttpGet("{pharmacyId}")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetLowStock(string pharmacyId, [FromQuery] int threshold = 10)
+        public async Task<IActionResult> GetPharmacyById(string pharmacyId)
         {
-            var result = await _pharmacyService.GetLowStockAsync(pharmacyId, threshold);
+            var result = await _pharmacyService.GetPharmacyByIdAsync(pharmacyId);
+            if (result == null)
+                return NotFound("الصيدلية مش موجودة!");
 
-            if (!result.Any())
-                return NotFound("مفيش أدوية على وشك النفاد!");
+            return Ok(result);
+        }
 
+        // ✅ تعديل بيانات الصيدلية
+        [HttpPut("update/{pharmacyId}")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<IActionResult> UpdatePharmacyInfo(
+            string pharmacyId,
+            [FromQuery] string name,
+            [FromQuery] string address,
+            [FromQuery] string phone,
+            [FromQuery] string city,
+            [FromQuery] string governorate)
+        {
+            var result = await _pharmacyService.UpdatePharmacyInfoAsync(pharmacyId, name, address, phone, city, governorate);
+            if (!result)
+                return NotFound("الصيدلية مش موجودة!");
+
+            return Ok("تم تعديل بيانات الصيدلية بنجاح!");
+        }
+        // Dashboard
+        [HttpGet("dashboard/{pharmacyId}")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<IActionResult> GetDashboard(string pharmacyId)
+        {
+            var result = await _pharmacyService.GetDashboardAsync(pharmacyId);
+            return Ok(result);
+        }
+
+        // إضافة تقييم
+        [HttpPost("rating/{pharmacyId}")]
+        [Authorize(Roles = "Patient")]
+        public async Task<IActionResult> AddRating(string pharmacyId, [FromQuery] string patientId, [FromQuery] int rating, [FromQuery] string? comment)
+        {
+            if (rating < 1 || rating > 5)
+                return BadRequest("التقييم لازم يكون من 1 لـ 5!");
+
+            await _pharmacyService.AddRatingAsync(pharmacyId, patientId, rating, comment);
+            return Ok("تم إضافة التقييم بنجاح!");
+        }
+
+        // عرض متوسط التقييم
+        [HttpGet("rating/{pharmacyId}")]
+        [Authorize(Roles = "Patient")]
+        public async Task<IActionResult> GetAverageRating(string pharmacyId)
+        {
+            var result = await _pharmacyService.GetAverageRatingAsync(pharmacyId);
+            return Ok(new { averageRating = result });
+        }
+        [HttpGet("inventory/{pharmacyId}")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<IActionResult> GetPharmacyInventory(string pharmacyId)
+        {
+            var result = await _pharmacyService.GetPharmacyInventoryAsync(pharmacyId);
             return Ok(result);
         }
     }

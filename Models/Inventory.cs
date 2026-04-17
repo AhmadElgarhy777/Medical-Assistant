@@ -20,5 +20,7 @@ namespace Models
         // Navigation Properties
         public Pharmacy Pharmacy { get; set; }
         public PharmacyProduct PharmacyProduct { get; set; }
+        public int MinQuantity { get; set; }
+        public DateTime? ExpiryDate { get; set; }
     }
 }

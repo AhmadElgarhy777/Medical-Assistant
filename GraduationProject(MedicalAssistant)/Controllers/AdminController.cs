@@ -12,7 +12,6 @@ using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
-    [Authorize(Roles =$"{SD.AdminRole}")]
     public class AdminController : ApiBaseController
     {
         private readonly IMediator mediator;
@@ -22,6 +21,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             this.mediator = mediator;
         }
 
+        [Authorize(Roles = $"{SD.AdminRole}")]
         [HttpGet("GetPendingDoctors")]
         [ProducesResponseType(typeof(DoctorRowDTO), StatusCodes.Status200OK)]
 
@@ -34,7 +34,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
             return BadRequest(Result.Message);
         }
-        
+
+        [Authorize(Roles =$"{SD.AdminRole},{SD.PatientRole}")]
         [HttpGet("GetDoctorDetails")]
         [ProducesResponseType(typeof(DoctorDetailsDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<DoctorDetailsDTO>> GetDoctorDetails([FromQuery]string doctorId,CancellationToken cancellationToken)
@@ -47,7 +48,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
         
-        
+        [Authorize(Roles = $"{SD.AdminRole}")]
         [HttpGet("GetConfirmedDoctors")]
         [ProducesResponseType(typeof(DoctorRowDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<DoctorRowDTO>>> GetConfirmedDoctors(CancellationToken cancellationToken, [FromQuery]int page = 1)
@@ -59,7 +60,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
             return BadRequest(Result.Message);
         }
-        
+
+
+        [Authorize(Roles = $"{SD.AdminRole}")]
         [HttpPut("ChangeStatus")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<String>>> ChangeStatus([FromQuery] ChangeStatusCommand command , CancellationToken cancellationToken)
@@ -72,9 +75,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
+        [Authorize(Roles = $"{SD.AdminRole}")]
         [HttpGet("GetPendingNurse")]
         [ProducesResponseType(typeof(NurseRowDTO), StatusCodes.Status200OK)]
-
         public async Task<ActionResult<List<NurseRowDTO>>> GetPendingNurse(CancellationToken cancellationToken, [FromQuery] int page = 1)
         {
             var Result = await mediator.Send(new GetPendingNurseQuery(cancellationToken, page));
@@ -85,6 +88,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
+        [Authorize(Roles = $"{SD.AdminRole}")]
         [HttpGet("GetNurseDetails")]
         [ProducesResponseType(typeof(NurseDetailseDTO), StatusCodes.Status200OK)]
 
@@ -98,7 +102,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-
+        [Authorize(Roles = $"{SD.AdminRole}")]
         [HttpGet("GetConfirmedNurse")]
         [ProducesResponseType(typeof(NurseRowDTO), StatusCodes.Status200OK)]
 

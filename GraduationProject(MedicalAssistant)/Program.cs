@@ -1,19 +1,14 @@
-﻿using MediatR;
-using DataAccess;
+﻿using DataAccess;
 using DataAccess.Repositry.IRepositry;
-using DataAccess.Repositry;
+using Features.PharmacyFeature;
+using GraduationProject_MedicalAssistant_.Extentions;
+using GraduationProject_MedicalAssistant_.Hubs;
+using InfrastructureExtension;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
-using System.Reflection;
-using Features.PatientFeature.Handler;
-using Microsoft.AspNetCore.Identity;
-using GraduationProject_MedicalAssistant_.Profiles;
-using System.Text.Json.Serialization;
-using InfrastructureExtension;
-using GraduationProject_MedicalAssistant_.Extentions;
 using Services.EmailServices;
-using Microsoft.Extensions.Logging;
-using Features.PharmacyFeature;
+using System.Text.Json.Serialization;
 
 namespace GraduationProject_MedicalAssistant_
 {
@@ -24,11 +19,17 @@ namespace GraduationProject_MedicalAssistant_
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
+
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             });
+
             builder.Services.Configure<EmailSenderModel>(builder.Configuration.GetSection("EmailSenderModel"));
             builder.Services.AddApiServices();
             builder.Services.AddSwaggerServices();
@@ -43,7 +44,7 @@ namespace GraduationProject_MedicalAssistant_
             // ✅ Order Services
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             builder.Services.AddScoped<IOrderService, OrderService>();
-
+            //builder.Services.AddSignalR();
             var app = builder.Build();
             using var scope = app.Services.CreateScope();
             var service = scope.ServiceProvider;
@@ -59,6 +60,7 @@ namespace GraduationProject_MedicalAssistant_
             {
                 FactoryLogger.CreateLogger<Program>().LogError(ex, "this is migration error ");
             }
+            //app.MapHub<ChatHub>("/chat");
             app.AddSwaggerServiceMiddleWare();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -37,7 +37,7 @@ namespace Features.DoctorFeature.Handlers
             // 3. تحويل البيانات لشكل الـ DTO
             var result = appointments.Select(x => new DoctorAppointmentsDTO
             {
-                //Id
+                ID = x.ID,
                 PatientName = x.Patient.FullName,
                 AppointmentDate = x.Date.ToString("yyyy-MM-dd"),
                 StartTime = x.StartTime.ToString("HH:mm"),

@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,25 @@ namespace DataAccess.Repositry.IRepositry
         Task UpdateStockAsync(string inventoryId, int newQuantity);
         Task<bool> DeleteMedicineAsync(string inventoryId);
         Task<Inventory> GetInventoryByIdAsync(string inventoryId);
-        Task UpdatePharmacyStatusAsync(string pharmacyId, string status);
+        Task UpdatePharmacyStatusAsync(string pharmacyId, ConfrmationStatus status);
         Task<IEnumerable<Inventory>> GetLowStockAsync(string pharmacyId, int threshold);
+        Task<Pharmacy> GetPharmacyByIdAsync(string pharmacyId);
+        Task UpdatePharmacyAsync(Pharmacy pharmacy);
+        // Dashboard
+        Task<int> GetPendingOrdersCountAsync(string pharmacyId);
+        Task<int> GetLowStockCountAsync(string pharmacyId, int threshold = 10);
+        Task<decimal> GetTodaySalesAsync(string pharmacyId);
+        Task<int> GetTotalInventoryAsync(string pharmacyId);
+
+        // Rating
+        Task AddRatingAsync(string pharmacyId, string patientId, int rating, string comment);
+        Task<double> GetAverageRatingAsync(string pharmacyId);
+        Task<IEnumerable<Inventory>> GetPharmacyInventoryAsync(string pharmacyId);
+        //  Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync();
+        //  Task<bool> ApprovePharmacyAsync(string pharmacyId);
+        //  Task<bool> RejectPharmacyAsync(string pharmacyId);
+        // Task<IEnumerable<ApplicationUser>> GetAllUsersAsync();
+        //Task<bool> BanUserAsync(string userId);
+
     }
 }

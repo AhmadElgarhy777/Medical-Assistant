@@ -12,7 +12,7 @@ using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
-    [Authorize(Roles =$"{SD.DoctorRole},{SD.AdminRole}")]
+    [Authorize(Roles =$"{SD.DoctorRole}")]
     public class DoctorController : ApiBaseController
     {
         private readonly IMediator _mediatR;
@@ -81,7 +81,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpGet("MyAppointments")]
         [ProducesResponseType(typeof(DoctorAppointmentsDTO), StatusCodes.Status200OK)]
 
-        public async Task<IActionResult> GetMyAppointments()
+        public async Task<ActionResult<List<DoctorAppointmentsDTO>>> GetMyAppointments()
         {
             var doctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 

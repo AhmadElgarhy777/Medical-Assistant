@@ -16,5 +16,7 @@ namespace Features.PharmacyFeature
         Task<IEnumerable<OrderResultDto>> GetPharmacyOrdersAsync(string pharmacyId);
         Task<OrderResultDto> UpdateInvoicePaymentAsync(string orderId, string paymentStatus, string paymentMethod);
         Task<OrderResultDto> CancelOrderAsync(string orderId);
+        Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status);
+        Task<Order> GetOrderByIdAsync(string orderId);
     }
 }

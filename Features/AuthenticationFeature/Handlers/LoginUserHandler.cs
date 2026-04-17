@@ -33,6 +33,7 @@ namespace Features.AuthenticationFeature.Handlers
         private readonly IMediator mediator;
         private readonly IDoctorRepositry doctorRepositry;
         private readonly INuresRepositry nuresRepositry;
+        private readonly IPharmacyRepository pharmacyRepository;
 
         public LoginUserHandler(UserManager<ApplicationUser> userManager,
             IConfiguration configuration,
@@ -40,7 +41,8 @@ namespace Features.AuthenticationFeature.Handlers
             IRefreshTokenRepositry refreshTokenRepositry,
             IMediator mediator,
             IDoctorRepositry doctorRepositry,
-            INuresRepositry nuresRepositry
+            INuresRepositry nuresRepositry,
+            IPharmacyRepository pharmacyRepository
             )
         {
             this.userManager = userManager;
@@ -50,6 +52,7 @@ namespace Features.AuthenticationFeature.Handlers
             this.mediator = mediator;
             this.doctorRepositry = doctorRepositry;
             this.nuresRepositry = nuresRepositry;
+            this.pharmacyRepository = pharmacyRepository;
         }
         public async Task<AuthDTO> Handle(LogInUserCommand request, CancellationToken cancellationToken)
         {
@@ -63,6 +66,17 @@ namespace Features.AuthenticationFeature.Handlers
                     var spec = new DoctorSpecifcation(user.Id);
                     var doctor = await doctorRepositry.GetOne(spec).FirstOrDefaultAsync(cancellationToken);
                     if (doctor.Status== ConfrmationStatus.Pending)
+                    {
+                        return new AuthDTO
+                        {
+                            Message = "Pending Account ...!\n,\tCan not be login Becouse Your Account Is Still under review.."
+                        };
+                    }
+                }
+                if(user.Role==SD.PharmacyRole)
+                {
+                    var pharmacy = await pharmacyRepository.GetPharmacyByIdAsync(user.Id);
+                    if (pharmacy.Status==ConfrmationStatus.Pending)
                     {
                         return new AuthDTO
                         {
@@ -120,7 +134,7 @@ namespace Features.AuthenticationFeature.Handlers
                         DeviceInfo = $"{http.HttpContext?.Request.Headers["User-Agent"]}"
                     };
 
-                    await refreshTokenRepositry.AddAsync(refreshToken);
+                     refreshTokenRepositry.Add(refreshToken);
                     await refreshTokenRepositry.CommitAsync(cancellationToken);
 
                     return new AuthDTO

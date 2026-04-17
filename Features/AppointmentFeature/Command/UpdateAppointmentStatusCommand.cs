@@ -9,5 +9,5 @@ using Models.Enums;
 namespace Features.AppointmentFeature.Commands
 {
     // بنبعت رقم الحجز والحالة الجديدة اللي عاوزين نوصل لها
-    public record UpdateAppointmentStatusCommand(string AppointmentId, bookStatusEnum NewStatus) : IRequest<bool>;
+    public record UpdateAppointmentStatusCommand(string AppointmentId, bookStatusEnum NewStatus,string docId) : IRequest<ResultResponse<String>>;
 }

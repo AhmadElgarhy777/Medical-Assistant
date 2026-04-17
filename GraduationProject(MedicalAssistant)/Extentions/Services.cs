@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Services.EmailServices;
 using Services.OTPConfirmServices;
+using DataAccess.UnitOfWork;
 
 namespace InfrastructureExtension
 {
@@ -40,15 +41,19 @@ namespace InfrastructureExtension
             services.AddScoped<IRefreshTokenRepositry, RefreshTokenRepositry>();
             services.AddScoped<IEmailServices, EmailServices>();
             services.AddScoped<IOTPConfirmEmailService, OTPConfirmEmailService>();
+            services.AddScoped<IConversationPaticipantsRepositry, ConversationParticiPantsRepositry>();
+            services.AddScoped<IMessageRepositry, MessageRepositry>();
+            services.AddScoped<IConversationRepositry,ConversationRepositry>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IPharmacyRepository, PharmacyRepository>();
+
             services.AddMemoryCache();
 
 
            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
            services.AddAutoMapper(a => a.AddProfile(typeof(AutoMaperProfile)), Assembly.GetExecutingAssembly());
 
-           services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+          
 
            
 

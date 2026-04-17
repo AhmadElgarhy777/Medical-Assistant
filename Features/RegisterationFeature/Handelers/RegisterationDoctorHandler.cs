@@ -1,123 +1,140 @@
 ﻿using AutoMapper;
 using DataAccess.Repositry.IRepositry;
+using DataAccess.UnitOfWork;
 using Features.RegisterationFeature.Commands;
-using Services.ImageServices;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Models;
 using Models.DTOs;
 using Models.DTOs.RegistertionDTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Services.ImageServices;
 using Utility;
 
 namespace Features.RegisterationFeature.Handelers
 {
-    public class RegisterationDoctorHandler : IRequestHandler<RegisterationDoctorCommand, ResultResponse<String>>
+    public class RegisterationDoctorHandler : IRequestHandler<RegisterationDoctorCommand, ResultResponse<string>>
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
-        private readonly IMapper mapper;
-        private readonly IDoctorRepositry doctorRepositry;
-        private readonly IConfiguration configuration;
-        private readonly IImageService imageService;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IMapper _mapper;
+        private readonly IDoctorRepositry _doctorRepositry;
+        private readonly IConfiguration _configuration;
+        private readonly IImageService _imageService;
+        private readonly IUnitOfWork unitOfWork;
 
-        public RegisterationDoctorHandler(UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager,
+        public RegisterationDoctorHandler(
+            UserManager<ApplicationUser> userManager,
             IMapper mapper,
             IDoctorRepositry doctorRepositry,
             IConfiguration configuration,
-            IImageService imageService)
+            IImageService imageService,
+            IUnitOfWork unitOfWork
+            )
         {
-            this.userManager = userManager;
-            this.roleManager = roleManager;
-            this.mapper = mapper;
-            this.doctorRepositry = doctorRepositry;
-            this.configuration = configuration;
-            this.imageService = imageService;
+            _userManager = userManager;
+            _mapper = mapper;
+            _doctorRepositry = doctorRepositry;
+            _configuration = configuration;
+            _imageService = imageService;
+            this.unitOfWork = unitOfWork;
         }
+
         public async Task<ResultResponse<string>> Handle(RegisterationDoctorCommand request, CancellationToken cancellationToken)
         {
-            var doctorDto = request.Doctor;
-            var Role = SD.DoctorRole;
-            var checkuser=await userManager.FindByEmailAsync(doctorDto.Email);
-            if (checkuser != null)
+            var dto = request.Doctor;
+
+            // 1. Check for duplicate email upfront
+            if (await _userManager.FindByEmailAsync(dto.Email) is not null)
             {
-                return new ResultResponse<string>
-                {
-                    ISucsses = false,
-                    Message = "The User Is Already Exist",
-                };
+                return Fail("A user with this email already exists.");
             }
 
-            var appuser = new ApplicationUser()
+            // 2. Upload images before starting the transaction (avoids holding a DB tx while doing I/O)
+            string? profileImgUrl = null, certImgUrl = null, credImgUrl = null;
+
+            if (dto.Img is not null && dto.CertificationImg is not null && dto.CrediateImg is not null)
             {
-                Id=Guid.NewGuid().ToString(),
-                UserName=doctorDto.UserName,
-                Email=doctorDto.Email,
-                Address=doctorDto.AddressInDetails,
-                Gender=doctorDto.Gender,
-                Role= Role,
-                PhoneNumber=doctorDto.Phone,
-                City=doctorDto.City,
-                Governorate=doctorDto.Governorate,
-                
+                var baseUrl = _configuration["ApiBaseUrl"];
+
+                var profileFile = await _imageService.UploadImgAsync(dto.Img, "DoctorImages/ProfileImages", cancellationToken);
+                var certFile = await _imageService.UploadImgAsync(dto.CertificationImg, "DoctorImages/CertificationImages", cancellationToken);
+                var credFile = await _imageService.UploadImgAsync(dto.CrediateImg, "DoctorImages/CrediateImages", cancellationToken);
+
+                profileImgUrl = $"{baseUrl}/DoctorImages/ProfileImages/{profileFile}";
+                certImgUrl = $"{baseUrl}/DoctorImages/CertificationImages/{certFile}";
+                credImgUrl = $"{baseUrl}/DoctorImages/CrediateImages/{credFile}";
+            }
+
+            // 3. Build entities
+            var userId = Guid.NewGuid().ToString();
+
+            var appUser = new ApplicationUser
+            {
+                Id = userId,
+                UserName = dto.UserName,
+                Email = dto.Email,
+                Address = dto.AddressInDetails,
+                Gender = dto.Gender,
+                Role = SD.DoctorRole,
+                PhoneNumber = dto.Phone,
+                City = dto.City,
+                Governorate = dto.Governorate,
+                Img = profileImgUrl
             };
 
-            if(appuser is not null)
+            var doctor = _mapper.Map<RegisterDoctorDTO, Doctor>(dto);
+            doctor.ID = userId;
+            doctor.Img = profileImgUrl;
+            doctor.CertificationImg = certImgUrl;
+            doctor.CrediateImg = credImgUrl;
+
+            // 4. Persist both inside a single transaction
+            await using var transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);
+
+            try
             {
-                var user = await userManager.CreateAsync(appuser, doctorDto.Password);
-                if (user.Succeeded)
+                var createResult = await _userManager.CreateAsync(appUser, dto.Password);
+                if (!createResult.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(appuser, Role);
-                    var doctor=mapper.Map<RegisterDoctorDTO, Doctor>(doctorDto);
-                    doctor.ID = appuser.Id;
-
-                    if (doctorDto.Img is not null && doctorDto.CertificationImg is not null && doctorDto.CrediateImg is not null)
-                    {
-                        var profileImg = await imageService.UploadImgAsync(doctorDto.Img, "DoctorImages/ProfileImages", cancellationToken);
-                        var CertifcationImg = await imageService.UploadImgAsync(doctorDto.CertificationImg, "DoctorImages/CertificationImages", cancellationToken);
-                        var CrediateImg = await imageService.UploadImgAsync(doctorDto.CrediateImg, "DoctorImages/CrediateImages", cancellationToken);
-
-                        doctor.Img = $"{configuration["ApiBaseUrl"]}/DoctorImages/ProfileImages/{profileImg}";
-                        appuser.Img = $"{configuration["ApiBaseUrl"]}/DoctorImages/ProfileImages/{profileImg}";
-                        doctor.CertificationImg = $"{configuration["ApiBaseUrl"]}/DoctorImages/CertificationImages/{CertifcationImg}";
-                        doctor.CrediateImg = $"{configuration["ApiBaseUrl"]}/DoctorImages/CrediateImages/{CrediateImg}";
-                    }
-
-                    if (doctor is not null)
-                    {
-                        await doctorRepositry.AddAsync(doctor);
-                        await doctorRepositry.CommitAsync(cancellationToken);
-                        return new ResultResponse<string>
-                        {
-                            ISucsses = true,
-                            Message = "The User Is Added Succesfully",
-                            Data = appuser.Id
-                        };
-                    }
-                }
-                else
-                {
-                    return new ResultResponse<String>
+                    return new ResultResponse<string>
                     {
                         ISucsses = false,
-                        Message = "The User does not Created ",
-                        Errors = user.Errors.Select(e => e.Description).ToList()
+                        Message = "Failed to create user account.",
+                        Errors = createResult.Errors.Select(e => e.Description).ToList()
                     };
                 }
 
-            }
-            return new ResultResponse<string>
-            {
-                ISucsses = false,
-                Message = "The User Is Not Added"
-            };
+                await _userManager.AddToRoleAsync(appUser, SD.DoctorRole);
 
+                _doctorRepositry.Add(doctor);
+                await _doctorRepositry.CommitAsync(cancellationToken);
+
+                await transaction.CommitAsync(cancellationToken);
+
+                return new ResultResponse<string>
+                {
+                    ISucsses = true,
+                    Message = "Doctor registered successfully.",
+                    Data = userId
+                };
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync(cancellationToken);
+
+                return new ResultResponse<string>
+                {
+                    ISucsses = false,
+                    Message = "Registration failed. No data was saved.",
+                    Errors = new List<string> { ex.Message }
+                };
+            }
         }
+
+        // Small helper to keep return sites readable
+        private static ResultResponse<string> Fail(string message) =>
+            new() { ISucsses = false, Message = message };
     }
 }

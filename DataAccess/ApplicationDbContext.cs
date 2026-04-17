@@ -34,7 +34,8 @@ namespace DataAccess
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
-        
+        public DbSet<PharmacyRating> PharmacyRatings { get; set; }
+
         public DbSet<Conversation> Conversations{ get; set; }
         public DbSet<ConversationParticipant> conversationParticipants { get; set; }
         public DbSet<Messages> Messages { get; set; }

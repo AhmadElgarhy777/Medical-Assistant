@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.DTOs;
 using Models;
+using Models.Enums;
 
 namespace Features.PharmacyFeature
 {
@@ -144,7 +145,7 @@ namespace Features.PharmacyFeature
             return await _pharmacyRepository.DeleteMedicineAsync(inventoryId);
         }
 
-        public async Task<bool> UpdatePharmacyStatusAsync(string pharmacyId, string status)
+        public async Task<bool> UpdatePharmacyStatusAsync(string pharmacyId, ConfrmationStatus status)
         {
             await _pharmacyRepository.UpdatePharmacyStatusAsync(pharmacyId, status);
             return true;
@@ -162,6 +163,59 @@ namespace Features.PharmacyFeature
                 Quantity = i.Quantity,
                 Price = i.Price
             });
+
+        }
+        public async Task<Pharmacy> GetPharmacyByIdAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
+        }
+
+        public async Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, string governorate)
+        {
+            var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
+
+            if (pharmacy == null)
+                return false;
+
+            pharmacy.Name = name;
+            pharmacy.Address = address;
+            pharmacy.Phone = phone;
+            pharmacy.City = city;
+            pharmacy.Governorate = governorate;
+
+            await _pharmacyRepository.UpdatePharmacyAsync(pharmacy);
+            return true;
+        }
+        public async Task<PharmacyDashboardDto> GetDashboardAsync(string pharmacyId)
+        {
+            var pendingOrders = await _pharmacyRepository.GetPendingOrdersCountAsync(pharmacyId);
+            var lowStockCount = await _pharmacyRepository.GetLowStockCountAsync(pharmacyId);
+            var todaySales = await _pharmacyRepository.GetTodaySalesAsync(pharmacyId);
+            var totalInventory = await _pharmacyRepository.GetTotalInventoryAsync(pharmacyId);
+            var averageRating = await _pharmacyRepository.GetAverageRatingAsync(pharmacyId);
+
+            return new PharmacyDashboardDto
+            {
+                PendingOrders = pendingOrders,
+                LowStockCount = lowStockCount,
+                TodaySales = todaySales,
+                TotalInventory = totalInventory,
+                AverageRating = averageRating
+            };
+        }
+
+        public async Task AddRatingAsync(string pharmacyId, string patientId, int rating, string comment)
+        {
+            await _pharmacyRepository.AddRatingAsync(pharmacyId, patientId, rating, comment);
+        }
+
+        public async Task<double> GetAverageRatingAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.GetAverageRatingAsync(pharmacyId);
+        }
+        public async Task<IEnumerable<Inventory>> GetPharmacyInventoryAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.GetPharmacyInventoryAsync(pharmacyId);
         }
     }
 }

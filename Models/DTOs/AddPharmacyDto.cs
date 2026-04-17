@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Models.DTOs
         [Required(ErrorMessage = "ادخل المدينة!")]
         public string City { get; set; }
 
-        public string Status { get; set; } = "Active";
+        public ConfrmationStatus Status { get; set; }
         public string? Gender { get; set; }
         public string? PharmacyLicense { get; set; }
         public string? RealImg { get; set; }

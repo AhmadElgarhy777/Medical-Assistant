@@ -62,7 +62,7 @@ namespace Features.AuthenticationFeature.Handlers
 
             var newrefreshtoken = GenerateRefreshToken(user, IpAddress, DeviceInfo);
 
-            await refreshTokenRepositry.AddAsync(newrefreshtoken);
+             refreshTokenRepositry.Add(newrefreshtoken);
             await refreshTokenRepositry.CommitAsync(cancellationToken);
 
             return new AuthDTO
