@@ -1,6 +1,7 @@
 ﻿using Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,13 @@ namespace Models
         public string PharmacyLicense { get; set; }
         public string? Gender { get; set; }
         public DateOnly BD { get; set; }
+        public double RattingAverage { get; set; }
 
         // public string Statuss { get; set; } = "Pending";
 
         // Navigation Property
         public ICollection<Inventory> Inventories { get; set; }
         public ICollection<PharmacyProduct> PharmacyProducts { get; set; }
+
     }
 }

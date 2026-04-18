@@ -29,6 +29,8 @@ namespace Features.PharmacyFeature
         Task AddRatingAsync(string pharmacyId, string patientId, int rating, string comment);
         Task<double> GetAverageRatingAsync(string pharmacyId);
         Task<IEnumerable<Inventory>> GetPharmacyInventoryAsync(string pharmacyId);
+        Task<PharmacyProfileDTO> GetPharmacyProfileAsync(string pharmacyId);
+
 
         Task<IEnumerable<DrugDTO>> SearchInSpecificPharmacyAsync(string pharmacyId, string drugNameOrCategory);
         // Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync();

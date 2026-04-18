@@ -207,7 +207,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var nurseId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var nurse = await _context.Nures
-                .Include(n => n.Ratings)
                 .FirstOrDefaultAsync(n => n.ID == nurseId);
             if (nurse is not null)
             {

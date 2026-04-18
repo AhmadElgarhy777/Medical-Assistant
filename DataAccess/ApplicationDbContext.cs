@@ -39,6 +39,7 @@ namespace DataAccess
         public DbSet<Conversation> Conversations{ get; set; }
         public DbSet<ConversationParticipant> conversationParticipants { get; set; }
         public DbSet<Messages> Messages { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

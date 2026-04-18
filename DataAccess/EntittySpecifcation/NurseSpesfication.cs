@@ -13,7 +13,6 @@ namespace DataAccess.EntittySpecifcation
     {
         public NurseSpesfication():base()
         {
-            Includes.Add(e => e.Ratings);
         }
         public NurseSpesfication(string Id):base(s=>s.ID==Id)
         {

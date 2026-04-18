@@ -29,18 +29,7 @@ namespace Models
         public string CertificationImg { get; set; } = null!;
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
 
-        public double RattingAverage
-        {
-            get
-            {
-                if (Ratings == null || Ratings.Count == 0)
-                    return 0;
-
-                return Ratings.Average(r => (int)r.Stars);
-            }
-            set { }
-        }
-
+        public double RattingAverage { get; set; }
         public string SpecializationId { get; set; } = null!;
         public Specialization Specialization { get; set; }= null!;
         public Collection<AiReport>? Reports { get; set; }
@@ -48,7 +37,6 @@ namespace Models
         public Collection<Clinic> Clinics { get; set; } = null!;
         public Collection<Prescription>? Prescriptions { get; set; }
         public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
-        public Collection<Rating>? Ratings { get; set; }
         public Collection<DoctorPatient>? DoctorPatients { get; set; }
 
 

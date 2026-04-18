@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Features
 {
-    public class ResultResponse<T> where T : class
+    public class ResultResponse<T> 
     {
         public bool ISucsses { get; set; } = true;
         public string? Message { get; set; }

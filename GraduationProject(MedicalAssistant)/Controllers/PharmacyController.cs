@@ -109,7 +109,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
         // ✅ الصيدلية بس تحذف دواء
-        [HttpDelete("DeleteMedicine/{id}")]
+        [HttpDelete("DeleteMedicine")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> DeleteMedicine(string Invetoryid)
         {
@@ -118,6 +118,16 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 return NotFound("الدواء مش موجود!");
 
             return Ok("تم حذف الدواء بنجاح!");
+        }
+        [HttpGet("profile")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<ActionResult<PharmacyProfileDTO>> GetPharmacyProfile()
+        {
+            var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await _pharmacyService.GetPharmacyProfileAsync(pharmacyId);
+            if (result == null)
+                return NotFound("خطا ف جلب البيانات");
+            return Ok(result);
         }
 
         // ✅ الصيدلية تغير حالتها

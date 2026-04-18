@@ -19,5 +19,6 @@ namespace Models.DTOs
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public string ProductName { get; set; }
+        public double RattingAverage { get; set; }
     }
 }

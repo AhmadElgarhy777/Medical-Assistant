@@ -116,5 +116,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
+
+
     }
 }

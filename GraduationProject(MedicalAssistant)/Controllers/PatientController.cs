@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Features;
+using Features.PatientFeature.Command;
 using Features.PatientFeature.Queries;
 using Features.PatientFeature.Query;
 using Features.PharmacyFeature;
@@ -9,7 +10,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models.DTOs;
+using Models.Enums;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
@@ -213,6 +216,42 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         //    await _pharmacyService.AddRatingAsync(pharmacyId, patientId, rating, comment);
         //    return Ok("تم إضافة التقييم بنجاح!");
         //}
+
+        [HttpPost("making-rate")]
+        [Authorize(Roles = "Patient")]
+        public async Task<ActionResult<bool>> MakingRate( [FromQuery] string TargetId ,[FromQuery] StarsRatingEnum Rateing, [FromForm] string? Comment = null)
+        {
+            var PatientId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await mediatR.Send(
+                new MakingCommentCommand(
+                    Rateing, TargetId, PatientId, Comment));
+
+            if (result.ISucsses)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);  
+        }
+
+
+
+        [HttpPost("making-rate")]
+        [Authorize(Roles = "Patient")]
+
+        public async Task<ActionResult<bool>> MakingComment([FromForm] string Comment, [FromQuery] string TargetId)
+        {
+            var PatientId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await mediatR.Send(
+                new CreateCommentCommand(
+                      PatientId,TargetId, Comment));
+
+            if (result.ISucsses)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);  
+        }
+
 
     }
 }

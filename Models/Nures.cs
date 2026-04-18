@@ -30,20 +30,7 @@ namespace Models
         public string Experence { get; set; } = null!;
         public decimal PricePerDay { get; set; }
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
-
-        public double RattingAverage
-        {
-            get
-            {
-                if (Ratings == null || Ratings.Count == 0)
-                    return 0;
-
-                return Ratings.Average(r => (int)r.Stars);
-            }
-            set { }
-
-        }
-        public Collection<Rating>? Ratings { get; set; }
+        public double RattingAverage { get; set; }
 
     }
 }

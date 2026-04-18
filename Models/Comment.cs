@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.Enums;
 
 namespace Models
 {
-    public class Rating: ModelBase
+    public class Comment:ModelBase
     {
-        public StarsRatingEnum Stars { get; set; }
-        public string? Comment { get; set; }
+        public string CommentText { get; set; }=default!;       
         public DateTime CreatedAt { get; set; }
-
         public string? PatientId { get; set; }
         public Patient? Patient { get; set; }
-     
-        public string? TargetId { get; set; }  
-        public string? TargetRole { get; set; }  
+        public string? TargetId { get; set; }
+        public string? TargetRole { get; set; }
         public ApplicationUser? Target { get; set; }
-
-
     }
 }

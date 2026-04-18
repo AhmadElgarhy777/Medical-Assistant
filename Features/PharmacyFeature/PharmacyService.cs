@@ -37,7 +37,8 @@ namespace Features.PharmacyFeature
                     Phone = p.Phone,
                     Price = i.Price,
                     Quantity = i.Quantity,
-                    ProductName = i.PharmacyProduct.Name
+                    ProductName = i.PharmacyProduct.Name,
+                    RattingAverage = p.RattingAverage
                 })).ToList();
 
             var totalCount = results.Count;
@@ -120,7 +121,8 @@ namespace Features.PharmacyFeature
                     Phone = p.Phone,
                     Price = i.Price,
                     Quantity = i.Quantity,
-                    ProductName = i.PharmacyProduct.Name
+                    ProductName = i.PharmacyProduct.Name,
+                    RattingAverage = p.RattingAverage
                 }));
         }
 
@@ -259,6 +261,25 @@ namespace Features.PharmacyFeature
                     InvetoryId = i.ID
                 });
             return results;
+        }
+
+        public async Task<PharmacyProfileDTO> GetPharmacyProfileAsync(string pharmacyId)
+        {
+            var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
+            if (pharmacy == null)
+                return null;
+
+            return new PharmacyProfileDTO
+            {
+                ID = pharmacy.ID,
+                Name = pharmacy.Name,
+                Address = pharmacy.Address,
+                Phone = pharmacy.Phone,
+                Governorate = pharmacy.Governorate,
+                City = pharmacy.City,
+                RealImg = pharmacy.RealImg,
+                PharmacyLicense = pharmacy.PharmacyLicense,
+            };
         }
     }
 }

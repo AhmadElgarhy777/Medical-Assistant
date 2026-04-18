@@ -1,12 +1,14 @@
 ﻿using Features;
 using Features.AuthenticationFeature.Commands;
 using Features.AuthenticationFeature.Quieries;
+using Features.PatientFeature.Command;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
+using System.Security.Claims;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -141,6 +143,21 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             
 
         }
+
+        [HttpGet("GetAllComments")]
+        [AllowAnonymous]
+        public async Task<ActionResult<ShowCommentDTO>> GetAllComments([FromQuery] string TargetId)
+        {
+            var result = await mediator.Send(
+                new GetAllCommentsForTargetCommand(TargetId));
+
+            if (result.ISucsses)
+            {
+                return Ok(result.Obj);
+            }
+            return BadRequest(result.Message);
+        }
+
 
     }
 }

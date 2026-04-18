@@ -26,7 +26,6 @@ namespace Models
         public Collection<PatientPhone> patientPhones { get; set; } = null!;
         public Collection<Appointment>? appointments { get; set; }
         public Collection<AiReport>? AiReports { get; set; }
-        public Collection<Rating>? Ratings { get; set; }
         public Collection<Prescription>? Prescriptions { get; set; }
         public Collection<DoctorPatient>? DoctorPatients { get; set; }
 
