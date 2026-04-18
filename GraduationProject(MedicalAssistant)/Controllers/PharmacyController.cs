@@ -176,7 +176,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             [FromQuery] string address,
             [FromQuery] string phone,
             [FromQuery] string city,
-            [FromQuery] string governorate)
+            [FromQuery] Governorate governorate)
         {
             var result = await _pharmacyService.UpdatePharmacyInfoAsync(pharmacyId, name, address, phone, city, governorate);
             if (!result)

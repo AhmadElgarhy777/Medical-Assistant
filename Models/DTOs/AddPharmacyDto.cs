@@ -22,13 +22,13 @@ namespace Models.DTOs
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "ادخل المحافظة!")]
-        public string Governorate { get; set; }
+        public Governorate Governorate { get; set; }
 
         [Required(ErrorMessage = "ادخل المدينة!")]
         public string City { get; set; }
 
         public ConfrmationStatus Status { get; set; }
-        public string? Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public string? PharmacyLicense { get; set; }
         public string? RealImg { get; set; }
         public DateOnly BD { get; set; }

@@ -24,7 +24,7 @@ namespace Features.PharmacyFeature
         Task<IEnumerable<LowStockDto>> GetLowStockAsync(string pharmacyId, int threshold);
         Task<PagedResultDto<PharmacyResultDto>> SearchByDrugNameAsync(string drugName, int pageNumber = 1, int pageSize = 10);
         Task<Pharmacy> GetPharmacyByIdAsync(string pharmacyId);
-        Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, string governorate);
+        Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, Governorate governorate);
         Task<PharmacyDashboardDto> GetDashboardAsync(string pharmacyId);
         Task AddRatingAsync(string pharmacyId, string patientId, int rating, string comment);
         Task<double> GetAverageRatingAsync(string pharmacyId);

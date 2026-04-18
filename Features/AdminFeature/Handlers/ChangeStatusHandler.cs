@@ -24,16 +24,19 @@ namespace Features.AdminFeature.Handlers
         private readonly IDoctorRepositry doctorRepositry;
         private readonly INuresRepositry nuresRepositry;
         private readonly IEmailServices emailServices;
+        private readonly IPharmacyRepository pharmacyRepository;
 
         public ChangeStatusHandler(UserManager<ApplicationUser> userManager,
             IDoctorRepositry doctorRepositry,
             INuresRepositry nuresRepositry,
-            IEmailServices emailServices)
+            IEmailServices emailServices,
+            IPharmacyRepository pharmacyRepository)
         {
             this.userManager = userManager;
             this.doctorRepositry = doctorRepositry;
             this.nuresRepositry = nuresRepositry;
             this.emailServices = emailServices;
+            this.pharmacyRepository = pharmacyRepository;
         }
         public async Task<ResultResponse<string>> Handle(ChangeStatusCommand request, CancellationToken cancellationToken)
         {
@@ -134,6 +137,47 @@ namespace Features.AdminFeature.Handlers
                             await nuresRepositry.CommitAsync(cancellationToken);
 
 
+                        }
+
+                        return new ResultResponse<string>
+                        {
+                            ISucsses = true,
+                            Message = "The stauts changed succefully"
+                        };
+                    }
+                }
+                else if (user.Role == SD.PharmacyRole)
+                {
+                    var pharmacy = await pharmacyRepository.GetPharmacyByIdAsync(Id);
+                    if (pharmacy is not null)
+                    {
+                        if (pharmacy.Status.Equals(ConfrmationStatus.Approved))
+                        {
+                            return new ResultResponse<string>
+                            {
+                                ISucsses = false,
+                                Message = "The user already approved"
+                            };
+                        }
+                        if (Status.Equals(ConfrmationStatus.Approved))
+                        {
+                            await pharmacyRepository.UpdatePharmacyStatusAsync(Id, ConfrmationStatus.Approved);
+                            await emailServices.SendEmailAsync(pharmacy.Email, "Approved Your Email",
+                                $"Congratulations  {pharmacy.Name} pharmcy, \n Your Account has been reviewed and approved sucessfully , \n now you can go and login ");
+                        }
+                        else if (Status.Equals(ConfrmationStatus.Rejected))
+                        {
+                            await pharmacyRepository.UpdatePharmacyStatusAsync(Id, ConfrmationStatus.Rejected);
+
+
+                            await emailServices.SendEmailAsync(pharmacy.Email, "Your Status",
+                                $"Dear {pharmacy.Name}, \n Your Account has been Rejected and not approved, \nContact with us for more information");
+                            //احذفه ولاا لا !!!
+                        }
+
+                        else
+                        {
+                            await pharmacyRepository.UpdatePharmacyStatusAsync(Id, ConfrmationStatus.Pending);
                         }
 
                         return new ResultResponse<string>

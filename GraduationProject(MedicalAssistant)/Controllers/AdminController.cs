@@ -116,7 +116,33 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
+        [Authorize(Roles = $"{SD.AdminRole}")]
+        [HttpGet("GetPharmacyByStatus")]
+        [ProducesResponseType(typeof(PharmacyRowDTO), StatusCodes.Status200OK)]
 
+        public async Task<ActionResult<List<PharmacyRowDTO>>> GetPharmacyByStatus(CancellationToken cancellationToken,ConfrmationStatus status, [FromQuery] int page = 1)
+        {
+            var Result = await mediator.Send(new GetPharmcyByStatusQuery(cancellationToken, status, page));
+            if (Result.ISucsses)
+            {
+                return Ok(Result.Obj);
+            }
+            return BadRequest(Result.Message);
+        }
+
+        [Authorize(Roles = $"{SD.AdminRole}")]
+        [HttpGet("GetPharmacyDetails")]
+        [ProducesResponseType(typeof(PharmacyDetailsDTO), StatusCodes.Status200OK)]
+
+        public async Task<ActionResult<PharmacyDetailsDTO>> GetPharmacyDetails([FromQuery] string pharmacyId, CancellationToken cancellationToken)
+        {
+            var Result = await mediator.Send(new GetPharmcyDetailsQuery(pharmacyId, cancellationToken));
+            if (Result.ISucsses)
+            {
+                return Ok(Result.Obj);
+            }
+            return BadRequest(Result.Message);
+        }
 
     }
 }

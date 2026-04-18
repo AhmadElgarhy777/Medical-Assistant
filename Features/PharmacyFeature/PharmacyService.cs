@@ -33,7 +33,7 @@ namespace Features.PharmacyFeature
                     PharmacyName = p.Name,
                     Address = p.Address,
                     City = p.City,
-                    Governorate = p.Governorate,
+                    Governorate = p.Governorate.ToString(),
                     Phone = p.Phone,
                     Price = i.Price,
                     Quantity = i.Quantity,
@@ -117,7 +117,7 @@ namespace Features.PharmacyFeature
                     PharmacyName = p.Name,
                     Address = p.Address,
                     City = p.City,
-                    Governorate = p.Governorate,
+                    Governorate = p.Governorate.ToString(),
                     Phone = p.Phone,
                     Price = i.Price,
                     Quantity = i.Quantity,
@@ -192,7 +192,7 @@ namespace Features.PharmacyFeature
             return await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
         }
 
-        public async Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, string governorate)
+        public async Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, Governorate governorate)
         {
             var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
 
@@ -275,7 +275,7 @@ namespace Features.PharmacyFeature
                 Name = pharmacy.Name,
                 Address = pharmacy.Address,
                 Phone = pharmacy.Phone,
-                Governorate = pharmacy.Governorate,
+                Governorate = pharmacy.Governorate.ToString(),
                 City = pharmacy.City,
                 RealImg = pharmacy.RealImg,
                 PharmacyLicense = pharmacy.PharmacyLicense,

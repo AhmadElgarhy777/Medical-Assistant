@@ -34,6 +34,8 @@ namespace DataAccess.Repositry.IRepositry
         Task AddRatingAsync(string pharmacyId, string patientId, int rating, string comment);
         Task<double> GetAverageRatingAsync(string pharmacyId);
         Task<IEnumerable<Inventory>> GetPharmacyInventoryAsync(string pharmacyId);
+        IQueryable<Pharmacy> GetAllPharmacyByConfirmationStatusAsync(ConfrmationStatus status);
+
         //  Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync();
         //  Task<bool> ApprovePharmacyAsync(string pharmacyId);
         //  Task<bool> RejectPharmacyAsync(string pharmacyId);

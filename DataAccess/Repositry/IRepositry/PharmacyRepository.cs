@@ -202,6 +202,12 @@ namespace DataAccess.Repositry.IRepositry
                 .Include(i => i.PharmacyProduct)
                 .ToListAsync();
         }
+        public  IQueryable<Pharmacy> GetAllPharmacyByConfirmationStatusAsync(ConfrmationStatus status)
+        {
+            return _context.Pharmacies
+                .Where(i => i.Status == status);
+        }
+
 
     }
 }
