@@ -199,14 +199,14 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         // إضافة تقييم
        
 
-        // عرض متوسط التقييم
-        [HttpGet("rating/{pharmacyId}")]
-        [Authorize(Roles = "Patient")]
-        public async Task<IActionResult> GetAverageRating(string pharmacyId)
-        {
-            var result = await _pharmacyService.GetAverageRatingAsync(pharmacyId);
-            return Ok(new { averageRating = result });
-        }
+        //// عرض متوسط التقييم
+        //[HttpGet("rating/{pharmacyId}")]
+        //[Authorize(Roles = "Patient")]
+        //public async Task<IActionResult> GetAverageRating(string pharmacyId)
+        //{
+        //    var result = await _pharmacyService.GetAverageRatingAsync(pharmacyId);
+        //    return Ok(new { averageRating = result });
+        //}
 
         //[HttpGet("inventory/{pharmacyId}")]
         //[Authorize(Roles = "Pharmacy")]
