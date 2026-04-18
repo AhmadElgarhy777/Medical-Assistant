@@ -217,7 +217,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         //    return Ok("تم إضافة التقييم بنجاح!");
         //}
 
-        [HttpPost("making-rate")]
+        [HttpPost("MakingRate")]
         [Authorize(Roles = "Patient")]
         public async Task<ActionResult<bool>> MakingRate( [FromQuery] string TargetId ,[FromQuery] StarsRatingEnum Rateing, [FromForm] string? Comment = null)
         {
@@ -235,7 +235,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
 
-        [HttpPost("making-rate")]
+        [HttpPost("MakingComment")]
         [Authorize(Roles = "Patient")]
 
         public async Task<ActionResult<bool>> MakingComment([FromForm] string Comment, [FromQuery] string TargetId)
