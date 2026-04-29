@@ -71,7 +71,7 @@ namespace GraduationProject_MedicalAssistant_
             try
             {
                 dbContext.Database.Migrate();
-                await SuperAdminSeeder.SeedSuperAdminAsync(app.Services, builder.Configuration);
+                await SuperAdminSeeder.SeedSuperAdminAsync(app.Services);
                 //DataSedding.SpecilzationSeed(dbContext, logger);
             }
             catch (Exception ex)

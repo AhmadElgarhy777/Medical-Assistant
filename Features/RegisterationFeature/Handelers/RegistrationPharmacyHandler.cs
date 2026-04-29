@@ -78,7 +78,7 @@ namespace Features.RegisterationFeature.Handelers
                 Name = dto.Name,
                 Address = dto.Address,
                 Phone = dto.PhoneNumber,
-                //Email = dto.Email,
+                Email = dto.Email,
                 City = dto.City,
                 Governorate = dto.Governorate.ToString(),
                 Gender = dto.Gender.ToString(),

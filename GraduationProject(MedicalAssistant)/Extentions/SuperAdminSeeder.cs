@@ -9,12 +9,13 @@
     public static class SuperAdminSeeder
     {
        
-        public static async Task SeedSuperAdminAsync(IServiceProvider serviceProvider,IConfiguration configuration)
+        public static async Task SeedSuperAdminAsync(IServiceProvider serviceProvider)
         {
             using var scope = serviceProvider.CreateScope();
 
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
             // ── 1. Ensure SuperAdmin role exists ────────────────────────────────
             if (!await roleManager.RoleExistsAsync(SD.SuperAdminRole))
@@ -54,12 +55,5 @@
         }
     }
 
-    // ── In Program.cs call it like this ─────────────────────────────────────────
-    //
-    //   var app = builder.Build();
-    //   await SuperAdminSeeder.SeedSuperAdminAsync(app.Services);
-    //   app.Run();
-    //
-    // ────────────────────────────────────────────────────────────────────────────
-
+   
 }

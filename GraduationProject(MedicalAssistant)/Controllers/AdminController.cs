@@ -21,7 +21,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             this.mediator = mediator;
         }
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetPendingDoctors")]
         [ProducesResponseType(typeof(DoctorRowDTO), StatusCodes.Status200OK)]
 
@@ -35,7 +35,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-        [Authorize(Roles =$"{SD.AdminRole},{SD.PatientRole}")]
+        [Authorize(Roles =$"{SD.AdminRole},{SD.SuperAdminRole},{SD.PatientRole}")]
         [HttpGet("GetDoctorDetails")]
         [ProducesResponseType(typeof(DoctorDetailsDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<DoctorDetailsDTO>> GetDoctorDetails([FromQuery]string doctorId,CancellationToken cancellationToken)
@@ -48,7 +48,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
         
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetConfirmedDoctors")]
         [ProducesResponseType(typeof(DoctorRowDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<DoctorRowDTO>>> GetConfirmedDoctors(CancellationToken cancellationToken, [FromQuery]int page = 1)
@@ -62,7 +62,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         }
 
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpPut("ChangeStatus")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<String>>> ChangeStatus([FromQuery] ChangeStatusCommand command , CancellationToken cancellationToken)
@@ -75,7 +75,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetPendingNurse")]
         [ProducesResponseType(typeof(NurseRowDTO), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<NurseRowDTO>>> GetPendingNurse(CancellationToken cancellationToken, [FromQuery] int page = 1)
@@ -88,7 +88,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetNurseDetails")]
         [ProducesResponseType(typeof(NurseDetailseDTO), StatusCodes.Status200OK)]
 
@@ -102,7 +102,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetConfirmedNurse")]
         [ProducesResponseType(typeof(NurseRowDTO), StatusCodes.Status200OK)]
 
@@ -116,7 +116,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetPharmacyByStatus")]
         [ProducesResponseType(typeof(PharmacyRowDTO), StatusCodes.Status200OK)]
 
@@ -130,7 +130,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(Result.Message);
         }
 
-        [Authorize(Roles = $"{SD.AdminRole}")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
         [HttpGet("GetPharmacyDetails")]
         [ProducesResponseType(typeof(PharmacyDetailsDTO), StatusCodes.Status200OK)]
 
