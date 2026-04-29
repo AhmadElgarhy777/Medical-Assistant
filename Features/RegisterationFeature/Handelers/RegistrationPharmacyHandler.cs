@@ -78,14 +78,16 @@ namespace Features.RegisterationFeature.Handelers
                 Name = dto.Name,
                 Address = dto.Address,
                 Phone = dto.PhoneNumber,
-                Email = dto.Email,
+                //Email = dto.Email,
                 City = dto.City,
-                Governorate = dto.Governorate,
-                Gender = dto.Gender,
+                Governorate = dto.Governorate.ToString(),
+                Gender = dto.Gender.ToString(),
                 PharmacyLicense = dto.PharmacyLicense,
                 Status = ConfrmationStatus.Pending,
                 BD = dto.BirthDate,
-                RealImg = imgUrl
+                RealImg = imgUrl,
+                Latitude = dto.Latitude,   // ✅
+                Longitude = dto.Longitude  // ✅
             };
 
             // 4. حفظ الاتنين في Transaction واحدة
@@ -108,6 +110,7 @@ namespace Features.RegisterationFeature.Handelers
                 await _userManager.AddToRoleAsync(appUser, SD.PharmacyRole);
 
                 await _pharmacyRepository.AddPharmacyAsync(pharmacy);
+
                 await _unitOfWork.CompleteAsync(cancellationToken);
 
                 await transaction.CommitAsync(cancellationToken);
@@ -126,7 +129,13 @@ namespace Features.RegisterationFeature.Handelers
                 {
                     ISucsses = false,
                     Message = "فشل التسجيل، مفيش حاجة اتحفظت.",
-                    Errors = new List<string> { ex.Message }
+                    Errors = new List<string> {
+                        
+                        ex.Message,
+                        ex.InnerException?.Message ?? "no inner exception",
+                        ex.StackTrace ?? "no stack trace"
+
+                    }
                 };
             }
         }

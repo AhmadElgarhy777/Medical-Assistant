@@ -39,7 +39,8 @@ namespace Models
         public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
         public Collection<DoctorPatient>? DoctorPatients { get; set; }
 
-
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
 
 
 

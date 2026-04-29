@@ -12,7 +12,7 @@ namespace Models.DTOs
         public string ID { get; set; }
         public string Name { get; set; }
         public string Governorate { get; set; }
-        public string Email { get; set; }
+        //public string Email { get; set; }
         public string City { get; set; }
         public ConfrmationStatus Status { get; set; }
         public string? RealImg { get; set; }

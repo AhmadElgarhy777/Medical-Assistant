@@ -54,5 +54,7 @@ namespace Models.DTOs.RegistertionDTOs
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The Confirmation Of The Password Is Not Correct!")]
         public string ConfirmPassword { get; set; } = null!;
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
     }
 }

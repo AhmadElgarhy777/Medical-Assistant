@@ -162,7 +162,7 @@ namespace Features.AdminFeature.Handlers
                         if (Status.Equals(ConfrmationStatus.Approved))
                         {
                             await pharmacyRepository.UpdatePharmacyStatusAsync(Id, ConfrmationStatus.Approved);
-                            await emailServices.SendEmailAsync(pharmacy.Email, "Approved Your Email",
+                            await emailServices.SendEmailAsync(user.Email, "Approved Your Email",
                                 $"Congratulations  {pharmacy.Name} pharmcy, \n Your Account has been reviewed and approved sucessfully , \n now you can go and login ");
                         }
                         else if (Status.Equals(ConfrmationStatus.Rejected))
@@ -170,7 +170,7 @@ namespace Features.AdminFeature.Handlers
                             await pharmacyRepository.UpdatePharmacyStatusAsync(Id, ConfrmationStatus.Rejected);
 
 
-                            await emailServices.SendEmailAsync(pharmacy.Email, "Your Status",
+                            await emailServices.SendEmailAsync(user.Email, "Your Status",
                                 $"Dear {pharmacy.Name}, \n Your Account has been Rejected and not approved, \nContact with us for more information");
                             //احذفه ولاا لا !!!
                         }

@@ -73,7 +73,7 @@ namespace Features.AuthenticationFeature.Handlers
                         };
                     }
                 }
-                if(user.Role==SD.PharmacyRole)
+                else if(user.Role==SD.PharmacyRole)
                 {
                     var pharmacy = await pharmacyRepository.GetPharmacyByIdAsync(user.Id);
                     if (pharmacy.Status==ConfrmationStatus.Pending)

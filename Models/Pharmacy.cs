@@ -10,25 +10,25 @@ namespace Models
 {
     public class Pharmacy : ModelBase
     {
-        //  public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public Governorate Governorate { get; set; }
-        public string Email { get; set; }
-        public string City { get; set; }
+        public string Name { get; set; }=null!;
+        public string Address { get; set; } = null!;
+        public string Phone { get; set; } = null!;
+        public string Governorate { get; set; }
+        //public string Email { get; set; } = null!;
+        public string City { get; set; } = null!;
         public ConfrmationStatus Status { get; set; }
         public string? RealImg { get; set; }
-        public string PharmacyLicense { get; set; }
-        public GenderEnum Gender { get; set; }
+        public string PharmacyLicense { get; set; } = null!;
+        public string Gender { get; set; }
         public DateOnly BD { get; set; }
         public double RattingAverage { get; set; }
 
-        // public string Statuss { get; set; } = "Pending";
-
-        // Navigation Property
+       
         public ICollection<Inventory> Inventories { get; set; }
         public ICollection<PharmacyProduct> PharmacyProducts { get; set; }
+
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
 
     }
 }

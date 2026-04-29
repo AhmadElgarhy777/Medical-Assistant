@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
 using Features.PharmacyFeature;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
+using System.Security.Claims;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -10,10 +12,12 @@ namespace GraduationProject_MedicalAssistant_.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
+        private readonly IMapper mapper;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService,IMapper mapper)
         {
             _orderService = orderService;
+            this.mapper = mapper;
         }
 
         [HttpPost("create")]
@@ -27,18 +31,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        [HttpGet("patient/{patientId}")]
-        [Authorize(Roles = "Patient")]
-        public async Task<IActionResult> GetPatientOrders(string patientId)
-        {
-            var result = await _orderService.GetPatientOrdersAsync(patientId);
-            if (!result.Any())
-                return NotFound("مفيش orders لهذا المريض!");
+      
 
-            return Ok(result);
-        }
-
-        [HttpPut("status/{orderId}")]
+        [HttpPut("UpdateOrderStatus")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> UpdateOrderStatus(string orderId, [FromQuery] string status)
         {
@@ -56,31 +51,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-        [HttpGet("pharmacy/{pharmacyId}")]
-        [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetPharmacyOrders(string pharmacyId)
-        {
-            var result = await _orderService.GetPharmacyOrdersAsync(pharmacyId);
-            if (!result.Any())
-                return NotFound("مفيش orders لهذه الصيدلية!");
+       
 
-            return Ok(result);
-        }
-
-        // ✅ فلترة الطلبات بالحالة
-        [HttpGet("pharmacy/{pharmacyId}/filter")]
-        [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetPharmacyOrdersByStatus(string pharmacyId, [FromQuery] string status)
-        {
-            if (string.IsNullOrEmpty(status))
-                return BadRequest("ادخل الحالة!");
-
-            var result = await _orderService.GetPharmacyOrdersByStatusAsync(pharmacyId, status);
-            if (!result.Any())
-                return NotFound("مفيش orders بالحالة دي!");
-
-            return Ok(result);
-        }
+     
 
         // ✅ تفاصيل طلب واحد
         [HttpGet("{orderId}")]
@@ -91,7 +64,16 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             if (result == null)
                 return NotFound("الطلب مش موجود!");
 
-            return Ok(result);
+            var resultDto=new OrderResultDto
+            {
+                OrderId = result.ID,
+                TotalAmount = result.TotalAmount,
+                Status = result.Status,
+                InvoiceId = result.Invoice.ID,
+                InvoiceTotalAmount = result.Invoice.TotalAmount,
+                PaymentStatus = result.Invoice.PaymentStatus
+            };
+            return Ok(resultDto);
         }
 
         [HttpPut("invoice/{orderId}")]

@@ -11,10 +11,8 @@ namespace Models.DTOs
 {
     public class AdminUserDTO
     {
-        [Required(ErrorMessage = "This First Name Is Required")]
-        public string FName { get; set; } = null!;
-        [Required(ErrorMessage ="This Last Name Is Required")]
-        public string LName { get; set; } = null!;
+        [Required(ErrorMessage = "This User Name Is Required")]
+        public string UserName { get; set; } = null!;
         [Required]
         [Length(14, 14,ErrorMessage ="The SSN Is Required 14 number")]
         [RegularExpression(@"^\d+$", ErrorMessage = "SSN must contain numbers only.")]

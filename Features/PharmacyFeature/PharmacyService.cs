@@ -1,5 +1,6 @@
 ﻿using DataAccess.Repositry.IRepositry;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using Models.DTOs;
 using Models.Enums;
@@ -192,7 +193,7 @@ namespace Features.PharmacyFeature
             return await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
         }
 
-        public async Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, Governorate governorate)
+        public async Task<bool> UpdatePharmacyInfoAsync(string pharmacyId, string name, string address, string phone, string city, string governorate)
         {
             var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
 
@@ -242,27 +243,25 @@ namespace Features.PharmacyFeature
 
 
 
-        public async Task<IEnumerable<DrugDTO>> SearchInSpecificPharmacyAsync(string pharmacyId, string drugNameOrCategory)
+        public async Task<IEnumerable<Inventory>> SearchInSpecificPharmacyAsync(string pharmacyId, string drugNameOrCategory)
         {
-            var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
+            var pharmacy = await _pharmacyRepository.GetPharmacyByIdWithInventoryAsync(pharmacyId);
             if (pharmacy == null)
-                return Enumerable.Empty<DrugDTO>();
+                return Enumerable.Empty<Inventory>();
+
+            // ✅ تأكد إن Inventories مش null
+            if (pharmacy.Inventories == null)
+                return Enumerable.Empty<Inventory>();
 
             var results = pharmacy.Inventories
                 .Where(i => i.IsAvailable && i.Quantity > 0 &&
                     (i.PharmacyProduct.Name.Contains(drugNameOrCategory) ||
-                     i.PharmacyProduct.Category.Contains(drugNameOrCategory)))
-                .Select(i => new DrugDTO
-                {
-                    Name = i.PharmacyProduct.Name,
-                    Price = i.Price,
-                    Quantity = i.Quantity,
-                    Category = i.PharmacyProduct.Category,
-                    InvetoryId = i.ID
-                });
+                     i.PharmacyProduct.Category.Contains(drugNameOrCategory)));
+
             return results;
         }
 
+       
         public async Task<PharmacyProfileDTO> GetPharmacyProfileAsync(string pharmacyId)
         {
             var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
@@ -279,6 +278,157 @@ namespace Features.PharmacyFeature
                 City = pharmacy.City,
                 RealImg = pharmacy.RealImg,
                 PharmacyLicense = pharmacy.PharmacyLicense,
+            };
+        }
+        public async Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync()
+        {
+            return await _pharmacyRepository.GetPendingPharmaciesAsync();
+        }
+
+        public async Task<bool> ApprovePharmacyAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.ApprovePharmacyAsync(pharmacyId);
+        }
+
+        public async Task<bool> RejectPharmacyAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.RejectPharmacyAsync(pharmacyId);
+        }
+        public async Task<IEnumerable<Pharmacy>> GetAllPharmaciesAsync()
+        {
+            return await _pharmacyRepository.GetAllPharmaciesAsync();
+        }
+
+        public async Task<IEnumerable<Pharmacy>> GetApprovedPharmaciesAsync()
+        {
+            return await _pharmacyRepository.GetApprovedPharmaciesAsync();
+        }
+
+        public async Task<IEnumerable<Pharmacy>> GetRejectedPharmaciesAsync()
+        {
+            return await _pharmacyRepository.GetRejectedPharmaciesAsync();
+        }
+
+        public async Task<bool> DeletePharmacyAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.DeletePharmacyAsync(pharmacyId);
+        }
+        public async Task<IEnumerable<Patient>> GetAllPatientsAsync()
+        {
+            return await _pharmacyRepository.GetAllPatientsAsync();
+        }
+
+        public async Task<bool> DeletePatientAsync(string patientId)
+        {
+            return await _pharmacyRepository.DeletePatientAsync(patientId);
+        }
+
+        public async Task<bool> BanPatientAsync(string patientId)
+        {
+            return await _pharmacyRepository.BanPatientAsync(patientId);
+        }
+        public async Task<IEnumerable<Doctor>> GetAllDoctorsAsync()
+        {
+            return await _pharmacyRepository.GetAllDoctorsAsync();
+        }
+
+        public async Task<bool> DeleteDoctorAsync(string doctorId)
+        {
+            return await _pharmacyRepository.DeleteDoctorAsync(doctorId);
+        }
+
+        public async Task<bool> BanDoctorAsync(string doctorId)
+        {
+            return await _pharmacyRepository.BanDoctorAsync(doctorId);
+        }
+
+        public async Task<SuperAdminStatsDto> GetStatsAsync()
+        {
+            return new SuperAdminStatsDto
+            {
+                TotalPatients = await _pharmacyRepository.GetTotalPatientsCountAsync(),
+                TotalDoctors = await _pharmacyRepository.GetTotalDoctorsCountAsync(),
+                TotalPharmacies = await _pharmacyRepository.GetTotalPharmaciesCountAsync(),
+                TotalOrders = await _pharmacyRepository.GetTotalOrdersCountAsync(),
+                TotalSales = await _pharmacyRepository.GetTotalSalesAsync()
+            };
+        }
+
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        {
+            return await _pharmacyRepository.GetAllOrdersAsync();
+        }
+        public async Task<IEnumerable<NearestPharmacyDto>> GetNearestPharmaciesAsync(string? drugName, double latitude, double longitude, double radius)
+        {
+            var pharmacies = await _pharmacyRepository.GetNearestPharmaciesAsync(drugName, latitude, longitude, radius);
+
+            return pharmacies.Select(p =>
+            {
+                var inventory = p.Inventories.FirstOrDefault(i => i.PharmacyProduct.Name.Contains(drugName));
+                var distance = CalculateDistance(latitude, longitude, p.Latitude!.Value, p.Longitude!.Value);
+
+                return new NearestPharmacyDto
+                {
+                    PharmacyId = p.ID,
+                    PharmacyName = p.Name,
+                    Address = p.Address,
+                    Phone = p.Phone,
+                    Distance = Math.Round(distance, 2),
+                    Price = inventory?.Price ?? 0,
+                    Quantity = inventory?.Quantity ?? 0,
+                    ProductName = inventory?.PharmacyProduct?.Name ?? ""
+                };
+            })
+            .OrderBy(p => p.Distance);
+        }
+
+        private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
+        {
+            const double R = 6371;
+            var dLat = (lat2 - lat1) * Math.PI / 180;
+            var dLon = (lon2 - lon1) * Math.PI / 180;
+            var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                    Math.Cos(lat1 * Math.PI / 180) * Math.Cos(lat2 * Math.PI / 180) *
+                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            return R * c;
+        }
+        //#################################################### يدكتووووووور
+        public async Task<IEnumerable<NearestClinicDto>> GetNearestClinicsAsync(string specialization, double latitude, double longitude, double radius)
+        {
+            var clinics = await _pharmacyRepository.GetNearestClinicsAsync(specialization, latitude, longitude, radius);
+
+            return clinics.Select(c =>
+            {
+                var distance = CalculateDistance(latitude, longitude, c.Latitude!.Value, c.Longitude!.Value);
+
+                return new NearestClinicDto
+                {
+                    ClinicId = c.ID,
+                    DoctorName = c.Doctor.FullName,
+                    Specialization = c.Doctor.Specialization.Name,
+                    Address = c.Address,
+                    City = c.City,
+                    Price = c.price,
+                    Distance = Math.Round(distance, 2),
+                    DoctorRating = c.Doctor.RattingAverage
+                };
+            })
+            .OrderBy(c => c.Distance);
+        }
+        public async Task<bool> UpdatePharmacyLocationAsync(string pharmacyId, double latitude, double longitude)
+        {
+            return await _pharmacyRepository.UpdatePharmacyLocationAsync(pharmacyId, latitude, longitude);
+        }
+        public async Task<SalesReportDto> GetSalesReportAsync(string pharmacyId)
+        {
+            return new SalesReportDto
+            {
+                DailySales = await _pharmacyRepository.GetDailySalesAsync(pharmacyId),
+                WeeklySales = await _pharmacyRepository.GetWeeklySalesAsync(pharmacyId),
+                MonthlySales = await _pharmacyRepository.GetMonthlySalesAsync(pharmacyId),
+                TopDrugs = await _pharmacyRepository.GetTopDrugsAsync(pharmacyId),
+                PeakHours = await _pharmacyRepository.GetPeakHoursAsync(pharmacyId)
             };
         }
     }

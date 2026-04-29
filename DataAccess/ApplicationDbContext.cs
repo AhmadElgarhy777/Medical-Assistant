@@ -11,6 +11,7 @@ namespace DataAccess
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<AiReport> AiReports { get; set; }
         public DbSet<Appointment> Appointments { get; set; }

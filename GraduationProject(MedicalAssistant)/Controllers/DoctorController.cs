@@ -2,6 +2,7 @@
 using Features.DoctorFeature.Commands;
 using Features.DoctorFeature.Queries;
 using Features.PatientFeature.Query;
+using Features.PharmacyFeature;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +17,12 @@ namespace GraduationProject_MedicalAssistant_.Controllers
     public class DoctorController : ApiBaseController
     {
         private readonly IMediator _mediatR;
+        private readonly IPharmacyService _pharmacyService;
 
-        public DoctorController(IMediator mediatR)
+        public DoctorController(IMediator mediatR, IPharmacyService pharmacyService)
         {
             _mediatR = mediatR;
+            _pharmacyService = pharmacyService;
         }
 
 
@@ -126,5 +129,24 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
             return BadRequest("حصل مشكلة وأحنا بنسجل الروشتة");
         }
+        // ✅ أقرب عيادة
+        //[HttpGet("nearest/clinic")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GetNearestClinics(
+        //    [FromQuery] string specialization,
+        //    [FromQuery] double latitude,
+        //    [FromQuery] double longitude,
+        //    [FromQuery] double radius = 5)
+        //{
+        //    if (string.IsNullOrEmpty(specialization))
+        //        return BadRequest("ادخل التخصص!");
+
+        //    var result = await _pharmacyService.GetNearestClinicsAsync(specialization, latitude, longitude, radius);
+
+        //    if (!result.Any())
+        //        return NotFound("مفيش عيادات قريبة بالتخصص ده!");
+
+        //    return Ok(result);
+        //}
     }
 }

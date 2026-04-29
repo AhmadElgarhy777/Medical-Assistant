@@ -21,6 +21,8 @@ namespace Models
         public Doctor Doctor { get; set; } = null!;
 
         public Collection<ClinicPhone> phones { get; set; } = null!;
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
 
 
 

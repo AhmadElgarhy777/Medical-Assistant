@@ -46,6 +46,7 @@ namespace InfrastructureExtension
             services.AddScoped<IConversationRepositry,ConversationRepositry>();
             services.AddScoped<IPharmacyRepository, PharmacyRepository>();
             services.AddScoped<ICommentRepositry, CommentRepositry>();
+            services.AddScoped<IAdminRepositry, AdminRepositry>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMemoryCache();

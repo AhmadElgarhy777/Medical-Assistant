@@ -2,6 +2,7 @@
 {
     public class SD
     {
+        public const string SuperAdminRole = "SuperAdmin";
         public const string AdminRole = "Admin";
         public const string PatientRole = "Patient";
         public const string DoctorRole = "Doctor";

@@ -36,6 +36,19 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         }
 
+        [HttpPost("VerifyAdminInvitation")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+
+        public async Task<ActionResult<ResultResponse<String>>> VerifyAdminInvitation([FromQuery] AccepAdmintInvitationCommand command, CancellationToken cancellationToken)
+        {
+            var result = await mediator.Send(command, cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
 
         [HttpPost("GetAllSpecialization")]
         [ProducesResponseType(typeof(SpecializationDTO), StatusCodes.Status200OK)]
@@ -157,16 +170,14 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         public async Task<ActionResult> RegisterPharmacy([FromForm] RegistrationPharmacyCommand command, CancellationToken cancellationToken)
         {
-            if (ModelState.IsValid)
-            {
+           
                 var result = await mediator.Send(command, cancellationToken);
                 if (result.ISucsses)
                 {
                     return Ok(result);
                 }
                 return BadRequest(result);
-            }
-            return BadRequest("Validation Error");
+            
         }
 
 

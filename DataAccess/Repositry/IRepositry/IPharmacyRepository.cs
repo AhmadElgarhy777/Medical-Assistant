@@ -1,4 +1,5 @@
 ﻿using Models;
+using Models.DTOs;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -35,12 +36,43 @@ namespace DataAccess.Repositry.IRepositry
         Task<double> GetAverageRatingAsync(string pharmacyId);
         Task<IEnumerable<Inventory>> GetPharmacyInventoryAsync(string pharmacyId);
         IQueryable<Pharmacy> GetAllPharmacyByConfirmationStatusAsync(ConfrmationStatus status);
+        Task<Pharmacy> GetPharmacyByIdWithInventoryAsync(string pharmacyId);
+
 
         //  Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync();
         //  Task<bool> ApprovePharmacyAsync(string pharmacyId);
         //  Task<bool> RejectPharmacyAsync(string pharmacyId);
         // Task<IEnumerable<ApplicationUser>> GetAllUsersAsync();
         //Task<bool> BanUserAsync(string userId);
+
+        Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync();
+        Task<bool> ApprovePharmacyAsync(string pharmacyId);
+        Task<bool> RejectPharmacyAsync(string pharmacyId);
+        Task<IEnumerable<Pharmacy>> GetAllPharmaciesAsync();
+        Task<IEnumerable<Pharmacy>> GetApprovedPharmaciesAsync();
+        Task<IEnumerable<Pharmacy>> GetRejectedPharmaciesAsync();
+        Task<bool> DeletePharmacyAsync(string pharmacyId);
+        Task<IEnumerable<Patient>> GetAllPatientsAsync();
+        Task<bool> DeletePatientAsync(string patientId);
+        Task<bool> BanPatientAsync(string patientId);
+        Task<IEnumerable<Doctor>> GetAllDoctorsAsync();
+        Task<bool> DeleteDoctorAsync(string doctorId);
+        Task<bool> BanDoctorAsync(string doctorId);
+        Task<int> GetTotalPatientsCountAsync();
+        Task<int> GetTotalDoctorsCountAsync();
+        Task<int> GetTotalPharmaciesCountAsync();
+        Task<int> GetTotalOrdersCountAsync();
+        Task<decimal> GetTotalSalesAsync();
+        Task<IEnumerable<Order>> GetAllOrdersAsync();
+
+        Task<IEnumerable<Pharmacy>> GetNearestPharmaciesAsync(string? drugName, double latitude, double longitude, double radius);
+        Task<IEnumerable<Clinic>> GetNearestClinicsAsync(string specialization, double latitude, double longitude, double radius);
+        Task<bool> UpdatePharmacyLocationAsync(string pharmacyId, double latitude, double longitude);
+        Task<decimal> GetDailySalesAsync(string pharmacyId);
+        Task<decimal> GetWeeklySalesAsync(string pharmacyId);
+        Task<decimal> GetMonthlySalesAsync(string pharmacyId);
+        Task<IEnumerable<TopDrugDto>> GetTopDrugsAsync(string pharmacyId);
+        Task<IEnumerable<PeakHoursDto>> GetPeakHoursAsync(string pharmacyId);
 
     }
 }

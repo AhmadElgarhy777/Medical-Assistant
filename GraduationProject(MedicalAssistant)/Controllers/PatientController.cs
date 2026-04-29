@@ -23,12 +23,16 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         private readonly IMediator mediatR;
         private readonly ApplicationDbContext dbContext;
         private readonly IPharmacyService _pharmacyService;
+        private readonly IOrderService orderService;
 
-        public PatientController(IMediator mediatR,ApplicationDbContext dbContext, IPharmacyService pharmacyService)
+        public PatientController(IMediator mediatR,ApplicationDbContext dbContext,
+            IPharmacyService pharmacyService
+            ,IOrderService orderService)
         {
             this.mediatR = mediatR;
             this.dbContext = dbContext;
             _pharmacyService = pharmacyService;
+            this.orderService = orderService;
         }
 
         [HttpGet("GetDoctorsBySearch")]
@@ -249,9 +253,37 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             {
                 return Ok(result.Message);
             }
-            return BadRequest(result.Message);  
+            return BadRequest(result.Message);                                                      
         }
 
+        [HttpGet("GetPatientOrders")]
+        [Authorize(Roles = "Patient")]
+        public async Task<IActionResult> GetPatientOrders()
+        {
+            var PatientId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await orderService.GetPatientOrdersAsync(PatientId);
+            if (!result.Any())
+                return NotFound("مفيش orders لهذا المريض!");
 
+            return Ok(result);
+        }
+        [HttpGet("GetNearestPharmacies")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetNearestPharmacies(
+           [FromQuery] string? drugName,
+           [FromQuery] double latitude,
+           [FromQuery] double longitude,
+           [FromQuery] double radius = 5)
+        {
+            if (string.IsNullOrEmpty(drugName))
+                return BadRequest("ادخل اسم الدواء!");
+
+            var result = await _pharmacyService.GetNearestPharmaciesAsync(drugName, latitude, longitude, radius);
+
+            if (!result.Any())
+                return NotFound("مفيش صيدليات قريبة عندها الدواء ده!");
+
+            return Ok(result);
+        }
     }
 }

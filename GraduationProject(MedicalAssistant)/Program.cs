@@ -6,23 +6,40 @@ using GraduationProject_MedicalAssistant_.Hubs;
 using InfrastructureExtension;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Models;
 using Services.EmailServices;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace GraduationProject_MedicalAssistant_
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>
+                (
+                    options =>
+                    {
+                        options.User.AllowedUserNameCharacters = null;
+                        options.User.RequireUniqueEmail = true;
+                    }
+
+                )
                .AddEntityFrameworkStores<ApplicationDbContext>()
-               .AddDefaultTokenProviders();
+               .AddDefaultTokenProviders()
+               .AddUserValidator<AllowDuplicateUserNameValidator<ApplicationUser>>();
+
+            builder.Services.RemoveAll<IUserValidator<ApplicationUser>>();
+
+            builder.Services.AddScoped<IUserValidator<ApplicationUser>,
+                                       AllowDuplicateUserNameValidator<ApplicationUser>>();
+
 
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
@@ -53,7 +70,8 @@ namespace GraduationProject_MedicalAssistant_
             var logger = FactoryLogger.CreateLogger<Program>();
             try
             {
-                dbContext.Database.MigrateAsync().GetAwaiter().GetResult();
+                dbContext.Database.Migrate();
+                await SuperAdminSeeder.SeedSuperAdminAsync(app.Services, builder.Configuration);
                 //DataSedding.SpecilzationSeed(dbContext, logger);
             }
             catch (Exception ex)
