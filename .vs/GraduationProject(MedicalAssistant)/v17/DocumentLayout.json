@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\superadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\superadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|c:\\graduationproject\\graduationproject(medicalassistant)\\graduationproject(medicalassistant)\\controllers\\pharmacycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{736D6394-554A-4C84-80CB-78B1715E49AE}|GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant).csproj|solutionrelative:graduationproject(medicalassistant)\\controllers\\pharmacycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,33 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SuperAdminController.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\SuperAdminController.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\SuperAdminController.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\SuperAdminController.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\SuperAdminController.cs",
-              "ViewState": "AgIAAKAAAAAAamZmZmYWwK0AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-29T12:58:52.975Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAH8AAACAMzMzMzMwwJQAAAAAAAAAAAAAAA==",
+              "Title": "PharmacyController.cs",
+              "DocumentMoniker": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "RelativeDocumentMoniker": "GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "ToolTip": "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "RelativeToolTip": "GraduationProject(MedicalAssistant)\\Controllers\\PharmacyController.cs",
+              "ViewState": "AgIAAPAAAAAAmJmZmZknwP0AAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-29T15:49:02.224Z",
+              "WhenOpened": "2026-04-29T15:57:26.756Z",
               "EditorCaption": ""
             },
             {

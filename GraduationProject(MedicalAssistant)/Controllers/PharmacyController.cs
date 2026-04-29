@@ -175,39 +175,39 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         // ✅ جيب بيانات الصيدلية
-        [HttpGet("{pharmacyId}")]
-        [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetPharmacyById(string pharmacyId)
-        {
-            var result = await _pharmacyService.GetPharmacyByIdAsync(pharmacyId);
-            if (result == null)
-                return NotFound("الصيدلية مش موجودة!");
+        //[HttpGet("{pharmacyId}")]
+        //[Authorize(Roles = "Pharmacy")]
+        //public async Task<IActionResult> GetPharmacyById(string pharmacyId)
+        //{
+        //    var result = await _pharmacyService.GetPharmacyByIdAsync(pharmacyId);
+        //    if (result == null)
+        //        return NotFound("الصيدلية مش موجودة!");
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
 
-        // ✅ تعديل بيانات الصيدلية
-        [HttpPut("update/{pharmacyId}")]
-        [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdatePharmacyInfo(
-            string pharmacyId,
-            [FromQuery] string name,
-            [FromQuery] string address,
-            [FromQuery] string phone,
-            [FromQuery] string city,
-            [FromQuery] string governorate)
-        {
-            var result = await _pharmacyService.UpdatePharmacyInfoAsync(pharmacyId, name, address, phone, city, governorate);
-            if (!result)
-                return NotFound("الصيدلية مش موجودة!");
+        //// ✅ تعديل بيانات الصيدلية
+        //[HttpPut("update/{pharmacyId}")]
+        //[Authorize(Roles = "Pharmacy")]
+        //public async Task<IActionResult> UpdatePharmacyInfo(
+        //    string pharmacyId,
+        //    [FromQuery] string name,
+        //    [FromQuery] string address,
+        //    [FromQuery] string phone,
+        //    [FromQuery] string city,
+        //    [FromQuery] string governorate)
+        //{
+        //    var result = await _pharmacyService.UpdatePharmacyInfoAsync(pharmacyId, name, address, phone, city, governorate);
+        //    if (!result)
+        //        return NotFound("الصيدلية مش موجودة!");
 
-            return Ok("تم تعديل بيانات الصيدلية بنجاح!");
+        //    return Ok("تم تعديل بيانات الصيدلية بنجاح!");
 
-        }
+        //}
 
 
         // Dashboard
-        [HttpGet("dashboard/{pharmacyId}")]
+        [HttpGet("dashboard")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> GetDashboard(string pharmacyId)
         {
@@ -231,7 +231,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         [HttpGet("pharmacy/GetPharmacyOrdersByStatus/filter")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetPharmacyOrdersByStatus([FromQuery] string status)
+        public async Task<IActionResult> GetPharmacyOrdersByStatus([FromQuery] string status) //////////////////////////////////////////
         {
             if (string.IsNullOrEmpty(status))
                 return BadRequest("ادخل الحالة!");
