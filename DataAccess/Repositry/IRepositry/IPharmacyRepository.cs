@@ -66,7 +66,7 @@ namespace DataAccess.Repositry.IRepositry
         Task<IEnumerable<Order>> GetAllOrdersAsync();
 
         Task<IEnumerable<Pharmacy>> GetNearestPharmaciesAsync(string? drugName, double latitude, double longitude, double radius);
-        Task<IEnumerable<Clinic>> GetNearestClinicsAsync(string specialization, double latitude, double longitude, double radius);
+        Task<IEnumerable<Doctor>> GetNearestDoctorsAsync(string specialization, double latitude, double longitude, double radius);
         Task<bool> UpdatePharmacyLocationAsync(string pharmacyId, double latitude, double longitude);
         Task<decimal> GetDailySalesAsync(string pharmacyId);
         Task<decimal> GetWeeklySalesAsync(string pharmacyId);

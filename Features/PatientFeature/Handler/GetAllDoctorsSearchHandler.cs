@@ -33,6 +33,7 @@ namespace Features.PatientFeature.Handler
                 Name = request.searching.Name,
                 City= request.searching.City,
                 Rate= request.searching.Rate,
+                Price=request.searching.Price,
                 Governorate= request.searching.Governorate,
                 SpecilzationId= request.searching.SpecilzationId,
 
@@ -54,9 +55,16 @@ namespace Features.PatientFeature.Handler
 
             if (search.Governorate.HasValue)
                 doctors = doctors.Where(e => e.Governorate.Equals(search.Governorate));
+            if (search.Price > 0)
+            {
+                doctors = doctors.Where(e => e.Price <= search.Price);
+            }
+            else
+            {
+                doctors = doctors.Where(e => e.Price>0);
+            }
 
-          
-            doctors =doctors.Skip((page-1) * 5 ).Take(5);
+            doctors = doctors.Skip((page - 1) * 5).Take(5);
             var doctorsList= await doctors.ToListAsync(cancellationToken);
             if(doctorsList is not null)
             {

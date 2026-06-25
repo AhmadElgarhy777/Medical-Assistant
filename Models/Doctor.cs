@@ -27,6 +27,8 @@ namespace Models
         public string Experence { get; set; } = null!;
         public string Degree { get; set; } = null!;
         public string CertificationImg { get; set; } = null!;
+        public double Price { get; set; }
+
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
 
         public double RattingAverage { get; set; }

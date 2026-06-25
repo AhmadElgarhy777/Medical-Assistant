@@ -16,6 +16,8 @@ namespace Models.DTOs
         [Required]
         public string SpecilzationId { get; set; } = null!;
         public string? City { get; set; }
+        public double? Price { get; set; }
+
         public Governorate? Governorate { get; set; }
         public StarsRatingEnum? Rate { get; set; }
     }

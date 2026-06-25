@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using DataAccess;
+using Features;
+using Features.DoctorFeature.Commands;
+using Features.NurseFeature.Command;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +20,13 @@ namespace GraduationProject_MedicalAssistant_.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
-        public NurseController(ApplicationDbContext context, IMapper mapper)
+        public NurseController(ApplicationDbContext context, IMapper mapper,IMediator mediator)
         {
             _context = context;
             this.mapper = mapper;
+            this.mediator = mediator;
         }
        
         [HttpGet("pending-bookings")]
@@ -217,6 +223,23 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
 
         }
+
+        [HttpPut("EditPrice")]
+        [ProducesResponseType(typeof(ResultResponse<bool>), StatusCodes.Status200OK)]
+
+        public async Task<IActionResult> EditPrice([FromBody] EditNursePriceCommand command)
+        {
+            var result = await mediator.Send(command);
+            if (result.ISucsses)
+            {
+                return Ok(result.ISucsses);
+            }
+            return BadRequest(result);
+        }
+
+
+
+
     }
 
 

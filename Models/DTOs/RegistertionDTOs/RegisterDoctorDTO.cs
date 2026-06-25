@@ -92,6 +92,10 @@ namespace Models.DTOs.RegistertionDTOs
         [Required(ErrorMessage = "The Specialization is Required")]
         public string SpecializationId { get; set; } = null!;
 
+        [Required(ErrorMessage = "The Price is Required")]
+        public double Price { get; set; }
+
+
         [Required(ErrorMessage = "The Password Image is Required")]
         [DataType(DataType.Password)]
         public string Password { get; set; } = null!;

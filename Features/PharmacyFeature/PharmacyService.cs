@@ -394,24 +394,24 @@ namespace Features.PharmacyFeature
             return R * c;
         }
         //#################################################### يدكتووووووور
-        public async Task<IEnumerable<NearestClinicDto>> GetNearestClinicsAsync(string specialization, double latitude, double longitude, double radius)
+        public async Task<IEnumerable<NearestDoctorsDto>> GetNearestDoctorAsync(string specialization, double latitude, double longitude, double radius)
         {
-            var clinics = await _pharmacyRepository.GetNearestClinicsAsync(specialization, latitude, longitude, radius);
+            var clinics = await _pharmacyRepository.GetNearestDoctorsAsync(specialization, latitude, longitude, radius);
 
             return clinics.Select(c =>
             {
                 var distance = CalculateDistance(latitude, longitude, c.Latitude!.Value, c.Longitude!.Value);
 
-                return new NearestClinicDto
+                return new NearestDoctorsDto
                 {
-                    ClinicId = c.ID,
-                    DoctorName = c.Doctor.FullName,
-                    Specialization = c.Doctor.Specialization.Name,
+                    DoctorId = c.ID,
+                    DoctorName = c.FullName,
+                    Specialization = c.Specialization.Name,
                     Address = c.Address,
                     City = c.City,
-                    Price = c.price,
+                    Price = c.Price,
                     Distance = Math.Round(distance, 2),
-                    DoctorRating = c.Doctor.RattingAverage
+                    DoctorRating = c.RattingAverage
                 };
             })
             .OrderBy(c => c.Distance);

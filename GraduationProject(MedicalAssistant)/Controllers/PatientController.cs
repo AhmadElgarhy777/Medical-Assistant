@@ -285,5 +285,24 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("nearest/Doctor")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetNearestDoctor(
+           [FromQuery] string specialization,
+           [FromQuery] double latitude,
+           [FromQuery] double longitude,
+           [FromQuery] double radius = 5)
+        {
+            if (string.IsNullOrEmpty(specialization))
+                return BadRequest("ادخل التخصص!");
+
+            var result = await _pharmacyService.GetNearestDoctorAsync(specialization, latitude, longitude, radius);
+
+            if (!result.Any())
+                return NotFound("مفيش عيادات قريبة بالتخصص ده!");
+
+            return Ok(result);
+        }
     }
 }

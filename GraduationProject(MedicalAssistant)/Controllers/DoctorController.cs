@@ -129,24 +129,21 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
             return BadRequest("حصل مشكلة وأحنا بنسجل الروشتة");
         }
-        // ✅ أقرب عيادة
-        //[HttpGet("nearest/clinic")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> GetNearestClinics(
-        //    [FromQuery] string specialization,
-        //    [FromQuery] double latitude,
-        //    [FromQuery] double longitude,
-        //    [FromQuery] double radius = 5)
-        //{
-        //    if (string.IsNullOrEmpty(specialization))
-        //        return BadRequest("ادخل التخصص!");
 
-        //    var result = await _pharmacyService.GetNearestClinicsAsync(specialization, latitude, longitude, radius);
+        [HttpPut("EditPrice")]
+        [ProducesResponseType(typeof(ResultResponse<bool>), StatusCodes.Status200OK)]
 
-        //    if (!result.Any())
-        //        return NotFound("مفيش عيادات قريبة بالتخصص ده!");
+        public async Task<IActionResult> EditPrice([FromBody] EditDoctorPriceCommand command)
+        {
+            var result = await _mediatR.Send(command);
+            if (result.ISucsses)
+            {
+                return Ok(result.ISucsses);
+            }
+            return BadRequest(result);
+        }
 
-        //    return Ok(result);
-        //}
+
+       
     }
 }

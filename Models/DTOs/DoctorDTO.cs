@@ -26,6 +26,8 @@ namespace Models.DTOs
         public List<string> ClincNumbers { get; set; } = null!;
         public string Experence { get; set; } = null!;
         public string Degree { get; set; } = null!;
+        public double Price { get; set; }
+
 
     }
 }
