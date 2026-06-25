@@ -15,7 +15,7 @@ namespace DataAccess.EntittySpecifcation
         {
             Includes.Add(e => e.Doctor);
         }
-        public PresciptionSpecifcation():base()
+        public PresciptionSpecifcation():base(x => x.IsDeleted == false)
         {
             Includes.Add(e => e.Doctor);
         }

@@ -10,7 +10,7 @@ namespace DataAccess.EntittySpecifcation
 {
     public class SpecilzationSpecifcation:Specfication<Specialization>
     {
-        public SpecilzationSpecifcation():base()
+        public SpecilzationSpecifcation():base(x => x.IsDeleted == false)
         {
             
         }

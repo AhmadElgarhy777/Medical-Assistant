@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataAccess.Repositry.IRepositry;
 using Models;
 using Models.DTOs;
+using Models.Enums;
 
 namespace Features.PharmacyFeature
 {
@@ -32,7 +33,7 @@ namespace Features.PharmacyFeature
                 PatientId = dto.PatientId,
                 PharmacyId = dto.PharmacyId,
                 Date = DateTime.Now,
-                Status = "Pending",
+                Status = OrderStatusEnum.Pending,
                 TotalAmount = totalAmount
             };
             await _orderRepository.CreateOrderAsync(order);
@@ -96,7 +97,7 @@ namespace Features.PharmacyFeature
             });
         }
 
-        public async Task<OrderResultDto> UpdateOrderStatusAsync(string orderId, string status)
+        public async Task<OrderResultDto> UpdateOrderStatusAsync(string orderId, OrderStatusEnum status)
         {
             var order = await _orderRepository.GetOrderByIdAsync(orderId);
 
@@ -149,7 +150,7 @@ namespace Features.PharmacyFeature
             {
                 OrderId = orderId,
                 TotalAmount = invoice.TotalAmount,
-                Status = order?.Status,
+                Status = order.Status,
                 InvoiceId = invoice.ID,
                 InvoiceTotalAmount = invoice.TotalAmount,
                 PaymentStatus = invoice.PaymentStatus
@@ -163,7 +164,7 @@ namespace Features.PharmacyFeature
             if (order == null)
                 return null;
 
-            if (order.Status != "Pending")
+            if (order.Status != OrderStatusEnum.Pending)
                 throw new Exception("مينفعش تلغي Order إلا لو حالته Pending!");
 
             foreach (var item in order.OrderItems)
@@ -180,14 +181,14 @@ namespace Features.PharmacyFeature
             {
                 OrderId = order.ID,
                 TotalAmount = order.TotalAmount,
-                Status = "Cancelled",
+                Status = OrderStatusEnum.Canceled,
                 InvoiceId = order.Invoice?.ID,
                 InvoiceTotalAmount = order.Invoice?.TotalAmount ?? 0,
                 PaymentStatus = order.Invoice?.PaymentStatus
             };
         }
 
-        public async Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status)
+        public async Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, OrderStatusEnum status)
         {
             return await _orderRepository.GetPharmacyOrdersByStatusAsync(pharmacyId, status);
         }

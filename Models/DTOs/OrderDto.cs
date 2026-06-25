@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Models.DTOs
     {
         public string OrderId { get; set; }
         public decimal TotalAmount { get; set; }
-        public string Status { get; set; }
+        public OrderStatusEnum Status { get; set; }
         public string? InvoiceId { get; set; }
         public decimal InvoiceTotalAmount { get; set; }
         public string? PaymentStatus { get; set; }

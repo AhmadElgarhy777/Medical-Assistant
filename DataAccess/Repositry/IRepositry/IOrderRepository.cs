@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Models;
+using Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Models;
 
 namespace DataAccess.Repositry.IRepositry
 {
@@ -23,6 +23,6 @@ namespace DataAccess.Repositry.IRepositry
         Task UpdateInventoryAsync(Inventory inventory);
         Task CancelOrderAsync(Order order);
 
-        Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status);
+        Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, OrderStatusEnum status);
     }
 }

@@ -231,11 +231,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         [HttpGet("pharmacy/GetPharmacyOrdersByStatus/filter")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> GetPharmacyOrdersByStatus([FromQuery] string status) //////////////////////////////////////////
+        public async Task<IActionResult> GetPharmacyOrdersByStatus([FromForm] OrderStatusEnum status) //////////////////////////////////////////
         {
-            if (string.IsNullOrEmpty(status))
-                return BadRequest("ادخل الحالة!");
-
             var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var result = await orderService.GetPharmacyOrdersByStatusAsync(pharmacyId, status);
             if (!result.Any())

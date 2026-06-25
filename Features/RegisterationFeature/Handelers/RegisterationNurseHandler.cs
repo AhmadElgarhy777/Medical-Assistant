@@ -77,6 +77,7 @@ namespace Features.RegisterationFeature.Handelers
                     await userManager.AddToRoleAsync(appuser, Role);
                     var nurse = mapper.Map<RegisterNurseDTO, Nures>(nurseDto);
                     nurse.ID = appuser.Id;
+                    nurse.IsDeleted = false;
 
                     if(nurseDto.Img is not null&& nurseDto.CertificationImg is not null&& nurseDto.CrediateImg is not null)
                     {

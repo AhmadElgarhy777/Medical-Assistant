@@ -87,6 +87,7 @@ namespace Features.RegisterationFeature.Handelers
 
                     var patient = mapper.Map<RegisterPatientDTO, Patient>(patientDto);
                     patient.ID = appuser.Id;
+                    patient.IsDeleted = false;
 
                     if (patientDto.Img is not null)
                     {

@@ -8,6 +8,7 @@ namespace Models
 {
     public class RefreshToken:ModelBase
     {
+
         public string TokenHash { get; set; } = null!;
         public string UserID { get; set; } = null!;
         public string JwtId { get; set; } = null!;

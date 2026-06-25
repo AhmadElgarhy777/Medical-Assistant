@@ -91,6 +91,7 @@ namespace Features.RegisterationFeature.Handelers
             doctor.CrediateImg = credImgUrl;
             doctor.Latitude = dto.Latitude;   // ✅
             doctor.Longitude = dto.Longitude; // ✅
+            doctor.IsDeleted = false;
 
             // 4. Persist both inside a single transaction
             await using var transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);

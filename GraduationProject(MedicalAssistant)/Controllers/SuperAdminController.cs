@@ -36,15 +36,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
             return Ok(result);
         }
-        //// ✅ كل الصيدليات المنتظرة
-        //[HttpGet("pharmacies/pending")]
-        //public async Task<IActionResult> GetPendingPharmacies()
-        //{
-        //    var result = await _pharmacyService.GetPendingPharmaciesAsync();
-        //    if (!result.Any())
-        //        return NotFound("مفيش صيدليات منتظرة!");
-        //    return Ok(result);
-        //}
 
         // ✅ كل الصيدليات
         [HttpGet("GetAllPharmacies")]
@@ -100,14 +91,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         //}
 
         // ✅ حذف صيدلية
-        [HttpDelete("DeletePharmacy")]
-        public async Task<IActionResult> DeletePharmacy(string pharmacyId)
-        {
-            var result = await _pharmacyService.DeletePharmacyAsync(pharmacyId);
-            if (!result)
-                return NotFound("الصيدلية مش موجودة!");
-            return Ok("تم حذف الصيدلية!");
-        }
+
+
+        
+
         // ✅ كل المرضى
         [HttpGet("GetAllPatients")]
         public async Task<IActionResult> GetAllPatients()
@@ -119,26 +106,6 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(resultDto);
         }
 
-        // ✅ حذف مريض
-        [HttpDelete("DeletePatient")]
-        public async Task<IActionResult> DeletePatient(string patientId)
-        {
-            var result = await _pharmacyService.DeletePatientAsync(patientId);
-            if (!result)
-                return NotFound("المريض مش موجود!");
-            return Ok("تم حذف المريض!");
-        }
-
-        // ✅ حظر مريض
-        [HttpPatch("BanPatient")]
-        public async Task<IActionResult> BanPatient(string patientId)
-        {
-            var result = await _pharmacyService.BanPatientAsync(patientId);
-            if (!result)
-                return NotFound("المريض مش موجود!");
-            return Ok("تم حظر المريض!");
-        }
-        // ✅ كل الأطباء
         [HttpGet("GetAllDoctors")]
         public async Task<IActionResult> GetAllDoctors()
         {
@@ -149,25 +116,80 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(resultDto);
         }
 
-        // ✅ حذف دكتور
-        [HttpDelete("DeleteDoctor")]
-        public async Task<IActionResult> DeleteDoctor(string doctorId)
+
+        [HttpPut("Ban&&DeletePharmacy")]
+        public async Task<IActionResult> DeletePharmacy(string pharmacyId)
         {
-            var result = await _pharmacyService.DeleteDoctorAsync(doctorId);
-            if (!result)
-                return NotFound("الدكتور مش موجود!");
-            return Ok("تم حذف الدكتور!");
+            var result = await mediator.Send(new DeletePharmacyCommand(pharmacyId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
         }
 
-        // ✅ حظر دكتور
-        [HttpPatch("BanDoctor")]
-        public async Task<IActionResult> BanDoctor(string doctorId)
+        // ✅ حذف مريض
+        [HttpPut("Ban&&DeletePatient")]
+        public async Task<IActionResult> DeletePatient(string patientId)
         {
-            var result = await _pharmacyService.BanDoctorAsync(doctorId);
-            if (!result)
-                return NotFound("الدكتور مش موجود!");
-            return Ok("تم حظر الدكتور!");
+            var result =await mediator.Send(new DeletePatientCommand(patientId));
+            if (!result.ISucsses) 
+                return BadRequest(result);
+            return Ok(result.Obj);
         }
+
+
+        // ✅ حذف دكتور
+        [HttpPut("Ban&&DeleteDoctor")]
+        public async Task<IActionResult> DeleteDoctor(string doctorId)
+        {
+            var result = await mediator.Send(new DeleteDoctorCommand(doctorId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
+        }
+        [HttpPut("Ban&&DeleteNurse")]
+        public async Task<IActionResult> DeleteNurse(string nurseId)
+        {
+            var result = await mediator.Send(new DeleteNurseCommand(nurseId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
+        }
+      
+        [HttpPut("UnBanPatient")]
+        public async Task<IActionResult> UnBanPatient(string patientId)
+        {
+            var result = await mediator.Send(new UnbanPatientCommand(patientId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
+        }
+        [HttpPut("UnBanDoctor")]
+        public async Task<IActionResult> UnBanDoctor(string doctorId)
+        {
+            var result = await mediator.Send(new UnbanDoctorCommand(doctorId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
+        }
+        [HttpPut("UnBanPharmacy")]
+        public async Task<IActionResult> UnBanPharmacy(string pharmacyId)
+        {
+            var result = await mediator.Send(new UnbanPhramacyCommand(pharmacyId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
+        }
+        [HttpPut("UnBanNurse")]
+        public async Task<IActionResult> UnBanNurse(string nurseId)
+        {
+            var result = await mediator.Send(new UnBanNurseCommand(nurseId));
+            if (!result.ISucsses)
+                return BadRequest(result);
+            return Ok(result.Obj);
+        }
+
+       
+
 
         // ✅ إحصائيات السيستم
         [HttpGet("stats")]

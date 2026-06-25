@@ -11,7 +11,7 @@ namespace DataAccess.EntittySpecifcation
 {
     public class AppointmentSpescifcation:Specfication<Appointment>
     {
-        public AppointmentSpescifcation():base()
+        public AppointmentSpescifcation():base(x => x.IsDeleted == false)
         {
             Includes.Add(a => a.Patient);
             Includes.Add(a => a.Doctor);

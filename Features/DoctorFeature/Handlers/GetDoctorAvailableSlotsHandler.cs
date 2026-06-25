@@ -24,7 +24,7 @@ namespace Features.DoctorFeature.Handlers
         {
             // 1. سحب البيانات من الداتابيز للرام (Memory)
             var slotsFromDb = await _context.DoctorAvilableTimes
-                .Where(x => x.DoctorId == request.DoctorId && x.IsBooked == false)
+                .Where(x => x.DoctorId == request.DoctorId && x.IsBooked == false&& x.IsDeleted==false)
                 .ToListAsync(cancellationToken);
 
             // 2. تحويل البيانات لـ DTO وتنسيق اليوم والوقت

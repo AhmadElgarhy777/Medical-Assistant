@@ -25,7 +25,7 @@ namespace Features.DoctorFeature.Handlers
             // بنروح لجدول الربط (DoctorPatients) 
             // وبنقول له هات كل السجلات اللي تخص الدكتور ده
             var patients = await _context.DoctorPatients
-                .Where(dp => dp.DoctorId == request.DoctorId)
+                .Where(dp => dp.DoctorId == request.DoctorId && dp.IsDeleted == false)
                 .Select(dp => new PatientDTO // بنحول الداتا لـ DTO عشان نعرضها
                 {
                     Id = dp.Patient.ID,

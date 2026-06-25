@@ -126,6 +126,20 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         }
 
+        [HttpPost("RegisterPharmacy")]
+        [ProducesResponseType(typeof(ResultResponse<String>), StatusCodes.Status200OK)]
+
+        public async Task<ActionResult> RegisterPharmacy([FromForm] RegistrationPharmacyCommand command, CancellationToken cancellationToken)
+        {
+
+            var result = await mediator.Send(command, cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
 
         [HttpPost("ConfirmationEmailType")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
@@ -153,7 +167,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(result.Message);
         }
       
-        [HttpPost("VerifyOTP")]
+        [HttpPost("VerifyEmailOTP")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
 
         public async Task<ActionResult<ResultResponse<String>>> VerifyOTP([FromQuery] VerifyOTPCommand command,CancellationToken cancellationToken)
@@ -165,20 +179,22 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpPost("RegisterPharmacy")]
-        [ProducesResponseType(typeof(ResultResponse<String>), StatusCodes.Status200OK)]
+       
 
-        public async Task<ActionResult> RegisterPharmacy([FromForm] RegistrationPharmacyCommand command, CancellationToken cancellationToken)
+        [HttpPost("ConfirmMobileNumberViaWhatsUp")]
+        public async Task<IActionResult> ConfirmMobileNumberViaWhatsUp([FromForm] ConfirmMobileNumberCommand command)
         {
-           
-                var result = await mediator.Send(command, cancellationToken);
-                if (result.ISucsses)
-                {
-                    return Ok(result);
-                }
-                return BadRequest(result);
-            
+            var result = await mediator.Send(command);
+            return result.ISucsses ? Ok(result) : BadRequest(result);
         }
+
+        [HttpPost("VerifyMobileNumberOtp")]
+        public async Task<IActionResult> VerifyMobileNumberOtp([FromForm] VerifyMobileNumberOtpCommand command)
+        {
+            var result = await mediator.Send(command);
+            return result.ISucsses ? Ok(result) : BadRequest(result);
+        }
+       
 
 
     }

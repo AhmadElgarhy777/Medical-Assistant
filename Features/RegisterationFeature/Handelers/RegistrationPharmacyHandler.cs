@@ -87,7 +87,8 @@ namespace Features.RegisterationFeature.Handelers
                 BD = dto.BirthDate,
                 RealImg = imgUrl,
                 Latitude = dto.Latitude,   // ✅
-                Longitude = dto.Longitude  // ✅
+                Longitude = dto.Longitude,  // ✅
+                IsDeleted=false,
             };
 
             // 4. حفظ الاتنين في Transaction واحدة

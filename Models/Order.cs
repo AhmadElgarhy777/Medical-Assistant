@@ -1,9 +1,10 @@
 ﻿using Models;
+using Models.Enums;
 
 public class Order : ModelBase
 {
     public DateTime Date { get; set; }
-    public string Status { get; set; }
+    public OrderStatusEnum Status { get; set; }
     public decimal TotalAmount { get; set; }
 
     // Foreign Keys

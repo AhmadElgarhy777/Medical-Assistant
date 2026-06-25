@@ -28,6 +28,7 @@ namespace Features.DoctorFeature.Handlers
             var appointments = await _context.Appointments
                 .Include(x => x.Patient)
                 .Where(x => x.DoctorId == request.DoctorId
+                        && x.IsDeleted == false
                         && x.Date == today // تاريخ النهاردة بس
                         && (x.Status == Models.Enums.bookStatusEnum.Pending
                             || x.Status == Models.Enums.bookStatusEnum.Confirmed)) // الحالات الجديدة فقط

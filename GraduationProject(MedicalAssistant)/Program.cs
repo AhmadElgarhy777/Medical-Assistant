@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Models;
 using Services.EmailServices;
+using Services.TwilioProviderServices.WhatsUp;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
@@ -48,6 +49,7 @@ namespace GraduationProject_MedicalAssistant_
             });
 
             builder.Services.Configure<EmailSenderModel>(builder.Configuration.GetSection("EmailSenderModel"));
+            builder.Services.Configure<TwilioSettingsModel>(builder.Configuration.GetSection("Twilio"));
             builder.Services.AddApiServices();
             builder.Services.AddSwaggerServices();
             builder.Services.CustomJwtServices(builder.Configuration);
@@ -82,7 +84,7 @@ namespace GraduationProject_MedicalAssistant_
             app.AddSwaggerServiceMiddleWare();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCors();
+            app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();

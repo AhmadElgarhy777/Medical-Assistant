@@ -154,7 +154,7 @@ namespace DataAccess.Repositry.IRepositry
         public async Task<int> GetPendingOrdersCountAsync(string pharmacyId)
         {
             return await _context.Orders
-                .Where(o => o.PharmacyId == pharmacyId && o.Status == "Pending")
+                .Where(o => o.PharmacyId == pharmacyId && o.Status == OrderStatusEnum.Pending)
                 .CountAsync();
         }
 
@@ -281,6 +281,7 @@ namespace DataAccess.Repositry.IRepositry
             var patient = await _context.Patients
                 .FirstOrDefaultAsync(p => p.ID == patientId);
             if (patient == null) return false;
+            if(patient.IsDeleted) return false;
             _context.Patients.Remove(patient);
             await _context.SaveChangesAsync();
             return true;

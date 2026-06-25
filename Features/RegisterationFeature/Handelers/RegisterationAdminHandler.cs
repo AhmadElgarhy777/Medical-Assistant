@@ -93,6 +93,7 @@ namespace Features.RegisterationFeature.Handelers
                 Gender = AdminDto.Gender,
                 City = AdminDto.City,
                 Governorate = AdminDto.Governorate,
+                IsDeleted=false,
             };
 
             // ── 5. Transaction ──────────────────────────────────────────────────

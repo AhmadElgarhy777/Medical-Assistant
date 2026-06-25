@@ -10,6 +10,8 @@ namespace Models
     public class ModelBase
     {
         public string ID { get; set; }=Guid.NewGuid().ToString();
+        public bool IsDeleted { get; set; }=false;
+        public DateTime? DeletedAT { get; set; }
       
 
     }

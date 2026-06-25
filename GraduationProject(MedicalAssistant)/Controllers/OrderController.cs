@@ -3,6 +3,7 @@ using Features.PharmacyFeature;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
+using Models.Enums;
 using System.Security.Claims;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
@@ -35,14 +36,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         [HttpPut("UpdateOrderStatus")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdateOrderStatus(string orderId, [FromQuery] string status)
+        public async Task<IActionResult> UpdateOrderStatus([FromQuery]string orderId, [FromForm] OrderStatusEnum status)
         {
-            if (string.IsNullOrEmpty(status))
-                return BadRequest("ادخل الحالة!");
-
-            var validStatuses = new[] { "Pending", "Confirmed", "Delivered", "Cancelled" };
-            if (!validStatuses.Contains(status))
-                return BadRequest("الحالة مش صحيحة! لازم تكون: Pending, Confirmed, Delivered, Cancelled");
 
             var result = await _orderService.UpdateOrderStatusAsync(orderId, status);
             if (result == null)

@@ -61,7 +61,15 @@ namespace Features.AuthenticationFeature.Handlers
             var user = await userManager.FindByEmailAsync(userLogin.Email);
             if (user is not null)
             {
-                if(user.Role==SD.DoctorRole)
+                if (user.LockoutEnd > DateTime.UtcNow)
+                {
+                    return new AuthDTO
+                    {
+                        Message = $"Your Account Is Locked Until {user.LockoutEnd.Value.ToLocalTime()}."
+                    };
+                }
+
+                if (user.Role==SD.DoctorRole)
                 {
                     var spec = new DoctorSpecifcation(user.Id);
                     var doctor = await doctorRepositry.GetOne(spec).FirstOrDefaultAsync(cancellationToken);
@@ -131,7 +139,8 @@ namespace Features.AuthenticationFeature.Handlers
                         UserID = user.Id,
                         JwtId = token.Id,
                         IpAddress = http.HttpContext?.Connection?.RemoteIpAddress?.ToString(),
-                        DeviceInfo = $"{http.HttpContext?.Request.Headers["User-Agent"]}"
+                        DeviceInfo = $"{http.HttpContext?.Request.Headers["User-Agent"]}",
+                        IsDeleted = false,
                     };
 
                      refreshTokenRepositry.Add(refreshToken);

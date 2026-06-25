@@ -1,21 +1,22 @@
 ﻿using DataAccess;
 using DataAccess.Repositry;
 using DataAccess.Repositry.IRepositry;
+using DataAccess.UnitOfWork;
 using Features.PatientFeature.Handler;
 using GraduationProject_MedicalAssistant_.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Models;
+using Services.EmailServices;
 using Services.ImageServices;
+using Services.OTPConfirmServices;
+using Services.TwilioProviderServices.WhatsUp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Services.EmailServices;
-using Services.OTPConfirmServices;
-using DataAccess.UnitOfWork;
 
 namespace InfrastructureExtension
 {
@@ -48,6 +49,9 @@ namespace InfrastructureExtension
             services.AddScoped<ICommentRepositry, CommentRepositry>();
             services.AddScoped<IAdminRepositry, AdminRepositry>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISmsService, TwilioWhatsAppService>();
+            services.AddScoped<IPharmacyReposities, PharmacyReposities>();
+
 
             services.AddMemoryCache();
 

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Models;
+using Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Models;
 namespace DataAccess.Repositry.IRepositry
 {
     public class OrderRepository : IOrderRepository
@@ -90,11 +91,11 @@ namespace DataAccess.Repositry.IRepositry
         }
         public async Task CancelOrderAsync(Order order)
         {
-            order.Status = "Cancelled";
+            order.Status = OrderStatusEnum.Canceled;
             _context.Orders.Update(order);
             await _context.SaveChangesAsync();
         }
-        public async Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, string status)
+        public async Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, OrderStatusEnum status)
         {
             return await _context.Orders
                 .Where(o => o.PharmacyId == pharmacyId && o.Status == status)

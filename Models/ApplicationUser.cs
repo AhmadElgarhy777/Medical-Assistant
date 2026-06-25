@@ -14,6 +14,7 @@ namespace Models
         public string Role { get; set; } = null!;
         public GenderEnum Gender { get; set; }
         public string? Img { get; set; }
+     
 
         public ICollection<ConversationParticipant> conversationParticipants { get; set; } 
             = new List<ConversationParticipant>();
