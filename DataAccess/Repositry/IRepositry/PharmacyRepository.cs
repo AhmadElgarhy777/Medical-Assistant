@@ -396,12 +396,12 @@ namespace DataAccess.Repositry.IRepositry
             return R * c;
         }
         //########################################### بتاع موقع الدكتووووور
-        public async Task<IEnumerable<Doctor>> GetNearestDoctorsAsync(string specialization, double latitude, double longitude, double radius)
+        public async Task<IEnumerable<Doctor>> GetNearestDoctorsAsync(string specializationId, double latitude, double longitude, double radius)
         {
             var doctors = await _context.Doctors
                 .Where(c => c.Status == ConfrmationStatus.Approved &&
                     c.Latitude != null && c.Longitude != null &&
-                    c.Specialization.Name.Contains(specialization))
+                    c.SpecializationId == specializationId)
                 .ToListAsync();
 
             return doctors.Where(c =>

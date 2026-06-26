@@ -1,5 +1,6 @@
 ﻿using Features;
 using Features.DoctorFeature.Commands;
+using Features.DoctorFeature.Handlers;
 using Features.DoctorFeature.Queries;
 using Features.PatientFeature.Query;
 using Features.PharmacyFeature;
@@ -143,7 +144,20 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(result);
         }
 
+        [HttpPut("Update-location")]
+        public async Task<IActionResult> UpdateLocation(
+        [FromQuery] string DoctorId,
+        [FromQuery] double Latitude,
+         [FromQuery] double Longitude,
+         CancellationToken cancellationToken)
+        {
+            var result = await _mediatR.Send(new UpdateDoctorLocationCommand(DoctorId, Latitude, Longitude, cancellationToken), cancellationToken);
 
-       
+            if (!result.ISucsses)
+                return NotFound(result);
+
+            return Ok(result);
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DataAccess;
 using Features;
 using Features.PatientFeature.Command;
+using Features.PatientFeature.Handler;
 using Features.PatientFeature.Queries;
 using Features.PatientFeature.Query;
 using Features.PharmacyFeature;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Models.DTOs;
 using Models.Enums;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using Utility;
 
@@ -267,42 +269,63 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
             return Ok(result);
         }
-        [HttpGet("GetNearestPharmacies")]
-        [AllowAnonymous]
+        //[HttpGet("GetNearestPharmacies")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> GetNearestPharmacies(
+        //   [FromQuery] string? drugName,
+        //   [FromQuery] double latitude,
+        //   [FromQuery] double longitude,
+        //   [FromQuery] double radius = 5)
+        //{
+        //    if (string.IsNullOrEmpty(drugName))
+        //        return BadRequest("ادخل اسم الدواء!");
+
+        //    var result = await _pharmacyService.GetNearestPharmaciesAsync(drugName, latitude, longitude, radius);
+
+        //    if (!result.Any())
+        //        return NotFound("مفيش صيدليات قريبة عندها الدواء ده!");
+
+        //    return Ok(result);
+        //}
+
+        [HttpGet("nearest-pharmacies")]
         public async Task<IActionResult> GetNearestPharmacies(
-           [FromQuery] string? drugName,
-           [FromQuery] double latitude,
-           [FromQuery] double longitude,
-           [FromQuery] double radius = 5)
+                double Latitude,
+                double Longitude,
+                double Radius,
+                CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(drugName))
-                return BadRequest("ادخل اسم الدواء!");
+            var result = await mediatR.Send(new GetNearestPharmaciesQuery(Latitude,Longitude,Radius, cancellationToken));
+            if (!result.ISucsses)
+            {
+                return NotFound(result.Message);
+            }
 
-            var result = await _pharmacyService.GetNearestPharmaciesAsync(drugName, latitude, longitude, radius);
-
-            if (!result.Any())
-                return NotFound("مفيش صيدليات قريبة عندها الدواء ده!");
-
-            return Ok(result);
+            return Ok(result.Obj);
         }
 
-        [HttpGet("nearest/Doctor")]
+        [HttpGet("nearest-doctors")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetNearestDoctor(
-           [FromQuery] string specialization,
-           [FromQuery] double latitude,
-           [FromQuery] double longitude,
-           [FromQuery] double radius = 5)
+
+        public async Task<IActionResult> GetNearestDoctors(
+        string SpecializationId,
+        double Latitude,
+        double Longitude,
+        double Radius,
+        CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(specialization))
-                return BadRequest("ادخل التخصص!");
+            var result = await mediatR.Send(new GetNearestDoctorsQuery(
+                SpecializationId,
+                Latitude,
+                Longitude,
+                Radius,
+                cancellationToken));
+            if(!result.ISucsses)
+            {
+                return NotFound(result.Message);
+            }
 
-            var result = await _pharmacyService.GetNearestDoctorAsync(specialization, latitude, longitude, radius);
-
-            if (!result.Any())
-                return NotFound("مفيش عيادات قريبة بالتخصص ده!");
-
-            return Ok(result);
+            return Ok(result.Obj);
         }
     }
 }

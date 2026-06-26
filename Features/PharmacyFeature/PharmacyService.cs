@@ -394,11 +394,11 @@ namespace Features.PharmacyFeature
             return R * c;
         }
         //#################################################### يدكتووووووور
-        public async Task<IEnumerable<NearestDoctorsDto>> GetNearestDoctorAsync(string specialization, double latitude, double longitude, double radius)
+        public async Task<IEnumerable<NearestDoctorsDto>> GetNearestDoctorAsync(string specializationId, double latitude, double longitude, double radius)
         {
-            var clinics = await _pharmacyRepository.GetNearestDoctorsAsync(specialization, latitude, longitude, radius);
+            var doctors = await _pharmacyRepository.GetNearestDoctorsAsync(specializationId, latitude, longitude, radius);
 
-            return clinics.Select(c =>
+            return doctors.Select(c =>
             {
                 var distance = CalculateDistance(latitude, longitude, c.Latitude!.Value, c.Longitude!.Value);
 

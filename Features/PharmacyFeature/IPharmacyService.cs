@@ -53,7 +53,7 @@ namespace Features.PharmacyFeature
         Task<SuperAdminStatsDto> GetStatsAsync();
         Task<IEnumerable<Order>> GetAllOrdersAsync();
         Task<IEnumerable<NearestPharmacyDto>> GetNearestPharmaciesAsync(string? drugName, double latitude, double longitude, double radius);
-        Task<IEnumerable<NearestDoctorsDto>> GetNearestDoctorAsync(string specialization, double latitude, double longitude, double radius);
+        Task<IEnumerable<NearestDoctorsDto>> GetNearestDoctorAsync(string specializationId, double latitude, double longitude, double radius);
         Task<bool> UpdatePharmacyLocationAsync(string pharmacyId, double latitude, double longitude);
         Task<SalesReportDto> GetSalesReportAsync(string pharmacyId);
 

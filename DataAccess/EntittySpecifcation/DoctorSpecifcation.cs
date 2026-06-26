@@ -20,6 +20,7 @@ namespace DataAccess.EntittySpecifcation
         {
             Includes?.Add(p => p.Specialization);
         }
+      
         public DoctorSpecifcation(Expression<Func<Doctor,bool>> expression ):base(expression)
         {
             Includes?.Add(p => p.Specialization);
