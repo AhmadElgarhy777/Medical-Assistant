@@ -267,10 +267,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpPatch("UpdatePharmacyLocation")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> UpdatePharmacyLocation(
-            string pharmacyId,
             [FromQuery] double latitude,
             [FromQuery] double longitude)
         {
+            var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var result = await _pharmacyService.UpdatePharmacyLocationAsync(pharmacyId, latitude, longitude);
             if (!result)
                 return NotFound("الصيدلية مش موجودة!");

@@ -28,6 +28,9 @@ namespace Models.DTOs
         public string Degree { get; set; } = null!;
         public double Price { get; set; }
 
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
 
     }
 }

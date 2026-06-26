@@ -278,6 +278,8 @@ namespace Features.PharmacyFeature
                 City = pharmacy.City,
                 RealImg = pharmacy.RealImg,
                 PharmacyLicense = pharmacy.PharmacyLicense,
+                Latitude = pharmacy.Latitude,
+                Longitude = pharmacy.Longitude,
             };
         }
         public async Task<IEnumerable<Pharmacy>> GetPendingPharmaciesAsync()

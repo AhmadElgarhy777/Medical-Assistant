@@ -146,11 +146,11 @@ namespace GraduationProject_MedicalAssistant_.Controllers
 
         [HttpPut("Update-location")]
         public async Task<IActionResult> UpdateLocation(
-        [FromQuery] string DoctorId,
         [FromQuery] double Latitude,
          [FromQuery] double Longitude,
          CancellationToken cancellationToken)
         {
+            var DoctorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var result = await _mediatR.Send(new UpdateDoctorLocationCommand(DoctorId, Latitude, Longitude, cancellationToken), cancellationToken);
 
             if (!result.ISucsses)

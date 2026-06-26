@@ -21,5 +21,8 @@ namespace Models.DTOs
         public DateOnly BD { get; set; }
         public double RattingAverage { get; set; }
 
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
     }
 }
