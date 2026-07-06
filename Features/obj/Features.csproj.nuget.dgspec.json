@@ -121,11 +121,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x86": {
-          "#import": []
-        }
       }
     },
     "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Features\\Features.csproj": {
@@ -240,11 +235,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x86": {
-          "#import": []
-        }
       }
     },
     "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Models\\Models.csproj": {
@@ -348,11 +338,6 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
         }
-      },
-      "runtimes": {
-        "win-x86": {
-          "#import": []
-        }
       }
     },
     "C:\\GraduationProject\\GraduationProject(MedicalAssistant)\\Services\\Services.csproj": {
@@ -412,21 +397,9 @@
               "target": "Package",
               "version": "[4.16.0, )"
             },
-            "SixLabors.ImageSharp": {
-              "target": "Package",
-              "version": "[3.1.5, )"
-            },
             "Twilio": {
               "target": "Package",
               "version": "[7.14.7, )"
-            },
-            "fo-dicom": {
-              "target": "Package",
-              "version": "[5.1.3, )"
-            },
-            "fo-dicom.Imaging.ImageSharp": {
-              "target": "Package",
-              "version": "[5.1.3, )"
             }
           },
           "imports": [
@@ -463,11 +436,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x86": {
-          "#import": []
         }
       }
     },
@@ -547,11 +515,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x86": {
-          "#import": []
         }
       }
     }

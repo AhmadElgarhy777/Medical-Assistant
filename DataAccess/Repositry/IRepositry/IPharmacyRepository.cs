@@ -90,7 +90,7 @@ namespace DataAccess.Repositry.IRepositry
         Task<bool> MarkComplaintAsReadAsync(string complaintId);
         Task<IEnumerable<PharmacyRating>> GetAllRatingsAsync();
         Task<bool> DeleteRatingAsync(int ratingId);
-        Task AddPrescriptionRequestAsync(PrescriptionRequest request);
+        Task AddPrescriptionRequestAsync(PrescriptionRequest PrescriptionRequest);
         Task<IEnumerable<PrescriptionRequest>> GetPharmacyPrescriptionsAsync(string pharmacyId);
         Task<IEnumerable<PrescriptionRequest>> GetPatientPrescriptionsAsync(string patientId);
         Task<PrescriptionRequest> GetPrescriptionByIdAsync(string id);

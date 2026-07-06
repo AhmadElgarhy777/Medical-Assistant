@@ -1,9 +1,11 @@
 ﻿using DataAccess.Repositry.IRepositry;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Models;
 using Models.DTOs;
 using Models.Enums;
+using Services.ImageServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +17,14 @@ namespace Features.PharmacyFeature
     public class PharmacyService : IPharmacyService
     {
         private readonly IPharmacyRepository _pharmacyRepository;
+        private readonly IImageService imageService;
+        private readonly IConfiguration configuration;
 
-        public PharmacyService(IPharmacyRepository pharmacyRepository)
+        public PharmacyService(IPharmacyRepository pharmacyRepository,IImageService imageService,IConfiguration configuration)
         {
             _pharmacyRepository = pharmacyRepository;
+            this.imageService = imageService;
+            this.configuration = configuration;
         }
 
         public async Task<PagedResultDto<PharmacyResultDto>> SearchByDrugNameAsync(string drugName, int pageNumber = 1, int pageSize = 10)
@@ -498,9 +504,18 @@ namespace Features.PharmacyFeature
         {
             return await _pharmacyRepository.DeleteRatingAsync(ratingId);
         }
-        public async Task AddPrescriptionRequestAsync(PrescriptionRequest request)
+        public async Task AddPrescriptionRequestAsync(PrescriptionRequestDto PrescriptionRequestDto,CancellationToken cancellationToken)
         {
-            await _pharmacyRepository.AddPrescriptionRequestAsync(request);
+            var prescriptionRequest = new PrescriptionRequest
+            {
+                PatientId = PrescriptionRequestDto.PatientId,
+                PharmacyId = PrescriptionRequestDto.PharmacyId,
+                Notes = PrescriptionRequestDto.Notes
+            };
+            var image = await imageService.UploadImgAsync(PrescriptionRequestDto.PrescriptionImg, "PrescriptionImages",cancellationToken);
+            prescriptionRequest.PrescriptionImg = $"{configuration["ApiBaseUrl"]}/PrescriptionImages/{image}";
+
+            await _pharmacyRepository.AddPrescriptionRequestAsync(prescriptionRequest);
         }
 
         public async Task<IEnumerable<PrescriptionRequest>> GetPharmacyPrescriptionsAsync(string pharmacyId)

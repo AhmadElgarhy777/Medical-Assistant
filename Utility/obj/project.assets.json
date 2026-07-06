@@ -1,8 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {},
-    "net8.0/win-x86": {}
+    "net8.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
@@ -89,19 +88,6 @@
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.315/PortableRuntimeIdentifierGraph.json"
       }
-    },
-    "runtimes": {
-      "win-x86": {
-        "#import": []
-      }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

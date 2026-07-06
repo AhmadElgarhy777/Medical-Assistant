@@ -73,7 +73,7 @@ namespace Features.PharmacyFeature
         Task<bool> MarkComplaintAsReadAsync(string complaintId);
         Task<IEnumerable<PharmacyRating>> GetAllRatingsAsync();
         Task<bool> DeleteRatingAsync(int ratingId);
-        Task AddPrescriptionRequestAsync(PrescriptionRequest request);
+        Task AddPrescriptionRequestAsync(PrescriptionRequestDto PrescriptionRequestDto,CancellationToken cancellationToken);
         Task<IEnumerable<PrescriptionRequest>> GetPharmacyPrescriptionsAsync(string pharmacyId);
         Task<IEnumerable<PrescriptionRequest>> GetPatientPrescriptionsAsync(string patientId);
         Task<PrescriptionRequest> GetPrescriptionByIdAsync(string id);

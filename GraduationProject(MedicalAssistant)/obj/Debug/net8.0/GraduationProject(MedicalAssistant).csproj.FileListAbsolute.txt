@@ -191,3 +191,4 @@ c:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(Medic
 c:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 c:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\staticwebassets.build.json.cache
 c:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\GraduationProject\GraduationProject(MedicalAssistant)\GraduationProject(MedicalAssistant)\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

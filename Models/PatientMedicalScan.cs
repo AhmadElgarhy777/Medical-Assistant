@@ -17,10 +17,6 @@ namespace Models
 
         public MedicalScanStatusEnum Status { get; set; } = MedicalScanStatusEnum.PendingDoctorReview;
 
-        public double BlurScore { get; set; }
-        public double Brightness { get; set; }
-        public double Contrast { get; set; }
-
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? ApprovedAt { get; set; }
 

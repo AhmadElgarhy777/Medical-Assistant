@@ -33,7 +33,6 @@ namespace InfrastructureExtension
             services.AddScoped<IAiReportRepositry, AiReportRepositry>();
             services.AddScoped<IAiReportImageRepositry, AiReportImageRepositry>();
             services.AddScoped<IPatientMedicalScanRepositry, PatientMedicalScanRepositry>();
-            //services.AddScoped<IImageQualityService, ImageQualityService>();
             services.AddScoped<IAppointmentRepositry, AppointmentRepositry>();
             services.AddScoped<IClinicPhoneRepositry, ClinicPhoneRepositry>();
             services.AddScoped<IClinicRepositry, ClinicRepositry>();
@@ -67,6 +66,7 @@ namespace InfrastructureExtension
             services.AddHttpClient<IChestRayClassifcationAiClient, ChestRayClassifcationAiClient>();
             services.AddHttpClient<ICBCBloodTestAiClient, CBCBloodTestAiClient>();
             services.AddScoped<IAnalyzeImage, AnalyzeImage>();
+            services.AddScoped<IAiAnalysisOrchestrator, AiAnalysisOrchestrator>();
 
 
             services.AddScoped<IFileService, FileService>();

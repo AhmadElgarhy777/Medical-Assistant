@@ -17,7 +17,7 @@ namespace DataAccess
         public DbSet<AiReportImage> AiReportImages { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<PatientMedicalScan> PatientMedicalScans { get; set; }
-       
+
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<ClinicPhone> ClinicPhones { get; set; }
         public DbSet<DoctorAvilableTime> DoctorAvilableTimes { get; set; }

@@ -7,7 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using static Azure.Core.HttpHeader;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DataAccess.Repositry.IRepositry
 {
@@ -641,9 +644,9 @@ namespace DataAccess.Repositry.IRepositry
             await _context.SaveChangesAsync();
             return true;
         }
-        public async Task AddPrescriptionRequestAsync(PrescriptionRequest request)
+        public async Task AddPrescriptionRequestAsync(PrescriptionRequest PrescriptionRequest)
         {
-            await _context.PrescriptionRequests.AddAsync(request);
+            await _context.PrescriptionRequests.AddAsync(PrescriptionRequest);
             await _context.SaveChangesAsync();
         }
 

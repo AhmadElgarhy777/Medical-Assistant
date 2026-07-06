@@ -17,18 +17,15 @@ namespace Features.PatientMedicalScanFeature.Handlers
     public class UploadPatientScanCommandHandler : IRequestHandler<UploadPatientScanCommand, ResultResponse<PatientMedicalScan>>
     {
         private readonly IPatientMedicalScanRepositry _scanRepository;
-        private readonly IImageQualityService _qualityService;
         private readonly IImageService _imageService;
         private readonly IUnitOfWork _unitOfWork;
 
         public UploadPatientScanCommandHandler(
             IPatientMedicalScanRepositry scanRepository,
-            IImageQualityService qualityService,
             IImageService imageService,
             IUnitOfWork unitOfWork)
         {
             _scanRepository = scanRepository;
-            _qualityService = qualityService;
             _imageService = imageService;
             _unitOfWork = unitOfWork;
         }
@@ -58,32 +55,11 @@ namespace Features.PatientMedicalScanFeature.Handlers
                 };
             }
 
-            // 1. Run image quality assessment
-            using var fileStream = request.ScanFile.OpenReadStream();
-            var qualityResult = await _qualityService.ValidateImageAsync(fileStream, extension, cancellationToken);
-
-            if (!qualityResult.IsValid)
-            {
-                return new ResultResponse<PatientMedicalScan>
-                {
-                    ISucsses = false,
-                    Message = "Image quality check failed. Scan rejected.",
-                    Errors = qualityResult.Errors,
-                    Obj = new PatientMedicalScan
-                    {
-                        BlurScore = qualityResult.BlurScore,
-                        Brightness = qualityResult.Brightness,
-                        Contrast = qualityResult.Contrast,
-                        Status = MedicalScanStatusEnum.Rejected
-                    }
-                };
-            }
-
-            // 2. Upload/Save scan image to Storage
+            // 1. Upload/Save scan image to Storage
             string fileName = await _imageService.UploadImgAsync(request.ScanFile, "Storage", cancellationToken);
             string savedPath = Path.Combine("Storage", fileName);
 
-            // 3. Create PatientMedicalScan record
+            // 2. Create PatientMedicalScan record
             var scan = new PatientMedicalScan
             {
                 PatientId = request.PatientId,
@@ -91,9 +67,6 @@ namespace Features.PatientMedicalScanFeature.Handlers
                 ModelType = request.ModelType,
                 ImagePath = savedPath,
                 Status = MedicalScanStatusEnum.PendingDoctorReview,
-                BlurScore = qualityResult.BlurScore,
-                Brightness = qualityResult.Brightness,
-                Contrast = qualityResult.Contrast,
                 CreatedAt = DateTime.Now
             };
 
@@ -108,7 +81,7 @@ namespace Features.PatientMedicalScanFeature.Handlers
                 return new ResultResponse<PatientMedicalScan>
                 {
                     ISucsses = true,
-                    Message = "Scan uploaded and quality verified successfully.",
+                    Message = "Scan uploaded successfully.",
                     Obj = scan
                 };
             }

@@ -21,36 +21,18 @@ namespace Features.PatientMedicalScanFeature.Handlers
     public class AnalyzePatientScanCommandHandler : IRequestHandler<AnalyzePatientScanCommand, ResultResponse<AiReport>>
     {
         private readonly IPatientMedicalScanRepositry _scanRepository;
-        private readonly IAnalyzeImage _analyzeImage;
-        private readonly IBrainTumorAIClient _brainTumorClient;
-        private readonly ISkinCancerClassificationAIClient _skinCancerClient;
-        private readonly IChestRayClassifcationAiClient _chestRayClient;
-        private readonly ICBCBloodTestAiClient _cbcClient;
-        private readonly IAiReportRepositry _reportRepository;
-        private readonly IAiReportImageRepositry _reportImageRepository;
+        private readonly IAiAnalysisOrchestrator _orchestrator;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _environment;
 
         public AnalyzePatientScanCommandHandler(
             IPatientMedicalScanRepositry scanRepository,
-            IAnalyzeImage analyzeImage,
-            IBrainTumorAIClient brainTumorClient,
-            ISkinCancerClassificationAIClient skinCancerClient,
-            IChestRayClassifcationAiClient chestRayClient,
-            ICBCBloodTestAiClient cbcClient,
-            IAiReportRepositry reportRepository,
-            IAiReportImageRepositry reportImageRepository,
+            IAiAnalysisOrchestrator orchestrator,
             IUnitOfWork unitOfWork,
             IWebHostEnvironment environment)
         {
             _scanRepository = scanRepository;
-            _analyzeImage = analyzeImage;
-            _brainTumorClient = brainTumorClient;
-            _skinCancerClient = skinCancerClient;
-            _chestRayClient = chestRayClient;
-            _cbcClient = cbcClient;
-            _reportRepository = reportRepository;
-            _reportImageRepository = reportImageRepository;
+            _orchestrator = orchestrator;
             _unitOfWork = unitOfWork;
             _environment = environment;
         }
@@ -98,76 +80,36 @@ namespace Features.PatientMedicalScanFeature.Handlers
                 };
             }
 
-            // 2. Select appropriate AI Client based on ModelType
-            IAIModelClient aiClient = scan.ModelType switch
+            // 2. Call orchestrator to perform AI prediction and save the report
+            var orchestratorResult = await _orchestrator.ProcessAnalysisAsync(
+                new List<string> { absoluteImagePath },
+                scan.PatientId,
+                scan.DoctorId,
+                request.DoctorNote ?? scan.DoctorNote,
+                scan.ModelType,
+                cancellationToken);
+
+            if (!orchestratorResult.ISucsses)
             {
-                AiModelTypeEnum.BrainTumorDetection => _brainTumorClient,
-                AiModelTypeEnum.SkinCancerClassification => _skinCancerClient,
-                AiModelTypeEnum.ChestRayClassifcation => _chestRayClient,
-                AiModelTypeEnum.CBCBloodTest => _cbcClient,
-                _ => throw new ArgumentOutOfRangeException(nameof(scan.ModelType), "Unknown AI Model Type.")
-            };
+                return orchestratorResult;
+            }
+
+            // 3. Update scan request status and associate report
+            scan.Status = MedicalScanStatusEnum.Analyzed;
+            scan.AiReportId = orchestratorResult.Obj.ID;
+            if (!string.IsNullOrEmpty(request.DoctorNote))
+            {
+                scan.DoctorNote = request.DoctorNote;
+            }
 
             using var transaction = await _unitOfWork.BeginTransactionAsync(cancellationToken);
             try
             {
-                // 3. Trigger prediction on AI microservice
-                var analysisResult = await _analyzeImage.AnalyzeImagesAsync(
-                    new List<string> { absoluteImagePath },
-                    aiClient,
-                    cancellationToken
-                );
-
-                // 4. Create AiReport
-                var report = new AiReport
-                {
-                    Diagnosis = analysisResult.Prediction,
-                    Confidence = analysisResult.Confidence,
-                    ModelType = scan.ModelType,
-                    PatientId = scan.PatientId,
-                    DoctorId = scan.DoctorId,
-                    DoctorNote = request.DoctorNote ?? scan.DoctorNote,
-                    CreatedAt = DateTime.Now
-                };
-                _reportRepository.Add(report);
-
-                // 5. Save report image reference
-                var extension = Path.GetExtension(scan.ImagePath).ToLowerInvariant();
-                var contentType = extension switch
-                {
-                    ".jpg" or ".jpeg" => "image/jpeg",
-                    ".png" => "image/png",
-                    _ => "image/jpeg"
-                };
-
-                var reportImage = new AiReportImage
-                {
-                    ImagePath = scan.ImagePath,
-                    AiReportId = report.ID,
-                    ContentType = contentType,
-                    UploadedAt = DateTime.Now
-                };
-                _reportImageRepository.Add(reportImage);
-
-                // 6. Update scan request status and associate report
-                scan.Status = MedicalScanStatusEnum.Analyzed;
-                scan.AiReportId = report.ID;
-                if (!string.IsNullOrEmpty(request.DoctorNote))
-                {
-                    scan.DoctorNote = request.DoctorNote;
-                }
-
                 _scanRepository.Edit(scan);
-
                 await _unitOfWork.CompleteAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);
 
-                return new ResultResponse<AiReport>
-                {
-                    ISucsses = true,
-                    Message = "AI analysis completed successfully. Report generated.",
-                    Obj = report
-                };
+                return orchestratorResult;
             }
             catch (Exception ex)
             {
@@ -175,7 +117,7 @@ namespace Features.PatientMedicalScanFeature.Handlers
                 return new ResultResponse<AiReport>
                 {
                     ISucsses = false,
-                    Message = $"An error occurred during AI analysis: {ex.Message}",
+                    Message = $"An error occurred while linking the AI report: {ex.Message}",
                     Errors = new List<string> { ex.Message }
                 };
             }

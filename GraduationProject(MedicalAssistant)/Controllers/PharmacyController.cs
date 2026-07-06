@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.DTOs;
+using Models.DTOs.RegistertionDTOs;
 using Models.Enums;
 using System.Security.Claims;
 
@@ -292,18 +293,21 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             string pharmacyId,
             [FromQuery] string patientId,
             [FromForm] IFormFile prescriptionImg,
-            [FromQuery] string? notes)
+            [FromQuery] string? notes,
+            CancellationToken cancellationToken)
         {
-            var request = new PrescriptionRequest
+
+            var prescriptionRequestDto = new PrescriptionRequestDto
             {
                 PatientId = patientId,
                 PharmacyId = pharmacyId,
                 PrescriptionImg = prescriptionImg,
                 Notes = notes,
-                CreatedAt = DateTime.Now
-            };
 
-            await _pharmacyService.AddPrescriptionRequestAsync(request);
+            };
+           
+
+            await _pharmacyService.AddPrescriptionRequestAsync(prescriptionRequestDto,cancellationToken);
             return Ok("تم إرسال الروشتة بنجاح!");
         }
 
