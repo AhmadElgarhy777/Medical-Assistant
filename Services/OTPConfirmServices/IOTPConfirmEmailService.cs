@@ -8,7 +8,7 @@ namespace Services.OTPConfirmServices
 {
     public interface IOTPConfirmEmailService
     {
-        Task SendAsync(string UserId, string Email, CancellationToken cancellationToken=default);
+        Task SendAsync(string UserId, string Email, string subject, string message, CancellationToken cancellationToken = default);
         Task<bool> VerifyAsync(string UserId, string Otp, CancellationToken cancellationToken=default);
     }
 }

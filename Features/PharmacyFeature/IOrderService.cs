@@ -1,4 +1,5 @@
-﻿using Models.DTOs;
+﻿using Models;
+using Models.DTOs;
 using Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,7 @@ namespace Features.PharmacyFeature
         Task<OrderResultDto> CancelOrderAsync(string orderId);
         Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, OrderStatusEnum status);
         Task<Order> GetOrderByIdAsync(string orderId);
+        Task<Invoice> GetInvoiceByIdAsync(string invoiceId);
+
     }
 }

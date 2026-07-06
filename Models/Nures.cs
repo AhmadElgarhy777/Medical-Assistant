@@ -14,7 +14,7 @@ namespace Models
         public string SSN { get; set; } = null!;
         public string FullName { get; set; } = null!;
         public string UserName { get; set; } = null!;
-
+        public NurseSpecialtyEnum NurseSpecialty { get; set; }
         public string Email { get; set; } = null!;
         public GenderEnum Gender { get; set; }
         public string Img { get; set; } = null!;
@@ -28,9 +28,14 @@ namespace Models
         public string CertificationImg { get; set; } = null!;
         public string? Bio { get; set; } 
         public string Experence { get; set; } = null!;
-        public decimal PricePerDay { get; set; }
+        public string? WorkAt { get; set; }
+        public decimal PricePerHours { get; set; }
         public ConfrmationStatus Status { get; set; } = ConfrmationStatus.Pending;
         public double RattingAverage { get; set; }
+
+
+        public ICollection<NurseService> NurseServices { get; set; }
+           = new List<NurseService>();
 
     }
 }

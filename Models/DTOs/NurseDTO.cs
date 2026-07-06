@@ -28,7 +28,10 @@ namespace Models.DTOs
         public string Bio { get; set; } = null!;
         public string Phone { get; set; } = null!;
         public string Experence { get; set; } = null!;
-        public decimal PricePerDay { get; set; }
+        public decimal PricePerHours { get; set; }
+        public string? WorkAt { get; set; }
+        public NurseSpecialtyEnum NurseSpecialty { get; set; }
+
 
 
     }

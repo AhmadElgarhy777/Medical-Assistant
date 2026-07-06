@@ -1,13 +1,19 @@
-﻿using DataAccess;
+using DataAccess;
 using DataAccess.Repositry;
 using DataAccess.Repositry.IRepositry;
 using DataAccess.UnitOfWork;
+using Features.AiFeature.AnalyzeBrainTumorFeature;
+using Features.AiFeature.CBCBloodTest;
+using Features.AiFeature.ChestRayClassifcation;
+using Features.AiFeature.SharedMethod;
+using Features.AiFeature.SkinCancerClassification;
 using Features.PatientFeature.Handler;
 using GraduationProject_MedicalAssistant_.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Models;
 using Services.EmailServices;
+using Services.FileServices;
 using Services.ImageServices;
 using Services.OTPConfirmServices;
 using Services.TwilioProviderServices.WhatsUp;
@@ -25,6 +31,9 @@ namespace InfrastructureExtension
         public static  IServiceCollection AddApiServices(this IServiceCollection services)
         {
             services.AddScoped<IAiReportRepositry, AiReportRepositry>();
+            services.AddScoped<IAiReportImageRepositry, AiReportImageRepositry>();
+            services.AddScoped<IPatientMedicalScanRepositry, PatientMedicalScanRepositry>();
+            //services.AddScoped<IImageQualityService, ImageQualityService>();
             services.AddScoped<IAppointmentRepositry, AppointmentRepositry>();
             services.AddScoped<IClinicPhoneRepositry, ClinicPhoneRepositry>();
             services.AddScoped<IClinicRepositry, ClinicRepositry>();
@@ -43,15 +52,26 @@ namespace InfrastructureExtension
             services.AddScoped<IEmailServices, EmailServices>();
             services.AddScoped<IOTPConfirmEmailService, OTPConfirmEmailService>();
             services.AddScoped<IConversationPaticipantsRepositry, ConversationParticiPantsRepositry>();
-            services.AddScoped<IMessageRepositry, MessageRepositry>();
-            services.AddScoped<IConversationRepositry,ConversationRepositry>();
+            services.AddScoped<IConversationRepository, ConversationRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<IPharmacyRepository, PharmacyRepository>();
             services.AddScoped<ICommentRepositry, CommentRepositry>();
             services.AddScoped<IAdminRepositry, AdminRepositry>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ISmsService, TwilioWhatsAppService>();
             services.AddScoped<IPharmacyReposities, PharmacyReposities>();
+            services.AddScoped<INurseServicesRepositry, NurseServiceRepositry>();
+            services.AddScoped<INursingServicesRepositry, NurseingServiceRepositry>();
+            services.AddHttpClient<IBrainTumorAIClient, BrainTumorAIClient>();
+            services.AddHttpClient<ISkinCancerClassificationAIClient, SkinCancerClassificationAIClient>();
+            services.AddHttpClient<IChestRayClassifcationAiClient, ChestRayClassifcationAiClient>();
+            services.AddHttpClient<ICBCBloodTestAiClient, CBCBloodTestAiClient>();
+            services.AddScoped<IAnalyzeImage, AnalyzeImage>();
 
+
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<ILabRepository, LabRepository>();
 
             services.AddMemoryCache();
 

@@ -74,5 +74,28 @@ namespace DataAccess.Repositry.IRepositry
         Task<IEnumerable<TopDrugDto>> GetTopDrugsAsync(string pharmacyId);
         Task<IEnumerable<PeakHoursDto>> GetPeakHoursAsync(string pharmacyId);
 
+        Task<bool> UpdateDoctorProfileAsync(string doctorId, UpdateDoctorDto dto);
+        Task<bool> UpdateNurseProfileAsync(string nurseId, UpdateNurseDto dto);
+
+        Task<int> GetNewUsersCountAsync();
+        Task<int> GetPendingDoctorsCountAsync();
+        Task<SuperAdminDashboardDto> GetSuperAdminDashboardAsync();
+        Task AddBanReportAsync(BanReport banReport);
+        Task<IEnumerable<BanReport>> GetAllBanReportsAsync();
+        Task<BanReport> GetBanReportByIdAsync(string id);
+        Task AddComplaintAsync(Complaint complaint);
+        Task<IEnumerable<Complaint>> GetAllComplaintsAsync();
+        Task<IEnumerable<object>> SearchAllAsync(string query);
+        Task<IEnumerable<BanReport>> GetUserBanReportsAsync(string userId);
+        Task<bool> MarkComplaintAsReadAsync(string complaintId);
+        Task<IEnumerable<PharmacyRating>> GetAllRatingsAsync();
+        Task<bool> DeleteRatingAsync(int ratingId);
+        Task AddPrescriptionRequestAsync(PrescriptionRequest request);
+        Task<IEnumerable<PrescriptionRequest>> GetPharmacyPrescriptionsAsync(string pharmacyId);
+        Task<IEnumerable<PrescriptionRequest>> GetPatientPrescriptionsAsync(string patientId);
+        Task<PrescriptionRequest> GetPrescriptionByIdAsync(string id);
+        Task<bool> UpdatePrescriptionStatusAsync(string id, string status, string? pharmacyNotes);
+        Task<bool> UpdatePrescriptionStatusAsync(string id, string status, string? pharmacyNotes, List<PrescriptionItemDto>? items = null);
+
     }
 }

@@ -11,11 +11,17 @@ namespace Models.DTOs
     {
         public string? Name { get; set; }
         public string? City { get; set; }
+        public string? ServiceID { get; set; }
         public Governorate? Governorate { get; set; }
         public StarsRatingEnum? Rate { get; set; }
         public GenderEnum? Gender { get; set; }
         public decimal? MinPrice { get; set; }  
         public decimal? MaxPrice { get; set; }
+        public NurseSpecialtyEnum? nurseSpecialty { get; set; }
+
+        
+
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DataAccess.Specfications;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,18 @@ namespace DataAccess.Repositry.IRepositry
         //public Task<T?> GetOneAsync(Expression<Func<T, object>>[]? includeProp = null, Expression<Func<T, bool>>? expression = null, bool tracked = true, CancellationToken Token = default);
 
         public void Add(T item);
-        public void AddRange(T item);
+        public void AddRange(IEnumerable<T> item);
         void Edit(T item);
         void Delete(T item);
-        public void DeleteRange(T item);
+        public void DeleteRange(IEnumerable<T> item);
         Task CommitAsync(CancellationToken token = default);
 
        
 
         public IQueryable<T> GetAll(ISpecifcation<T> spec);
         public IQueryable<T?> GetOne(ISpecifcation<T> spec);
+
+        DbSet<T> GetTable();
     }
 
 }

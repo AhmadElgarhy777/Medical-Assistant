@@ -191,11 +191,120 @@ namespace GraduationProject_MedicalAssistant_.Controllers
        
 
 
+
+        // ✅ إضافة Ban Report
+        [HttpPost("ban-report")]
+        public async Task<IActionResult> AddBanReport([FromBody] BanReport banReport)
+        {
+            await _pharmacyService.AddBanReportAsync(banReport);
+            return Ok("تم إضافة تقرير الحظر!");
+        }
+
+        // ✅ كل تقارير الحظر
+        [HttpGet("ban-reports")]
+        public async Task<IActionResult> GetAllBanReports()
+        {
+            var result = await _pharmacyService.GetAllBanReportsAsync();
+            if (!result.Any())
+                return NotFound("مفيش تقارير حظر!");
+            return Ok(result);
+        }
+
+        // ✅ تقرير حظر واحد
+        [HttpGet("ban-report/{id}")]
+        public async Task<IActionResult> GetBanReportById(string id)
+        {
+            var result = await _pharmacyService.GetBanReportByIdAsync(id);
+            if (result == null)
+                return NotFound("التقرير مش موجود!");
+            return Ok(result);
+        }
+
+        // ✅ تقارير حظر يوزر معين
+        [HttpGet("ban-reports/user/{userId}")]
+        public async Task<IActionResult> GetUserBanReports(string userId)
+        {
+            var result = await _pharmacyService.GetUserBanReportsAsync(userId);
+            if (!result.Any())
+                return NotFound("مفيش تقارير لهذا المستخدم!");
+            return Ok(result);
+        }
+
+        // ✅ إضافة شكوى
+        [HttpPost("complaint")]
+        [AllowAnonymous]
+        public async Task<IActionResult> AddComplaint([FromBody] Complaint complaint)
+        {
+            complaint.CreatedAt = DateTime.Now;
+            await _pharmacyService.AddComplaintAsync(complaint);
+            return Ok("تم إرسال الشكوى بنجاح!");
+        }
+
+        // ✅ كل الشكاوي
+        [HttpGet("complaints")]
+        public async Task<IActionResult> GetAllComplaints()
+        {
+            var result = await _pharmacyService.GetAllComplaintsAsync();
+            if (!result.Any())
+                return NotFound("مفيش شكاوي!");
+            return Ok(result);
+        }
+
+        // ✅ تحديد شكوى كمقروءة
+        [HttpPatch("complaint/{complaintId}/read")]
+        public async Task<IActionResult> MarkComplaintAsRead(string complaintId)
+        {
+            var result = await _pharmacyService.MarkComplaintAsReadAsync(complaintId);
+            if (!result)
+                return NotFound("الشكوى مش موجودة!");
+            return Ok("تم تحديد الشكوى كمقروءة!");
+        }
+
+        // ✅ بحث شامل
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchAll([FromQuery] string query)
+        {
+            if (string.IsNullOrEmpty(query))
+                return BadRequest("ادخل كلمة البحث!");
+            var result = await _pharmacyService.SearchAllAsync(query);
+            if (!result.Any())
+                return NotFound("مفيش نتايج!");
+            return Ok(result);
+        }
+
+        // ✅ كل التقييمات
+        [HttpGet("ratings")]
+        public async Task<IActionResult> GetAllRatings()
+        {
+            var result = await _pharmacyService.GetAllRatingsAsync();
+            if (!result.Any())
+                return NotFound("مفيش تقييمات!");
+            return Ok(result);
+        }
+
+        // ✅ حذف تقييم
+        [HttpDelete("rating/{ratingId}")]
+        public async Task<IActionResult> DeleteRating(int ratingId)
+        {
+            var result = await _pharmacyService.DeleteRatingAsync(ratingId);
+            if (!result)
+                return NotFound("التقييم مش موجود!");
+            return Ok("تم حذف التقييم!");
+        }
+
+
         // ✅ إحصائيات السيستم
         [HttpGet("stats")]
         public async Task<IActionResult> GetStats()
         {
             var result = await _pharmacyService.GetStatsAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("dashboard")]
+        public async Task<IActionResult> GetSuperAdminDashboard()
+        {
+            var result = await _pharmacyService.GetSuperAdminDashboardAsync();
             return Ok(result);
         }
 

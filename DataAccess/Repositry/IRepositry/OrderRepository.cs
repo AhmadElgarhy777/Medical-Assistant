@@ -106,5 +106,12 @@ namespace DataAccess.Repositry.IRepositry
                 .Include(o => o.Invoice)
                 .ToListAsync();
         }
+
+        public async Task<Invoice> GetInvoiceByIdAsync(string invoiceId)
+        {
+            return await _context.Invoices
+                .FirstOrDefaultAsync(i => i.ID == invoiceId);
+        }
+
     }
 }

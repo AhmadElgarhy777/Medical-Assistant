@@ -18,5 +18,11 @@ namespace Models.DTOs
         public DateTime RequestDate { get; set; }
         public string PatientEmail{ get; set; } = null!;
 
+        public double BookingLongitude { get; set; }
+        public double BookingLatitude { get; set; }
+        public string? BookingAddressNote { get; set; }
+        public string? bookDetails { get; set; }
+
+
     }
 }

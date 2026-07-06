@@ -10,4 +10,10 @@ public class Booking : ModelBase
     public string Address { get; set; }= null!;
     public string City { get; set; } = null!;
     public Governorate Governorate { get; set; }
+    public double Longitude { get; set; }
+    public double Latitude { get; set; }
+    public string? AddressNote { get; set; }
+    public string? bookDetails { get; set; }
+
+
 }

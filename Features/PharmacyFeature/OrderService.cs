@@ -197,5 +197,12 @@ namespace Features.PharmacyFeature
         {
             return await _orderRepository.GetOrderByIdAsync(orderId);
         }
+
+
+        public async Task<Invoice> GetInvoiceByIdAsync(string invoiceId)
+        {
+            return await _orderRepository.GetInvoiceByIdAsync(invoiceId);
+        }
+
     }
 }

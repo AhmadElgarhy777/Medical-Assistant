@@ -15,11 +15,13 @@ namespace DataAccess.EntittySpecifcation
         {
             Includes.Add(p => p.Doctor);
             Includes.Add(p => p.Doctor.Specialization);
+            Includes.Add(p => p.Images);
         }
         public AiReportsSpesfication():base(x => x.IsDeleted == false)
         {
             Includes.Add(p => p.Doctor);
             Includes.Add(p => p.Doctor.Specialization);
+            Includes.Add(p => p.Images);
         }
     }
 }

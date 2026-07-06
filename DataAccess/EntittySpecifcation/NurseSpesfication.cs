@@ -17,6 +17,7 @@ namespace DataAccess.EntittySpecifcation
         }
         public NurseSpesfication(string Id):base(s=>s.ID==Id&&s.IsDeleted==false)
         {
+            Includes.Add(e => e.NurseServices);
         }
         public NurseSpesfication(Expression<Func<Nures,bool>> expression):base(expression)
         {

@@ -24,5 +24,8 @@ namespace DataAccess.Repositry.IRepositry
         Task CancelOrderAsync(Order order);
 
         Task<IEnumerable<Order>> GetPharmacyOrdersByStatusAsync(string pharmacyId, OrderStatusEnum status);
+
+        Task<Invoice> GetInvoiceByIdAsync(string invoiceId);
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,44 @@ namespace Services.ImageServices
 
         }
 
+
+        public async Task<List<string>> UploadAIModelImagesAsync(IEnumerable<IFormFile> images, CancellationToken cancellationToken)
+        {
+            var uploaded = new List<string>();
+
+            foreach (var image in images)
+            {
+                var path = await SaveAsync(image);
+                uploaded.Add(path);
+            }
+
+            return uploaded;
+        }
+
+        private async Task<string> SaveAsync(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                throw new ArgumentException("Invalid file");
+
+            var uploadsFolder = Path.Combine(environment.ContentRootPath, "Storage");
+
+            if (!Directory.Exists(uploadsFolder))
+                Directory.CreateDirectory(uploadsFolder);
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+
+            var fullPath = Path.Combine(uploadsFolder, fileName);
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+
+            }
+            return fullPath;
+
+        }
+
+
+
         public void ImgExtention(IFormFile image)
         {
             var extention = Path.GetExtension(image.FileName);
@@ -71,5 +110,16 @@ namespace Services.ImageServices
             if (image.Length > 5 * 1024 * 1024)
                 throw new Exception("Image is Large , Max is 5 Mbyte");
         }
+
+        private string BuildReportFolder(string patientId, string reportId)
+        {
+            return Path.Combine(
+                environment.WebRootPath,
+                "uploads",
+                "ai",
+                patientId,
+                reportId);
+        }
+
     }
 }

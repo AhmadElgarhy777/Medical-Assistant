@@ -25,7 +25,7 @@ namespace DataAccess.Repositry
         {
              dbset.Add(item);
         }
-        public void AddRange(T item)
+        public void AddRange(IEnumerable<T> item)
         {
              dbset.AddRange(item);
         }
@@ -39,7 +39,7 @@ namespace DataAccess.Repositry
         {
             dbset.Remove(item);
         }
-        public void DeleteRange(T item)
+        public void DeleteRange(IEnumerable<T> item)
         {
             dbset.RemoveRange(item);
         }
@@ -67,5 +67,10 @@ namespace DataAccess.Repositry
             return SpecifcationEvaluator<T>.GetQuery(dbset, spec);
         }
 
+
+        public DbSet<T> GetTable()
+        {
+            return dbset;
+        }
     }
 }

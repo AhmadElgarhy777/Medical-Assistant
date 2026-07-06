@@ -34,8 +34,7 @@ namespace Models
         public double RattingAverage { get; set; }
         public string SpecializationId { get; set; } = null!;
         public Specialization Specialization { get; set; }= null!;
-        public Collection<AiReport>? Reports { get; set; }
-        public Collection<Appointment>? Appointments { get; set; }
+        public Collection<Appointment>? Appointments { get; set; } 
         public Collection<Clinic> Clinics { get; set; } = null!;
         public Collection<Prescription>? Prescriptions { get; set; }
         public Collection<DoctorAvilableTime>? avilableTimes { get; set; }
@@ -45,7 +44,8 @@ namespace Models
         public double? Longitude { get; set; }
 
 
-
+        public ICollection<AiReport> AiReports { get; set; }
+    = new List<AiReport>();
 
     }
 }

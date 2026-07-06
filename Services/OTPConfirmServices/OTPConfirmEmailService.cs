@@ -23,13 +23,13 @@ namespace Services.OTPConfirmServices
             this.emailServices = emailServices;
             this.userManager = userManager;
         }
-        public async Task SendAsync(string UserId, string Email, CancellationToken cancellationToken=default)
+        public async Task SendAsync(string UserId, string Email,string subject,string message, CancellationToken cancellationToken=default)
         {
             var otp = new Random().Next(100000, 999999).ToString();
 
             cache.Set($"otp_{UserId}", otp, TimeSpan.FromMinutes(5));
-            await emailServices.SendEmailAsync(Email, "Confirmation OTP",
-                $"Your Otp For Confirm Your Email IS \n ' {otp} '",
+            await emailServices.SendEmailAsync(Email,  subject,
+                $"{message} \n ' {otp} '",
                 cancellationToken
                 );
         }

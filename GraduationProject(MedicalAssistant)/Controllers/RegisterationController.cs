@@ -2,9 +2,11 @@
 using Features.RegisterationFeature.Commands;
 using Features.RegisterationFeature.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTOs;
+using Models.DTOs.RegistertionDTOs;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -194,8 +196,18 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             var result = await mediator.Send(command);
             return result.ISucsses ? Ok(result) : BadRequest(result);
         }
-       
 
+        [HttpPost("RegisterLab")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(ResultResponse<string>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ResultResponse<string>>> RegisterLab(
+    [FromForm] RegisterLabDTO dto, CancellationToken cancellationToken)
+        {
+            var result = await mediator.Send(new RegisterLabCommand(dto, cancellationToken));
+            if (result.ISucsses)
+                return Ok(result);
+            return BadRequest(result);
+        }
 
     }
 }

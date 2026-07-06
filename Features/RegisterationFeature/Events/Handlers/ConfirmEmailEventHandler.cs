@@ -51,7 +51,8 @@ namespace Features.RegisterationFeature.Events.Handlers
                 }
                 else
                 {
-                   await oTPConfirm.SendAsync(notification.UserId, notification.Email,cancellationToken);
+                   await oTPConfirm.SendAsync(notification.UserId, notification.Email, "Confirmation OTP",
+                       $"Confirmation OTP, Your Otp For Confirm Your Email IS \n ",cancellationToken);
                 }
             }
            

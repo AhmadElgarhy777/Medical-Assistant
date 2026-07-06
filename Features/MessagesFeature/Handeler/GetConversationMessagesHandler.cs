@@ -1,58 +1,43 @@
-﻿using DataAccess.EntittySpecifcation;
-using DataAccess.Repositry.IRepositry;
+﻿using DataAccess.Repositry.IRepositry;
 using Features.MessagesFeature.Queries;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Features.MessagesFeature.Handeler
 {
     public class GetConversationMessagesHandler : IRequestHandler<GetConversationMessagesQuery, ResultResponse<List<Messages>>>
     {
-        private readonly IMessageRepositry messageRepositry;
+        private readonly IMessageRepository messageRepositry;
         private readonly IConversationPaticipantsRepositry conversationPaticipantsRepositry;
-        private readonly IConversationRepositry conversationRepositry;
+        private readonly IConversationRepository conversationRepositry;
 
-        public GetConversationMessagesHandler(IMessageRepositry messageRepositry,
+        public GetConversationMessagesHandler(
+            IMessageRepository messageRepositry,
             IConversationPaticipantsRepositry conversationPaticipantsRepositry,
-            IConversationRepositry conversationRepositry)
+            IConversationRepository conversationRepositry)
         {
             this.messageRepositry = messageRepositry;
             this.conversationPaticipantsRepositry = conversationPaticipantsRepositry;
             this.conversationRepositry = conversationRepositry;
         }
+
         public async Task<ResultResponse<List<Messages>>> Handle(GetConversationMessagesQuery request, CancellationToken cancellationToken)
         {
-            var spec = new MessageSpecifcation(request.conversationId);
-            var messages = await messageRepositry.GetAll(spec)
-                .OrderBy(m=>m.SentAt)
-                .ToListAsync(cancellationToken);
+            var messages = await messageRepositry.GetConversationMessagesAsync(request.conversationId);
 
             if (messages.Any())
             {
                 return new ResultResponse<List<Messages>>
                 {
                     ISucsses = true,
-                    Obj = messages,
-
+                    Obj = messages.ToList(),
                 };
             }
-
-
             return new ResultResponse<List<Messages>>
             {
                 ISucsses = false,
-                Message="No Messages Yet "
-
+                Message = "No Messages Yet"
             };
-
-
-
         }
     }
 }

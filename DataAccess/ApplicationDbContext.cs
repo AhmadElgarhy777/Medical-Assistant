@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using Models;
@@ -14,7 +14,9 @@ namespace DataAccess
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<AiReport> AiReports { get; set; }
+        public DbSet<AiReportImage> AiReportImages { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<PatientMedicalScan> PatientMedicalScans { get; set; }
        
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<ClinicPhone> ClinicPhones { get; set; }
@@ -41,6 +43,25 @@ namespace DataAccess
         public DbSet<ConversationParticipant> conversationParticipants { get; set; }
         public DbSet<Messages> Messages { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<NursingService> NursingServices { get; set; }
+        public DbSet<NurseService> NurseServices { get; set; }
+
+
+        public DbSet<BanReport> BanReports { get; set; }
+        public DbSet<Complaint> Complaints { get; set; }
+        public DbSet<PrescriptionRequest> PrescriptionRequests { get; set; }
+        //ابشر
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<Lab> Labs { get; set; }
+        public DbSet<MedicalTest> MedicalTests { get; set; }
+        public DbSet<LabTestOffer> LabTestOffers { get; set; }
+        public DbSet<RadiologyCenter> RadiologyCenters { get; set; }
+        public DbSet<RadiologyScan> RadiologyScans { get; set; }
+        public DbSet<RadiologyCenterScan> RadiologyCenterScans { get; set; }
+        public DbSet<LabBooking> LabBookings { get; set; }
+        public DbSet<LabBookingItem> LabBookingItems { get; set; }
+        public DbSet<LabTestResult> LabTestResults { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {

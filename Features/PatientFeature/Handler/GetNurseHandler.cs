@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Features.PatientFeature.Handler
 {
-    public class GetNurseHandler : IRequestHandler<SearchNuresQuery, List<NurseDTO>>
+    public class GetNurseHandler : IRequestHandler<SearchNuresQuery, List<SearchNurseResultDto>>
     {
         private readonly INuresRepositry nuresRepositry;
         private readonly IMapper mapper;
@@ -24,7 +24,7 @@ namespace Features.PatientFeature.Handler
             this.nuresRepositry = nuresRepositry;
             this.mapper = mapper;
         }
-        public async Task<List<NurseDTO>> Handle(SearchNuresQuery request, CancellationToken cancellationToken)
+        public async Task<List<SearchNurseResultDto>> Handle(SearchNuresQuery request, CancellationToken cancellationToken)
         {
             var page = request.page;
             if(request == null)
@@ -35,9 +35,20 @@ namespace Features.PatientFeature.Handler
 
                 var AllnureList = await Allnures.ToListAsync(cancellationToken);
 
-                var AllnurseListDTO = mapper.Map<List<Nures>, List<NurseDTO>>(AllnureList);
+                var NullResult = AllnureList.Select(n => new SearchNurseResultDto
+                {
+                    ID = n.ID,
+                    UserName = n.UserName,
+                    Gender = n.Gender,
+                    Img = n.Img,
+                    Age = DateTime.Now.Year - n.BD.Year,
+                    Email = n.Email,
+                    PricePerHours = n.PricePerHours,
+                    NurseSpecialty = n.NurseSpecialty
 
-                return AllnurseListDTO;
+                }).ToList();
+
+                return NullResult;
             }
             var Search = new
             {
@@ -48,10 +59,12 @@ namespace Features.PatientFeature.Handler
                 minrange=request.Searching.MinPrice,
                 maxrange=request.Searching.MaxPrice,
                 gender=request.Searching.Gender,
+                nurseSpecialty=request.Searching.nurseSpecialty,
+                nurseService=request.Searching.ServiceID,
             };
             if (page <= 0) page = 1;
             var spec = new NurseSpesfication();
-           var nures = nuresRepositry.GetAll(spec);
+            var nures = nuresRepositry.GetAll(spec);
 
             if (!string.IsNullOrWhiteSpace(Search.name))
                 nures = nures.Where(e => e.FullName.Contains(Search.name));
@@ -65,23 +78,42 @@ namespace Features.PatientFeature.Handler
             if (Search.rate.HasValue)
                 nures = nures.Where(e => e.RattingAverage>= (double)Search.rate);
 
+            if (Search.nurseSpecialty.HasValue)
+                nures = nures.Where(e => e.NurseSpecialty.Equals(Search.nurseSpecialty));
 
             if (Search.gender.HasValue)
                 nures = nures.Where(e => e.Gender.Equals(Search.gender));
 
             if (Search.minrange.HasValue)
-                nures = nures.Where(e => e.PricePerDay >= Search.minrange.Value);
+                nures = nures.Where(e => e.PricePerHours >= Search.minrange.Value);
 
             if (Search.maxrange.HasValue)
-                nures = nures.Where(e => e.PricePerDay <= Search.maxrange.Value);
+                nures = nures.Where(e => e.PricePerHours <= Search.maxrange.Value);
+            if (!string.IsNullOrEmpty(Search.nurseService))
+                nures = nures.Where(e => e.NurseServices.Any(ns => ns.ServiceId == Search.nurseService && !ns.IsDeleted));
+
 
             nures =nures.Skip((page-1)*5).Take(5);
 
             var nureList=await nures.ToListAsync(cancellationToken);
-           
-               var nurseListDTO=mapper.Map<List<Nures>,List<NurseDTO>>(nureList);
-            
-            return nurseListDTO;
+
+            var Result = nureList.Select(n => new SearchNurseResultDto
+            {
+                ID=n.ID,
+                UserName=n.UserName,
+                Gender=n.Gender,
+                Img=n.Img,
+                Age=DateTime.Now.Year - n.BD.Year,
+                Email=n.Email,
+                PricePerHours=n.PricePerHours,
+                NurseSpecialty=n.NurseSpecialty
+
+            }).ToList();
+          
+
+
+
+            return Result;
 
 
 

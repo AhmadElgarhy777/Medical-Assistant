@@ -1,102 +1,107 @@
-﻿
-using DataAccess.EntittySpecifcation;
-using DataAccess.Repositry.IRepositry;
+﻿using DataAccess.Repositry.IRepositry;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
 using Models;
-
-
 
 namespace GraduationProject_MedicalAssistant_.Hubs
 {
-    public class ChatHub:Hub
+    [Authorize]
+    public class ChatHub : Hub
     {
-    //    private readonly IConversationPaticipantsRepositry conversationPaticipantsRepositry;
-    //    private readonly IMessageRepositry messageRepositry;
+        private readonly IMessageRepository _messageRepository;
+        private readonly IConversationRepository _conversationRepository;
 
-    //    public ChatHub(IConversationPaticipantsRepositry conversationPaticipantsRepositry,IMessageRepositry messageRepositry)
-    //    {
-    //        this.conversationPaticipantsRepositry = conversationPaticipantsRepositry;
-    //        this.messageRepositry = messageRepositry;
-    //    }
-    //    public async Task JoinConversation(string conversationId)
-    //    {
-    //        var userId = Context.UserIdentifier;
-    //        var spec =new ConversationParticiPantsSpecifcation(conversationId,userId);
+        public ChatHub(
+            IMessageRepository messageRepository,
+            IConversationRepository conversationRepository)
+        {
+            _messageRepository = messageRepository;
+            _conversationRepository = conversationRepository;
+        }
 
-    //        var participants =await conversationPaticipantsRepositry.GetAll(spec).ToListAsync();
+        public async Task JoinConversation(string conversationId)
+        {
+            var userId = Context.UserIdentifier;
+            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
+            if (!isParticipant)
+                throw new Exception("Unauthorized");
+            await Groups.AddToGroupAsync(Context.ConnectionId, $"conversation-{conversationId}");
+        }
 
-    //        if (!participants.Any())
-    //        {
-    //             throw new Exception("Unauthorized");
-    //        }
+        public async Task SendMessage(string conversationId, string content)
+        {
+            var userId = Context.UserIdentifier;
+            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
+            if (!isParticipant)
+                throw new Exception("Unauthorized");
 
-    //        await Groups.AddToGroupAsync(Context.ConnectionId, $"conversation-{conversationId}");
+            var message = new Messages
+            {
+                ConversationId = conversationId,
+                SenderId = userId!,
+                Content = content,
+                SentAt = DateTime.UtcNow,
+                IsRead = false
+            };
 
-    //    }
-        
-    //    public async Task SendMessage(string conversationId,string message)
-    //    {
-    //        var userId = Context.UserIdentifier;
-    //        var spec =new ConversationParticiPantsSpecifcation(conversationId,userId);
+            await _messageRepository.AddMessageAsync(message);
 
-    //        var participants =await conversationPaticipantsRepositry.GetAll(spec).ToListAsync();
+            await Clients.Group($"conversation-{conversationId}").SendAsync("ReceiveMessage", new
+            {
+                messageId = message.ID,
+                senderId = userId,
+                content = content,
+                mediaUrl = (string?)null,
+                mediaType = (string?)null,
+                sentAt = message.SentAt
+            });
+        }
 
-    //        if (!participants.Any())
-    //        {
-    //             throw new Exception("Unauthorized");
-    //        }
+        // ✅ بعت Media
+        public async Task SendMedia(string conversationId, string mediaUrl, string mediaType)
+        {
+            var userId = Context.UserIdentifier;
+            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
+            if (!isParticipant)
+                throw new Exception("Unauthorized");
 
-    //        var newMessage = new Messages()
-    //        {
-    //            ConversationId= conversationId,
-    //            SenderId=userId,
-    //            Content = message
-    //        };
-    //        messageRepositry.Add(newMessage);
-    //        await messageRepositry.CommitAsync();
+            await Clients.Group($"conversation-{conversationId}").SendAsync("ReceiveMessage", new
+            {
+                senderId = userId,
+                content = (string?)null,
+                mediaUrl = mediaUrl,
+                mediaType = mediaType,
+                sentAt = DateTime.UtcNow
+            });
+        }
 
-    //        await Clients.Group($"conversation-{conversationId}").SendAsync("ReceiveMessage", newMessage);
-    //    }
+        public async Task MarkAsRead(string conversationId)
+        {
+            var userId = Context.UserIdentifier;
+            await _messageRepository.MarkMessagesAsReadAsync(conversationId, userId!);
+            await Clients.Group($"conversation-{conversationId}")
+                .SendAsync("ConversationRead", conversationId);
+        }
 
-    //    public override async Task OnConnectedAsync()
-    //    {
-    //        var userId = Context.UserIdentifier;
-    //        await Clients.All.SendAsync("UserOnline", userId);
+        public async Task Typing(string conversationId)
+        {
+            var userId = Context.UserIdentifier;
+            await Clients.OthersInGroup($"conversation-{conversationId}")
+                .SendAsync("UserTyping", userId);
+        }
 
-    //        await base.OnConnectedAsync();
-    //    }
+        public override async Task OnConnectedAsync()
+        {
+            var userId = Context.UserIdentifier;
+            await Clients.All.SendAsync("UserOnline", userId);
+            await base.OnConnectedAsync();
+        }
 
-    //    public override async Task OnDisconnectedAsync(Exception? exception)
-    //    {
-    //        var userId = Context.UserIdentifier;
-    //        await Clients.All.SendAsync("UserOffline", userId);
-
-    //        await base.OnDisconnectedAsync(exception);
-    //    }
-
-    //    public async Task MarkConversationAsRead(string conversationId)
-    //    {
-    //        var userId = Context.UserIdentifier;
-
-    //        var spec = new MessageSpecifcation(conversationId, userId, false);
-    //        var messages = await messageRepositry.GetAll(spec).ToListAsync();
-    //        foreach (var msg in messages)
-    //        {
-    //            msg.IsRead = true;
-    //        }
-
-    //        await messageRepositry.CommitAsync();
-
-    //        await Clients.Group(conversationId.ToString())
-    //            .SendAsync("ConversationRead", conversationId);
-    //    }
-    //    public async Task Typing(int conversationId)
-    //    {
-    //        var userId = Context.UserIdentifier;
-
-    //        await Clients.OthersInGroup(conversationId.ToString())
-    //            .SendAsync("UserTyping", userId);
-    //    }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            var userId = Context.UserIdentifier;
+            await Clients.All.SendAsync("UserOffline", userId);
+            await base.OnDisconnectedAsync(exception);
+        }
     }
 }

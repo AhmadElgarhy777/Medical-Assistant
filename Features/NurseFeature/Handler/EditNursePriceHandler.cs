@@ -27,7 +27,7 @@ namespace Features.NurseFeature.Handler
                 var spec = new NurseSpesfication(request.NurseId);
                 var nurse = await nuresRepositry.GetOne(spec).FirstOrDefaultAsync();
                 if (nurse == null) return new ResultResponse<bool> { ISucsses = false, Message = "the nurse not found" };
-                nurse.PricePerDay = request.price;
+                nurse.PricePerHours = request.price;
 
                 nuresRepositry.Edit(nurse);
                 await nuresRepositry.CommitAsync();

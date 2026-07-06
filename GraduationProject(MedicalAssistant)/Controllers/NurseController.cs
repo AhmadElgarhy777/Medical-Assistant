@@ -3,6 +3,8 @@ using DataAccess;
 using Features;
 using Features.DoctorFeature.Commands;
 using Features.NurseFeature.Command;
+using Features.NurseFeature.Handler;
+using Features.PharmacyFeature;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +23,14 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IMapper mapper;
         private readonly IMediator mediator;
+        private readonly IPharmacyService pharmacyService;
 
-        public NurseController(ApplicationDbContext context, IMapper mapper,IMediator mediator)
+        public NurseController(ApplicationDbContext context, IMapper mapper,IMediator mediator, IPharmacyService pharmacyService )
         {
             _context = context;
             this.mapper = mapper;
             this.mediator = mediator;
+            this.pharmacyService = pharmacyService;
         }
        
         [HttpGet("pending-bookings")]
@@ -58,7 +62,11 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                     City = patient.City,
                     Governorate = patient.Governorate.ToString(),
                     RequestDate = booking.RequestDate,
-                    PatientEmail=patient.Email
+                    PatientEmail=patient.Email,
+                    bookDetails=booking.bookDetails,
+                    BookingAddressNote=booking.AddressNote,
+                    BookingLatitude=booking.Latitude,
+                    BookingLongitude=booking.Longitude
                 });
             }
 
@@ -91,8 +99,11 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                     City = patient.City,
                     Governorate = patient.Governorate.ToString(),
                     RequestDate = booking.RequestDate,
-                    PatientEmail=patient.Email
-                    
+                    PatientEmail=patient.Email,
+                    bookDetails = booking.bookDetails,
+                    BookingAddressNote = booking.AddressNote,
+                    BookingLatitude = booking.Latitude,
+                    BookingLongitude = booking.Longitude
 
 
                 });
@@ -134,7 +145,11 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                     City = patient.City,
                     Governorate = patient.Governorate.ToString(),
                     RequestDate = booking.RequestDate,
-                    PatientEmail = patient.Email
+                    PatientEmail = patient.Email,
+                    bookDetails = booking.bookDetails,
+                    BookingAddressNote = booking.AddressNote,
+                    BookingLatitude = booking.Latitude,
+                    BookingLongitude = booking.Longitude
 
 
                 });
@@ -227,9 +242,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpPut("EditPrice")]
         [ProducesResponseType(typeof(ResultResponse<bool>), StatusCodes.Status200OK)]
 
-        public async Task<IActionResult> EditPrice([FromBody] EditNursePriceCommand command)
+        public async Task<IActionResult> EditPrice([FromQuery] decimal NewPrice,CancellationToken cancellationToken)
         {
-            var result = await mediator.Send(command);
+            var nurseId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await mediator.Send(new EditNursePriceCommand(nurseId,NewPrice),cancellationToken);
             if (result.ISucsses)
             {
                 return Ok(result.ISucsses);
@@ -237,9 +253,61 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("GetAllServicesForNurse")]
+        public async Task<IActionResult> GetAllNursingServices( CancellationToken cancellationToken)
+        {
+            var nurseId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await mediator.Send(new GetAllNursingServicesQuery(nurseId), cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("GetAllServices")]
+        public async Task<IActionResult> GetAllServices( CancellationToken cancellationToken)
+        {
+            var result = await mediator.Send(new GetAllServicesQuery(), cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result.Obj);
+            }
+            return BadRequest(result.Obj);
+        }
+
+        [HttpGet("AddServicesForNurse")]
+        public async Task<IActionResult> AddServices([FromQuery]List<string> ServicesIds, CancellationToken cancellationToken)
+        {
+            var nurseId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await mediator.Send(new AddNurseServicesCommand(nurseId, ServicesIds), cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("RemoveServicesForNurse")]
+        public async Task<IActionResult> RemoveServicesForNurse([FromQuery]string ServicesId, CancellationToken cancellationToken)
+        {
+            var nurseId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result = await mediator.Send(new RemoveNurseServiceCommand(nurseId, ServicesId), cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
 
-
+        [HttpPut("profile/update/{nurseId}")]
+        [Authorize(Roles = "Nurse")]
+        public async Task<IActionResult> UpdateNurseProfile(string nurseId, [FromBody] UpdateNurseDto dto)
+        {
+            var result = await pharmacyService.UpdateNurseProfileAsync(nurseId, dto);
+            if (!result)
+                return NotFound("الممرض مش موجود!");
+            return Ok("تم تعديل البروفايل بنجاح!");
+        }
     }
 
 

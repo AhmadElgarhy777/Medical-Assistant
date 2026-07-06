@@ -1,6 +1,7 @@
 ﻿using Features;
 using Features.AdminFeature.Commands;
 using Features.AdminFeature.Queries;
+using Features.RegisterationFeature.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -142,6 +143,42 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 return Ok(Result.Obj);
             }
             return BadRequest(Result.Message);
+        }
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
+        [HttpGet("CreateNursingService")]
+
+        public async Task<ActionResult<PharmacyDetailsDTO>> CreateNursingService([FromQuery] string ServiceName,string Description, CancellationToken cancellationToken)
+        {
+            var Result = await mediator.Send(new CreateNursingServiceCommand(ServiceName,Description),cancellationToken);
+            if (Result.ISucsses)
+            {
+                return Ok(Result);
+            }
+            return BadRequest(Result);
+        }
+
+
+        [HttpPut("ApproveLab")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
+        [ProducesResponseType(typeof(ResultResponse<string>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ResultResponse<string>>> ApproveLab(
+   [FromQuery] string labId, [FromQuery] bool approve)
+        {
+            var result = await mediator.Send(new ApproveLabCommand(labId, approve));
+            if (result.ISucsses)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpPost("CreateMedicalTest")]
+        [Authorize(Roles = $"{SD.AdminRole},{SD.SuperAdminRole}")]
+        [ProducesResponseType(typeof(ResultResponse<string>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ResultResponse<string>>> CreateMedicalTest(
+    [FromBody] CreateMedicalTestCommand command)
+        {
+            var result = await mediator.Send(command);
+            if (result.ISucsses)
+                return Ok(result);
+            return BadRequest(result);
         }
 
     }

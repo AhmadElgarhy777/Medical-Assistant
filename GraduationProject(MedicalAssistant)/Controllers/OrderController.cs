@@ -15,7 +15,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         private readonly IOrderService _orderService;
         private readonly IMapper mapper;
 
-        public OrderController(IOrderService orderService,IMapper mapper)
+        public OrderController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
             this.mapper = mapper;
@@ -25,6 +25,10 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [Authorize(Roles = "Patient")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDto dto)
         {
+            // ✅ خد الـ patientId من الـ Token مش من الـ Body
+            var patientId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            dto.PatientId = patientId!;
+
             if (dto.Items == null || !dto.Items.Any())
                 return BadRequest("مفيش أدوية في الطلب!");
 
@@ -32,11 +36,11 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-      
+
 
         [HttpPut("UpdateOrderStatus")]
         [Authorize(Roles = "Pharmacy")]
-        public async Task<IActionResult> UpdateOrderStatus([FromQuery]string orderId, [FromForm] OrderStatusEnum status)
+        public async Task<IActionResult> UpdateOrderStatus([FromQuery] string orderId, [FromForm] OrderStatusEnum status)
         {
 
             var result = await _orderService.UpdateOrderStatusAsync(orderId, status);
@@ -46,9 +50,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
-       
 
-     
+
+
 
         // ✅ تفاصيل طلب واحد
         [HttpGet("{orderId}")]
@@ -59,7 +63,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             if (result == null)
                 return NotFound("الطلب مش موجود!");
 
-            var resultDto=new OrderResultDto
+            var resultDto = new OrderResultDto
             {
                 OrderId = result.ID,
                 TotalAmount = result.TotalAmount,

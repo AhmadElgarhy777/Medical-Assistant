@@ -23,11 +23,11 @@ namespace Models
         public string? BloodType { get; set; }
 
 
-        public Collection<PatientPhone> patientPhones { get; set; } = null!;
-        public Collection<Appointment>? appointments { get; set; }
-        public Collection<AiReport>? AiReports { get; set; }
-        public Collection<Prescription>? Prescriptions { get; set; }
-        public Collection<DoctorPatient>? DoctorPatients { get; set; }
+        public ICollection<PatientPhone> patientPhones { get; set; } = null!;
+        public ICollection<Appointment>? appointments { get; set; }
+        public ICollection<AiReport>? AiReports { get; set; }=new List<AiReport>(); 
+        public ICollection<Prescription>? Prescriptions { get; set; }
+        public ICollection<DoctorPatient>? DoctorPatients { get; set; }
 
     }
 }

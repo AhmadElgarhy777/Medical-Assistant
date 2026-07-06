@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using Features;
+using Features.NurseFeature.Handler;
 using Features.PatientFeature.Command;
 using Features.PatientFeature.Handler;
 using Features.PatientFeature.Queries;
@@ -7,9 +8,11 @@ using Features.PatientFeature.Query;
 using Features.PharmacyFeature;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Models;
 using Models.DTOs;
 using Models.Enums;
 using System.Security.Claims;
@@ -49,9 +52,19 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 return BadRequest(doctors.Message);
             
         }
+        [HttpGet("GetAllServices")]
+        public async Task<IActionResult> GetAllServices(CancellationToken cancellationToken)
+        {
+            var result = await mediatR.Send(new GetAllServicesQuery(), cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result.Obj);
+            }
+            return BadRequest(result.Obj);
+        }
         [HttpGet("GetNurseBySearch")]
-        [ProducesResponseType(typeof(NurseDTO), StatusCodes.Status200OK)]
-        public async Task<ActionResult<NurseDTO>> GetNurseBySearch(CancellationToken cancellationToken , [FromQuery] SearchNuresQuery? query = null)
+        [ProducesResponseType(typeof(SearchNurseResultDto), StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetNurseBySearch(CancellationToken cancellationToken , [FromQuery] SearchNuresQuery? query = null)
         {
                 var nurses = await mediatR.Send(query, cancellationToken);
                 if (nurses.Any())
@@ -59,6 +72,19 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                     return Ok(nurses);
                 }
                 return NotFound();
+            
+        }
+       
+        [HttpGet("GetNurseDetailsById")]
+        [ProducesResponseType(typeof(SearchNurseDetailsResultByIdDto), StatusCodes.Status200OK)]
+        public async Task<ActionResult> GetNurseDetailsById(CancellationToken cancellationToken , [FromQuery] string NurseID  )
+        {
+                var nurses = await mediatR.Send(new GetNurseDetailsByIdQuery(NurseID), cancellationToken);
+                if (nurses.ISucsses)
+                {
+                    return Ok(nurses.Obj);
+                }
+                return NotFound(nurses);
             
         }
 
@@ -142,7 +168,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpPost("book-nurse")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
 
-        public async Task<ActionResult> BookNurse([FromQuery] string NurseId)
+        public async Task<ActionResult> BookNurse([FromQuery] string NurseId ,double Longitude, double Latitude,string bookDetails,string? AddressNote)
         {
             var pationtId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -157,7 +183,11 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 City = pationt.City,
                 Governorate = pationt.Governorate,
                 Status = "Pending",
-                RequestDate = DateTime.Now
+                RequestDate = DateTime.Now,
+                Longitude = Longitude,
+                Latitude = Latitude,
+                bookDetails = bookDetails,
+                AddressNote = AddressNote
             };
 
             dbContext.Bookings.Add(booking);
@@ -326,6 +356,20 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             }
 
             return Ok(result.Obj);
+        }
+
+
+        [HttpGet("MyDoctors")]
+        public async Task<IActionResult> GetMyDoctors(CancellationToken cancellationToken)
+        {
+            var patientId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var result =await mediatR.Send( new GetDoctorsForPatientQuery(patientId),cancellationToken);
+            if (result.ISucsses)
+            {
+                return Ok(result.Obj);
+            }
+            return NotFound();
+
         }
     }
 }

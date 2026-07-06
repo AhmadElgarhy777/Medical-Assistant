@@ -479,5 +479,274 @@ namespace DataAccess.Repositry.IRepositry
         }
 
 
+
+        public async Task<bool> UpdateDoctorProfileAsync(string doctorId, UpdateDoctorDto dto)
+        {
+            var doctor = await _context.Doctors
+                .FirstOrDefaultAsync(d => d.ID == doctorId);
+            if (doctor == null) return false;
+
+            if (dto.FullName != null) doctor.FullName = dto.FullName;
+            if (dto.Phone != null) doctor.Phone = dto.Phone;
+            if (dto.Address != null) doctor.Address = dto.Address;
+            if (dto.City != null) doctor.City = dto.City;
+            if (dto.Bio != null) doctor.Bio = dto.Bio;
+            if (dto.Experence != null) doctor.Experence = dto.Experence;
+            if (dto.Degree != null) doctor.Degree = dto.Degree;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UpdateNurseProfileAsync(string nurseId, UpdateNurseDto dto)
+        {
+            var nurse = await _context.Nures
+                .FirstOrDefaultAsync(n => n.ID == nurseId);
+            if (nurse == null) return false;
+
+            if (dto.FullName != null) nurse.FullName = dto.FullName;
+            if (dto.Phone != null) nurse.Phone = dto.Phone;
+            if (dto.Address != null) nurse.Address = dto.Address;
+            if (dto.City != null) nurse.City = dto.City;
+            if (dto.Bio != null) nurse.Bio = dto.Bio;
+            if (dto.Experence != null) nurse.Experence = dto.Experence;
+            if (dto.Degree != null) nurse.Degree = dto.Degree;
+            if (dto.PricePerDay != null) nurse.PricePerHours = dto.PricePerDay.Value;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        public async Task<int> GetNewUsersCountAsync()
+        {
+            var today = DateTime.Today;
+            return await _context.Users
+                .Where(u => u.LockoutEnd == null)
+                .CountAsync();
+        }
+
+        public async Task<int> GetPendingDoctorsCountAsync()
+        {
+            return await _context.Doctors
+                .Where(d => d.Status == ConfrmationStatus.Pending)
+                .CountAsync();
+        }
+
+        public async Task<SuperAdminDashboardDto> GetSuperAdminDashboardAsync()
+        {
+            var today = DateTime.Today;
+            return new SuperAdminDashboardDto
+            {
+                NewUsersToday = await _context.Users.CountAsync(),
+                PendingPharmacies = await _context.Pharmacies
+                    .Where(p => p.Status == ConfrmationStatus.Pending).CountAsync(),
+                PendingDoctors = await _context.Doctors
+                    .Where(d => d.Status == ConfrmationStatus.Pending).CountAsync(),
+                TotalOrdersToday = await _context.Orders
+                    .Where(o => o.Date >= today && o.Date < today.AddDays(1)).CountAsync(),
+                TotalSalesToday = await _context.Invoices
+                    .Where(i => i.Date >= today && i.Date < today.AddDays(1))
+                    .SumAsync(i => i.TotalAmount),
+                TotalPatients = await _context.Patients.CountAsync(),
+                TotalDoctors = await _context.Doctors.CountAsync(),
+                TotalPharmacies = await _context.Pharmacies.CountAsync()
+            };
+        }
+        public async Task AddBanReportAsync(BanReport banReport)
+        {
+            await _context.BanReports.AddAsync(banReport);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<BanReport>> GetAllBanReportsAsync()
+        {
+            return await _context.BanReports
+                .OrderByDescending(b => b.BanDate)
+                .ToListAsync();
+        }
+
+        public async Task<BanReport> GetBanReportByIdAsync(string id)
+        {
+            return await _context.BanReports
+                .FirstOrDefaultAsync(b => b.ID == id);
+        }
+
+        public async Task AddComplaintAsync(Complaint complaint)
+        {
+            await _context.Complaints.AddAsync(complaint);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Complaint>> GetAllComplaintsAsync()
+        {
+            return await _context.Complaints
+                .OrderByDescending(c => c.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<object>> SearchAllAsync(string query)
+        {
+            var patients = await _context.Patients
+                .Where(p => p.FullName.Contains(query) || p.Email.Contains(query))
+                .Select(p => new { Type = "Patient", p.ID, p.FullName, p.Email })
+                .ToListAsync();
+
+            var doctors = await _context.Doctors
+                .Where(d => d.FullName.Contains(query) || d.Email.Contains(query))
+                .Select(d => new { Type = "Doctor", d.ID, d.FullName, d.Email })
+                .ToListAsync();
+
+            var pharmacies = await _context.Pharmacies
+                .Where(p => p.Name.Contains(query) || p.Email.Contains(query))
+                .Select(p => new { Type = "Pharmacy", p.ID, FullName = p.Name, p.Email })
+                .ToListAsync();
+
+            return patients.Cast<object>()
+                .Concat(doctors.Cast<object>())
+                .Concat(pharmacies.Cast<object>());
+        }
+
+        public async Task<IEnumerable<BanReport>> GetUserBanReportsAsync(string userId)
+        {
+            return await _context.BanReports
+                .Where(b => b.BannedUserId == userId)
+                .OrderByDescending(b => b.BanDate)
+                .ToListAsync();
+        }
+
+        public async Task<bool> MarkComplaintAsReadAsync(string complaintId)
+        {
+            var complaint = await _context.Complaints
+                .FirstOrDefaultAsync(c => c.ID == complaintId);
+            if (complaint == null) return false;
+            complaint.IsRead = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<PharmacyRating>> GetAllRatingsAsync()
+        {
+            return await _context.PharmacyRatings
+                .OrderByDescending(r => r.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<bool> DeleteRatingAsync(int ratingId)
+        {
+            var rating = await _context.PharmacyRatings
+                .FirstOrDefaultAsync(r => r.Id == ratingId);
+            if (rating == null) return false;
+            _context.PharmacyRatings.Remove(rating);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task AddPrescriptionRequestAsync(PrescriptionRequest request)
+        {
+            await _context.PrescriptionRequests.AddAsync(request);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<PrescriptionRequest>> GetPharmacyPrescriptionsAsync(string pharmacyId)
+        {
+            return await _context.PrescriptionRequests
+                .Where(p => p.PharmacyId == pharmacyId)
+                .OrderByDescending(p => p.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PrescriptionRequest>> GetPatientPrescriptionsAsync(string patientId)
+        {
+            return await _context.PrescriptionRequests
+                .Where(p => p.PatientId == patientId)
+                .OrderByDescending(p => p.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<PrescriptionRequest> GetPrescriptionByIdAsync(string id)
+        {
+            return await _context.PrescriptionRequests
+                .FirstOrDefaultAsync(p => p.ID == id);
+        }
+
+        public async Task<bool> UpdatePrescriptionStatusAsync(string id, string status, string? pharmacyNotes)
+        {
+            var prescription = await _context.PrescriptionRequests
+                .FirstOrDefaultAsync(p => p.ID == id);
+            if (prescription == null) return false;
+            prescription.Status = status;
+            prescription.PharmacyNotes = pharmacyNotes;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        public async Task<bool> UpdatePrescriptionStatusAsync(string id, string status, string? pharmacyNotes, List<PrescriptionItemDto>? items = null)
+        {
+            var prescription = await _context.PrescriptionRequests
+                .FirstOrDefaultAsync(p => p.ID == id);
+            if (prescription == null) return false;
+
+            prescription.Status = status;
+            prescription.PharmacyNotes = pharmacyNotes;
+
+            // ✅ لو Confirmed اعمل Order أوتوماتيك
+            if (status == "Confirmed" && items != null && items.Any())
+            {
+                var order = new Order
+                {
+                    PatientId = prescription.PatientId,
+                    PharmacyId = prescription.PharmacyId,
+                    Date = DateTime.Now,
+                    Status = OrderStatusEnum.Pending,
+                    TotalAmount = 0
+                };
+
+                await _context.Orders.AddAsync(order);
+                await _context.SaveChangesAsync();
+
+                decimal total = 0;
+                foreach (var item in items)
+                {
+                    var inventory = await _context.Inventories
+                        .FirstOrDefaultAsync(i => i.ID == item.InventoryId);
+                    if (inventory == null) continue;
+
+                    var orderItem = new OrderItem
+                    {
+                        OrderId = order.ID,
+                        InventoryId = item.InventoryId,
+                        Quantity = item.Quantity,
+                        UnitPrice = inventory.Price
+                    };
+
+                    await _context.OrderItems.AddAsync(orderItem);
+
+                    inventory.Quantity -= item.Quantity;
+                    if (inventory.Quantity == 0)
+                        inventory.IsAvailable = false;
+
+                    total += inventory.Price * item.Quantity;
+                }
+
+                order.TotalAmount = total;
+                _context.Orders.Update(order);
+
+                var invoice = new Invoice
+                {
+                    OrderId = order.ID,
+                    Date = DateTime.Now,
+                    TotalAmount = total,
+                    PaymentStatus = "Unpaid",
+                    PaymentMethod = "Cash"
+                };
+
+                await _context.Invoices.AddAsync(invoice);
+                prescription.OrderId = order.ID;
+                await _context.SaveChangesAsync();
+            }
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }

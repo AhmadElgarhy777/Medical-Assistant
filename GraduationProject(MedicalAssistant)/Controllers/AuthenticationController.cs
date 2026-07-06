@@ -109,7 +109,40 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return BadRequest("Validation Error");
 
         }
+        [HttpPost("ForgetPassswordViaOtp")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
 
+        public async Task<ActionResult<ResultResponse<String>>> ForgetPassswordViaOtp([FromForm] ForgetPasswordViaOtpCommand command,CancellationToken cancellationToken)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await mediator.Send(command, cancellationToken);
+                if (result.ISucsses)
+                {
+                    return Ok(result);
+                }
+                return BadRequest(result);
+            }
+            return BadRequest("Validation Error");
+
+        }
+
+        [HttpPut("ResetPasswordByOtp")]
+        [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
+        public async Task<ActionResult<ResultResponse<String>>> ResetPasswordByOtp([FromForm] ResetPasswordByOtpCommand command, CancellationToken cancellationToken)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await mediator.Send(command, cancellationToken);
+                if (result.ISucsses)
+                {
+                    return Ok(result);
+                }
+                return BadRequest(result); 
+            }
+            return BadRequest("Validation Error");
+
+        }
         [HttpPut("ResetPassword")]
         [ProducesResponseType(typeof(String), StatusCodes.Status200OK)]
         public async Task<ActionResult<ResultResponse<String>>> ResetPassword([FromForm] ResetPassswordCommand command, CancellationToken cancellationToken)

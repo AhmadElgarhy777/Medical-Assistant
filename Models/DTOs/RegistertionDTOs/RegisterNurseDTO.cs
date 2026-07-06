@@ -88,7 +88,7 @@ namespace Models.DTOs.RegistertionDTOs
 
 
         [Required(ErrorMessage = "The Price is required")]
-        public decimal PricePerDay { get; set; } 
+        public decimal PricePerHours { get; set; } 
 
 
         [Required(ErrorMessage = "The Password Image is Required")]
@@ -100,6 +100,15 @@ namespace Models.DTOs.RegistertionDTOs
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "The Confirmation Of The Password Is Not Correct....! ")]
         public string ConfirmPassword { get; set; } = null!;
+
+
+        public string? WorkAt { get; set; }
+        [Required(ErrorMessage = "The NurseSpecialty is Required")]
+
+        public NurseSpecialtyEnum NurseSpecialty { get; set; }
+
+
+
 
 
     }

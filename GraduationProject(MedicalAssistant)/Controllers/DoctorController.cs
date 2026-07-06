@@ -159,5 +159,16 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result);
         }
 
+
+        [HttpPut("profile/update/{doctorId}")]
+        [Authorize(Roles = "Doctor")]
+        public async Task<IActionResult> UpdateDoctorProfile(string doctorId, [FromBody] UpdateDoctorDto dto)
+        {
+            var result = await _pharmacyService.UpdateDoctorProfileAsync(doctorId, dto);
+            if (!result)
+                return NotFound("الدكتور مش موجود!");
+            return Ok("تم تعديل البروفايل بنجاح!");
+        }
+
     }
 }

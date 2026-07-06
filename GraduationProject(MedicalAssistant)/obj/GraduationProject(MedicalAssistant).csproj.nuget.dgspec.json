@@ -71,6 +71,22 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.10, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[10.0.9, )"
             }
           },
           "imports": [
@@ -169,6 +185,10 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[16.1.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.1.1, )"
             },
             "MailKit": {
               "target": "Package",
@@ -279,6 +299,14 @@
             "AutoMapper": {
               "target": "Package",
               "version": "[16.1.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[12.1.1, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.1.1, )"
             },
             "MailKit": {
               "target": "Package",
@@ -520,9 +548,21 @@
               "target": "Package",
               "version": "[4.16.0, )"
             },
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Twilio": {
               "target": "Package",
               "version": "[7.14.7, )"
+            },
+            "fo-dicom": {
+              "target": "Package",
+              "version": "[5.1.3, )"
+            },
+            "fo-dicom.Imaging.ImageSharp": {
+              "target": "Package",
+              "version": "[5.1.3, )"
             }
           },
           "imports": [

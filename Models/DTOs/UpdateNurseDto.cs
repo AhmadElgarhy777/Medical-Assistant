@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models.DTOs
+{
+    public class UpdateNurseDto
+    {
+        public string? FullName { get; set; }
+        public string? Phone { get; set; }
+        public string? Address { get; set; }
+        public string? City { get; set; }
+        public string? Bio { get; set; }
+        public string? Experence { get; set; }
+        public string? Degree { get; set; }
+        public decimal? PricePerDay { get; set; }
+    }
+}

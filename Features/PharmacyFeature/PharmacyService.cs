@@ -433,5 +433,98 @@ namespace Features.PharmacyFeature
                 PeakHours = await _pharmacyRepository.GetPeakHoursAsync(pharmacyId)
             };
         }
+
+
+        public async Task<bool> UpdateDoctorProfileAsync(string doctorId, UpdateDoctorDto dto)
+        {
+            return await _pharmacyRepository.UpdateDoctorProfileAsync(doctorId, dto);
+        }
+
+        public async Task<bool> UpdateNurseProfileAsync(string nurseId, UpdateNurseDto dto)
+        {
+            return await _pharmacyRepository.UpdateNurseProfileAsync(nurseId, dto);
+        }
+
+        public async Task<SuperAdminDashboardDto> GetSuperAdminDashboardAsync()
+        {
+            return await _pharmacyRepository.GetSuperAdminDashboardAsync();
+        }
+        public async Task AddBanReportAsync(BanReport banReport)
+        {
+            await _pharmacyRepository.AddBanReportAsync(banReport);
+        }
+
+        public async Task<IEnumerable<BanReport>> GetAllBanReportsAsync()
+        {
+            return await _pharmacyRepository.GetAllBanReportsAsync();
+        }
+
+        public async Task<BanReport> GetBanReportByIdAsync(string id)
+        {
+            return await _pharmacyRepository.GetBanReportByIdAsync(id);
+        }
+
+        public async Task AddComplaintAsync(Complaint complaint)
+        {
+            await _pharmacyRepository.AddComplaintAsync(complaint);
+        }
+
+        public async Task<IEnumerable<Complaint>> GetAllComplaintsAsync()
+        {
+            return await _pharmacyRepository.GetAllComplaintsAsync();
+        }
+
+        public async Task<IEnumerable<object>> SearchAllAsync(string query)
+        {
+            return await _pharmacyRepository.SearchAllAsync(query);
+        }
+
+        public async Task<IEnumerable<BanReport>> GetUserBanReportsAsync(string userId)
+        {
+            return await _pharmacyRepository.GetUserBanReportsAsync(userId);
+        }
+
+        public async Task<bool> MarkComplaintAsReadAsync(string complaintId)
+        {
+            return await _pharmacyRepository.MarkComplaintAsReadAsync(complaintId);
+        }
+
+        public async Task<IEnumerable<PharmacyRating>> GetAllRatingsAsync()
+        {
+            return await _pharmacyRepository.GetAllRatingsAsync();
+        }
+
+        public async Task<bool> DeleteRatingAsync(int ratingId)
+        {
+            return await _pharmacyRepository.DeleteRatingAsync(ratingId);
+        }
+        public async Task AddPrescriptionRequestAsync(PrescriptionRequest request)
+        {
+            await _pharmacyRepository.AddPrescriptionRequestAsync(request);
+        }
+
+        public async Task<IEnumerable<PrescriptionRequest>> GetPharmacyPrescriptionsAsync(string pharmacyId)
+        {
+            return await _pharmacyRepository.GetPharmacyPrescriptionsAsync(pharmacyId);
+        }
+
+        public async Task<IEnumerable<PrescriptionRequest>> GetPatientPrescriptionsAsync(string patientId)
+        {
+            return await _pharmacyRepository.GetPatientPrescriptionsAsync(patientId);
+        }
+
+        public async Task<PrescriptionRequest> GetPrescriptionByIdAsync(string id)
+        {
+            return await _pharmacyRepository.GetPrescriptionByIdAsync(id);
+        }
+
+        public async Task<bool> UpdatePrescriptionStatusAsync(string id, string status, string? pharmacyNotes)
+        {
+            return await _pharmacyRepository.UpdatePrescriptionStatusAsync(id, status, pharmacyNotes);
+        }
+        public async Task<bool> UpdatePrescriptionStatusAsync(string id, string status, string? pharmacyNotes, List<PrescriptionItemDto>? items = null)
+        {
+            return await _pharmacyRepository.UpdatePrescriptionStatusAsync(id, status, pharmacyNotes, items);
+        }
     }
 }

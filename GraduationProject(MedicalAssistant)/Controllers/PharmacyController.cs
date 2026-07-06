@@ -259,7 +259,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         //public async Task<IActionResult> GetPharmacyInventory(string pharmacyId)
         //{
         //    var result = await _pharmacyService.GetPharmacyInventoryAsync(pharmacyId);
-        //    return Ok(result);
+        //    return Ok(result); 
         //}
 
 
@@ -282,6 +282,70 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         {
             var result = await _pharmacyService.GetSalesReportAsync(pharmacyId);
             return Ok(result);
+        }
+
+
+        // ✅ المريض بيبعت صورة الروشتة
+        [HttpPost("prescription/{pharmacyId}")]
+        [Authorize(Roles = "Patient")]
+        public async Task<IActionResult> SendPrescription(
+            string pharmacyId,
+            [FromQuery] string patientId,
+            [FromForm] IFormFile prescriptionImg,
+            [FromQuery] string? notes)
+        {
+            var request = new PrescriptionRequest
+            {
+                PatientId = patientId,
+                PharmacyId = pharmacyId,
+                PrescriptionImg = prescriptionImg,
+                Notes = notes,
+                CreatedAt = DateTime.Now
+            };
+
+            await _pharmacyService.AddPrescriptionRequestAsync(request);
+            return Ok("تم إرسال الروشتة بنجاح!");
+        }
+
+        // ✅ الصيدلية بتشوف الروشتات
+        [HttpGet("prescriptions/{pharmacyId}")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<IActionResult> GetPharmacyPrescriptions(string pharmacyId)
+        {
+            var result = await _pharmacyService.GetPharmacyPrescriptionsAsync(pharmacyId);
+            if (!result.Any())
+                return NotFound("مفيش روشتات!");
+            return Ok(result);
+        }
+
+        // ✅ المريض بيشوف روشتاته
+        [HttpGet("prescriptions/patient")]
+        [Authorize(Roles = "Patient")]
+        public async Task<IActionResult> GetPatientPrescriptions([FromQuery]string patientId)
+        {
+            var result = await _pharmacyService.GetPatientPrescriptionsAsync(patientId);
+            if (!result.Any())
+                return NotFound("مفيش روشتات!");
+            return Ok(result);
+        }
+
+        [HttpPatch("prescription/{id}/status")]
+        [Authorize(Roles = "Pharmacy")]
+        public async Task<IActionResult> UpdatePrescriptionStatus(
+      string id,
+      [FromQuery] string status,
+      [FromQuery] string? pharmacyNotes,
+      [FromBody] List<PrescriptionItemDto>? items = null)
+        {
+            var validStatuses = new[] { "Confirmed", "Rejected" };
+            if (!validStatuses.Contains(status))
+                return BadRequest("الحالة لازم تكون Confirmed أو Rejected!");
+
+            var result = await _pharmacyService.UpdatePrescriptionStatusAsync(id, status, pharmacyNotes, items);
+            if (!result)
+                return NotFound("الروشتة مش موجودة!");
+
+            return Ok($"تم تحديث حالة الروشتة لـ {status}!");
         }
     }
 }

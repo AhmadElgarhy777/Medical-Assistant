@@ -41,8 +41,21 @@ namespace Features.PatientFeature.Handler
             var ReportsList = await pagnation.ToListAsync(cancellationToken);
             if (ReportsList is not null)
             {
-                    var ReportDTO= mapper.Map<IEnumerable<AiReport>,List<AiReportDTO>>(ReportsList);
-                    return new ResultResponse<List<AiReportDTO>>
+                    var ReportDTO = ReportsList.Select(report => new AiReportDTO
+                    {
+                        AiReportOutput = new ReportOutPutDto { Diagnosis=report.Diagnosis, confidence=report.Confidence},
+                        DoctorNote = report.DoctorNote??"",
+                        CreatedAt = report.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss"),
+                        DoctorName = report.Doctor.FullName,
+                        DoctorSpeclization = report.Doctor?.Specialization.Name,
+                        Images = report.Images.Select(image => new ReportimagesDto
+                        {
+                            ImagePath = image.ImagePath,
+                            ContentType = image.ContentType,
+                            UploadedAt = image.UploadedAt.ToString("yyyy-MM-dd HH:mm:ss")
+                        }).ToList()
+                    }).ToList();
+                return new ResultResponse<List<AiReportDTO>>
                     {
                         ISucsses = true,
                         Obj = ReportDTO

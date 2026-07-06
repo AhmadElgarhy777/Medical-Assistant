@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Features.PatientFeature.Query
 {
-    public record SearchNuresQuery(NurseSearchingFiledsDTO Searching ,int page=1):IRequest<List<NurseDTO>>;
+    public record SearchNuresQuery(NurseSearchingFiledsDTO Searching ,int page=1):IRequest<List<SearchNurseResultDto>>;
     
     
 }
