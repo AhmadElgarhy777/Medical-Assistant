@@ -50,6 +50,7 @@ namespace DataAccess.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
+           
 
             migrationBuilder.CreateIndex(
                 name: "IX_PatientMedicalScans_AiReportId",
@@ -74,6 +75,8 @@ namespace DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PatientMedicalScans");
+
+           
         }
     }
 }

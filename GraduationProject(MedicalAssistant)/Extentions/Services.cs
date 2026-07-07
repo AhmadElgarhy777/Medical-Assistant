@@ -66,7 +66,6 @@ namespace InfrastructureExtension
             services.AddHttpClient<IChestRayClassifcationAiClient, ChestRayClassifcationAiClient>();
             services.AddHttpClient<ICBCBloodTestAiClient, CBCBloodTestAiClient>();
             services.AddScoped<IAnalyzeImage, AnalyzeImage>();
-            services.AddScoped<IAiAnalysisOrchestrator, AiAnalysisOrchestrator>();
 
 
             services.AddScoped<IFileService, FileService>();

@@ -74,7 +74,6 @@ namespace GraduationProject_MedicalAssistant_
             builder.Services.CustomJwtServices(builder.Configuration);
             builder.Services.AddSwaggerAuth();
             builder.Services.AddCorsExtention();
-            builder.Services.AddCorsExtention();
             builder.Services.AddSignalR();
 
             // ✅ Pharmacy Services
@@ -113,6 +112,7 @@ namespace GraduationProject_MedicalAssistant_
             app.AddSwaggerServiceMiddleWare();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseAuthorization();

@@ -1,4 +1,4 @@
-﻿using Features.AiFeature.AnalyzeBrainTumorFeature.Commands;
+using Features.AiFeature.AnalyzeBrainTumorFeature.Commands;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
