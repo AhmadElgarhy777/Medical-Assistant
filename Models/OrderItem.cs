@@ -4,10 +4,12 @@ public class OrderItem : ModelBase
 {
     public int Quantity { get; set; }
     public decimal UnitPrice { get; set; }
+    public string? MedicineName { get; set; }
+
 
     // Foreign Keys
     public string OrderId { get; set; }
-    public string InventoryId { get; set; }
+    public string? InventoryId { get; set; }
 
     // Navigation Properties
     public Order Order { get; set; }

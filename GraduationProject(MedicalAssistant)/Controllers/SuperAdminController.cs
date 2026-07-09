@@ -8,22 +8,28 @@ using Models;
 using Models.DTOs;
 using Utility;
 
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using Features;
+
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles =SD.SuperAdminRole)]
+    [Authorize(Roles = SD.SuperAdminRole)]
     public class SuperAdminController : ControllerBase
     {
         private readonly IPharmacyService _pharmacyService;
         private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public SuperAdminController(IPharmacyService pharmacyService,IMediator mediator,IMapper mapper)
+        public SuperAdminController(IPharmacyService pharmacyService, IMediator mediator, IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _pharmacyService = pharmacyService;
             this.mediator = mediator;
             this.mapper = mapper;
+            _userManager = userManager;
         }
 
         [HttpPut("ChangeSuperAdmin")]
@@ -93,7 +99,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         // ✅ حذف صيدلية
 
 
-        
+
 
         // ✅ كل المرضى
         [HttpGet("GetAllPatients")]
@@ -130,8 +136,8 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [HttpPut("Ban&&DeletePatient")]
         public async Task<IActionResult> DeletePatient(string patientId)
         {
-            var result =await mediator.Send(new DeletePatientCommand(patientId));
-            if (!result.ISucsses) 
+            var result = await mediator.Send(new DeletePatientCommand(patientId));
+            if (!result.ISucsses)
                 return BadRequest(result);
             return Ok(result.Obj);
         }
@@ -154,7 +160,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 return BadRequest(result);
             return Ok(result.Obj);
         }
-      
+
         [HttpPut("UnBanPatient")]
         public async Task<IActionResult> UnBanPatient(string patientId)
         {
@@ -188,11 +194,79 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             return Ok(result.Obj);
         }
 
-       
+        [HttpPost("BanUser")]
+        public async Task<IActionResult> BanUser([FromBody] BanUserRequestDto request)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
+            var user = await _userManager.FindByIdAsync(request.UserId);
+            if (user == null) return NotFound("المستخدم غير موجود");
 
+            var roles = await _userManager.GetRolesAsync(user);
+            string userRole = roles.FirstOrDefault() ?? "Unknown";
 
-        // ✅ إضافة Ban Report
+            ResultResponse<bool> result = null;
+
+            if (userRole == SD.DoctorRole)
+                result = await mediator.Send(new DeleteDoctorCommand(request.UserId));
+            else if (userRole == SD.PatientRole)
+                result = await mediator.Send(new DeletePatientCommand(request.UserId));
+            else if (userRole == SD.PharmacyRole)
+                result = await mediator.Send(new DeletePharmacyCommand(request.UserId));
+            else if (userRole == SD.NurseRole)
+                result = await mediator.Send(new DeleteNurseCommand(request.UserId));
+
+            if (result != null && !result.ISucsses)
+                return BadRequest(result.Message);
+
+            var adminId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var adminName = User.FindFirstValue(ClaimTypes.Name) ?? "Admin";
+
+            var report = new BanReport
+            {
+                BannedUserId = user.Id,
+                BannedUserName = user.UserName ?? "Unknown",
+                BannedUserEmail = user.Email ?? "Unknown",
+                AdminId = adminId ?? "",
+                AdminName = adminName,
+                Reason = request.Reason,
+                UserType = userRole,
+                BanDate = DateTime.UtcNow,
+                BanCount = 1
+            };
+
+            await _pharmacyService.AddBanReportAsync(report);
+
+            return Ok(new { message = "تم حظر المستخدم بنجاح" });
+        }
+
+        [HttpPost("UnbanUser")]
+        public async Task<IActionResult> UnbanUser([FromBody] UnbanUserRequestDto request)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var user = await _userManager.FindByIdAsync(request.UserId);
+            if (user == null) return NotFound("المستخدم غير موجود");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            string userRole = roles.FirstOrDefault() ?? "Unknown";
+
+            ResultResponse<bool> result = null;
+
+            if (userRole == SD.DoctorRole)
+                result = await mediator.Send(new UnbanDoctorCommand(request.UserId));
+            else if (userRole == SD.PatientRole)
+                result = await mediator.Send(new UnbanPatientCommand(request.UserId));
+            else if (userRole == SD.PharmacyRole)
+                result = await mediator.Send(new UnbanPhramacyCommand(request.UserId));
+            else if (userRole == SD.NurseRole)
+                result = await mediator.Send(new UnBanNurseCommand(request.UserId));
+
+            if (result != null && !result.ISucsses)
+                return BadRequest(result.Message);
+
+            return Ok(new { message = "تم إلغاء الحظر عن المستخدم بنجاح" });
+        }        // ✅ إضافة Ban Report
         [HttpPost("ban-report")]
         public async Task<IActionResult> AddBanReport([FromBody] BanReport banReport)
         {

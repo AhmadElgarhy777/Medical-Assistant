@@ -62,25 +62,35 @@ namespace Services.ImageServices
         }
 
 
-        public async Task<List<string>> UploadAIModelImagesAsync(IEnumerable<IFormFile> images, CancellationToken cancellationToken)
+        public async Task<List<string>> UploadAIModelImagesAsync(IEnumerable<IFormFile> images,string FolderName, CancellationToken cancellationToken)
         {
             var uploaded = new List<string>();
 
             foreach (var image in images)
             {
-                var path = await SaveAsync(image);
+                var path = await SaveAsync(image, FolderName);
                 uploaded.Add(path);
             }
 
             return uploaded;
         }
 
-        private async Task<string> SaveAsync(IFormFile file)
+        public Task DeleteAIImagesAsync(IEnumerable<string> imagePaths)
+        {
+            foreach (var path in imagePaths)
+            {
+                if (File.Exists(path))
+                    File.Delete(path);
+            }
+
+            return Task.CompletedTask;
+        }
+        private async Task<string> SaveAsync(IFormFile file,string FolderName)
         {
             if (file == null || file.Length == 0)
                 throw new ArgumentException("Invalid file");
 
-            var uploadsFolder = Path.Combine(environment.ContentRootPath, "Storage");
+            var uploadsFolder = Path.Combine(environment.WebRootPath, FolderName);
 
             if (!Directory.Exists(uploadsFolder))
                 Directory.CreateDirectory(uploadsFolder);

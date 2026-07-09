@@ -1,4 +1,4 @@
-﻿using DataAccess.EntittySpecifcation;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using DataAccess.UnitOfWork;
 using Features.SuperAdminFeature.Command;
@@ -68,6 +68,7 @@ namespace Features.SuperAdminFeature.Handler
             // 2. Soft delete the Doc
             Doc.IsDeleted = true;
             Doc.DeletedAT = deletedAt;
+            Doc.BanCount += 1;
 
             // 3. Soft delete all related entities
             SoftDeleteRange(Doc.Appointments, deletedAt);

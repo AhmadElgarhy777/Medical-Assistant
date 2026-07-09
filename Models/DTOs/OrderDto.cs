@@ -39,5 +39,14 @@ namespace Models.DTOs
         public string? InvoiceId { get; set; }
         public decimal InvoiceTotalAmount { get; set; }
         public string? PaymentStatus { get; set; }
+
+        public string? PharmacyName { get; set; }
+        public List<OrderItemResultDto> Items { get; set; } = new List<OrderItemResultDto>();
+    }
+    public class OrderItemResultDto
+    {
+        public string? MedicineName { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
     }
 }

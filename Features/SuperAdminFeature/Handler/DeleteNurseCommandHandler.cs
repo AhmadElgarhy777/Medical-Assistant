@@ -1,4 +1,4 @@
-﻿using DataAccess.EntittySpecifcation;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using DataAccess.UnitOfWork;
 using Features.SuperAdminFeature.Command;
@@ -67,6 +67,7 @@ namespace Features.SuperAdminFeature.Handler
             // 2. Soft delete the nurse
             nurse.IsDeleted = true;
             nurse.DeletedAT = deletedAt;
+            nurse.BanCount += 1;
 
 
             await userManager.SetLockoutEnabledAsync(user, true);

@@ -8,9 +8,9 @@ namespace Models.DTOs
 {
     public class PresciptionItemDTO
     {
-        public string DrugName { get; set; } = null!;
-        public string Dos { get; set; } = null!;
-        public string? Note { get; set; }
-        public string? Duration { get; set; }
+        public string? InventoryId { get; set; }
+        public string? MedicineName { get; set; }
+        public decimal? Price { get; set; }
+        public int Quantity { get; set; }
     }
 }

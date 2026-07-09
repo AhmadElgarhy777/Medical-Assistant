@@ -2,6 +2,7 @@ using DataAccess.Repositry.IRepositry;
 using DataAccess.UnitOfWork;
 using Features.AiFeature.ChestRayClassifcation;
 using Features.AiFeature.SharedMethod;
+using Features.AiFeature.SharedMethod.AiReportService;
 using MediatR;
 using Models;
 using Models.DTOs.AiServicesDtos;
@@ -22,13 +23,15 @@ namespace Features.AiFeature.CBCBloodTest
         private readonly IAiReportRepositry reportRepositry;
         private readonly IAiReportImageRepositry reportImageRepository;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IAiReportService aiReportService;
 
         public CBCBloodTestCommandHandler(IImageService imageService,
             IAnalyzeImage analyzeImage,
             ICBCBloodTestAiClient cBCBloodTestAiClient,
             IAiReportRepositry reportRepositry,
             IAiReportImageRepositry reportImageRepository,
-            IUnitOfWork unitOfWork
+            IUnitOfWork unitOfWork,
+            IAiReportService aiReportService
 
             )
         {
@@ -38,6 +41,7 @@ namespace Features.AiFeature.CBCBloodTest
             this.reportRepositry = reportRepositry;
             this.reportImageRepository = reportImageRepository;
             this.unitOfWork = unitOfWork;
+            this.aiReportService = aiReportService;
         }
         public async Task<ResultResponse<AiAnalysisResultDTO>> Handle(CBCBloodTestCommand request, CancellationToken cancellationToken)
         {
@@ -48,38 +52,23 @@ namespace Features.AiFeature.CBCBloodTest
                 // 1- Upload Images
                 var uploadedImages = await imageService.UploadAIModelImagesAsync(
                     request.Images,
+                    "CBCBloodTestModel",
                     cancellationToken);
 
                 // 2- Analyze Images
-                var analysisResult = await analyzeImage.AnalyzeImagesAsync(
-                    uploadedImages,
-                    cBCBloodTestAiClient,
-                    cancellationToken);
-
-                // 3- Create Report
-                var Report = new AiReport
-                {
-                    Diagnosis = analysisResult.Prediction,
-                    Confidence = analysisResult.Confidence,
-                    ModelType = AiModelTypeEnum.CBCBloodTest,
-                    PatientId = request.PatientId,
-                    DoctorId = request.DoctorId,
-                    DoctorNote = request.DoctorNote,
-                };
-                // 4- Save Report
-                reportRepositry.Add(Report);
-                // 5- Save Report Images
-
-                SaveImages(Report.ID, uploadedImages);
-
-                await unitOfWork.CompleteAsync(cancellationToken);
-
-                await transaction.CommitAsync(cancellationToken);
+                var analysisResult =
+                  await aiReportService.AnalyzeAndSaveAsync(
+                      uploadedImages,
+                      AiModelTypeEnum.CBCBloodTest,
+                      request.PatientId,
+                      request.DoctorId,
+                      request.DoctorNote,
+                      cancellationToken);
                 return new ResultResponse<AiAnalysisResultDTO>
                 {
                     ISucsses = true,
                     Message = "Analysis completed successfully.",
-                    Obj = analysisResult
+                    Obj = analysisResult.AnalysisResult
                 };
             }
             catch (Exception ex)
@@ -96,27 +85,6 @@ namespace Features.AiFeature.CBCBloodTest
 
         }
 
-        private void SaveImages(string reportId, List<string> imagePaths)
-        {
-            foreach (var path in imagePaths)
-            {
-                var extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
-                var contentType = extension switch
-                {
-                    ".jpg" or ".jpeg" => "image/jpeg",
-                    ".png" => "image/png",
-                    ".gif" => "image/gif",
-                    ".webp" => "image/webp",
-                    _ => "image/jpeg"
-                };
-
-                reportImageRepository.Add(new AiReportImage
-                {
-                    ImagePath = path,
-                    AiReportId = reportId,
-                    ContentType = contentType
-                });
-            }
-        }
+      
     }
 }

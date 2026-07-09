@@ -13,7 +13,9 @@ namespace Models.DTOs
         public string Name { get; set; }
         public string Governorate { get; set; }
         //public string Email { get; set; }
-        public string City { get; set; }
+        public string City { get; set; } = null!;
+        public bool IsBanned { get; set; }
+        public int BanCount { get; set; }
         public ConfrmationStatus Status { get; set; }
         public string? RealImg { get; set; }
     }

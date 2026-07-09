@@ -31,5 +31,8 @@ namespace Models.DTOs
 
         public double RattingAverage { get; set; }
         public string SpecializationTitle { get; set; } = null!;
+
+         public bool IsBanned { get; set; }
+        public int BanCount { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         private readonly IOrderService orderService;
         private readonly IMapper mapper;
 
-        public PharmacyController(IPharmacyService pharmacyService,IOrderService orderService,IMapper mapper)
+        public PharmacyController(IPharmacyService pharmacyService, IOrderService orderService, IMapper mapper)
         {
             _pharmacyService = pharmacyService;
             this.orderService = orderService;
@@ -41,9 +41,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         [AllowAnonymous]
         public async Task<List<DrugDTO>> SearchInSpecificPharmacy(string pharmacyId, string DrugNameOrCategory)
         {
-            var Result=await _pharmacyService.SearchInSpecificPharmacyAsync(pharmacyId, DrugNameOrCategory);
+            var Result = await _pharmacyService.SearchInSpecificPharmacyAsync(pharmacyId, DrugNameOrCategory);
 
-            var Drugdto=new List<DrugDTO>();
+            var Drugdto = new List<DrugDTO>();
             foreach (var item in Result)
             {
                 Drugdto.Add(new DrugDTO
@@ -52,7 +52,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                     Price = item.Price,
                     Quantity = item.Quantity,
                     Category = item.PharmacyProduct.Category,
-                    InvetoryId=item.ID
+                    InvetoryId = item.ID
                 });
             }
             return Drugdto;
@@ -64,13 +64,13 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         public async Task<IActionResult> AddProduct([FromBody] AddProductDto dto)
         {
             var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var result = await _pharmacyService.AddProductAsync(pharmacyId,dto);
-            var productResult=new PharmcyProductDTO
+            var result = await _pharmacyService.AddProductAsync(pharmacyId, dto);
+            var productResult = new PharmcyProductDTO
             {
-                PharmcyProductId=result.ID,
-                Name=result.Name,
-                Description=result.Description,
-                Category=result.Category,
+                PharmcyProductId = result.ID,
+                Name = result.Name,
+                Description = result.Description,
+                Category = result.Category,
             };
             return Ok(productResult);
         }
@@ -82,7 +82,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         {
             var pharmacyId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var result = await _pharmacyService.AddInventoryAsync(pharmacyId ,dto);
+            var result = await _pharmacyService.AddInventoryAsync(pharmacyId, dto);
             var InventoryResult = new InvetroyResultDTO
             {
                 Price = result.Price,
@@ -264,7 +264,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         //}
 
 
-       
+
         [HttpPatch("UpdatePharmacyLocation")]
         [Authorize(Roles = "Pharmacy")]
         public async Task<IActionResult> UpdatePharmacyLocation(
@@ -292,7 +292,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         public async Task<IActionResult> SendPrescription(
             string pharmacyId,
             [FromQuery] string patientId,
-            [FromForm] IFormFile prescriptionImg,
+             IFormFile prescriptionImg,
             [FromQuery] string? notes,
             CancellationToken cancellationToken)
         {
@@ -305,9 +305,9 @@ namespace GraduationProject_MedicalAssistant_.Controllers
                 Notes = notes,
 
             };
-           
 
-            await _pharmacyService.AddPrescriptionRequestAsync(prescriptionRequestDto,cancellationToken);
+
+            await _pharmacyService.AddPrescriptionRequestAsync(prescriptionRequestDto, cancellationToken);
             return Ok("تم إرسال الروشتة بنجاح!");
         }
 
@@ -325,7 +325,7 @@ namespace GraduationProject_MedicalAssistant_.Controllers
         // ✅ المريض بيشوف روشتاته
         [HttpGet("prescriptions/patient")]
         [Authorize(Roles = "Patient")]
-        public async Task<IActionResult> GetPatientPrescriptions([FromQuery]string patientId)
+        public async Task<IActionResult> GetPatientPrescriptions([FromQuery] string patientId)
         {
             var result = await _pharmacyService.GetPatientPrescriptionsAsync(patientId);
             if (!result.Any())

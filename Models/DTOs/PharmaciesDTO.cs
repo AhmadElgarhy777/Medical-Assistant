@@ -24,5 +24,7 @@ namespace Models.DTOs
         public string Gender { get; set; }
         public DateOnly BD { get; set; }
         public double RattingAverage { get; set; }
+        public bool IsBanned { get; set; }
+        public int BanCount { get; set; }
     }
 }

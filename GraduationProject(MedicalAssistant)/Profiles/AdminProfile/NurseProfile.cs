@@ -11,6 +11,8 @@ namespace GraduationProject_MedicalAssistant_.Profiles.AdminProfile
             CreateMap<Nures, NurseRowDTO>()
                .ForMember(e => e.Gender, d => d.MapFrom(s => s.Gender.ToString()))
                .ForMember(e => e.Age, d => d.MapFrom(s => DateTime.UtcNow.Year - s.BD.Year))
+               .ForMember(e => e.IsBanned, d => d.MapFrom(s => s.IsDeleted))
+               .ForMember(e => e.BanCount, d => d.MapFrom(s => s.BanCount))
                .ReverseMap();
 
             CreateMap<Nures, NurseDetailseDTO>()

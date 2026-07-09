@@ -93,7 +93,14 @@ namespace Features.PharmacyFeature
                 Status = o.Status,
                 InvoiceId = o.Invoice?.ID,
                 InvoiceTotalAmount = o.Invoice?.TotalAmount ?? 0,
-                PaymentStatus = o.Invoice?.PaymentStatus
+                PaymentStatus = o.Invoice?.PaymentStatus,
+                PharmacyName = o.Pharmacy?.Name ?? "صيدلية",
+                Items = o.OrderItems.Select(oi => new OrderItemResultDto
+                {
+                    MedicineName = oi.MedicineName ?? oi.Inventory?.PharmacyProduct?.Name,
+                    Price = oi.UnitPrice,
+                    Quantity = oi.Quantity
+                }).ToList()
             });
         }
 
@@ -114,7 +121,14 @@ namespace Features.PharmacyFeature
                 Status = order.Status,
                 InvoiceId = order.Invoice?.ID,
                 InvoiceTotalAmount = order.Invoice?.TotalAmount ?? 0,
-                PaymentStatus = order.Invoice?.PaymentStatus
+                PaymentStatus = order.Invoice?.PaymentStatus,
+                PharmacyName = order.Pharmacy?.Name ?? "صيدلية",
+                Items = order.OrderItems?.Select(oi => new OrderItemResultDto
+                {
+                    MedicineName = oi.MedicineName ?? oi.Inventory?.PharmacyProduct?.Name,
+                    Price = oi.UnitPrice,
+                    Quantity = oi.Quantity
+                }).ToList() ?? new List<OrderItemResultDto>()
             };
         }
 
@@ -129,7 +143,14 @@ namespace Features.PharmacyFeature
                 Status = o.Status,
                 InvoiceId = o.Invoice?.ID,
                 InvoiceTotalAmount = o.Invoice?.TotalAmount ?? 0,
-                PaymentStatus = o.Invoice?.PaymentStatus
+                PaymentStatus = o.Invoice?.PaymentStatus,
+                PharmacyName = o.Pharmacy?.Name ?? "صيدلية",
+                Items = o.OrderItems?.Select(oi => new OrderItemResultDto
+                {
+                    MedicineName = oi.MedicineName ?? oi.Inventory?.PharmacyProduct?.Name,
+                    Price = oi.UnitPrice,
+                    Quantity = oi.Quantity
+                }).ToList() ?? new List<OrderItemResultDto>()
             });
         }
 
@@ -153,7 +174,14 @@ namespace Features.PharmacyFeature
                 Status = order.Status,
                 InvoiceId = invoice.ID,
                 InvoiceTotalAmount = invoice.TotalAmount,
-                PaymentStatus = invoice.PaymentStatus
+                PaymentStatus = invoice.PaymentStatus,
+                PharmacyName = order.Pharmacy?.Name ?? "صيدلية",
+                Items = order.OrderItems?.Select(oi => new OrderItemResultDto
+                {
+                    MedicineName = oi.MedicineName ?? oi.Inventory?.PharmacyProduct?.Name,
+                    Price = oi.UnitPrice,
+                    Quantity = oi.Quantity
+                }).ToList() ?? new List<OrderItemResultDto>()
             };
         }
 
@@ -184,7 +212,14 @@ namespace Features.PharmacyFeature
                 Status = OrderStatusEnum.Canceled,
                 InvoiceId = order.Invoice?.ID,
                 InvoiceTotalAmount = order.Invoice?.TotalAmount ?? 0,
-                PaymentStatus = order.Invoice?.PaymentStatus
+                PaymentStatus = order.Invoice?.PaymentStatus,
+                PharmacyName = order.Pharmacy?.Name ?? "صيدلية",
+                Items = order.OrderItems?.Select(oi => new OrderItemResultDto
+                {
+                    MedicineName = oi.MedicineName ?? oi.Inventory?.PharmacyProduct?.Name,
+                    Price = oi.UnitPrice,
+                    Quantity = oi.Quantity
+                }).ToList() ?? new List<OrderItemResultDto>()
             };
         }
 

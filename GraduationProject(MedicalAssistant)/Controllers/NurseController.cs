@@ -9,10 +9,15 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using MimeKit;
 using Models;
 using Models.DTOs;
 using Models.Enums;
+using Models.Enums.NotificationEnums;
 using System.Security.Claims;
+using System.Threading;
+using Twilio.TwiML.Messaging;
 using Utility;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
@@ -214,6 +219,22 @@ namespace GraduationProject_MedicalAssistant_.Controllers
             booking.Status = bookStatusEnum.Completed.ToString(); // هنا استخدمنا Enum بدل string
 
             await _context.SaveChangesAsync();
+
+
+            //var temp=new {
+            //    ReceiverId = booking.PatientId,
+            //    SenderId = booking.NurseId,
+            //    Title = "Appointment Accepted",
+            //    Body = "Your appointment has been accepted successfully.",
+            //    Type = NotificationTypeEnum.AppointmentAccepted,
+            //    ReferenceType = NotificationReferenceType.Appointment,
+            //    ReferenceId = booking.ID.ToString()
+            //};
+
+            //var command=new CreateNotificationCommand(temp.ReceiverId,temp.SenderId,temp.Title,temp.Body,temp.Type,temp.ReferenceType,temp.ReferenceId);
+          
+            //await mediator.Send(command);
+
             return Ok(booking);
         }
 

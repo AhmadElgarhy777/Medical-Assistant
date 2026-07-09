@@ -34,6 +34,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("AddressNote")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -217,6 +220,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -255,6 +261,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<double>("Confidence")
                         .HasPrecision(5, 2)
                         .HasColumnType("float(5)");
@@ -291,11 +300,18 @@ namespace DataAccess.Migrations
                     b.Property<string>("RawApiResponse")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ScanRequestId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ID");
 
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("ScanRequestId")
+                        .IsUnique()
+                        .HasFilter("[ScanRequestId] IS NOT NULL");
 
                     b.ToTable("AiReports");
                 });
@@ -308,6 +324,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("AiReportId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("ContentType")
                         .IsRequired()
@@ -426,6 +445,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("ClinicID")
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("ClinicID");
@@ -481,6 +503,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -563,6 +588,9 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Bio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -609,6 +637,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("ClinicId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -634,6 +665,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("CommentText")
                         .IsRequired()
@@ -670,6 +704,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -709,6 +746,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
 
@@ -727,6 +767,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("ConversationId")
                         .IsRequired()
@@ -762,6 +805,9 @@ namespace DataAccess.Migrations
 
                     b.Property<DateOnly>("BD")
                         .HasColumnType("date");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
@@ -855,6 +901,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<int>("Day")
                         .HasColumnType("int");
 
@@ -889,6 +938,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
 
@@ -914,6 +966,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -957,6 +1012,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -1002,6 +1060,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("AreaId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1068,6 +1129,12 @@ namespace DataAccess.Migrations
                     b.Property<string>("AreaId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CollectorId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
 
@@ -1094,7 +1161,7 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("PatientId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PaymentMethod")
                         .IsRequired()
@@ -1131,6 +1198,8 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("LabId");
 
+                    b.HasIndex("PatientId");
+
                     b.HasIndex("RadiologyCenterId");
 
                     b.ToTable("LabBookings");
@@ -1140,6 +1209,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1171,10 +1243,56 @@ namespace DataAccess.Migrations
                     b.ToTable("LabBookingItems");
                 });
 
+            modelBuilder.Entity("Models.LabSchedule", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAT")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("FromTime")
+                        .HasColumnType("time");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LabId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<TimeSpan>("ToTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LabId");
+
+                    b.ToTable("LabSchedules");
+                });
+
             modelBuilder.Entity("Models.LabTestOffer", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1210,6 +1328,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1248,6 +1369,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("BasePrice")
                         .HasColumnType("decimal(10,2)");
@@ -1289,6 +1413,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
@@ -1333,6 +1460,14 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -1345,15 +1480,34 @@ namespace DataAccess.Migrations
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Message")
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ReferenceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReferenceType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
 
                     b.ToTable("Notifications");
                 });
@@ -1369,6 +1523,9 @@ namespace DataAccess.Migrations
 
                     b.Property<DateOnly>("BD")
                         .HasColumnType("date");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Bio")
                         .HasColumnType("nvarchar(max)");
@@ -1456,6 +1613,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
 
@@ -1483,6 +1643,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1513,6 +1676,9 @@ namespace DataAccess.Migrations
 
                     b.Property<DateOnly>("BD")
                         .HasColumnType("date");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("BloodType")
                         .HasColumnType("nvarchar(max)");
@@ -1557,66 +1723,13 @@ namespace DataAccess.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("Models.PatientMedicalScan", b =>
-                {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AiReportId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("ApprovedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAT")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DoctorId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("DoctorNote")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ModelType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("AiReportId")
-                        .IsUnique()
-                        .HasFilter("[AiReportId] IS NOT NULL");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("PatientMedicalScans");
-                });
-
             modelBuilder.Entity("Models.PatientPhone", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1650,6 +1763,9 @@ namespace DataAccess.Migrations
 
                     b.Property<DateOnly>("BD")
                         .HasColumnType("date");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -1709,6 +1825,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Barcode")
                         .HasColumnType("nvarchar(max)");
@@ -1784,6 +1903,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("AppointmentId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CraetedAt")
                         .HasColumnType("datetime2");
 
@@ -1817,6 +1939,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1857,6 +1982,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -1912,8 +2040,15 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -1923,6 +2058,12 @@ namespace DataAccess.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1936,6 +2077,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("float");
 
                     b.Property<int>("ReviewsCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("WorkingHours")
@@ -1953,6 +2097,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -1988,6 +2135,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("BasePrice")
                         .HasColumnType("decimal(10,2)");
@@ -2025,10 +2175,97 @@ namespace DataAccess.Migrations
                     b.ToTable("RadiologyScans");
                 });
 
+            modelBuilder.Entity("Models.RadiologySchedule", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAT")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("FromTime")
+                        .HasColumnType("time");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RadiologyCenterId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<TimeSpan>("ToTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("RadiologyCenterId");
+
+                    b.ToTable("RadiologySchedules");
+                });
+
+            modelBuilder.Entity("Models.RadiologyTestResult", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAT")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DoctorNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagesUrls")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LabBookingItemId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ReportFileUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ReportedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LabBookingItemId")
+                        .IsUnique();
+
+                    b.ToTable("RadiologyTestResults");
+                });
+
             modelBuilder.Entity("Models.Rating", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
@@ -2067,6 +2304,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -2114,10 +2354,101 @@ namespace DataAccess.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("Models.RequestedScanImage", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAT")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ScanRequestId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ScanRequestId");
+
+                    b.ToTable("requestedScanImages");
+                });
+
+            modelBuilder.Entity("Models.ScanRequest", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AIModelType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AiReportId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CancelReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAT")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DoctorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("DoctorNote")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PatientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RejectReason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("scanRequests");
+                });
+
             modelBuilder.Entity("Models.Specialization", b =>
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
@@ -2140,6 +2471,9 @@ namespace DataAccess.Migrations
                 {
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -2178,15 +2512,20 @@ namespace DataAccess.Migrations
                     b.Property<string>("ID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("BanCount")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAT")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("InventoryId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("MedicineName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrderId")
                         .IsRequired()
@@ -2272,9 +2611,16 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Models.ScanRequest", "ScanRequest")
+                        .WithOne("AiReport")
+                        .HasForeignKey("Models.AiReport", "ScanRequestId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Doctor");
 
                     b.Navigation("Patient");
+
+                    b.Navigation("ScanRequest");
                 });
 
             modelBuilder.Entity("Models.AiReportImage", b =>
@@ -2464,6 +2810,12 @@ namespace DataAccess.Migrations
                         .HasForeignKey("LabId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Models.RadiologyCenter", "RadiologyCenter")
                         .WithMany()
                         .HasForeignKey("RadiologyCenterId")
@@ -2472,6 +2824,8 @@ namespace DataAccess.Migrations
                     b.Navigation("Area");
 
                     b.Navigation("Lab");
+
+                    b.Navigation("Patient");
 
                     b.Navigation("RadiologyCenter");
                 });
@@ -2499,6 +2853,17 @@ namespace DataAccess.Migrations
                     b.Navigation("MedicalTest");
 
                     b.Navigation("RadiologyScan");
+                });
+
+            modelBuilder.Entity("Models.LabSchedule", b =>
+                {
+                    b.HasOne("Models.Lab", "Lab")
+                        .WithMany()
+                        .HasForeignKey("LabId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Lab");
                 });
 
             modelBuilder.Entity("Models.LabTestOffer", b =>
@@ -2550,6 +2915,24 @@ namespace DataAccess.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("Models.Models.Notification", b =>
+                {
+                    b.HasOne("Models.ApplicationUser", "Receiver")
+                        .WithMany("ReceivedNotifications")
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Models.ApplicationUser", "Sender")
+                        .WithMany("SentNotifications")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("Models.NurseService", b =>
                 {
                     b.HasOne("Models.Nures", "Nurse")
@@ -2567,32 +2950,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Nurse");
 
                     b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("Models.PatientMedicalScan", b =>
-                {
-                    b.HasOne("Models.AiReport", "AiReport")
-                        .WithOne()
-                        .HasForeignKey("Models.PatientMedicalScan", "AiReportId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("AiReport");
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("Models.PatientPhone", b =>
@@ -2699,6 +3056,28 @@ namespace DataAccess.Migrations
                     b.Navigation("RadiologyScan");
                 });
 
+            modelBuilder.Entity("Models.RadiologySchedule", b =>
+                {
+                    b.HasOne("Models.RadiologyCenter", "RadiologyCenter")
+                        .WithMany()
+                        .HasForeignKey("RadiologyCenterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("RadiologyCenter");
+                });
+
+            modelBuilder.Entity("Models.RadiologyTestResult", b =>
+                {
+                    b.HasOne("Models.LabBookingItem", "LabBookingItem")
+                        .WithOne("RadiologyResult")
+                        .HasForeignKey("Models.RadiologyTestResult", "LabBookingItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("LabBookingItem");
+                });
+
             modelBuilder.Entity("Models.Rating", b =>
                 {
                     b.HasOne("Models.Patient", "Patient")
@@ -2727,6 +3106,36 @@ namespace DataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.RequestedScanImage", b =>
+                {
+                    b.HasOne("Models.ScanRequest", "ScanRequest")
+                        .WithMany("Images")
+                        .HasForeignKey("ScanRequestId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ScanRequest");
+                });
+
+            modelBuilder.Entity("Models.ScanRequest", b =>
+                {
+                    b.HasOne("Models.ApplicationUser", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Models.ApplicationUser", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("Order", b =>
                 {
                     b.HasOne("Models.Patient", "Patient")
@@ -2751,8 +3160,7 @@ namespace DataAccess.Migrations
                     b.HasOne("Models.Inventory", "Inventory")
                         .WithMany()
                         .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Order", "Order")
                         .WithMany("OrderItems")
@@ -2773,6 +3181,10 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.ApplicationUser", b =>
                 {
                     b.Navigation("Messages");
+
+                    b.Navigation("ReceivedNotifications");
+
+                    b.Navigation("SentNotifications");
 
                     b.Navigation("conversationParticipants");
                 });
@@ -2816,6 +3228,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.LabBookingItem", b =>
                 {
+                    b.Navigation("RadiologyResult");
+
                     b.Navigation("Result");
                 });
 
@@ -2872,6 +3286,13 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("Models.RadiologyScan", b =>
                 {
                     b.Navigation("CenterOffers");
+                });
+
+            modelBuilder.Entity("Models.ScanRequest", b =>
+                {
+                    b.Navigation("AiReport");
+
+                    b.Navigation("Images");
                 });
 
             modelBuilder.Entity("Models.Specialization", b =>

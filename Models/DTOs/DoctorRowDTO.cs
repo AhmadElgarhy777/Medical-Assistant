@@ -14,6 +14,8 @@ namespace Models.DTOs
         public string Gender { get; set; } = null!;
         public int Age { get; set; }
         public string Specialization { get; set; } = null!;
+        public bool IsBanned { get; set; }
+        public int BanCount { get; set; }
 
     }
 }

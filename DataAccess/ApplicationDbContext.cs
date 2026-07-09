@@ -16,7 +16,6 @@ namespace DataAccess
         public DbSet<AiReport> AiReports { get; set; }
         public DbSet<AiReportImage> AiReportImages { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
-        public DbSet<PatientMedicalScan> PatientMedicalScans { get; set; }
 
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<ClinicPhone> ClinicPhones { get; set; }
@@ -61,7 +60,13 @@ namespace DataAccess
         public DbSet<LabBooking> LabBookings { get; set; }
         public DbSet<LabBookingItem> LabBookingItems { get; set; }
         public DbSet<LabTestResult> LabTestResults { get; set; }
+        public DbSet<LabSchedule> LabSchedules { get; set; }
+        public DbSet<RadiologySchedule> RadiologySchedules { get; set; }
+        public DbSet<RadiologyTestResult> RadiologyTestResults { get; set; }
 
+
+        public DbSet<RequestedScanImage> requestedScanImages { get; set; }
+        public DbSet<ScanRequest> scanRequests { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -135,6 +140,19 @@ namespace DataAccess
             builder.Entity<Invoice>()
                 .Property(inv => inv.TotalAmount)
                 .HasColumnType("decimal(18,2)");
+
+
+            builder.Entity<RadiologyTestResult>()
+               .HasOne(r => r.LabBookingItem)
+               .WithOne(i => i.RadiologyResult)
+               .HasForeignKey<RadiologyTestResult>(r => r.LabBookingItemId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<LabTestResult>()
+                .HasOne(r => r.LabBookingItem)
+                .WithOne(i => i.Result)
+                .HasForeignKey<LabTestResult>(r => r.LabBookingItemId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 

@@ -6,8 +6,11 @@ using Features.AiFeature.AnalyzeBrainTumorFeature;
 using Features.AiFeature.CBCBloodTest;
 using Features.AiFeature.ChestRayClassifcation;
 using Features.AiFeature.SharedMethod;
+using Features.AiFeature.SharedMethod.AiReportService;
 using Features.AiFeature.SkinCancerClassification;
+using Features.NotifecationService.NotificationSender;
 using Features.PatientFeature.Handler;
+using GraduationProject_MedicalAssistant_;
 using GraduationProject_MedicalAssistant_.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +35,6 @@ namespace InfrastructureExtension
         {
             services.AddScoped<IAiReportRepositry, AiReportRepositry>();
             services.AddScoped<IAiReportImageRepositry, AiReportImageRepositry>();
-            services.AddScoped<IPatientMedicalScanRepositry, PatientMedicalScanRepositry>();
             services.AddScoped<IAppointmentRepositry, AppointmentRepositry>();
             services.AddScoped<IClinicPhoneRepositry, ClinicPhoneRepositry>();
             services.AddScoped<IClinicRepositry, ClinicRepositry>();
@@ -66,7 +68,11 @@ namespace InfrastructureExtension
             services.AddHttpClient<IChestRayClassifcationAiClient, ChestRayClassifcationAiClient>();
             services.AddHttpClient<ICBCBloodTestAiClient, CBCBloodTestAiClient>();
             services.AddScoped<IAnalyzeImage, AnalyzeImage>();
-
+            services.AddScoped<INotificationRepository , NotificationRepository>();
+            services.AddScoped<IScanRequestRepository , ScanRequestRepository>();
+            services.AddScoped<IRequestScanImageRepositry, RequestScanImageRepositry>();
+            services.AddScoped<INotificationSender, SignalRNotificationSender>();
+            services.AddScoped<IAiReportService, AiReportService>();
 
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IFileService, FileService>();
@@ -76,6 +82,7 @@ namespace InfrastructureExtension
 
 
            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsSearchHandler).Assembly));
+           services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
            services.AddAutoMapper(a => a.AddProfile(typeof(AutoMaperProfile)), Assembly.GetExecutingAssembly());
 
           

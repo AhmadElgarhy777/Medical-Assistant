@@ -42,6 +42,7 @@ namespace DataAccess.Repositry.IRepositry
         {
             return await _context.Orders
                 .Where(o => o.PatientId == patientId)
+                .Include(o => o.Pharmacy)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Inventory)
                         .ThenInclude(i => i.PharmacyProduct)
@@ -52,6 +53,7 @@ namespace DataAccess.Repositry.IRepositry
         {
             return await _context.Orders
                 .Where(o => o.ID == orderId)
+                .Include(o => o.Pharmacy)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Inventory)
                         .ThenInclude(i => i.PharmacyProduct)

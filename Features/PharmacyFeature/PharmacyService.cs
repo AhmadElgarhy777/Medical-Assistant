@@ -20,7 +20,7 @@ namespace Features.PharmacyFeature
         private readonly IImageService imageService;
         private readonly IConfiguration configuration;
 
-        public PharmacyService(IPharmacyRepository pharmacyRepository,IImageService imageService,IConfiguration configuration)
+        public PharmacyService(IPharmacyRepository pharmacyRepository, IImageService imageService, IConfiguration configuration)
         {
             _pharmacyRepository = pharmacyRepository;
             this.imageService = imageService;
@@ -133,7 +133,7 @@ namespace Features.PharmacyFeature
                 }));
         }
 
-         public List<MedicineInvetoryListDTO> GetAllPharmacyInvetoryMedicine(string PharmacyId)
+        public List<MedicineInvetoryListDTO> GetAllPharmacyInvetoryMedicine(string PharmacyId)
         {
             var inventories = _pharmacyRepository.GetInventoryByPharmacyIdAsync(PharmacyId);
             var result = inventories.Select(i => new MedicineInvetoryListDTO
@@ -145,7 +145,7 @@ namespace Features.PharmacyFeature
                 Quantity = i.Quantity,
                 IsAvailable = i.IsAvailable
             }).ToList();
-            return result;  
+            return result;
 
         }
 
@@ -267,7 +267,7 @@ namespace Features.PharmacyFeature
             return results;
         }
 
-       
+
         public async Task<PharmacyProfileDTO> GetPharmacyProfileAsync(string pharmacyId)
         {
             var pharmacy = await _pharmacyRepository.GetPharmacyByIdAsync(pharmacyId);
@@ -441,6 +441,11 @@ namespace Features.PharmacyFeature
         }
 
 
+
+
+
+
+
         public async Task<bool> UpdateDoctorProfileAsync(string doctorId, UpdateDoctorDto dto)
         {
             return await _pharmacyRepository.UpdateDoctorProfileAsync(doctorId, dto);
@@ -504,7 +509,7 @@ namespace Features.PharmacyFeature
         {
             return await _pharmacyRepository.DeleteRatingAsync(ratingId);
         }
-        public async Task AddPrescriptionRequestAsync(PrescriptionRequestDto PrescriptionRequestDto,CancellationToken cancellationToken)
+        public async Task AddPrescriptionRequestAsync(PrescriptionRequestDto PrescriptionRequestDto, CancellationToken cancellationToken)
         {
             var prescriptionRequest = new PrescriptionRequest
             {
@@ -512,7 +517,7 @@ namespace Features.PharmacyFeature
                 PharmacyId = PrescriptionRequestDto.PharmacyId,
                 Notes = PrescriptionRequestDto.Notes
             };
-            var image = await imageService.UploadImgAsync(PrescriptionRequestDto.PrescriptionImg, "PrescriptionImages",cancellationToken);
+            var image = await imageService.UploadImgAsync(PrescriptionRequestDto.PrescriptionImg, "PrescriptionImages", cancellationToken);
             prescriptionRequest.PrescriptionImg = $"{configuration["ApiBaseUrl"]}/PrescriptionImages/{image}";
 
             await _pharmacyRepository.AddPrescriptionRequestAsync(prescriptionRequest);

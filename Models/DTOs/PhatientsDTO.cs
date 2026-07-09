@@ -23,5 +23,9 @@ namespace Models.DTOs
         public string? BloodType { get; set; }
 
 
+        public bool IsBanned { get; set; }
+        public int BanCount { get; set; }
+
+
     }
 }

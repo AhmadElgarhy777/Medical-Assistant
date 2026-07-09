@@ -1,4 +1,4 @@
-﻿using DataAccess.EntittySpecifcation;
+using DataAccess.EntittySpecifcation;
 using DataAccess.Repositry.IRepositry;
 using DataAccess.UnitOfWork;
 using Features.SuperAdminFeature.Command;
@@ -69,6 +69,7 @@ namespace Features.SuperAdminFeature.Handler
             // 2. Soft delete the pharmacy
             pharmacy.IsDeleted = true;
             pharmacy.DeletedAT = deletedAt;
+            pharmacy.BanCount += 1;
 
             await userManager.SetLockoutEnabledAsync(user, true);
             var lockResult = await userManager.SetLockoutEndDateAsync(user, DateTimeOffset.MaxValue);

@@ -32,6 +32,7 @@ namespace Models.DTOs
         public string? WorkAt { get; set; }
         public NurseSpecialtyEnum NurseSpecialty { get; set; }
 
+      
 
 
     }

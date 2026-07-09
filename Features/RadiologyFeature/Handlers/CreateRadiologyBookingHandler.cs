@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +28,7 @@ namespace Features.RadiologyFeature.Handlers
 
         public async Task<ResultResponse<string>> Handle(CreateRadiologyBookingCommand request, CancellationToken cancellationToken)
         {
-            var patientId = http.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var patientId = http.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (patientId == null)
                 return new ResultResponse<string> { ISucsses = false, Message = "المريض غير مسجل دخول" };

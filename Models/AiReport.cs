@@ -28,6 +28,10 @@ namespace Models
 
         public Doctor Doctor { get; set; } = null!;
 
+        public string? ScanRequestId { get; set; }
+
+        public ScanRequest? ScanRequest { get; set; }
+
         public ICollection<AiReportImage> Images { get; set; }
             = new List<AiReportImage>();
     }

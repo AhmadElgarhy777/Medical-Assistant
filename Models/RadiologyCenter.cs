@@ -9,6 +9,7 @@ namespace Models
     public class RadiologyCenter : ModelBase
     {
         public string Name { get; set; } = null!;
+        public string Email { get; set; } = null!;
         public string Address { get; set; } = null!;
         public string Phone { get; set; } = null!;
 
@@ -20,6 +21,11 @@ namespace Models
         public int ReviewsCount { get; set; } = 0;
         public string WorkingHours { get; set; } = "9:00 AM - 10:00 PM";
         public bool IsActive { get; set; } = true;
+
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
+
+        public Enums.ConfrmationStatus Status { get; set; } = Enums.ConfrmationStatus.Pending;
 
         public ICollection<RadiologyCenterScan> ScanOffers { get; set; } = new List<RadiologyCenterScan>();
     }

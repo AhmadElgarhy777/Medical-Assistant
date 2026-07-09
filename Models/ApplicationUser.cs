@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using Models.Enums;
+using Models.Models;
 using System.Collections.ObjectModel;
 
 namespace Models
@@ -22,5 +23,14 @@ namespace Models
 
         public ICollection<Messages> Messages { get; set; } 
             = new List<Messages>();
+
+
+        public ICollection<Notification> ReceivedNotifications { get; set; }
+    = new HashSet<Notification>();
+
+        public ICollection<Notification> SentNotifications { get; set; }
+            = new HashSet<Notification>();
+
+  
     }
 }

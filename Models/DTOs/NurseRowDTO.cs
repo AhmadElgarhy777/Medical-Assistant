@@ -13,6 +13,8 @@ namespace Models.DTOs
         public string Email { get; set; } = null!;
         public string Gender { get; set; } = null!;
         public int Age { get; set; }
+        public bool IsBanned { get; set; }
+        public int BanCount { get; set; }
 
     }
 }

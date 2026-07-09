@@ -12,6 +12,8 @@ namespace Models
     public class LabBooking : ModelBase
     {
         public string PatientId { get; set; } = null!; // بياخده من التوكن، مش من الـ Request
+        public Patient? Patient { get; set; }
+
 
         public ServiceTypeEnum ServiceType { get; set; }
         public VisitTypeEnum VisitType { get; set; }
@@ -39,6 +41,7 @@ namespace Models
         public string PaymentMethod { get; set; } = "Cash";
         public bool IsPaid { get; set; } = false;
         public string? Notes { get; set; }
+        public string? CollectorId { get; set; }
 
         public ICollection<LabBookingItem> Items { get; set; } = new List<LabBookingItem>();
     }

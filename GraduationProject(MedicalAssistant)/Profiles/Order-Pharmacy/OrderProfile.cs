@@ -8,14 +8,16 @@ namespace GraduationProject_MedicalAssistant_.Profiles.Order_Pharmacy
     {
         public OrderProfile()
         {
-             CreateMap<Order, OrderResultDto>()
-                .ForMember(e => e.OrderId, d => d.MapFrom(s => s.ID))
-                .ForMember(e => e.InvoiceId, d => d.MapFrom(s => s.Invoice.ID))
-                .ForMember(e => e.InvoiceTotalAmount, d => d.MapFrom(s => s.Invoice.TotalAmount))
-                .ForMember(e => e.PaymentStatus, d => d.MapFrom(s => s.Invoice.PaymentStatus))
-                .ReverseMap();
-             
+            CreateMap<Order, OrderResultDto>()
+               .ForMember(e => e.OrderId, d => d.MapFrom(s => s.ID))
+               .ForMember(e => e.InvoiceId, d => d.MapFrom(s => s.Invoice.ID))
+               .ForMember(e => e.InvoiceTotalAmount, d => d.MapFrom(s => s.Invoice.TotalAmount))
+               .ForMember(e => e.PaymentStatus, d => d.MapFrom(s => s.Invoice.PaymentStatus))
+               .ReverseMap();
+
             CreateMap<Pharmacy, PharmacyRowDTO>()
+                .ForMember(e => e.IsBanned, d => d.MapFrom(s => s.IsDeleted))
+                .ForMember(e => e.BanCount, d => d.MapFrom(s => s.BanCount))
                 .ForMember(e => e.Governorate, d => d.MapFrom(s => s.Governorate.ToString()))
                 .ForMember(e => e.Status, d => d.MapFrom(s => s.Status.ToString()))
                 .ReverseMap();

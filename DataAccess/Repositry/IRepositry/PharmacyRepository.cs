@@ -2,7 +2,6 @@
 using Models;
 using Models.DTOs;
 using Models.Enums;
-using Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +59,7 @@ namespace DataAccess.Repositry.IRepositry
                 .Include(i => i.PharmacyProduct)
                 .FirstOrDefaultAsync(i => i.ID == inventoryId);
         }
-        public  IQueryable<Inventory> GetInventoryByPharmacyIdAsync(string PharmacyId)
+        public IQueryable<Inventory> GetInventoryByPharmacyIdAsync(string PharmacyId)
         {
             return _context.Inventories
                 .Include(i => i.PharmacyProduct)
@@ -146,7 +145,7 @@ namespace DataAccess.Repositry.IRepositry
                         .ThenInclude(i => i.PharmacyProduct) // ✅ عشان Name و Category ميبقوش null
                     .FirstOrDefaultAsync(p => p.ID == pharmacyId);
         }
-        
+
 
         public async Task UpdatePharmacyAsync(Pharmacy pharmacy)
         {
@@ -214,7 +213,7 @@ namespace DataAccess.Repositry.IRepositry
                 .Include(i => i.PharmacyProduct)
                 .ToListAsync();
         }
-        public  IQueryable<Pharmacy> GetAllPharmacyByConfirmationStatusAsync(ConfrmationStatus status)
+        public IQueryable<Pharmacy> GetAllPharmacyByConfirmationStatusAsync(ConfrmationStatus status)
         {
             return _context.Pharmacies
                 .Where(i => i.Status == status);
@@ -284,7 +283,7 @@ namespace DataAccess.Repositry.IRepositry
             var patient = await _context.Patients
                 .FirstOrDefaultAsync(p => p.ID == patientId);
             if (patient == null) return false;
-            if(patient.IsDeleted) return false;
+            if (patient.IsDeleted) return false;
             _context.Patients.Remove(patient);
             await _context.SaveChangesAsync();
             return true;
@@ -709,25 +708,50 @@ namespace DataAccess.Repositry.IRepositry
                 decimal total = 0;
                 foreach (var item in items)
                 {
-                    var inventory = await _context.Inventories
-                        .FirstOrDefaultAsync(i => i.ID == item.InventoryId);
-                    if (inventory == null) continue;
+                    decimal itemPrice = 0;
+                    string? medicineName = item.MedicineName;
+                    string? actualInventoryId = string.IsNullOrEmpty(item.InventoryId) || item.InventoryId == "00000000-0000-0000-0000-000000000000" ? null : item.InventoryId;
+
+                    if (actualInventoryId != null)
+                    {
+                        var inventory = await _context.Inventories
+                            .Include(i => i.PharmacyProduct)
+                            .FirstOrDefaultAsync(i => i.ID == actualInventoryId);
+
+                        if (inventory != null)
+                        {
+                            itemPrice = inventory.Price;
+                            medicineName = inventory.PharmacyProduct.Name;
+
+                            inventory.Quantity -= item.Quantity;
+                            if (inventory.Quantity <= 0)
+                            {
+                                inventory.Quantity = 0;
+                                inventory.IsAvailable = false;
+                            }
+                        }
+                        else
+                        {
+                            itemPrice = item.Price ?? 0;
+                        }
+                    }
+                    else
+                    {
+                        itemPrice = item.Price ?? 0;
+                    }
 
                     var orderItem = new OrderItem
                     {
                         OrderId = order.ID,
-                        InventoryId = item.InventoryId,
+                        InventoryId = actualInventoryId,
+                        MedicineName = medicineName,
                         Quantity = item.Quantity,
-                        UnitPrice = inventory.Price
+                        UnitPrice = itemPrice
                     };
 
                     await _context.OrderItems.AddAsync(orderItem);
 
-                    inventory.Quantity -= item.Quantity;
-                    if (inventory.Quantity == 0)
-                        inventory.IsAvailable = false;
-
-                    total += inventory.Price * item.Quantity;
+                    total += itemPrice * item.Quantity;
                 }
 
                 order.TotalAmount = total;

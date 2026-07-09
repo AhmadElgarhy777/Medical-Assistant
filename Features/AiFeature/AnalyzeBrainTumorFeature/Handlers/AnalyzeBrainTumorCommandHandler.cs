@@ -2,6 +2,7 @@ using DataAccess.Repositry.IRepositry;
 using DataAccess.UnitOfWork;
 using Features.AiFeature.AnalyzeBrainTumorFeature.Commands;
 using Features.AiFeature.SharedMethod;
+using Features.AiFeature.SharedMethod.AiReportService;
 using FluentValidation;
 using MediatR;
 using Models;
@@ -26,6 +27,7 @@ namespace Features.AiFeature.AnalyzeBrainTumorFeature.Handlers
         private readonly IAiReportImageRepositry reportImageRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IValidator<AnalyzeBrainTumorCommand> validator;
+        private readonly IAiReportService aiReportService;
 
         public AnalyzeBrainTumorCommandHandler(IImageService imageService,
             IAnalyzeImage analyzeImage,
@@ -33,7 +35,8 @@ namespace Features.AiFeature.AnalyzeBrainTumorFeature.Handlers
             IAiReportRepositry reportRepositry,
             IAiReportImageRepositry reportImageRepository,
             IUnitOfWork unitOfWork,
-            IValidator<AnalyzeBrainTumorCommand> validator
+            IValidator<AnalyzeBrainTumorCommand> validator,
+            IAiReportService aiReportService
 
             )
         {
@@ -44,6 +47,7 @@ namespace Features.AiFeature.AnalyzeBrainTumorFeature.Handlers
             this.reportImageRepository = reportImageRepository;
             this.unitOfWork = unitOfWork;
             this.validator = validator;
+            this.aiReportService = aiReportService;
         }
         public async Task<ResultResponse<AiAnalysisResultDTO>> Handle(AnalyzeBrainTumorCommand request, CancellationToken cancellationToken)
         {
@@ -66,38 +70,22 @@ namespace Features.AiFeature.AnalyzeBrainTumorFeature.Handlers
                 // 1- Upload Images
                 var uploadedImages = await imageService.UploadAIModelImagesAsync(
                     request.Images,
-                    cancellationToken);
+                    "BrainTumorModel"
+                    ,cancellationToken);
 
-                // 2- Analyze Images
-                var analysisResult = await analyzeImage.AnalyzeImagesAsync(
-                    uploadedImages,
-                    brainTumorAIClient,
-                    cancellationToken);
-
-                // 3- Create Report
-                var Report = new AiReport
-                {
-                    Diagnosis = analysisResult.Prediction,
-                    Confidence = analysisResult.Confidence,
-                    ModelType = AiModelTypeEnum.BrainTumorDetection,
-                    PatientId = request.PatientId,
-                    DoctorId = request.DoctorId,
-                    DoctorNote = request.DoctorNote,
-                };
-                // 4- Save Report
-                reportRepositry.Add(Report);
-                // 5- Save Report Images
-
-                SaveImages(Report.ID, uploadedImages);
-
-                await unitOfWork.CompleteAsync(cancellationToken);
-
-                await transaction.CommitAsync(cancellationToken);
+                var analysisResult =
+                 await aiReportService.AnalyzeAndSaveAsync(
+                     uploadedImages,
+                     AiModelTypeEnum.BrainTumorDetection,
+                     request.PatientId,
+                     request.DoctorId,
+                     request.DoctorNote,
+                     cancellationToken);
                 return new ResultResponse<AiAnalysisResultDTO>
                 {
                     ISucsses = true,
                     Message = "Analysis completed successfully.",
-                    Obj = analysisResult
+                    Obj = analysisResult.AnalysisResult
                 };
             }
             catch (Exception ex)
@@ -114,27 +102,6 @@ namespace Features.AiFeature.AnalyzeBrainTumorFeature.Handlers
 
         }
 
-        private void SaveImages(string reportId, List<string> imagePaths)
-        {
-            foreach (var path in imagePaths)
-            {
-                var extension = System.IO.Path.GetExtension(path).ToLowerInvariant();
-                var contentType = extension switch
-                {
-                    ".jpg" or ".jpeg" => "image/jpeg",
-                    ".png" => "image/png",
-                    ".gif" => "image/gif",
-                    ".webp" => "image/webp",
-                    _ => "image/jpeg"
-                };
-
-                reportImageRepository.Add(new AiReportImage
-                {
-                    ImagePath = path,
-                    AiReportId = reportId,
-                    ContentType = contentType
-                });
-            }
-        }
+      
     }
 }

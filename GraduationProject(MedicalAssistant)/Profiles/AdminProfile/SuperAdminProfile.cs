@@ -8,10 +8,16 @@ namespace GraduationProject_MedicalAssistant_.Profiles.AdminProfile
     {
         public SuperAdminProfile()
         {
-            CreateMap<Pharmacy, PharmaciesDTO>().ReverseMap();
-            CreateMap<Patient, PhatientsDTO>().ReverseMap();
+            CreateMap<Pharmacy, PharmaciesDTO>()
+                .ForMember(e => e.IsBanned, d => d.MapFrom(s => s.IsDeleted))
+                .ForMember(e => e.BanCount, d => d.MapFrom(s => s.BanCount))
+                .ReverseMap();
+            CreateMap<Patient, PhatientsDTO>()
+                .ForMember(e => e.IsBanned, d => d.MapFrom(s => s.IsDeleted))
+                .ForMember(e => e.BanCount, d => d.MapFrom(s => s.BanCount))
+                .ReverseMap();
             CreateMap<Doctor, DoctorsDTO>()
-                .ForMember(e=>e.SpecializationTitle,o=>o.MapFrom(s=>s.Specialization.Name))
+                .ForMember(e => e.SpecializationTitle, o => o.MapFrom(s => s.Specialization.Name))
                 .ReverseMap();
         }
     }

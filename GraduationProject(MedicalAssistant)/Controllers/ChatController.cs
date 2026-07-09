@@ -1,8 +1,11 @@
-﻿using DataAccess.Repositry.IRepositry;
+﻿using Features.MessagesFeature.Commands;
+using Features.MessagesFeature.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Services.FileServices;
-using System.Security.Claims;
+using Models.DTOs;
+using System.Threading.Tasks;
 
 namespace GraduationProject_MedicalAssistant_.Controllers
 {
@@ -11,159 +14,140 @@ namespace GraduationProject_MedicalAssistant_.Controllers
     [Authorize]
     public class ChatController : ControllerBase
     {
-        private readonly IConversationRepository _conversationRepository;
-        private readonly IMessageRepository _messageRepository;
-        private readonly IFileService _fileService;
-        private readonly IConfiguration _configuration;
+        private readonly IMediator _mediator;
 
-        public ChatController(
-            IConversationRepository conversationRepository,
-            IMessageRepository messageRepository,
-            IFileService fileService,
-            IConfiguration configuration)
+        public ChatController(IMediator mediator)
         {
-            _conversationRepository = conversationRepository;
-            _messageRepository = messageRepository;
-            _fileService = fileService;
-            _configuration = configuration;
+            _mediator = mediator;
+        }
+
+        private IActionResult HandleResult<T>(Features.ResultResponse<T> result)
+        {
+            if (result.ISucsses)
+            {
+                if (result.Obj != null) return Ok(result.Obj);
+                return Ok(new { message = result.Message });
+            }
+
+            if (result.Message == "Unauthorized") return Unauthorized(new { message = result.Message });
+            if (result.Message == "Not a participant") return StatusCode(403, new { message = result.Message });
+            if (result.Message == "Message not found or not owned by you") return NotFound(new { message = result.Message });
+
+            return BadRequest(new { message = result.Message ?? "Bad Request" });
         }
 
         [HttpPost("conversation/{userId2}")]
         public async Task<IActionResult> CreateConversation(string userId2)
         {
-            var userId1 = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var conversation = await _conversationRepository.CreateConversationAsync(userId1!, userId2);
-            return Ok(new { conversationId = conversation.ID });
+            var result = await _mediator.Send(new GetOrCreateConversationQuery { UserId2 = userId2 });
+            if (!result.ISucsses) return HandleResult(result);
+            return Ok(new { conversationId = result.Obj });
         }
 
         [HttpGet("conversations")]
         public async Task<IActionResult> GetMyConversations()
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var result = await _conversationRepository.GetUserConversationsAsync(userId!);
-            if (!result.Any())
-                return NotFound("مفيش محادثات!");
-            return Ok(result);
+            var result = await _mediator.Send(new GetConversationsQuery());
+            if (!result.ISucsses) return HandleResult(result);
+            if (result.Obj == null || result.Obj.Count == 0) return NotFound(new { message = "مفيش محادثات!" });
+            return Ok(result.Obj);
         }
 
         [HttpGet("conversation/{conversationId}/messages")]
-        public async Task<IActionResult> GetMessages(string conversationId)
+        public async Task<IActionResult> GetMessages(string conversationId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
-            if (!isParticipant)
-                return Forbid();
+            var result = await _mediator.Send(new GetPaginatedMessagesQuery
+            {
+                ConversationId = conversationId,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            });
 
-            var messages = await _messageRepository.GetConversationMessagesAsync(conversationId);
-            return Ok(messages);
+            return HandleResult(result);
+        }
+
+        [HttpPost("conversation/{conversationId}/message")]
+        public async Task<IActionResult> SendTextMessage(string conversationId, [FromBody] SendTextRequestDto request)
+        {
+            var result = await _mediator.Send(new SendMessageCommand
+            {
+                ConversationId = conversationId,
+                Content = request.Text,
+                MediaType = "Text"
+            });
+            return HandleResult(result);
         }
 
         [HttpPost("conversation/{conversationId}/image")]
-        public async Task<IActionResult> SendImage(string conversationId, IFormFile image)
+        public async Task<IActionResult> SendImage(string conversationId, IFormFile image, [FromForm] string? caption)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
-            if (!isParticipant) return Forbid();
-
-            var imgName = await _fileService.UploadFileAsync(image, "ChatImages", CancellationToken.None);
-            var imgUrl = $"{_configuration["ApiBaseUrL"]}/ChatImages/{imgName}";
-
-            var message = new Models.Messages
+            var result = await _mediator.Send(new SendMessageCommand
             {
                 ConversationId = conversationId,
-                SenderId = userId!,
-                MediaUrl = imgUrl,
-                MediaType = "Image",
-                SentAt = DateTime.UtcNow
-            };
-
-            await _messageRepository.AddMessageAsync(message);
-            return Ok(new { mediaUrl = imgUrl, messageId = message.ID });
+                MediaFile = image,
+                Content = caption, // user allowed "عنوان الملف"
+                MediaType = "Image"
+            });
+            return HandleResult(result);
         }
 
         [HttpPost("conversation/{conversationId}/file")]
-        public async Task<IActionResult> SendFile(string conversationId, IFormFile file)
+        public async Task<IActionResult> SendFile(string conversationId, IFormFile file, [FromForm] string? caption)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
-            if (!isParticipant) return Forbid();
-
-            var fileName = await _fileService.UploadFileAsync(file, "ChatFiles", CancellationToken.None);
-            var fileUrl = $"{_configuration["ApiBaseUrL"]}/ChatFiles/{fileName}";
-
-            var message = new Models.Messages
+            var result = await _mediator.Send(new SendMessageCommand
             {
                 ConversationId = conversationId,
-                SenderId = userId!,
-                MediaUrl = fileUrl,
-                MediaType = "File",
-                SentAt = DateTime.UtcNow
-            };
-
-            await _messageRepository.AddMessageAsync(message);
-            return Ok(new { mediaUrl = fileUrl, messageId = message.ID });
+                MediaFile = file,
+                Content = caption, // user allowed "عنوان الملف"
+                MediaType = "File"
+            });
+            return HandleResult(result);
         }
 
         [HttpPost("conversation/{conversationId}/voice")]
-        public async Task<IActionResult> SendVoice(string conversationId, IFormFile voice)
+        public async Task<IActionResult> SendVoice(string conversationId, IFormFile voice, [FromForm] string? duration)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
-            if (!isParticipant) return Forbid();
-
-            var voiceName = await _fileService.UploadFileAsync(voice, "ChatVoices", CancellationToken.None);
-            var voiceUrl = $"{_configuration["ApiBaseUrL"]}/ChatVoices/{voiceName}";
-
-            var message = new Models.Messages
+            var result = await _mediator.Send(new SendMessageCommand
             {
                 ConversationId = conversationId,
-                SenderId = userId!,
-                MediaUrl = voiceUrl,
-                MediaType = "Voice",
-                SentAt = DateTime.UtcNow
-            };
-
-            await _messageRepository.AddMessageAsync(message);
-            return Ok(new { mediaUrl = voiceUrl, messageId = message.ID });
+                MediaFile = voice,
+                // duration is postponed until DB schema is modified, not saved in Content
+                Content = null,
+                MediaType = "Voice"
+            });
+            return HandleResult(result);
         }
-        // ✅ حذف رسالة
+
         [HttpDelete("message/{messageId}")]
         public async Task<IActionResult> DeleteMessage(string messageId)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var result = await _messageRepository.DeleteMessageAsync(messageId, userId!);
-            if (!result)
-                return NotFound("الرسالة مش موجودة أو مش بتاعتك!");
-            return Ok("تم حذف الرسالة!");
+            var result = await _mediator.Send(new DeleteMessageCommand { MessageId = messageId });
+            return HandleResult(result);
         }
 
-        // ✅ تعديل رسالة
         [HttpPut("message/{messageId}")]
         public async Task<IActionResult> EditMessage(string messageId, [FromQuery] string newContent)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var result = await _messageRepository.EditMessageAsync(messageId, userId!, newContent);
-            if (!result)
-                return NotFound("الرسالة مش موجودة أو مش بتاعتك!");
-            return Ok("تم تعديل الرسالة!");
+            var result = await _mediator.Send(new EditMessageCommand { MessageId = messageId, NewContent = newContent });
+            return HandleResult(result);
         }
 
-        // ✅ البحث في الرسايل
         [HttpGet("conversation/{conversationId}/search")]
-        public async Task<IActionResult> SearchMessages(string conversationId, [FromQuery] string query)
+        public async Task<IActionResult> SearchMessages(string conversationId, [FromQuery] string query, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 20)
         {
-            if (string.IsNullOrEmpty(query))
-                return BadRequest("ادخل كلمة البحث!");
+            if (string.IsNullOrEmpty(query)) return BadRequest(new { message = "ادخل كلمة البحث!" });
 
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var isParticipant = await _conversationRepository.IsParticipantAsync(conversationId, userId!);
-            if (!isParticipant)
-                return Forbid();
+            var result = await _mediator.Send(new SearchMessagesQuery
+            {
+                ConversationId = conversationId,
+                Query = query,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            });
 
-            var result = await _messageRepository.SearchMessagesAsync(conversationId, query);
-            if (!result.Any())
-                return NotFound("مفيش رسايل بالكلمة دي!");
-            return Ok(result);
+            if (!result.ISucsses) return HandleResult(result);
+
+            return Ok(result.Obj);
         }
     }
 }

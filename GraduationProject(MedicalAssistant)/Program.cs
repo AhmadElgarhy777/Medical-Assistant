@@ -5,7 +5,9 @@ using Features.AiFeature.AnalyzeBrainTumorFeature.Validator;
 using Features.AiFeature.ChestRayClassifcation;
 using Features.AiFeature.SkinCancerClassification;
 using Features.AiService;
+using Features;
 using Features.AuthenticationFeature.Validation;
+using Features.NotifecationService;
 using Features.PharmacyFeature;
 using FluentValidation;
 using GraduationProject_MedicalAssistant_.Extentions;
@@ -90,6 +92,7 @@ namespace GraduationProject_MedicalAssistant_
             builder.Services.AddScoped<IMessageRepository, MessageRepository>();
             builder.Services.AddScoped<IConversationRepository, ConversationRepository>();
 
+
             builder.Services.AddHttpClient<IPaymentService, PaymentService>();
             //builder.Services.AddSignalR();
             var app = builder.Build();
@@ -109,6 +112,7 @@ namespace GraduationProject_MedicalAssistant_
                 FactoryLogger.CreateLogger<Program>().LogError(ex, "this is migration error ");
             }
             //app.MapHub<ChatHub>("/chat");
+            app.MapHub<NotificationHub>("/notificationHub");
             app.AddSwaggerServiceMiddleWare();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

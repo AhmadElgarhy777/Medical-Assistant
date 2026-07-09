@@ -14,6 +14,8 @@ namespace Services.ImageServices
        Task<string> UploadImgAsync(IFormFile img, string FolderName, CancellationToken cancellationToken);
        Task<string> EditImgAsync(IFormFile Newimg,string OldImg, string FolderName, CancellationToken cancellationToken);
         void ImgExtention(IFormFile image);
-        Task<List<string>> UploadAIModelImagesAsync(IEnumerable<IFormFile> images, CancellationToken cancellationToken);
+        Task<List<string>> UploadAIModelImagesAsync(IEnumerable<IFormFile> images, string FolderName, CancellationToken cancellationToken);
+
+        Task DeleteAIImagesAsync(IEnumerable<string> imagePaths);
     }
 }

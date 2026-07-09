@@ -21,7 +21,9 @@ namespace Services.FileServices
                 // ملفات
                 ".pdf", ".doc", ".docx", ".txt", ".xlsx",
                 // صوت
-                ".mp3", ".wav", ".ogg", ".m4a", ".aac"
+                ".mp3", ".wav", ".ogg", ".m4a", ".aac",
+                // اشعة وملفات مضغوطة
+                ".dcm", ".zip", ".rar"
             };
 
             var extension = Path.GetExtension(file.FileName).ToLower();
